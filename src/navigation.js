@@ -12,7 +12,9 @@ export const goHome = () => Navigation.setRoot({
               bottomTab: {
                 fontSize: 12,
                 text: 'Organise',
-                icon: require('../assets/test.png')
+                icon: require('../assets/test.png'),
+                selectedTextColor: 'blue',
+                selectedIconColor: 'blue',
               }
             }
           },
@@ -24,7 +26,9 @@ export const goHome = () => Navigation.setRoot({
               bottomTab: {
                 fontSize: 12,
                 text: 'Plan',
-                icon: require('../assets/test.png')
+                icon: require('../assets/test.png'),
+                selectedTextColor: 'blue',
+                selectedIconColor: 'blue',
               }
             }
           },
@@ -36,7 +40,9 @@ export const goHome = () => Navigation.setRoot({
               bottomTab: {
                 text: 'Discuss',
                 fontSize: 12,
-                icon: require('../assets/test.png')
+                icon: require('../assets/test.png'),
+                selectedTextColor: 'blue',
+                selectedIconColor: 'blue',
               }
             }
           },
