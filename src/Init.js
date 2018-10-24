@@ -1,16 +1,12 @@
-import React from 'react'
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-import { goHome } from './navigation';
+import { goSignIn } from "./navigation";
 
 export default class Initialising extends React.Component {
   async componentDidMount() {
     setTimeout(() => {
-      goHome();
+      goSignIn();
     }, 1000);
   }
 
@@ -19,7 +15,7 @@ export default class Initialising extends React.Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>Loading</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -29,7 +25,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
-})
+});
