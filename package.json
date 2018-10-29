@@ -14,7 +14,8 @@
     "react-native": "0.57.1",
     "react-native-navigation": "^2.0.2631",
     "react-native-svg": "^7.0.3",
-    "react-native-svg-icon": "^0.8.1"
+    "react-native-svg-icon": "^0.8.1",
+    "swiss-react": "^0.3.4"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
