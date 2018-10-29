@@ -6,7 +6,7 @@ export default class SignUp extends Component {
   render() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-        <View>
+        <View style={{ flex: 1 }}>
           <Text>Sign up</Text>
           <Button
             onPress={() => {

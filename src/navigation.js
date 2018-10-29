@@ -57,14 +57,7 @@ export const goSignIn = () =>
   Navigation.setRoot({
     root: {
       component: {
-        name: "SignIn",
-        options: {
-          topBar: {
-            title: {
-              text: "Sign in"
-            }
-          }
-        }
+        name: "SignIn"
       }
     }
   });
