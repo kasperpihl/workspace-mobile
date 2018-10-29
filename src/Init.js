@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
-import { goSignIn } from "./navigation";
+import { goSignIn } from "src/navigation";
 
 export default class Initialising extends React.Component {
   async componentDidMount() {

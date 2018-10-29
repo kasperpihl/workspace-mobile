@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, Button, SafeAreaView } from "react-native";
-import { goSignIn } from "../../navigation";
+import { goSignIn } from "src/navigation";
 
 export default class SignUp extends Component {
   render() {
