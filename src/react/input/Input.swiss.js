@@ -1,5 +1,5 @@
 import { styleSheet } from "swiss-react";
-import { Text, TextInput } from "react-native";
+import { Text, TextInput, TouchableOpacity } from "react-native";
 
 export default styleSheet("Input", {
   Wrapper: {
@@ -19,5 +19,18 @@ export default styleSheet("Input", {
     _border: ["1", "$sw1", "bottom"],
     _padding: [10, 0],
     fontSize: "15"
+  },
+  PassToggle: {
+    _el: TouchableOpacity,
+    _size: ["20", "20"],
+    _borderRadius: "10",
+    position: "absolute",
+    right: "0",
+    top: "27",
+    zIndex: "1",
+    backgroundColor: "$blue",
+    display: props => {
+      return props.display ? "" : "none";
+    }
   }
 });

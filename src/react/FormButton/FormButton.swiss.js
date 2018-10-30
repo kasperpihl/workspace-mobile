@@ -11,7 +11,7 @@ export default styleSheet("Input", {
     _flex: ["center"],
     _padding: [20, 0],
     _borderRadius: 4,
-    backgroundColor: "blue"
+    backgroundColor: "$blue"
   },
   ButtonText: {
     _el: Text,
