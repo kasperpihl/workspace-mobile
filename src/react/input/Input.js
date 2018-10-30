@@ -19,6 +19,7 @@ export default class Input extends PureComponent {
         <SW.TextInput
           secureTextEntry={secureTextEntry}
           textContentType={textContentType}
+          autoCapitalize={"none"}
           onChangeText={value => {
             this.setState({ value });
           }}
