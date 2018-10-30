@@ -9,6 +9,10 @@ export function registerScreens() {
     "SignIn",
     () => require("./react/signin/Signin").default
   );
+  Navigation.registerComponent(
+    "ForgottenPassword",
+    () => require("./react/ForgottenPassword/ForgottenPassword").default
+  );
   Navigation.registerComponent("Organise", () => require("./Organise").default);
   Navigation.registerComponent("Plan", () => require("./Plan").default);
   Navigation.registerComponent("Discuss", () => require("./Discuss").default);

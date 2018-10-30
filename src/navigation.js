@@ -70,3 +70,12 @@ export const goSignUp = () =>
       }
     }
   });
+
+export const goForgottenPassword = () =>
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: "ForgottenPassword"
+      }
+    }
+  });
