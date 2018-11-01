@@ -8,7 +8,6 @@ import Organise from 'src/Organise';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
 import { init } from 'swipes-core-js';
-import { goHome, goSignIn } from 'src/navigation';
 
 const { store, persistor } = configureStore({
   globals: getGlobals(),
