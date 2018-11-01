@@ -4,8 +4,10 @@ import HOCRootWrapper from "src/store/HOCRootWrapper";
 import Init from "src/Init";
 import SignIn from "src/react/SignIn/SignIn";
 import SignUp from "src/react/SignUp/SignUp";
+import { init } from "swipes-core-js";
 
 const { store } = configureStore();
+init(store);
 
 export function registerScreens() {
   Navigation.registerComponent("Init", () => HOCRootWrapper(Init, store));
