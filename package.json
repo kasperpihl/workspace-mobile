@@ -10,14 +10,19 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+    "@swipesapp/core": "^1.0.0",
+    "immutable": "^4.0.0-rc.12",
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-navigation": "^2.0.2631",
     "react-native-svg": "^7.0.3",
     "react-native-svg-icon": "^0.8.1",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
     "swiss-react": "^0.3.4"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.1.2",
     "babel-jest": "23.6.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "jest": "23.6.0",

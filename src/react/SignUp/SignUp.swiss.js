@@ -1,9 +1,8 @@
 import { styleSheet } from "swiss-react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 
-export default styleSheet("SignIn", {
+export default styleSheet("SignUp", {
   Wrapper: {
-    _el: View,
     _flex: ["column", "center", "center"],
     _size: ["100%", "100%"],
     _padding: [0, 20]

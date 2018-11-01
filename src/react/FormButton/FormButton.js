@@ -3,10 +3,10 @@ import SW from "./FormButton.swiss";
 
 export default class Button extends PureComponent {
   render() {
-    const { label } = this.props;
+    const { label, onPress } = this.props;
 
     return (
-      <SW.Wrapper>
+      <SW.Wrapper onPress={onPress}>
         <SW.Button>
           <SW.ButtonText>{label}</SW.ButtonText>
         </SW.Button>
