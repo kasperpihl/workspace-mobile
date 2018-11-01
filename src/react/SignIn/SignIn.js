@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, SafeAreaView, View } from "react-native";
 import { connect } from "react-redux";
 import { goSignUp, goHome, goForgottenPassword } from "src/navigation";
-import Input from "src/react/input/Input";
+import Input from "src/react/Input/Input";
 import FormButton from "src/react/FormButton/FormButton";
 import SW from "src/react/SignIn/SignIn.swiss";
 import * as actions from "src/actions";

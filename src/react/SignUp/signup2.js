@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, SafeAreaView, View } from "react-native";
 import { goSignIn } from "src/navigation";
-import Input from "src/react/input/Input";
+import Input from "src/react/Input/Input";
 import FormButton from "src/react/FormButton/FormButton";
 import SW from "src/react/SignUp/SignUp.swiss";
 
