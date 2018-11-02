@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@swipesapp/core": "^1.0.9",
+    "@swipesapp/core": "^1.0.10",
     "immutable": "^4.0.0-rc.12",
     "react": "16.5.0",
     "react-native": "0.57.1",
