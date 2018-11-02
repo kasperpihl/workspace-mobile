@@ -4,7 +4,8 @@ import HOCRootWrapper from 'src/react/HOCRootWrapper';
 import SignIn from 'src/react/SignIn/SignIn';
 import SignUp from 'src/react/SignUp/SignUp';
 import Plan from 'src/Plan';
-import Organise from 'src/Organise';
+import ProjectList from 'src/react/ProjectList/ProjectList';
+import Project from 'src/react/Project/Project';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
 import { init } from 'swipes-core-js';
@@ -28,8 +29,11 @@ export function registerScreens() {
     'ForgottenPassword',
     () => require('./react/ForgottenPassword/ForgottenPassword').default
   );
-  Navigation.registerComponent('Organise', () =>
-    HOCRootWrapper(Organise, store, persistor, true)
+  Navigation.registerComponent('ProjectList', () =>
+    HOCRootWrapper(ProjectList, store, persistor, true)
+  );
+  Navigation.registerComponent('Project', () =>
+    HOCRootWrapper(Project, store, persistor, true)
   );
   Navigation.registerComponent('Plan', () =>
     HOCRootWrapper(Plan, store, persistor, true)
