@@ -4,7 +4,13 @@ import { registerScreens } from './src/screens';
 registerScreens();
 
 Navigation.events().registerAppLaunchedListener(() => {
-  console.log('fired loader stuff');
+  // Default navigation options
+  Navigation.setDefaultOptions({
+    topBar: {
+      noBorder: true,
+    },
+  });
+
   Navigation.setRoot({
     root: {
       component: {

@@ -18,13 +18,6 @@ init(store);
 //   store.dispatch({ type: 'RESET_STATE' });
 // }, 1000);
 
-// Default navigation options
-Navigation.setDefaultOptions({
-  topBar: {
-    noBorder: true,
-  },
-});
-
 export function registerScreens() {
   Navigation.registerComponent('SignIn', () =>
     HOCRootWrapper(SignIn, store, persistor, false)
