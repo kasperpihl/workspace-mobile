@@ -14,6 +14,12 @@ export const goHome = () =>
                     name: 'ProjectList',
                   },
                 },
+                {
+                  component: {
+                    id: 'Project',
+                    name: 'Project',
+                  },
+                },
               ],
               options: {
                 bottomTab: {
