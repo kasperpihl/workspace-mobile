@@ -11,10 +11,4 @@ export default styleSheet('Project', {
     fontSize: '30',
     fontWeight: 'bold',
   },
-  Item: {
-    _el: Text,
-    paddingLeft: props => {
-      return props.indent * 10;
-    },
-  },
 });

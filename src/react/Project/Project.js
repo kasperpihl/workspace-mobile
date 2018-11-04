@@ -1,18 +1,46 @@
 import React, { Component } from 'react';
 import { SafeAreaView, VirtualizedList, Text } from 'react-native';
+import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
 import data from './data';
 
-const itemsById = data.itemsById;
-
 export default class Project extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      order: data.order,
+      itemsById: data.itemsById,
+    };
+    this.onChangeProjectInputHandler = this.onChangeProjectInputHandler.bind(
+      this
+    );
+    this.renderItem = this.renderItem.bind(this);
+  }
   renderItem(item) {
+    const { itemsById } = this.state;
     const data = item.item.data;
     const task = itemsById.get(data.get('id'));
 
-    return <SW.Item indent={data.get('indent')}>{task.get('title')}</SW.Item>;
+    return (
+      <ProjectInput
+        onChangeText={this.onChangeProjectInputHandler}
+        indent={data.get('indent')}
+        value={task.get('title')}
+        dataId={data.get('id')}
+      />
+    );
+  }
+  onChangeProjectInputHandler(text, dataId) {
+    const { itemsById } = this.state;
+
+    this.setState({
+      itemsById: itemsById.setIn([dataId, 'title'], text),
+    });
   }
   render() {
+    const { order, itemsById } = this.state;
+
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
@@ -22,9 +50,9 @@ export default class Project extends Component {
               return { key: `${index}`, data: data.get(index) };
             }}
             getItemCount={() => {
-              return data.order.size;
+              return order.size;
             }}
-            data={data.order}
+            data={order}
             renderItem={this.renderItem}
           />
         </SW.Wrapper>
