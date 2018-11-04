@@ -2,44 +2,44 @@ import React, { Component } from 'react';
 import { SafeAreaView, VirtualizedList, Text } from 'react-native';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
+import ProjectStateManager from 'src/utils/project/ProjectStateManager';
 import data from './data';
 
 export default class Project extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      order: data.order,
-      itemsById: data.itemsById,
-    };
-    this.onChangeProjectInputHandler = this.onChangeProjectInputHandler.bind(
-      this
-    );
+    this.state = {};
     this.renderItem = this.renderItem.bind(this);
   }
+  componentWillMount() {
+    this.stateManager = new ProjectStateManager(
+      data.order,
+      data.itemsById,
+      this.onStateChange
+    );
+    this.setState(this.stateManager.getState());
+  }
+  componentWillUnmount() {
+    this.stateManager.destroy();
+  }
+  onStateChange = state => this.setState(state);
   renderItem(item) {
     const { itemsById } = this.state;
-    const data = item.item.data;
-    const task = itemsById.get(data.get('id'));
+    const metaData = item.item.data;
+    const task = itemsById.get(metaData.get('id'));
 
     return (
       <ProjectInput
-        onChangeText={this.onChangeProjectInputHandler}
-        indent={data.get('indent')}
+        indent={metaData.get('indent')}
         value={task.get('title')}
-        dataId={data.get('id')}
+        taskId={task.get('id')}
+        stateManager={this.stateManager}
       />
     );
   }
-  onChangeProjectInputHandler(text, dataId) {
-    const { itemsById } = this.state;
-
-    this.setState({
-      itemsById: itemsById.setIn([dataId, 'title'], text),
-    });
-  }
   render() {
-    const { order, itemsById } = this.state;
+    const { visibleOrder } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -50,9 +50,9 @@ export default class Project extends Component {
               return { key: `${index}`, data: data.get(index) };
             }}
             getItemCount={() => {
-              return order.size;
+              return visibleOrder.size;
             }}
-            data={order}
+            data={visibleOrder}
             renderItem={this.renderItem}
           />
         </SW.Wrapper>
