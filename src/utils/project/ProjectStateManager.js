@@ -26,7 +26,7 @@ export default class ProjectStateManager {
       editHandler: new ProjectEditHandler(this),
       expandHandler: new ProjectExpandHandler(this),
       indentHandler: new ProjectIndentHandler(this),
-      keyHandler: new ProjectKeyHandler(this),
+      // keyHandler: new ProjectKeyHandler(this),
       selectHandler: new ProjectSelectHandler(this),
       undoHandler: new ProjectUndoHandler(this),
     };

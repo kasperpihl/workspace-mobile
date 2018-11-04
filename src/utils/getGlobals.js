@@ -9,7 +9,7 @@ export default function getGlobals() {
     DeviceInfo.getBundleId() === 'com.swipesapp.iosstaging' ||
     DeviceInfo.getBundleId() === 'com.swipesapp.androidstaging'
   ) {
-    apiUrl = 'http://localhost:5000';
+    apiUrl = 'http://192.168.1.105:5000';
   }
   const pre = `sw-${Platform.OS}`;
 

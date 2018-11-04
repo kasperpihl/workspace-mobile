@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, VirtualizedList, Text } from 'react-native';
+import { SafeAreaView, VirtualizedList, Slider } from 'react-native';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
@@ -24,6 +24,10 @@ export default class Project extends Component {
     this.stateManager.destroy();
   }
   onStateChange = state => this.setState(state);
+  onSliderChange = value => {
+    const depth = parseInt(value, 10);
+    this.stateManager.indentHandler.enforceIndention(depth);
+  };
   renderItem(item) {
     const { itemsById } = this.state;
     const metaData = item.item.data;
@@ -39,12 +43,18 @@ export default class Project extends Component {
     );
   }
   render() {
-    const { visibleOrder } = this.state;
+    const { visibleOrder, sliderValue } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
           <SW.HeaderText>New Project</SW.HeaderText>
+          <Slider
+            minimumValue={0}
+            maximumValue={4}
+            onValueChange={this.onSliderChange}
+            value={sliderValue}
+          />
           <VirtualizedList
             getItem={(data, index) => {
               return { key: `${index}`, data: data.get(index) };
