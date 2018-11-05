@@ -20,6 +20,11 @@ export default class ProjectList extends Component {
               text: 'Untitled project',
             },
           },
+          bottomTabs: {
+            visible: false,
+            drawBehind: true,
+            animate: true,
+          },
         },
       },
     });

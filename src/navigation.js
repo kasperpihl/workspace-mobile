@@ -18,6 +18,20 @@ export const goHome = () =>
                   component: {
                     id: 'Project',
                     name: 'Project',
+                    options: {
+                      topBar: {
+                        title: {
+                          visible: true,
+                          animate: false,
+                          text: 'Untitled project',
+                        },
+                      },
+                      bottomTabs: {
+                        visible: false,
+                        drawBehind: true,
+                        animate: true,
+                      },
+                    },
                   },
                 },
               ],
