@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import {
-  SafeAreaView,
-  VirtualizedList,
-  Slider,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { SafeAreaView, VirtualizedList, Slider } from 'react-native';
+import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
@@ -53,24 +49,21 @@ export default class Project extends Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
-          <KeyboardAvoidingView
-            keyboardVerticalOffset={80}
-            behavior={'padding'}
-            enabled
-          >
-            <VirtualizedList
-              keyboardDismissMode={'interactive'}
-              keyboardShouldPersistTaps={'always'}
-              getItem={(data, index) => {
-                return { key: `${index}`, data: data.get(index) };
-              }}
-              getItemCount={() => {
-                return visibleOrder.size;
-              }}
-              data={visibleOrder}
-              renderItem={this.renderItem}
-            />
-          </KeyboardAvoidingView>
+          <VirtualizedList
+            keyboardDismissMode={'none'}
+            keyboardShouldPersistTaps={'always'}
+            getItem={(data, index) => {
+              return { key: `${index}`, data: data.get(index) };
+            }}
+            getItemCount={() => {
+              return visibleOrder.size;
+            }}
+            data={visibleOrder}
+            renderItem={this.renderItem}
+          />
+          <KeyboardAccessoryView avoidKeyboard hideBorder={true}>
+            <SW.ToolbarWrapper />
+          </KeyboardAccessoryView>
           <SW.SliderWrapper>
             <Slider
               minimumValue={0}
