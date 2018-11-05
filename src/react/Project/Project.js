@@ -57,6 +57,8 @@ export default class Project extends Component {
             />
           </SW.SliderWrapper>
           <VirtualizedList
+            keyboardDismissMode={'on-drag'}
+            keyboardShouldPersistTaps={'always'}
             getItem={(data, index) => {
               return { key: `${index}`, data: data.get(index) };
             }}
