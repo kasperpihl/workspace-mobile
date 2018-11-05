@@ -5,16 +5,13 @@ export default styleSheet('Project', {
   Wrapper: {
     _size: ['100%', '100%'],
     _padding: [0, 20],
-  },
-  HeaderText: {
-    _el: Text,
-    fontSize: '30',
-    fontWeight: 'bold',
+    paddingRight: 0,
+    backgroundColor: 'red',
   },
   SliderWrapper: {
     _size: ['100', 'auto'],
     position: 'absolute',
-    bottom: '0',
+    bottom: '10',
     right: '20',
     zIndex: '1',
   },

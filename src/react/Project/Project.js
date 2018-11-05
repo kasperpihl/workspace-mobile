@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { SafeAreaView, VirtualizedList, Slider } from 'react-native';
+import {
+  SafeAreaView,
+  VirtualizedList,
+  Slider,
+  KeyboardAvoidingView,
+} from 'react-native';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
@@ -48,6 +53,24 @@ export default class Project extends Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
+          <KeyboardAvoidingView
+            keyboardVerticalOffset={80}
+            behavior={'padding'}
+            enabled
+          >
+            <VirtualizedList
+              keyboardDismissMode={'on-drag'}
+              keyboardShouldPersistTaps={'always'}
+              getItem={(data, index) => {
+                return { key: `${index}`, data: data.get(index) };
+              }}
+              getItemCount={() => {
+                return visibleOrder.size;
+              }}
+              data={visibleOrder}
+              renderItem={this.renderItem}
+            />
+          </KeyboardAvoidingView>
           <SW.SliderWrapper>
             <Slider
               minimumValue={0}
@@ -56,18 +79,6 @@ export default class Project extends Component {
               value={sliderValue}
             />
           </SW.SliderWrapper>
-          <VirtualizedList
-            keyboardDismissMode={'on-drag'}
-            keyboardShouldPersistTaps={'always'}
-            getItem={(data, index) => {
-              return { key: `${index}`, data: data.get(index) };
-            }}
-            getItemCount={() => {
-              return visibleOrder.size;
-            }}
-            data={visibleOrder}
-            renderItem={this.renderItem}
-          />
         </SW.Wrapper>
       </SafeAreaView>
     );
