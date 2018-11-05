@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, Slider, TouchableOpacity } from 'react-native';
 
 export default styleSheet('Project', {
   Wrapper: {
@@ -10,5 +10,12 @@ export default styleSheet('Project', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+  },
+  SliderWrapper: {
+    _size: ['100', 'auto'],
+    position: 'absolute',
+    bottom: '0',
+    right: '20',
+    zIndex: '1',
   },
 });

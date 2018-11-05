@@ -48,13 +48,14 @@ export default class Project extends Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
-          <SW.HeaderText>New Project</SW.HeaderText>
-          <Slider
-            minimumValue={0}
-            maximumValue={4}
-            onValueChange={this.onSliderChange}
-            value={sliderValue}
-          />
+          <SW.SliderWrapper>
+            <Slider
+              minimumValue={0}
+              maximumValue={4}
+              onValueChange={this.onSliderChange}
+              value={sliderValue}
+            />
+          </SW.SliderWrapper>
           <VirtualizedList
             getItem={(data, index) => {
               return { key: `${index}`, data: data.get(index) };
