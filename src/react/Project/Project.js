@@ -59,7 +59,7 @@ export default class Project extends Component {
             enabled
           >
             <VirtualizedList
-              keyboardDismissMode={'on-drag'}
+              keyboardDismissMode={'interactive'}
               keyboardShouldPersistTaps={'always'}
               getItem={(data, index) => {
                 return { key: `${index}`, data: data.get(index) };
