@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { SafeAreaView, VirtualizedList, Slider, Keyboard } from 'react-native';
+import {
+  SafeAreaView,
+  VirtualizedList,
+  Slider,
+  Keyboard,
+  Animated,
+} from 'react-native';
 import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
@@ -13,6 +19,7 @@ export default class Project extends Component {
     this.inputRefs = {};
     this.state = {
       toolBaralwaysVisible: false,
+      keyboardHeightAnimation: new Animated.Value(0),
     };
     this.lastFocusedInputRefId = null;
     this.renderItem = this.renderItem.bind(this);
@@ -55,7 +62,12 @@ export default class Project extends Component {
     );
   }
   render() {
-    const { visibleOrder, sliderValue, toolBaralwaysVisible } = this.state;
+    const {
+      visibleOrder,
+      sliderValue,
+      toolBaralwaysVisible,
+      keyboardHeightAnimation,
+    } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -84,6 +96,13 @@ export default class Project extends Component {
                   this.setState({
                     toolBaralwaysVisible: true,
                   });
+                  Animated.sequence([
+                    Animated.delay(500),
+                    Animated.timing(this.state.keyboardHeightAnimation, {
+                      toValue: 260,
+                      duration: 150,
+                    }),
+                  ]).start();
                 }}
               />
               <SW.ResetKeyboard
@@ -94,10 +113,20 @@ export default class Project extends Component {
                   this.setState({
                     toolBaralwaysVisible: false,
                   });
+                  Animated.sequence([
+                    Animated.timing(this.state.keyboardHeightAnimation, {
+                      toValue: 0,
+                      duration: 0,
+                    }),
+                  ]).start();
                 }}
               />
             </SW.ToolbarWrapper>
-            <SW.TestKeyboard visible={toolBaralwaysVisible} />
+            <Animated.View
+              style={{ width: '100%', height: keyboardHeightAnimation }}
+            >
+              <SW.TestKeyboard visible={toolBaralwaysVisible} />
+            </Animated.View>
           </KeyboardAccessoryView>
           <SW.SliderWrapper>
             <Slider

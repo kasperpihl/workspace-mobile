@@ -30,7 +30,7 @@ export default styleSheet('Project', {
     backgroundColor: 'green',
   },
   TestKeyboard: {
-    _size: ['100%', '100'],
+    _size: ['100%', '100%'],
     backgroundColor: 'red',
     display: props => {
       return props.visible ? '' : 'none';
