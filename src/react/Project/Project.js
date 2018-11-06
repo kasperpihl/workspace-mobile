@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, VirtualizedList, Slider } from 'react-native';
+import { SafeAreaView, VirtualizedList, Slider, Keyboard } from 'react-native';
 import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
@@ -10,7 +10,11 @@ export default class Project extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.inputRefs = {};
+    this.state = {
+      toolBaralwaysVisible: false,
+    };
+    this.lastFocusedInputRefId = null;
     this.renderItem = this.renderItem.bind(this);
   }
   componentWillMount() {
@@ -38,13 +42,20 @@ export default class Project extends Component {
       <ProjectInput
         indent={metaData.get('indent')}
         value={task.get('title')}
-        taskId={task.get('id')}
-        stateManager={this.stateManager}
+        onChangeText={text => {
+          this.stateManager.editHandler.updateTitle(task.get('id'), text);
+        }}
+        inputRef={c => {
+          this.inputRefs[task.get('id')] = c;
+        }}
+        onFocus={() => {
+          this.lastFocusedInputRefId = task.get('id');
+        }}
       />
     );
   }
   render() {
-    const { visibleOrder, sliderValue } = this.state;
+    const { visibleOrder, sliderValue, toolBaralwaysVisible } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -61,8 +72,32 @@ export default class Project extends Component {
             data={visibleOrder}
             renderItem={this.renderItem}
           />
-          <KeyboardAccessoryView avoidKeyboard hideBorder={true}>
-            <SW.ToolbarWrapper />
+          <KeyboardAccessoryView
+            avoidKeyboard
+            alwaysVisible={toolBaralwaysVisible}
+            hideBorder={true}
+          >
+            <SW.ToolbarWrapper>
+              <SW.ChangeKeyboard
+                onPress={() => {
+                  Keyboard.dismiss();
+                  this.setState({
+                    toolBaralwaysVisible: true,
+                  });
+                }}
+              />
+              <SW.ResetKeyboard
+                onPress={() => {
+                  if (this.lastFocusedInputRefId) {
+                    this.inputRefs[this.lastFocusedInputRefId].focus();
+                  }
+                  this.setState({
+                    toolBaralwaysVisible: false,
+                  });
+                }}
+              />
+            </SW.ToolbarWrapper>
+            <SW.TestKeyboard visible={toolBaralwaysVisible} />
           </KeyboardAccessoryView>
           <SW.SliderWrapper>
             <Slider
