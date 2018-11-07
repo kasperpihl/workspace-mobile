@@ -5,24 +5,36 @@ import {
   Slider,
   Keyboard,
   Animated,
+  KeyboardAvoidingView,
+  LayoutAnimation,
+  UIManager,
+  View,
 } from 'react-native';
-import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
 import data from './data';
 
+console.disableYellowBox = true;
+//In order for LayoutAnimation to work on Android
+// UIManager.setLayoutAnimationEnabledExperimental &&
+//   UIManager.setLayoutAnimationEnabledExperimental(true);
+
 export default class Project extends Component {
   constructor(props) {
     super(props);
 
-    this.inputRefs = {};
     this.state = {
+      toolBarPaddingBottom: 0,
+      myKeyboardHeight: 0,
       toolBaralwaysVisible: false,
-      keyboardHeightAnimation: new Animated.Value(0),
     };
+    this.inputRefs = {};
+    this.keyboardDismissedManually = false;
     this.lastFocusedInputRefId = null;
     this.renderItem = this.renderItem.bind(this);
+    this.keyboardWillShow = this.keyboardWillShow.bind(this);
+    this.keyboardWillHide = this.keyboardWillHide.bind(this);
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -31,10 +43,59 @@ export default class Project extends Component {
       this.onStateChange
     );
     this.setState(this.stateManager.getState());
+
+    // Keyboard management
+    this.keyboardWillShowSubscription = Keyboard.addListener(
+      'keyboardWillShow',
+      this.keyboardWillShow
+    );
+    this.keyboardWillHideSubscription = Keyboard.addListener(
+      'keyboardWillHide',
+      this.keyboardWillHide
+    );
   }
   componentWillUnmount() {
     this.stateManager.destroy();
+
+    // Keyboard management
+    this.keyboardWillShowSubscription.remove();
+    this.keyboardWillHideSubscription.remove();
   }
+  keyboardWillShow = event => {
+    LayoutAnimation.configureNext({
+      duration: event.duration,
+      update: {
+        type: LayoutAnimation.Types[event.easing],
+      },
+    });
+    this.setState({
+      toolBarPaddingBottom: event.endCoordinates.height,
+      myKeyboardHeight: 0,
+      toolBaralwaysVisible: true,
+    });
+  };
+  keyboardWillHide = event => {
+    let height = 0;
+    let hideToolbar = false;
+
+    if (this.keyboardDismissedManually) {
+      this.keyboardDismissedManually = false;
+      height = event.endCoordinates.height;
+      hideToolbar = true;
+    }
+
+    LayoutAnimation.configureNext({
+      duration: event.duration,
+      update: {
+        type: LayoutAnimation.Types[event.easing],
+      },
+    });
+    this.setState({
+      toolBarPaddingBottom: 0,
+      myKeyboardHeight: height,
+      toolBaralwaysVisible: hideToolbar,
+    });
+  };
   onStateChange = state => this.setState(state);
   onSliderChange = value => {
     const depth = parseInt(value, 10);
@@ -65,8 +126,9 @@ export default class Project extends Component {
     const {
       visibleOrder,
       sliderValue,
+      toolBarPaddingBottom,
+      myKeyboardHeight,
       toolBaralwaysVisible,
-      keyboardHeightAnimation,
     } = this.state;
 
     return (
@@ -84,50 +146,34 @@ export default class Project extends Component {
             data={visibleOrder}
             renderItem={this.renderItem}
           />
-          <KeyboardAccessoryView
-            avoidKeyboard
-            alwaysVisible={toolBaralwaysVisible}
-            hideBorder={true}
-          >
-            <SW.ToolbarWrapper>
-              <SW.ChangeKeyboard
-                onPress={() => {
-                  Keyboard.dismiss();
-                  this.setState({
-                    toolBaralwaysVisible: true,
-                  });
-                  Animated.sequence([
-                    Animated.delay(500),
-                    Animated.timing(this.state.keyboardHeightAnimation, {
-                      toValue: 260,
-                      duration: 150,
-                    }),
-                  ]).start();
-                }}
-              />
-              <SW.ResetKeyboard
-                onPress={() => {
-                  if (this.lastFocusedInputRefId) {
-                    this.inputRefs[this.lastFocusedInputRefId].focus();
-                  }
-                  this.setState({
-                    toolBaralwaysVisible: false,
-                  });
-                  Animated.sequence([
-                    Animated.timing(this.state.keyboardHeightAnimation, {
-                      toValue: 0,
-                      duration: 0,
-                    }),
-                  ]).start();
-                }}
-              />
-            </SW.ToolbarWrapper>
-            <Animated.View
-              style={{ width: '100%', height: keyboardHeightAnimation }}
-            >
-              <SW.TestKeyboard visible={toolBaralwaysVisible} />
-            </Animated.View>
-          </KeyboardAccessoryView>
+          <KeyboardAvoidingView>
+            <View style={{ paddingBottom: toolBarPaddingBottom }}>
+              <SW.ToolbarWrapper toolBaralwaysVisible={toolBaralwaysVisible}>
+                <SW.ChangeKeyboard
+                  onPress={() => {
+                    this.keyboardDismissedManually = true;
+                    Keyboard.dismiss();
+                    // this.setState({
+                    //   toolBaralwaysVisible: true,
+                    // });
+                  }}
+                />
+                <SW.ResetKeyboard
+                  onPress={() => {
+                    if (this.lastFocusedInputRefId) {
+                      this.inputRefs[this.lastFocusedInputRefId].focus();
+                    }
+                    // this.setState({
+                    //   toolBaralwaysVisible: false,
+                    // });
+                  }}
+                />
+              </SW.ToolbarWrapper>
+              <View style={{ height: myKeyboardHeight }}>
+                <SW.MyKeyBoard />
+              </View>
+            </View>
+          </KeyboardAvoidingView>
           <SW.SliderWrapper>
             <Slider
               minimumValue={0}

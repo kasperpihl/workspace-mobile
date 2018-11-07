@@ -15,7 +15,10 @@ export default styleSheet('Project', {
   ToolbarWrapper: {
     _flex: ['row'],
     _size: ['100%', '40'],
-    zIndex: '2',
+    backgroundColor: 'red',
+    opacity: props => {
+      return props.toolBaralwaysVisible ? 1 : 0;
+    },
   },
   ChangeKeyboard: {
     _el: TouchableOpacity,
@@ -29,11 +32,8 @@ export default styleSheet('Project', {
     _borderRadius: '20',
     backgroundColor: 'green',
   },
-  TestKeyboard: {
+  MyKeyBoard: {
     _size: ['100%', '100%'],
-    backgroundColor: 'red',
-    display: props => {
-      return props.visible ? '' : 'none';
-    },
+    backgroundColor: 'yellow',
   },
 });
