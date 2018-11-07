@@ -4,7 +4,6 @@ import {
   VirtualizedList,
   Slider,
   Keyboard,
-  Animated,
   KeyboardAvoidingView,
   LayoutAnimation,
   UIManager,
@@ -153,9 +152,6 @@ export default class Project extends Component {
                   onPress={() => {
                     this.keyboardDismissedManually = true;
                     Keyboard.dismiss();
-                    // this.setState({
-                    //   toolBaralwaysVisible: true,
-                    // });
                   }}
                 />
                 <SW.ResetKeyboard
@@ -163,9 +159,6 @@ export default class Project extends Component {
                     if (this.lastFocusedInputRefId) {
                       this.inputRefs[this.lastFocusedInputRefId].focus();
                     }
-                    // this.setState({
-                    //   toolBaralwaysVisible: false,
-                    // });
                   }}
                 />
               </SW.ToolbarWrapper>
