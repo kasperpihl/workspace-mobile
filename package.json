@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
-    "clean": "watchman watch-del-all && npm start -- --reset-cache && rm -rf node_modules && npm install"
+    "clean": "watchman watch-del-all && npm start -- --reset-cache && rm -rf node_modules && npm install && say thank you kasper"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
