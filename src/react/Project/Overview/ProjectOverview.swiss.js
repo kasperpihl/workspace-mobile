@@ -1,7 +1,7 @@
 import { styleSheet } from 'swiss-react';
 import { Text, Slider, TouchableOpacity } from 'react-native';
 
-export default styleSheet('Project', {
+export default styleSheet('ProjectOverview', {
   Wrapper: {
     _size: ['100%', '100%'],
   },
@@ -17,7 +17,7 @@ export default styleSheet('Project', {
     _size: ['100%', '40'],
     backgroundColor: 'red',
     opacity: props => {
-      return props.toolBaralwaysVisible ? 1 : 0;
+      return props.toolBarAlwaysVisible ? 1 : 0;
     },
   },
   ChangeKeyboard: {

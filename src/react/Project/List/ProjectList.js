@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
-import SW from 'src/react/ProjectList/ProjectList.swiss';
+import SW from 'src/react/Project/List/ProjectList.swiss';
 
 export default class ProjectList extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ export default class ProjectList extends Component {
   onAddProject() {
     Navigation.push('ProjectList', {
       component: {
-        id: 'Project',
-        name: 'Project',
+        id: 'ProjectOverview',
+        name: 'ProjectOverview',
         options: {
           topBar: {
             title: {

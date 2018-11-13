@@ -16,8 +16,8 @@ export const goHome = () =>
                 },
                 {
                   component: {
-                    id: 'Project',
-                    name: 'Project',
+                    id: 'ProjectOverview',
+                    name: 'ProjectOverview',
                     options: {
                       topBar: {
                         title: {

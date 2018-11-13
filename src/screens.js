@@ -4,8 +4,8 @@ import HOCRootWrapper from 'src/react/HOCRootWrapper';
 import SignIn from 'src/react/SignIn/SignIn';
 import SignUp from 'src/react/SignUp/SignUp';
 import Plan from 'src/Plan';
-import ProjectList from 'src/react/ProjectList/ProjectList';
-import Project from 'src/react/Project/Project';
+import ProjectList from 'src/react/Project/List/ProjectList';
+import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
 import { init } from 'swipes-core-js';
@@ -32,8 +32,8 @@ export function registerScreens() {
   Navigation.registerComponent('ProjectList', () =>
     HOCRootWrapper(ProjectList, store, persistor, true)
   );
-  Navigation.registerComponent('Project', () =>
-    HOCRootWrapper(Project, store, persistor, true)
+  Navigation.registerComponent('ProjectOverview', () =>
+    HOCRootWrapper(ProjectOverview, store, persistor, true)
   );
   Navigation.registerComponent('Plan', () =>
     HOCRootWrapper(Plan, store, persistor, true)

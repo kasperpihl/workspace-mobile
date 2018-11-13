@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SW from 'src/react/Project/ProjectInput.swiss';
+import SW from 'src/react/Project/Input/ProjectInput.swiss';
 
 export default class ProjectInput extends Component {
   constructor(props) {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   SafeAreaView,
-  VirtualizedList,
   Slider,
   Keyboard,
   KeyboardAvoidingView,
@@ -11,8 +10,8 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import ProjectInput from 'src/react/Project/ProjectInput';
-import SW from 'src/react/Project/Project.swiss';
+import ProjectItemList from 'src/react/Project/ItemList/ProjectItemList';
+import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
 import data from './data';
 
@@ -33,14 +32,16 @@ export default class Project extends Component {
     this.state = {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: 0,
-      toolBaralwaysVisible: false,
+      toolBarAlwaysVisible: false,
     };
     this.inputRefs = {};
     this.keyboardDismissedManually = false;
     this.lastFocusedInputRefId = null;
-    this.renderItem = this.renderItem.bind(this);
     this.keyboardWillShow = this.keyboardWillShow.bind(this);
     this.keyboardWillHide = this.keyboardWillHide.bind(this);
+    this.addInputRef = this.addInputRef.bind(this);
+    this.onItemFocus = this.onItemFocus.bind(this);
+    this.onItemTextChange = this.onItemTextChange.bind(this);
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -82,7 +83,7 @@ export default class Project extends Component {
     this.setState({
       toolBarPaddingBottom: toolBarPaddingBottom,
       myKeyboardHeight: 0,
-      toolBaralwaysVisible: true,
+      toolBarAlwaysVisible: true,
     });
   };
   keyboardWillHide = event => {
@@ -91,7 +92,9 @@ export default class Project extends Component {
 
     if (this.keyboardDismissedManually) {
       this.keyboardDismissedManually = false;
-      keyboardHeight = event.endCoordinates.height;
+      keyboardHeight =
+        event.endCoordinates.height -
+        (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
       hideToolbar = true;
     }
 
@@ -103,9 +106,8 @@ export default class Project extends Component {
     });
     this.setState({
       toolBarPaddingBottom: 0,
-      myKeyboardHeight:
-        keyboardHeight - (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0),
-      toolBaralwaysVisible: hideToolbar,
+      myKeyboardHeight: keyboardHeight,
+      toolBarAlwaysVisible: hideToolbar,
     });
   };
   onStateChange = state => this.setState(state);
@@ -113,54 +115,42 @@ export default class Project extends Component {
     const depth = parseInt(value, 10);
     this.stateManager.indentHandler.enforceIndention(depth);
   };
-  renderItem(item) {
-    const { itemsById } = this.state;
-    const metaData = item.item.data;
-    const task = itemsById.get(metaData.get('id'));
-
-    return (
-      <ProjectInput
-        indent={metaData.get('indent')}
-        value={task.get('title')}
-        onChangeText={text => {
-          this.stateManager.editHandler.updateTitle(task.get('id'), text);
-        }}
-        inputRef={c => {
-          this.inputRefs[task.get('id')] = c;
-        }}
-        onFocus={() => {
-          this.lastFocusedInputRefId = task.get('id');
-        }}
-      />
-    );
+  addInputRef(ref, taskId) {
+    this.inputRefs[taskId] = ref;
+  }
+  onItemTextChange(text, taskId) {
+    this.stateManager.editHandler.updateTitle(taskId, text);
+  }
+  onItemFocus(taskId) {
+    this.lastFocusedInputRefId = taskId;
   }
   render() {
     const {
       visibleOrder,
+      itemsById,
       sliderValue,
       toolBarPaddingBottom,
       myKeyboardHeight,
-      toolBaralwaysVisible,
+      toolBarAlwaysVisible,
     } = this.state;
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
-          <VirtualizedList
-            keyboardDismissMode={'none'}
-            keyboardShouldPersistTaps={'always'}
-            getItem={(data, index) => {
-              return { key: `${index}`, data: data.get(index) };
-            }}
-            getItemCount={() => {
-              return visibleOrder.size;
-            }}
-            data={visibleOrder}
-            renderItem={this.renderItem}
+          <ProjectItemList
+            visibleOrder={visibleOrder}
+            itemsById={itemsById}
+            addInputRef={this.addInputRef}
+            onItemFocus={this.onItemFocus}
+            onItemTextChange={this.onItemTextChange}
           />
           <KeyboardAvoidingView>
-            <View style={{ paddingBottom: toolBarPaddingBottom }}>
-              <SW.ToolbarWrapper toolBaralwaysVisible={toolBaralwaysVisible}>
+            <View
+              style={{
+                paddingBottom: toolBarPaddingBottom,
+              }}
+            >
+              <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
                 <SW.ChangeKeyboard
                   onPress={() => {
                     this.keyboardDismissedManually = true;
