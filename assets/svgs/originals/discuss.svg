@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: #007aff;
+      }
+
+      .cls-1 {
+        clip-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-5 {
+        clip-path: url(#clip-path-2);
+      }
+
+      .cls-6 {
+        clip-path: url(#clip-path-3);
+      }
+
+      .cls-7 {
+        clip-path: url(#clip-path-4);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Path_754" data-name="Path 754" class="cls-1" d="M7-158H7a1,1,0,0,1,1-1,1,1,0,0,1,1,1H9a1,1,0,0,1-1,1,1,1,0,0,1-1-1" transform="translate(-7 158.999)"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_756" data-name="Path 756" class="cls-1" d="M11-158h0a1,1,0,0,1,1-1,1,1,0,0,1,1,1h0a1,1,0,0,1-1,1,1,1,0,0,1-1-1" transform="translate(-11 158.999)"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Path_758" data-name="Path 758" class="cls-1" d="M15-158h0a1,1,0,0,1,1-1,1,1,0,0,1,1,1h0a1,1,0,0,1-1,1,1,1,0,0,1-1-1" transform="translate(-15 159)"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <path id="Path_760" data-name="Path 760" class="cls-1" d="M17-164H10a7,7,0,0,0-7,7,6.992,6.992,0,0,0,3.218,5.885L4.167-146.5,18.4-150.141l.519-.133A7,7,0,0,0,24-157a7,7,0,0,0-7-7m0,1.167A5.84,5.84,0,0,1,22.833-157a5.844,5.844,0,0,1-4.2,5.6l-.52.133-11.9,3.045,1.073-2.415.406-.913-.84-.541A5.813,5.813,0,0,1,4.167-157,5.84,5.84,0,0,1,10-162.833h7" transform="translate(-3 164)"/>
+    </clipPath>
+  </defs>
+  <g id="Group_1423" data-name="Group 1423" transform="translate(-134 0.25)">
+    <rect id="Rectangle_1786" data-name="Rectangle 1786" class="cls-2" width="44" height="44" transform="translate(134 -0.25)"/>
+    <g id="Group_1420" data-name="Group 1420" transform="translate(-9791.001 -3587.25)">
+      <g id="Group_585" data-name="Group 585" class="cls-3" transform="translate(9941.751 3606.962)">
+        <path id="Path_753" data-name="Path 753" class="cls-4" d="M2-164H14v12H2Z" transform="translate(-7 158.999)"/>
+      </g>
+      <g id="Group_586" data-name="Group 586" class="cls-5" transform="translate(9946.501 3606.962)">
+        <path id="Path_755" data-name="Path 755" class="cls-4" d="M6-164H18v12H6Z" transform="translate(-11 158.999)"/>
+      </g>
+      <g id="Group_587" data-name="Group 587" class="cls-6" transform="translate(9951.251 3606.961)">
+        <path id="Path_757" data-name="Path 757" class="cls-4" d="M10-164H22v12H10Z" transform="translate(-15 159)"/>
+      </g>
+      <g id="Group_588" data-name="Group 588" class="cls-7" transform="translate(9937.001 3601)">
+        <path id="Path_759" data-name="Path 759" class="cls-4" d="M-2-169H30.667v29.167H-2Z" transform="translate(-3.833 163.167)"/>
+      </g>
+    </g>
+  </g>
+</svg>

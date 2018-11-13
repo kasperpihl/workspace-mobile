@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #007aff;
+        stroke: rgba(0,0,0,0);
+      }
+    </style>
+  </defs>
+  <g id="Add" transform="translate(-284 -21)">
+    <rect id="Rectangle_1573" data-name="Rectangle 1573" class="cls-1" width="44" height="44" transform="translate(284 21)"/>
+    <g id="Action_1" data-name="Action 1" transform="translate(292 29.001)">
+      <path id="add-2" data-name="add" class="cls-2" d="M8,0V8H0V9.5H8v8H9.5v-8h8V8h-8V0Z" transform="translate(5 4.999)"/>
+    </g>
+  </g>
+</svg>
