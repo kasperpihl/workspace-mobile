@@ -8,6 +8,8 @@ import {
   LayoutAnimation,
   UIManager,
   View,
+  Platform,
+  Dimensions,
 } from 'react-native';
 import ProjectInput from 'src/react/Project/ProjectInput';
 import SW from 'src/react/Project/Project.swiss';
@@ -18,6 +20,11 @@ console.disableYellowBox = true;
 //In order for LayoutAnimation to work on Android
 // UIManager.setLayoutAnimationEnabledExperimental &&
 //   UIManager.setLayoutAnimationEnabledExperimental(true);
+
+const { height, width } = Dimensions.get('window');
+const IS_SAFE_AREA_SUPPORTED =
+  Platform.OS === 'ios' && (height > 800 || width > 800);
+const BUMPER_HEIGHT = 15;
 
 export default class Project extends Component {
   constructor(props) {
@@ -67,19 +74,24 @@ export default class Project extends Component {
         type: LayoutAnimation.Types[event.easing],
       },
     });
+
+    const keyboardHeight = event.endCoordinates.height;
+    const toolBarPaddingBottom =
+      keyboardHeight - (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
+
     this.setState({
-      toolBarPaddingBottom: event.endCoordinates.height,
+      toolBarPaddingBottom: toolBarPaddingBottom,
       myKeyboardHeight: 0,
       toolBaralwaysVisible: true,
     });
   };
   keyboardWillHide = event => {
-    let height = 0;
+    let keyboardHeight = 0;
     let hideToolbar = false;
 
     if (this.keyboardDismissedManually) {
       this.keyboardDismissedManually = false;
-      height = event.endCoordinates.height;
+      keyboardHeight = event.endCoordinates.height;
       hideToolbar = true;
     }
 
@@ -91,7 +103,8 @@ export default class Project extends Component {
     });
     this.setState({
       toolBarPaddingBottom: 0,
-      myKeyboardHeight: height,
+      myKeyboardHeight:
+        keyboardHeight - (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0),
       toolBaralwaysVisible: hideToolbar,
     });
   };
