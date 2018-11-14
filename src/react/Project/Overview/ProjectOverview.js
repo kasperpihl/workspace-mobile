@@ -13,6 +13,7 @@ import {
 import ProjectItemList from 'src/react/Project/ItemList/ProjectItemList';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
+import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import data from './data';
 
 console.disableYellowBox = true;
@@ -151,6 +152,15 @@ export default class Project extends Component {
               }}
             >
               <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
+                <IconTouchableWrapper
+                  name={'indent_in'}
+                  fill={'blue'}
+                  width="22"
+                  height="14"
+                  onPress={() => {
+                    console.log('test');
+                  }}
+                />
                 <SW.ChangeKeyboard
                   onPress={() => {
                     this.keyboardDismissedManually = true;

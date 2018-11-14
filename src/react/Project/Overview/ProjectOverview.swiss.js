@@ -15,7 +15,7 @@ export default styleSheet('ProjectOverview', {
   ToolbarWrapper: {
     _flex: ['row'],
     _size: ['100%', '40'],
-    backgroundColor: 'red',
+    backgroundColor: '$sw3',
     opacity: props => {
       return props.toolBarAlwaysVisible ? 1 : 0;
     },
