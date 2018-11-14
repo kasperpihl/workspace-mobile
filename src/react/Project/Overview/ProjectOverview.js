@@ -174,7 +174,7 @@ export default class Project extends Component {
                   onPress={this.onItemIndent}
                 />
                 <IconTouchableWrapper
-                  name={'indent_in'}
+                  name={'indent_out'}
                   fill={'blue'}
                   width="22"
                   height="14"
