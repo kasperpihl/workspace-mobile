@@ -41,7 +41,7 @@ export default class ProjectItemList extends PureComponent {
 
     return (
       <VirtualizedList
-        keyboardDismissMode={'none'}
+        keyboardDismissMode={'on-drag'}
         keyboardShouldPersistTaps={'always'}
         getItem={(data, index) => {
           return { key: `${index}`, data: data.get(index) };
