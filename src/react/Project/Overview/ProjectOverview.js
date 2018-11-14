@@ -43,6 +43,8 @@ export default class Project extends Component {
     this.addInputRef = this.addInputRef.bind(this);
     this.onItemFocus = this.onItemFocus.bind(this);
     this.onItemTextChange = this.onItemTextChange.bind(this);
+    this.onItemIndent = this.onItemIndent.bind(this);
+    this.onItemOutdent = this.onItemOutdent.bind(this);
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -125,6 +127,12 @@ export default class Project extends Component {
   onItemFocus(taskId) {
     this.lastFocusedInputRefId = taskId;
   }
+  onItemIndent() {
+    this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
+  }
+  onItemOutdent() {
+    this.stateManager.indentHandler.outdent(this.lastFocusedInputRefId);
+  }
   render() {
     const {
       visibleOrder,
@@ -157,9 +165,14 @@ export default class Project extends Component {
                   fill={'blue'}
                   width="22"
                   height="14"
-                  onPress={() => {
-                    console.log('test');
-                  }}
+                  onPress={this.onItemIndent}
+                />
+                <IconTouchableWrapper
+                  name={'indent_in'}
+                  fill={'blue'}
+                  width="22"
+                  height="14"
+                  onPress={this.onItemOutdent}
                 />
                 <SW.ChangeKeyboard
                   onPress={() => {
