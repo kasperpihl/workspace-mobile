@@ -1,5 +1,11 @@
 /*
-  Usage: npm run convert-svgs <type:icons|logos>
+  Usage: npm run convert-svgs
+
+  Script
+  https://gist.github.com/thinklinux/f6d00ef09130a4f4bd486686dbebb6df
+
+  Improvements
+  I want to be able to remove styles tags, defs tags and every attribute that I don't need.
  */
 
 /* eslint-disable no-console, no-shadow */
