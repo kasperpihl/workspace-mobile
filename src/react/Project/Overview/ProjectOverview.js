@@ -129,9 +129,15 @@ export default class Project extends Component {
   }
   onItemIndent() {
     this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
+    setTimeout(() => {
+      this.inputRefs[this.lastFocusedInputRefId].focus();
+    }, 0);
   }
   onItemOutdent() {
     this.stateManager.indentHandler.outdent(this.lastFocusedInputRefId);
+    setTimeout(() => {
+      this.inputRefs[this.lastFocusedInputRefId].focus();
+    }, 0);
   }
   render() {
     const {
