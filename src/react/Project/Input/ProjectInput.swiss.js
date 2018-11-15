@@ -7,5 +7,6 @@ export default styleSheet('ProjectInput', {
     paddingLeft: props => {
       return props.indent * 10;
     },
+    _border: ['1', 'red'],
   },
 });

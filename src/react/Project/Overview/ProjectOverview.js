@@ -45,6 +45,8 @@ export default class Project extends Component {
     this.onItemTextChange = this.onItemTextChange.bind(this);
     this.onItemIndent = this.onItemIndent.bind(this);
     this.onItemOutdent = this.onItemOutdent.bind(this);
+    this.onSubmitEditing = this.onSubmitEditing.bind(this);
+    this.onSelectionChange = this.onSelectionChange.bind(this);
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -126,12 +128,24 @@ export default class Project extends Component {
   }
   onItemFocus(taskId) {
     this.lastFocusedInputRefId = taskId;
+    this.stateManager.selectHandler.selectWithId(taskId);
   }
   onItemIndent() {
     this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
     setTimeout(() => {
       this.inputRefs[this.lastFocusedInputRefId].focus();
     }, 0);
+  }
+  onSelectionChange(e) {
+    this.stateManager.selectHandler.updateSelection(e);
+  }
+  onSubmitEditing(e) {
+    // console.log(e);
+    // console.log(e.target);
+    // console.log(e.currentTarget);
+    // console.log(this.state.selectedIndex);
+    // console.log(this.state.selectionStart);
+    this.stateManager.editHandler.enter(e);
   }
   onItemOutdent() {
     this.stateManager.indentHandler.outdent(this.lastFocusedInputRefId);
@@ -143,6 +157,8 @@ export default class Project extends Component {
     const {
       visibleOrder,
       itemsById,
+      selectedIndex,
+      selectionStart,
       sliderValue,
       toolBarPaddingBottom,
       myKeyboardHeight,
@@ -155,9 +171,13 @@ export default class Project extends Component {
           <ProjectItemList
             visibleOrder={visibleOrder}
             itemsById={itemsById}
+            selectedIndex={selectedIndex}
+            selectionStart={selectionStart}
             addInputRef={this.addInputRef}
             onItemFocus={this.onItemFocus}
             onItemTextChange={this.onItemTextChange}
+            onSubmitEditing={this.onSubmitEditing}
+            onSelectionChange={this.onSelectionChange}
           />
           <KeyboardAvoidingView>
             <View

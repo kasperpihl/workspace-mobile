@@ -57,18 +57,21 @@ export default class PEditHandler {
     });
   };
   enter = e => {
-    let { itemsById, order, selectedIndex } = this.state;
-    const selectionStart = e.target.selectionStart;
+    let { itemsById, order, selectedIndex, selectionStart } = this.state;
     const id = this.stateManager._idFromVisibleI(selectedIndex);
     const i = order.findIndex(item => item.get('id') === id);
     const currentItem = itemsById.get(id);
     let currTitle = currentItem.get('title');
     let nextTitle = '';
-    if (selectionStart < currentItem.get('title').length) {
+
+    selectionStart = e.target.selectionStart || selectionStart;
+
+    if (selectionStart && selectionStart < currentItem.get('title').length) {
       nextTitle = currTitle.slice(selectionStart);
       currTitle = currTitle.slice(0, selectionStart);
       itemsById = itemsById.setIn([id, 'title'], currTitle);
     }
+
     const newId = randomString(5);
     itemsById = itemsById.set(
       newId,

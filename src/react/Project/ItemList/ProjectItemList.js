@@ -13,25 +13,46 @@ export default class ProjectItemList extends PureComponent {
   renderItem(item) {
     const {
       itemsById,
+      selectedIndex,
+      selectionStart,
       addInputRef,
       onItemFocus,
       onItemTextChange,
+      onSubmitEditing,
+      onSelectionChange,
     } = this.props;
     const metaData = item.item.data;
     const task = itemsById.get(metaData.get('id'));
+    const autoFocus = selectedIndex && item.index === selectedIndex;
+    // const selection = {
+    //   start: selectionStart > 0 ? selectionStart : 0,
+    //   end: selectionStart > 0 ? selectionStart : 0,
+    // };
+    // console.log(selection, 'selection');
 
     return (
       <ProjectInput
         indent={metaData.get('indent')}
         value={task.get('title')}
+        multiline={true}
+        // selection={selection}
         onChangeText={text => {
           onItemTextChange(text, task.get('id'));
         }}
         inputRef={ref => {
           addInputRef(ref, task.get('id'));
+          if (autoFocus && ref) {
+            ref.focus();
+          }
         }}
         onFocus={() => {
           onItemFocus(task.get('id'));
+        }}
+        onSubmitEditing={e => {
+          onSubmitEditing(e);
+        }}
+        onSelectionChange={e => {
+          onSelectionChange(e);
         }}
       />
     );
