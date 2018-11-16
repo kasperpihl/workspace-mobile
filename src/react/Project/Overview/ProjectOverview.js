@@ -157,8 +157,6 @@ export default class Project extends Component {
       toolBarAlwaysVisible,
     } = this.state;
 
-    console.log(itemsById.toJS(), 'outside');
-
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <SW.Wrapper>
