@@ -41,19 +41,6 @@ export default class PSelectHandler {
       this.stateManager.update({ selectedIndex: -1 }, false);
     }
   };
-  // This support RN as well. Will write this comments
-  // until we have ported everything to work for RN too.
-  updateSelection = e => {
-    const selectionStart =
-      e.target.selectionStart || e.nativeEvent.selection.start;
-
-    this.stateManager.update(
-      {
-        selectionStart,
-      },
-      false
-    );
-  };
   // stateManager will set this, once an update happens.
   setState = state => {
     this.state = state;

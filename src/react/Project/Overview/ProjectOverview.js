@@ -46,7 +46,6 @@ export default class Project extends Component {
     this.onItemIndent = this.onItemIndent.bind(this);
     this.onItemOutdent = this.onItemOutdent.bind(this);
     this.onSubmitEditing = this.onSubmitEditing.bind(this);
-    this.onSelectionChange = this.onSelectionChange.bind(this);
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -124,7 +123,9 @@ export default class Project extends Component {
     this.inputRefs[taskId] = ref;
   }
   onItemTextChange(text, taskId) {
-    this.stateManager.editHandler.updateTitle(taskId, text);
+    // Removing new lines is the only way that I found to simulate
+    // single line input with multiline set to true
+    this.stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
   }
   onItemFocus(taskId) {
     this.lastFocusedInputRefId = taskId;
@@ -136,15 +137,7 @@ export default class Project extends Component {
       this.inputRefs[this.lastFocusedInputRefId].focus();
     }, 0);
   }
-  onSelectionChange(e) {
-    this.stateManager.selectHandler.updateSelection(e);
-  }
   onSubmitEditing(e) {
-    // console.log(e);
-    // console.log(e.target);
-    // console.log(e.currentTarget);
-    // console.log(this.state.selectedIndex);
-    // console.log(this.state.selectionStart);
     this.stateManager.editHandler.enter(e);
   }
   onItemOutdent() {
@@ -158,12 +151,13 @@ export default class Project extends Component {
       visibleOrder,
       itemsById,
       selectedIndex,
-      selectionStart,
       sliderValue,
       toolBarPaddingBottom,
       myKeyboardHeight,
       toolBarAlwaysVisible,
     } = this.state;
+
+    console.log(itemsById.toJS(), 'outside');
 
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -172,7 +166,6 @@ export default class Project extends Component {
             visibleOrder={visibleOrder}
             itemsById={itemsById}
             selectedIndex={selectedIndex}
-            selectionStart={selectionStart}
             addInputRef={this.addInputRef}
             onItemFocus={this.onItemFocus}
             onItemTextChange={this.onItemTextChange}
