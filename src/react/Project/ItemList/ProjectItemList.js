@@ -35,7 +35,14 @@ export default class ProjectItemList extends PureComponent {
         inputRef={ref => {
           addInputRef(ref, task.get('id'));
           if (autoFocus && ref) {
-            ref.focus();
+            // We need that hack with the setTimeout
+            // in order for the KeyboardManager package to work
+            // properly when we are creating new inputs at the end
+            // of the list. If we focus too early the package does
+            // not scroll correctly and the input is left below the keyboard
+            setTimeout(() => {
+              ref.focus();
+            }, 0);
           }
         }}
         onFocus={() => {

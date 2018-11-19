@@ -3,20 +3,25 @@ import {
   SafeAreaView,
   Slider,
   Keyboard,
-  KeyboardAvoidingView,
   LayoutAnimation,
   UIManager,
   View,
   Platform,
   Dimensions,
 } from 'react-native';
+import KeyboardManager from 'react-native-keyboard-manager';
 import ProjectItemList from 'src/react/Project/ItemList/ProjectItemList';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import data from './data';
 
+KeyboardManager.setEnableAutoToolbar(false);
+KeyboardManager.setKeyboardDistanceFromTextField(50);
+
+// T_TODO remove this at some point :D :D
 console.disableYellowBox = true;
+
 //In order for LayoutAnimation to work on Android
 // UIManager.setLayoutAnimationEnabledExperimental &&
 //   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -170,46 +175,44 @@ export default class Project extends Component {
             onSubmitEditing={this.onSubmitEditing}
             onSelectionChange={this.onSelectionChange}
           />
-          <KeyboardAvoidingView>
-            <View
-              style={{
-                paddingBottom: toolBarPaddingBottom,
-              }}
-            >
-              <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
-                <IconTouchableWrapper
-                  name={'indent_in'}
-                  fill={'blue'}
-                  width="22"
-                  height="14"
-                  onPress={this.onItemIndent}
-                />
-                <IconTouchableWrapper
-                  name={'indent_out'}
-                  fill={'blue'}
-                  width="22"
-                  height="14"
-                  onPress={this.onItemOutdent}
-                />
-                <SW.ChangeKeyboard
-                  onPress={() => {
-                    this.keyboardDismissedManually = true;
-                    Keyboard.dismiss();
-                  }}
-                />
-                <SW.ResetKeyboard
-                  onPress={() => {
-                    if (this.lastFocusedInputRefId) {
-                      this.inputRefs[this.lastFocusedInputRefId].focus();
-                    }
-                  }}
-                />
-              </SW.ToolbarWrapper>
-              <View style={{ height: myKeyboardHeight }}>
-                <SW.MyKeyBoard />
-              </View>
+          {/* <View
+            style={{
+              paddingBottom: toolBarPaddingBottom,
+            }}
+          >
+            <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
+              <IconTouchableWrapper
+                name={'indent_in'}
+                fill={'blue'}
+                width="22"
+                height="14"
+                onPress={this.onItemIndent}
+              />
+              <IconTouchableWrapper
+                name={'indent_out'}
+                fill={'blue'}
+                width="22"
+                height="14"
+                onPress={this.onItemOutdent}
+              />
+              <SW.ChangeKeyboard
+                onPress={() => {
+                  this.keyboardDismissedManually = true;
+                  Keyboard.dismiss();
+                }}
+              />
+              <SW.ResetKeyboard
+                onPress={() => {
+                  if (this.lastFocusedInputRefId) {
+                    this.inputRefs[this.lastFocusedInputRefId].focus();
+                  }
+                }}
+              />
+            </SW.ToolbarWrapper>
+            <View style={{ height: myKeyboardHeight }}>
+              <SW.MyKeyBoard />
             </View>
-          </KeyboardAvoidingView>
+          </View> */}
           <SW.SliderWrapper>
             <Slider
               minimumValue={0}
