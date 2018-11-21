@@ -3,7 +3,10 @@ import { Text, Slider, TouchableOpacity } from 'react-native';
 
 export default styleSheet('ProjectOverview', {
   Wrapper: {
-    _size: ['100%', '100%'],
+    // _size: ['100%', '100%'],
+    backgroundColor: 'red',
+    _size: ['100%', 'auto'],
+    flex: 1,
   },
   SliderWrapper: {
     _size: ['100', 'auto'],

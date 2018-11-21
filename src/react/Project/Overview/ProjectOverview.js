@@ -170,8 +170,8 @@ export default class Project extends Component {
             onSubmitEditing={this.onSubmitEditing}
             onSelectionChange={this.onSelectionChange}
           />
-          <KeyboardAvoidingView>
-            <View
+          {/* <KeyboardAvoidingView> */}
+          {/* <View
               style={{
                 paddingBottom: toolBarPaddingBottom,
               }}
@@ -208,8 +208,8 @@ export default class Project extends Component {
               <View style={{ height: myKeyboardHeight }}>
                 <SW.MyKeyBoard />
               </View>
-            </View>
-          </KeyboardAvoidingView>
+            </View> */}
+          {/* </KeyboardAvoidingView> */}
           <SW.SliderWrapper>
             <Slider
               minimumValue={0}
