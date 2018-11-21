@@ -17,7 +17,13 @@ import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import data from './data';
 
 KeyboardManager.setEnableAutoToolbar(false);
-KeyboardManager.setKeyboardDistanceFromTextField(50);
+KeyboardManager.setKeyboardDistanceFromTextField(0);
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+const IS_SAFE_AREA_SUPPORTED =
+  Platform.OS === 'ios' && (windowHeight > 800 || windowWidth > 800);
+const BUMPER_HEIGHT = 15;
 
 // T_TODO remove this at some point :D :D
 console.disableYellowBox = true;
@@ -25,11 +31,6 @@ console.disableYellowBox = true;
 //In order for LayoutAnimation to work on Android
 // UIManager.setLayoutAnimationEnabledExperimental &&
 //   UIManager.setLayoutAnimationEnabledExperimental(true);
-
-const { height, width } = Dimensions.get('window');
-const IS_SAFE_AREA_SUPPORTED =
-  Platform.OS === 'ios' && (height > 800 || width > 800);
-const BUMPER_HEIGHT = 15;
 
 export default class Project extends Component {
   constructor(props) {
@@ -118,6 +119,10 @@ export default class Project extends Component {
       myKeyboardHeight: keyboardHeight,
       toolBarAlwaysVisible: hideToolbar,
     });
+
+    if (hideToolbar) {
+      this.lastFocusedInputRefId = null;
+    }
   };
   onStateChange = state => this.setState(state);
   onSliderChange = value => {
@@ -175,53 +180,54 @@ export default class Project extends Component {
             onSubmitEditing={this.onSubmitEditing}
             onSelectionChange={this.onSelectionChange}
           />
+          {/* <SW.ToolbarWrapper
+            toolBarPaddingBottom={toolBarPaddingBottom}
+            toolBarAlwaysVisible={toolBarAlwaysVisible}
+          >
+            <IconTouchableWrapper
+              name={'indent_in'}
+              fill={'blue'}
+              width="22"
+              height="14"
+              onPress={this.onItemIndent}
+            />
+            <IconTouchableWrapper
+              name={'indent_out'}
+              fill={'blue'}
+              width="22"
+              height="14"
+              onPress={this.onItemOutdent}
+            />
+            <SW.ChangeKeyboard
+              onPress={() => {
+                this.keyboardDismissedManually = true;
+                Keyboard.dismiss();
+              }}
+            />
+            <SW.ResetKeyboard
+              onPress={() => {
+                if (this.lastFocusedInputRefId) {
+                  this.inputRefs[this.lastFocusedInputRefId].focus();
+                }
+              }}
+            />
+          </SW.ToolbarWrapper> */}
           {/* <View
             style={{
-              paddingBottom: toolBarPaddingBottom,
+              height: myKeyboardHeight,
             }}
           >
-            <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
-              <IconTouchableWrapper
-                name={'indent_in'}
-                fill={'blue'}
-                width="22"
-                height="14"
-                onPress={this.onItemIndent}
-              />
-              <IconTouchableWrapper
-                name={'indent_out'}
-                fill={'blue'}
-                width="22"
-                height="14"
-                onPress={this.onItemOutdent}
-              />
-              <SW.ChangeKeyboard
-                onPress={() => {
-                  this.keyboardDismissedManually = true;
-                  Keyboard.dismiss();
-                }}
-              />
-              <SW.ResetKeyboard
-                onPress={() => {
-                  if (this.lastFocusedInputRefId) {
-                    this.inputRefs[this.lastFocusedInputRefId].focus();
-                  }
-                }}
-              />
-            </SW.ToolbarWrapper>
-            <View style={{ height: myKeyboardHeight }}>
-              <SW.MyKeyBoard />
-            </View>
+            <SW.MyKeyBoard />
           </View> */}
-          <SW.SliderWrapper>
-            <Slider
-              minimumValue={0}
-              maximumValue={4}
-              onValueChange={this.onSliderChange}
-              value={sliderValue}
-            />
-          </SW.SliderWrapper>
         </SW.Wrapper>
+        <SW.SliderWrapper>
+          <Slider
+            minimumValue={0}
+            maximumValue={4}
+            onValueChange={this.onSliderChange}
+            value={sliderValue}
+          />
+        </SW.SliderWrapper>
       </SafeAreaView>
     );
   }

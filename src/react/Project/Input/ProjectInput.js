@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import SW from 'src/react/Project/Input/ProjectInput.swiss';
 
 export default class ProjectInput extends Component {

@@ -38,7 +38,7 @@ export default class ProjectItemList extends PureComponent {
             // We need that hack with the setTimeout
             // in order for the KeyboardManager package to work
             // properly when we are creating new inputs at the end
-            // of the list. If we focus too early the package does
+            // of the list. If we focus too early the KeyboardManager does
             // not scroll correctly and the input is left below the keyboard
             setTimeout(() => {
               ref.focus();
@@ -59,6 +59,8 @@ export default class ProjectItemList extends PureComponent {
 
     return (
       <VirtualizedList
+        contentInset={{ top: 0, left: 0, bottom: 250, right: 0 }}
+        style={{ backgroundColor: 'red' }}
         keyboardDismissMode={'none'}
         keyboardShouldPersistTaps={'always'}
         getItem={(data, index) => {

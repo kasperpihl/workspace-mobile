@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 export default styleSheet('ProjectOverview', {
   Wrapper: {
-    _size: ['100%', '100%'],
+    width: '100%',
     flex: 1,
   },
   SliderWrapper: {
@@ -16,6 +16,10 @@ export default styleSheet('ProjectOverview', {
   ToolbarWrapper: {
     _flex: ['row'],
     _size: ['100%', '40'],
+    height: props => {
+      return props.toolBarPaddingBottom;
+    },
+    zIndex: '2',
     backgroundColor: '$sw3',
     opacity: props => {
       return props.toolBarAlwaysVisible ? 1 : 0;
