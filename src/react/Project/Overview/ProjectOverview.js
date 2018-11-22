@@ -3,7 +3,6 @@ import {
   SafeAreaView,
   Slider,
   Keyboard,
-  KeyboardAvoidingView,
   LayoutAnimation,
   UIManager,
   View,
