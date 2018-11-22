@@ -54,7 +54,6 @@ export default class ProjectItemList extends PureComponent {
     return (
       <VirtualizedList
         style={{ backgroundColor: 'green' }}
-        contentInset={{ top: 0, left: 0, bottom: 300, right: 0 }}
         keyboardDismissMode={'none'}
         keyboardShouldPersistTaps={'always'}
         getItem={(data, index) => {

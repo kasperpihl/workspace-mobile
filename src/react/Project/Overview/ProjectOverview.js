@@ -137,14 +137,14 @@ export default class Project extends Component {
       this.inputRefs[this.lastFocusedInputRefId].focus();
     }, 0);
   }
-  onSubmitEditing(e) {
-    this.stateManager.editHandler.enter(e);
-  }
   onItemOutdent() {
     this.stateManager.indentHandler.outdent(this.lastFocusedInputRefId);
     setTimeout(() => {
       this.inputRefs[this.lastFocusedInputRefId].focus();
     }, 0);
+  }
+  onSubmitEditing(e) {
+    this.stateManager.editHandler.enter(e);
   }
   render() {
     const {
@@ -170,46 +170,44 @@ export default class Project extends Component {
             onSubmitEditing={this.onSubmitEditing}
             onSelectionChange={this.onSelectionChange}
           />
-          {/* <KeyboardAvoidingView> */}
-          {/* <View
-              style={{
-                paddingBottom: toolBarPaddingBottom,
-              }}
-            >
-              <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
-                <IconTouchableWrapper
-                  name={'indent_in'}
-                  fill={'blue'}
-                  width="22"
-                  height="14"
-                  onPress={this.onItemIndent}
-                />
-                <IconTouchableWrapper
-                  name={'indent_out'}
-                  fill={'blue'}
-                  width="22"
-                  height="14"
-                  onPress={this.onItemOutdent}
-                />
-                <SW.ChangeKeyboard
-                  onPress={() => {
-                    this.keyboardDismissedManually = true;
-                    Keyboard.dismiss();
-                  }}
-                />
-                <SW.ResetKeyboard
-                  onPress={() => {
-                    if (this.lastFocusedInputRefId) {
-                      this.inputRefs[this.lastFocusedInputRefId].focus();
-                    }
-                  }}
-                />
-              </SW.ToolbarWrapper>
-              <View style={{ height: myKeyboardHeight }}>
-                <SW.MyKeyBoard />
-              </View>
-            </View> */}
-          {/* </KeyboardAvoidingView> */}
+          <View
+            style={{
+              paddingBottom: toolBarPaddingBottom,
+            }}
+          >
+            <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
+              <IconTouchableWrapper
+                name={'indent_in'}
+                fill={'blue'}
+                width="22"
+                height="14"
+                onPress={this.onItemIndent}
+              />
+              <IconTouchableWrapper
+                name={'indent_out'}
+                fill={'blue'}
+                width="22"
+                height="14"
+                onPress={this.onItemOutdent}
+              />
+              <SW.ChangeKeyboard
+                onPress={() => {
+                  this.keyboardDismissedManually = true;
+                  Keyboard.dismiss();
+                }}
+              />
+              <SW.ResetKeyboard
+                onPress={() => {
+                  if (this.lastFocusedInputRefId) {
+                    this.inputRefs[this.lastFocusedInputRefId].focus();
+                  }
+                }}
+              />
+            </SW.ToolbarWrapper>
+            <View style={{ height: myKeyboardHeight }}>
+              <SW.MyKeyBoard />
+            </View>
+          </View>
           <SW.SliderWrapper>
             <Slider
               minimumValue={0}
