@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { VirtualizedList } from 'react-native';
-import ProjectInput from 'src/react/Project/Input/ProjectInput';
+import ProjectItem from 'src/react/Project/Input/ProjectItem';
 
 // This part needs optimization. For some reason renderItem renders
 // for every item even tho I changed only one of them
@@ -24,8 +24,10 @@ export default class ProjectItemList extends PureComponent {
     const autoFocus = selectedIndex && item.index === selectedIndex;
 
     return (
-      <ProjectInput
+      <ProjectItem
         indent={metaData.get('indent')}
+        hasChildren={metaData.get('hasChildren')}
+        expanded={metaData.get('expanded')}
         value={task.get('title')}
         multiline={true}
         scrollEnabled={false}
@@ -53,7 +55,6 @@ export default class ProjectItemList extends PureComponent {
 
     return (
       <VirtualizedList
-        style={{ backgroundColor: 'green' }}
         keyboardDismissMode={'none'}
         keyboardShouldPersistTaps={'always'}
         getItem={(data, index) => {

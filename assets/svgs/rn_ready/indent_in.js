@@ -1,5 +1,5 @@
 import React from 'react';
-import { Defs, G, Path, Style } from 'react-native-svg';
+import { G, Path } from 'react-native-svg';
 
 export default {
   viewBox: '0 0 22 14',

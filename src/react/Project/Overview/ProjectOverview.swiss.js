@@ -1,9 +1,8 @@
 import { styleSheet } from 'swiss-react';
-import { Text, Slider, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 export default styleSheet('ProjectOverview', {
   Wrapper: {
-    backgroundColor: 'red',
     _size: ['100%', 'auto'],
     flex: 1,
   },
