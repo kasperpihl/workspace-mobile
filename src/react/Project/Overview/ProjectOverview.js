@@ -45,6 +45,7 @@ export default class Project extends Component {
     this.onItemIndent = this.onItemIndent.bind(this);
     this.onItemOutdent = this.onItemOutdent.bind(this);
     this.onSubmitEditing = this.onSubmitEditing.bind(this);
+    this.onToggleExpand = this.onToggleExpand.bind(this);
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -145,6 +146,9 @@ export default class Project extends Component {
   onSubmitEditing(e) {
     this.stateManager.editHandler.enter(e);
   }
+  onToggleExpand(taskId) {
+    this.stateManager.expandHandler.toggleExpandForId(taskId);
+  }
   render() {
     const {
       visibleOrder,
@@ -168,6 +172,7 @@ export default class Project extends Component {
             onItemTextChange={this.onItemTextChange}
             onSubmitEditing={this.onSubmitEditing}
             onSelectionChange={this.onSelectionChange}
+            onToggleExpand={this.onToggleExpand}
           />
           <View
             style={{

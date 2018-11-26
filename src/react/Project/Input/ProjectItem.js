@@ -7,7 +7,14 @@ export default class ProjectInput extends Component {
     super(props);
   }
   render() {
-    const { inputRef, indent, hasChildren, expanded, ...rest } = this.props;
+    const {
+      inputRef,
+      indent,
+      hasChildren,
+      expanded,
+      onToggleExpand,
+      ...rest
+    } = this.props;
     return (
       <SW.Wrapper>
         {hasChildren && (
@@ -17,6 +24,7 @@ export default class ProjectInput extends Component {
             width="18"
             height="8"
             rotate={expanded ? '0' : '-90'}
+            onPress={onToggleExpand}
           />
         )}
         <SW.InnerWrapper indent={indent} hasChildren={hasChildren}>

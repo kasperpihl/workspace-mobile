@@ -18,9 +18,11 @@ export default class ProjectItemList extends PureComponent {
       onItemFocus,
       onItemTextChange,
       onSubmitEditing,
+      onToggleExpand,
     } = this.props;
     const metaData = item.item.data;
     const task = itemsById.get(metaData.get('id'));
+    const taskId = task.get('id');
     const autoFocus = selectedIndex && item.index === selectedIndex;
 
     return (
@@ -33,19 +35,22 @@ export default class ProjectItemList extends PureComponent {
         scrollEnabled={false}
         blurOnSubmit={false}
         onChangeText={text => {
-          onItemTextChange(text, task.get('id'));
+          onItemTextChange(text, taskId);
         }}
         inputRef={ref => {
-          addInputRef(ref, task.get('id'));
+          addInputRef(ref, taskId);
           if (autoFocus && ref) {
             ref.focus();
           }
         }}
         onFocus={() => {
-          onItemFocus(task.get('id'));
+          onItemFocus(taskId);
         }}
         onSubmitEditing={e => {
           onSubmitEditing(e);
+        }}
+        onToggleExpand={() => {
+          onToggleExpand(taskId);
         }}
       />
     );
