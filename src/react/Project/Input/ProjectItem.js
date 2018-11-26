@@ -15,6 +15,7 @@ export default class ProjectInput extends Component {
       onToggleExpand,
       ...rest
     } = this.props;
+
     return (
       <SW.Wrapper>
         {hasChildren && (
@@ -27,6 +28,10 @@ export default class ProjectInput extends Component {
             onPress={onToggleExpand}
           />
         )}
+        <SW.MarginForExpandArrow hasChildren={hasChildren} />
+        {[...Array(indent)].map(() => {
+          return <SW.IndentSpace indent={indent} />;
+        })}
         <SW.InnerWrapper indent={indent} hasChildren={hasChildren}>
           <SW.Circle />
           <SW.Input innerRef={inputRef} {...rest} />

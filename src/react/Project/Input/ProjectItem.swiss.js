@@ -9,11 +9,15 @@ export default styleSheet('ProjectInput', {
   InnerWrapper: {
     _flex: ['row'],
     flex: 1,
+  },
+  IndentSpace: {
+    _size: [0, '100%'],
+    _border: ['1', '$sw2', 'left'],
+    marginLeft: 21,
+  },
+  MarginForExpandArrow: {
     marginLeft: props => {
       return props.hasChildren ? 0 : 44;
-    },
-    paddingLeft: props => {
-      return props.indent * 10;
     },
   },
   Circle: {
