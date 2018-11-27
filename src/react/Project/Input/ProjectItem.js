@@ -13,6 +13,9 @@ export default class ProjectInput extends Component {
       hasChildren,
       expanded,
       onToggleExpand,
+      rangeToHighlight,
+      indentToHightlight,
+      taskId,
       ...rest
     } = this.props;
 
@@ -29,10 +32,18 @@ export default class ProjectInput extends Component {
           />
         )}
         <SW.MarginForExpandArrow hasChildren={hasChildren} />
-        {[...Array(indent)].map(() => {
-          return <SW.IndentSpace indent={indent} />;
+        {[...Array(indent)].map((v, i) => {
+          const hightlihgt =
+            rangeToHighlight.includes(taskId) && indentToHightlight === i + 1;
+          return (
+            <SW.IndentSpace
+              key={`${indent}-${taskId}-${i}`}
+              hightlihgt={hightlihgt}
+              indent={indent}
+            />
+          );
         })}
-        <SW.InnerWrapper indent={indent} hasChildren={hasChildren}>
+        <SW.InnerWrapper>
           <SW.Circle />
           <SW.Input innerRef={inputRef} {...rest} />
         </SW.InnerWrapper>

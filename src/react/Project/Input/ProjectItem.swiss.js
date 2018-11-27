@@ -12,7 +12,9 @@ export default styleSheet('ProjectInput', {
   },
   IndentSpace: {
     _size: [0, '100%'],
-    _border: ['1', '$sw2', 'left'],
+    _borderDerivedFromProps: props => {
+      return props.hightlihgt ? ['1', '$sw1', 'left'] : ['1', '$sw3', 'left'];
+    },
     marginLeft: 21,
   },
   MarginForExpandArrow: {

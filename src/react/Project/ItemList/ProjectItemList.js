@@ -14,6 +14,8 @@ export default class ProjectItemList extends PureComponent {
     const {
       itemsById,
       selectedIndex,
+      rangeToHighlight,
+      indentToHightlight,
       addInputRef,
       onItemFocus,
       onItemTextChange,
@@ -23,13 +25,17 @@ export default class ProjectItemList extends PureComponent {
     const metaData = item.item.data;
     const task = itemsById.get(metaData.get('id'));
     const taskId = task.get('id');
+    const indent = metaData.get('indent');
     const autoFocus = selectedIndex && item.index === selectedIndex;
 
     return (
       <ProjectItem
-        indent={metaData.get('indent')}
+        taskId={taskId}
+        indent={indent}
         hasChildren={metaData.get('hasChildren')}
         expanded={metaData.get('expanded')}
+        rangeToHighlight={rangeToHighlight}
+        indentToHightlight={indentToHightlight}
         value={task.get('title')}
         multiline={true}
         scrollEnabled={false}
@@ -44,7 +50,7 @@ export default class ProjectItemList extends PureComponent {
           }
         }}
         onFocus={() => {
-          onItemFocus(taskId);
+          onItemFocus(taskId, indent);
         }}
         onSubmitEditing={e => {
           onSubmitEditing(e);

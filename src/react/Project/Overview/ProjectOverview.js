@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import {
   SafeAreaView,
   Slider,
@@ -10,6 +11,7 @@ import {
   Dimensions,
 } from 'react-native';
 import ProjectItemList from 'src/react/Project/ItemList/ProjectItemList';
+import RangeToHighlight from 'src/react/Project/Overview/RangeToHighlight';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
@@ -33,6 +35,8 @@ export default class Project extends Component {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: 0,
       toolBarAlwaysVisible: false,
+      rangeToHighlight: List(),
+      indentToHightlight: 0,
     };
     this.inputRefs = {};
     this.keyboardDismissedManually = false;
@@ -127,9 +131,15 @@ export default class Project extends Component {
     // single line input with multiline set to true
     this.stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
   }
-  onItemFocus(taskId) {
+  onItemFocus(taskId, indent) {
+    const { visibleOrder } = this.state;
+
     this.lastFocusedInputRefId = taskId;
     this.stateManager.selectHandler.selectWithId(taskId);
+    this.setState({
+      rangeToHighlight: RangeToHighlight(visibleOrder, taskId),
+      indentToHightlight: indent,
+    });
   }
   onItemIndent() {
     this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
@@ -158,6 +168,8 @@ export default class Project extends Component {
       toolBarPaddingBottom,
       myKeyboardHeight,
       toolBarAlwaysVisible,
+      rangeToHighlight,
+      indentToHightlight,
     } = this.state;
 
     return (
@@ -167,6 +179,8 @@ export default class Project extends Component {
             visibleOrder={visibleOrder}
             itemsById={itemsById}
             selectedIndex={selectedIndex}
+            rangeToHighlight={rangeToHighlight}
+            indentToHightlight={indentToHightlight}
             addInputRef={this.addInputRef}
             onItemFocus={this.onItemFocus}
             onItemTextChange={this.onItemTextChange}
