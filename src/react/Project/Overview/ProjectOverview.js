@@ -132,12 +132,12 @@ export default class Project extends Component {
     this.stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
   }
   onItemFocus(taskId, indent) {
-    const { visibleOrder } = this.state;
+    const { order } = this.state;
 
     this.lastFocusedInputRefId = taskId;
     this.stateManager.selectHandler.selectWithId(taskId);
     this.setState({
-      rangeToHighlight: RangeToHighlight(visibleOrder, taskId),
+      rangeToHighlight: RangeToHighlight(order, taskId),
       indentToHightlight: indent,
     });
   }
