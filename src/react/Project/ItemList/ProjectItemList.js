@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import { VirtualizedList } from 'react-native';
 import ProjectItem from 'src/react/Project/Input/ProjectItem';
 
-// This part needs optimization. For some reason renderItem renders
-// for every item even tho I changed only one of them
 export default class ProjectItemList extends PureComponent {
   constructor(props) {
     super(props);
@@ -69,7 +67,7 @@ export default class ProjectItemList extends PureComponent {
         keyboardDismissMode={'none'}
         keyboardShouldPersistTaps={'always'}
         getItem={(data, index) => {
-          return { key: `${index}`, data: data.get(index) };
+          return { key: `${data.get(index).get('id')}`, data: data.get(index) };
         }}
         getItemCount={() => {
           return visibleOrder.size;

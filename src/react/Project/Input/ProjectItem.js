@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from 'src/react/Project/Input/ProjectItem.swiss';
 
-export default class ProjectInput extends Component {
+export default class ProjectInput extends PureComponent {
   constructor(props) {
     super(props);
   }
