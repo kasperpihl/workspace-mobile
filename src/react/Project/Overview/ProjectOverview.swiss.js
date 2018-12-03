@@ -18,5 +18,6 @@ export default styleSheet('ProjectOverview', {
   },
   SliderWrapper: {
     _size: ['100%', 'auto'],
+    _padding: [0, 30],
   },
 });
