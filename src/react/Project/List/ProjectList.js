@@ -14,11 +14,19 @@ export default class ProjectList extends Component {
         name: 'ProjectOverview',
         options: {
           topBar: {
-            title: {
-              visible: true,
-              animate: false,
-              text: 'Untitled project',
+            backButton: {
+              title: 'Organize',
             },
+            rightButtons: [
+              {
+                id: 'Edit',
+                text: 'Edit',
+              },
+              {
+                id: 'Discuss',
+                text: 'Discuss',
+              },
+            ],
           },
           bottomTabs: {
             visible: false,

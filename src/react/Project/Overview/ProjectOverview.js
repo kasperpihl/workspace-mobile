@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Navigation } from 'react-native-navigation';
 import { List } from 'immutable';
 import { SafeAreaView, Slider } from 'react-native';
 import ProjectItemList from 'src/react/Project/ItemList/ProjectItemList';
@@ -23,11 +24,14 @@ export default class Project extends Component {
     this.lastFocusedInputRefId = null;
     this.addInputRef = this.addInputRef.bind(this);
     this.onItemFocus = this.onItemFocus.bind(this);
+    this.onItemBlur = this.onItemBlur.bind(this);
     this.onItemTextChange = this.onItemTextChange.bind(this);
     this.onItemIndent = this.onItemIndent.bind(this);
     this.onItemOutdent = this.onItemOutdent.bind(this);
     this.onSubmitEditing = this.onSubmitEditing.bind(this);
     this.onToggleExpand = this.onToggleExpand.bind(this);
+
+    Navigation.events().bindComponent(this, 'ProjectOverview');
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -36,6 +40,26 @@ export default class Project extends Component {
       this.onStateChange
     );
     this.setState(this.stateManager.getState());
+  }
+  navigationButtonPressed({ buttonId }) {
+    if (buttonId == 'Done') {
+      Navigation.mergeOptions('ProjectOverview', {
+        topBar: {
+          rightButtons: [
+            {
+              id: 'Edit',
+              text: 'Edit',
+            },
+            {
+              id: 'Discuss',
+              text: 'Discuss',
+            },
+          ],
+        },
+      });
+
+      this.onItemBlur();
+    }
   }
   componentWillUnmount() {
     this.stateManager.destroy();
@@ -62,6 +86,20 @@ export default class Project extends Component {
       rangeToHighlight: RangeToHighlight(order, taskId),
       indentToHightlight: indent,
     });
+
+    Navigation.mergeOptions('ProjectOverview', {
+      topBar: {
+        rightButtons: [
+          {
+            id: 'Done',
+            text: 'Done',
+          },
+        ],
+      },
+    });
+  }
+  onItemBlur() {
+    this.inputRefs[this.lastFocusedInputRefId].blur();
   }
   onItemIndent() {
     this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
