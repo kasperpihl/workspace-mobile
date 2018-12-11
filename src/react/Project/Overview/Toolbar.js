@@ -98,6 +98,8 @@ export default class Toolbar extends Component {
     } = this.state;
     const { buttons, whileHiddenView } = this.props;
 
+    console.log(toolBarAlwaysVisible);
+
     return (
       <View
         style={{
@@ -116,9 +118,7 @@ export default class Toolbar extends Component {
         <View style={{ height: myKeyboardHeight }}>
           <SW.MyKeyBoard />
         </View>
-        <SW.WhileHiddenView toolBarAlwaysVisible={!toolBarAlwaysVisible}>
-          {whileHiddenView}
-        </SW.WhileHiddenView>
+        {!toolBarAlwaysVisible && whileHiddenView}
       </View>
     );
   }
