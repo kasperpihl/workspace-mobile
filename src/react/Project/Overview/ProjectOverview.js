@@ -12,6 +12,24 @@ import data from './data';
 
 console.disableYellowBox = true;
 
+const defaultButtons = [
+  {
+    id: 'Edit',
+    text: 'Edit',
+  },
+  {
+    id: 'Discuss',
+    text: 'Discuss',
+  },
+];
+
+const onFocusButtons = [
+  {
+    id: 'Done',
+    text: 'Done',
+  },
+];
+
 export default class Project extends Component {
   constructor(props) {
     super(props);
@@ -44,18 +62,7 @@ export default class Project extends Component {
   navigationButtonPressed({ buttonId }) {
     if (buttonId == 'Done') {
       Navigation.mergeOptions('ProjectOverview', {
-        topBar: {
-          rightButtons: [
-            {
-              id: 'Edit',
-              text: 'Edit',
-            },
-            {
-              id: 'Discuss',
-              text: 'Discuss',
-            },
-          ],
-        },
+        topBar: { rightButtons: defaultButtons },
       });
 
       this.onItemBlur();
@@ -89,12 +96,7 @@ export default class Project extends Component {
 
     Navigation.mergeOptions('ProjectOverview', {
       topBar: {
-        rightButtons: [
-          {
-            id: 'Done',
-            text: 'Done',
-          },
-        ],
+        rightButtons: onFocusButtons,
       },
     });
   }

@@ -1,4 +1,5 @@
 import { Navigation } from 'react-native-navigation';
+import navigationComponents from 'src/utils/navigationComponentsSettings';
 
 export const goHome = () =>
   Navigation.setRoot({
@@ -9,38 +10,10 @@ export const goHome = () =>
             stack: {
               children: [
                 {
-                  component: {
-                    id: 'ProjectList',
-                    name: 'ProjectList',
-                  },
+                  component: navigationComponents.ProjectList,
                 },
                 {
-                  component: {
-                    id: 'ProjectOverview',
-                    name: 'ProjectOverview',
-                    options: {
-                      topBar: {
-                        backButton: {
-                          title: 'Organize',
-                        },
-                        rightButtons: [
-                          {
-                            id: 'Edit',
-                            text: 'Edit',
-                          },
-                          {
-                            id: 'Discuss',
-                            text: 'Discuss',
-                          },
-                        ],
-                      },
-                      bottomTabs: {
-                        visible: false,
-                        drawBehind: true,
-                        animate: true,
-                      },
-                    },
-                  },
+                  component: navigationComponents.ProjectOverview,
                 },
               ],
               options: {

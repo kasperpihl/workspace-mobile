@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
+import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from 'src/react/Project/List/ProjectList.swiss';
 
 export default class ProjectList extends Component {
@@ -9,32 +10,7 @@ export default class ProjectList extends Component {
   }
   onAddProject() {
     Navigation.push('ProjectList', {
-      component: {
-        id: 'ProjectOverview',
-        name: 'ProjectOverview',
-        options: {
-          topBar: {
-            backButton: {
-              title: 'Organize',
-            },
-            rightButtons: [
-              {
-                id: 'Edit',
-                text: 'Edit',
-              },
-              {
-                id: 'Discuss',
-                text: 'Discuss',
-              },
-            ],
-          },
-          bottomTabs: {
-            visible: false,
-            drawBehind: true,
-            animate: true,
-          },
-        },
-      },
+      component: navigationComponents.ProjectOverview,
     });
   }
   render() {
