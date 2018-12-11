@@ -6,12 +6,12 @@ import { View } from 'react-native';
 
 export default class IconTouchableWrapper extends PureComponent {
   render() {
-    const { name, fill, onPress, rotate, ...rest } = this.props;
+    const { icon, fill, onPress, rotate, ...rest } = this.props;
 
     return (
       <View style={{ transform: [{ rotate: `${rotate || 0}deg` }] }}>
         <SW.Wrapper onPress={onPress}>
-          <Icon name={name} fill={colors[fill]} {...rest} />
+          <Icon name={icon} fill={colors[fill]} {...rest} />
         </SW.Wrapper>
       </View>
     );

@@ -8,6 +8,8 @@ import {
   Dimensions,
 } from 'react-native';
 import SW from 'src/react/Project/Overview/Toolbar.swiss';
+import KeyboardDate from 'src/react/Project/Keyboards/Date/KeyboardDate';
+import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 //In order for LayoutAnimation to work on Android
 // UIManager.setLayoutAnimationEnabledExperimental &&
@@ -90,15 +92,30 @@ export default class Toolbar extends Component {
       toolBarAlwaysVisible: hideToolbar,
     });
   };
+  renderButtons() {
+    const { buttons } = this.props;
+
+    return buttons.map(button => {
+      const { icon, fill, onPress } = button;
+
+      return (
+        <IconTouchableWrapper
+          icon={icon}
+          fill={fill}
+          onPress={onPress}
+          width={'22'}
+          height={'14'}
+        />
+      );
+    });
+  }
   render() {
     const {
       toolBarPaddingBottom,
       myKeyboardHeight,
       toolBarAlwaysVisible,
     } = this.state;
-    const { buttons, whileHiddenView } = this.props;
-
-    console.log(toolBarAlwaysVisible);
+    const { whileHiddenView } = this.props;
 
     return (
       <View
@@ -107,7 +124,7 @@ export default class Toolbar extends Component {
         }}
       >
         <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
-          {buttons}
+          {this.renderButtons()}
           <SW.ChangeKeyboard
             onPress={() => {
               this.keyboardDismissedManually = true;
@@ -116,7 +133,7 @@ export default class Toolbar extends Component {
           />
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
-          <SW.MyKeyBoard />
+          <SW.MyKeyBoard>{/* <KeyboardDate /> */}</SW.MyKeyBoard>
         </View>
         {!toolBarAlwaysVisible && whileHiddenView}
       </View>

@@ -23,7 +23,7 @@ export default class ProjectInput extends PureComponent {
       <SW.Wrapper>
         {hasChildren && (
           <IconTouchableWrapper
-            name={'expand'}
+            icon={'expand'}
             fill={'sw2'}
             width="18"
             height="8"

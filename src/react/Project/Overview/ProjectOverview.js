@@ -7,7 +7,6 @@ import RangeToHighlight from 'src/react/Project/Overview/RangeToHighlight';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import Toolbar from 'src/react/Project/Overview/Toolbar';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
-import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import data from './data';
 
 console.disableYellowBox = true;
@@ -148,20 +147,30 @@ export default class Project extends Component {
           />
           <Toolbar
             buttons={[
-              <IconTouchableWrapper
-                name={'indent_in'}
-                fill={'blue'}
-                width="22"
-                height="14"
-                onPress={this.onItemIndent}
-              />,
-              <IconTouchableWrapper
-                name={'indent_out'}
-                fill={'blue'}
-                width="22"
-                height="14"
-                onPress={this.onItemOutdent}
-              />,
+              {
+                icon: 'indent_in',
+                fill: 'blue',
+                onPress: this.onItemIndent,
+              },
+              {
+                icon: 'indent_out',
+                fill: 'blue',
+                onPress: this.onItemOutdent,
+              },
+            ]}
+            whileHiddenView={
+              <SW.SliderWrapper>
+                <Slider
+                  minimumValue={0}
+                  maximumValue={4}
+                  onValueChange={this.onSliderChange}
+                  value={0}
+                />
+              </SW.SliderWrapper>
+            }
+          />
+          {/* <Toolbar
+            buttons={[
               <SW.ResetKeyboard
                 onPress={() => {
                   if (this.lastFocusedInputRefId) {
@@ -180,7 +189,7 @@ export default class Project extends Component {
                 />
               </SW.SliderWrapper>
             }
-          />
+          /> */}
         </SW.Wrapper>
       </SafeAreaView>
     );
