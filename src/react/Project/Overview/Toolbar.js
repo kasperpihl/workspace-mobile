@@ -117,7 +117,6 @@ export default class Toolbar extends Component {
           onPress();
         }
       };
-      console.log(i);
       return (
         <IconTouchableWrapper
           key={i}
