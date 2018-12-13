@@ -1,15 +1,19 @@
 import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { List } from 'immutable';
-import { SafeAreaView, Slider } from 'react-native';
-import ProjectItemList from 'src/react/Project/ItemList/ProjectItemList';
+import { SafeAreaView, Slider, Text } from 'react-native';
+import { VirtualizedList } from 'react-native';
+
+import withRequests from 'swipes-core-js/components/withRequests';
+import ProjectProvider from 'swipes-core-js/components/project/ProjectProvider';
+import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
+
+import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import RangeToHighlight from 'src/react/Project/Overview/RangeToHighlight';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import Toolbar from 'src/react/Project/Overview/Toolbar';
-import ProjectStateManager from 'src/utils/project/ProjectStateManager';
 import KeyboardDate from 'src/react/Project/Keyboards/Date/KeyboardDate';
 import KeyboardAssign from 'src/react/Project/Keyboards/Assign/KeyboardAssign';
-import data from './data';
 
 console.disableYellowBox = true;
 
@@ -31,30 +35,52 @@ const onFocusButtons = [
   },
 ];
 
+@withRequests(
+  {
+    project: {
+      request: {
+        url: 'project.get',
+        body: props => ({
+          project_id: 'A123131',
+        }),
+        resPath: 'result',
+      },
+      cache: {
+        path: props => ['project', 'A123131'],
+      },
+    },
+  },
+  { renderLoader: () => <Text>loading</Text> }
+)
 export default class ProjectOverview extends PureComponent {
   constructor(props) {
     super(props);
-
+    this.stateManager = new ProjectStateManager(props.project);
     this.state = {
       rangeToHighlight: List(),
       indentToHightlight: 0,
       toolbarHidden: true,
+      selectedId: this.stateManager.getLocalState().get('selectedId'),
+      visibleOrder: this.stateManager.getLocalState().get('visibleOrder'),
     };
     this.inputRefs = {};
-    this.lastFocusedInputRefId = null;
-
-    // Navigation.events().bindComponent(this, 'ProjectOverview');
+    Navigation.events().bindComponent(this, 'ProjectOverview');
   }
-  componentWillMount() {
-    this.stateManager = new ProjectStateManager(
-      data.order,
-      data.itemsById,
-      this.onStateChange
-    );
-    this.setState(this.stateManager.getState());
+  componentDidMount() {
+    this.unsubscribe = this.stateManager.subscribe(stateManager => {
+      const selectedId = this.stateManager.getLocalState().get('selectedId');
+      const visibleOrder = stateManager.getLocalState().get('visibleOrder');
+      if (
+        visibleOrder !== this.state.visibleOrder ||
+        selectedId !== this.state.selectedId
+      ) {
+        this.setState({ visibleOrder, selectedId });
+      }
+    });
   }
   componentWillUnmount() {
-    this.stateManager.destroy();
+    this.unsubscribe();
+    this.stateManager.syncHandler.syncIfNeeded();
   }
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId == 'Done') {
@@ -66,24 +92,15 @@ export default class ProjectOverview extends PureComponent {
       this.hideToolbar();
     }
   };
-  onStateChange = state => this.setState(state);
-  onSliderChange = value => {
+  handleSliderChange = value => {
     const depth = parseInt(value, 10);
-    this.stateManager.indentHandler.enforceIndention(depth);
-  };
-  addInputRef = (ref, taskId) => {
-    this.inputRefs[taskId] = ref;
-  };
-  onItemTextChange = (text, taskId) => {
-    // Removing new lines is the only way that I found to simulate
-    // single line input with multiline set to true
-    this.stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
+    this.stateManager.expandHandler.setDepth(depth);
   };
   onItemFocus = (taskId, indent) => {
     const { order } = this.state;
 
     this.lastFocusedInputRefId = taskId;
-    this.stateManager.selectHandler.selectWithId(taskId);
+    this.stateManager.selectHandler.select(taskId);
     this.setState({
       rangeToHighlight: RangeToHighlight(order, taskId),
       indentToHightlight: indent,
@@ -95,26 +112,13 @@ export default class ProjectOverview extends PureComponent {
       },
     });
   };
-  onItemBlur = () => {
-    this.inputRefs[this.lastFocusedInputRefId].blur();
-  };
   onItemIndent = () => {
-    this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
-    setTimeout(() => {
-      this.inputRefs[this.lastFocusedInputRefId].focus();
-    }, 0);
+    const selectedId = this.stateManager.getLocalState().get('selectedId');
+    this.stateManager.indentHandler.indent(selectedId);
   };
   onItemOutdent = () => {
-    this.stateManager.indentHandler.outdent(this.lastFocusedInputRefId);
-    setTimeout(() => {
-      this.inputRefs[this.lastFocusedInputRefId].focus();
-    }, 0);
-  };
-  onSubmitEditing = e => {
-    this.stateManager.editHandler.enter(e);
-  };
-  onToggleExpand = taskId => {
-    this.stateManager.expandHandler.toggleExpandForId(taskId);
+    const selectedId = this.stateManager.getLocalState().get('selectedId');
+    this.stateManager.indentHandler.outdent(selectedId);
   };
   showToolbar = () => {
     this.setState({
@@ -126,70 +130,71 @@ export default class ProjectOverview extends PureComponent {
       toolbarHidden: true,
     });
   };
+  getItemCount = data => data.size;
+  getItem = (data, index) => {
+    console.log(index, data);
+    return {
+      key: data.get(index),
+      taskId: data.get(index),
+    };
+  };
+  renderItem = ({ item }) => {
+    return <ProjectTask taskId={item.taskId} />;
+  };
   render() {
-    const {
-      visibleOrder,
-      itemsById,
-      selectedIndex,
-      rangeToHighlight,
-      indentToHightlight,
-      toolbarHidden,
-    } = this.state;
-
+    const { visibleOrder, toolbarHidden } = this.state;
+    console.log('statem', visibleOrder.toJS());
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-        <SW.Wrapper>
-          <ProjectItemList
-            visibleOrder={visibleOrder}
-            itemsById={itemsById}
-            selectedIndex={selectedIndex}
-            rangeToHighlight={rangeToHighlight}
-            indentToHightlight={indentToHightlight}
-            addInputRef={this.addInputRef}
-            onItemFocus={this.onItemFocus}
-            onItemTextChange={this.onItemTextChange}
-            onSubmitEditing={this.onSubmitEditing}
-            onSelectionChange={this.onSelectionChange}
-            onToggleExpand={this.onToggleExpand}
-          />
-          <Toolbar
-            toolbarHidden={toolbarHidden}
-            hideToolbar={this.hideToolbar}
-            showToolbar={this.showToolbar}
-            buttons={[
-              {
-                icon: 'indent_in',
-                fill: 'blue',
-                onPress: this.onItemIndent,
-              },
-              {
-                icon: 'indent_out',
-                fill: 'blue',
-                onPress: this.onItemOutdent,
-              },
-              {
-                icon: 'indent_out',
-                fill: 'blue',
-                keyboard: KeyboardDate,
-              },
-              {
-                icon: 'indent_out',
-                fill: 'blue',
-                keyboard: KeyboardAssign,
-              },
-            ]}
-            whileHiddenView={
-              <SW.SliderWrapper>
-                <Slider
-                  minimumValue={0}
-                  maximumValue={4}
-                  onValueChange={this.onSliderChange}
-                  value={0}
-                />
-              </SW.SliderWrapper>
-            }
-          />
-        </SW.Wrapper>
+        <ProjectProvider stateManager={this.stateManager}>
+          <SW.Wrapper>
+            <VirtualizedList
+              keyboardDismissMode={'none'}
+              keyboardShouldPersistTaps={'always'}
+              getItem={this.getItem}
+              getItemCount={this.getItemCount}
+              data={visibleOrder}
+              renderItem={this.renderItem}
+            />
+            <Toolbar
+              toolbarHidden={toolbarHidden}
+              hideToolbar={this.hideToolbar}
+              showToolbar={this.showToolbar}
+              buttons={[
+                {
+                  icon: 'indent_in',
+                  fill: 'blue',
+                  onPress: this.onItemIndent,
+                },
+                {
+                  icon: 'indent_out',
+                  fill: 'blue',
+                  onPress: this.onItemOutdent,
+                },
+                {
+                  icon: 'indent_out',
+                  fill: 'blue',
+                  keyboard: KeyboardDate,
+                },
+                {
+                  icon: 'indent_out',
+                  fill: 'blue',
+                  keyboard: KeyboardAssign,
+                },
+              ]}
+              whileHiddenView={
+                <SW.SliderWrapper>
+                  <Slider
+                    minimumValue={0}
+                    maximumValue={4}
+                    onValueChange={this.handleSliderChange}
+                    value={0}
+                  />
+                </SW.SliderWrapper>
+              }
+            />
+          </SW.Wrapper>
+        </ProjectProvider>
       </SafeAreaView>
     );
   }

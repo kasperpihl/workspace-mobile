@@ -12,15 +12,14 @@ export default styleSheet('ProjectInput', {
   },
   IndentSpace: {
     _size: [0, '100%'],
-    _borderDerivedFromProps: props => {
-      return props.hightlihgt ? ['1', '$sw1', 'left'] : ['1', '$sw3', 'left'];
+    _border: ['1', '$sw3', 'left'],
+    highlight: {
+      _border: ['1', '$sw1', 'left'],
     },
     marginLeft: 21,
   },
   MarginForExpandArrow: {
-    marginLeft: props => {
-      return props.hasChildren ? 0 : 44;
-    },
+    marginLeft: props => (props.hasChildren ? 0 : 44),
   },
   Circle: {
     _size: ['22', '22'],

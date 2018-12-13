@@ -1,5 +1,5 @@
 {
-  "name": "workspace-mobile",
+  "name": "WorkspaceMobile",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@swipesapp/core": "^1.0.10",
+    "@swipesapp/core": "^1.0.17",
     "immutable": "^4.0.0-rc.12",
-    "react": "16.5.0",
-    "react-native": "0.57.1",
+    "react": "^16.5.0",
+    "react-native": "^0.57.1",
     "react-native-device-info": "^0.24.3",
     "react-native-navigation": "^2.2.1",
     "react-native-svg": "^8.0.8",

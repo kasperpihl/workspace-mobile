@@ -102,7 +102,7 @@ export default class Toolbar extends Component {
   renderButtons() {
     const { buttons } = this.props;
 
-    return buttons.map(button => {
+    return buttons.map((button, i) => {
       const { icon, fill, onPress, keyboard } = button;
       const checkForKeyboard = () => {
         if (keyboard) {
@@ -117,9 +117,10 @@ export default class Toolbar extends Component {
           onPress();
         }
       };
-
+      console.log(i);
       return (
         <IconTouchableWrapper
+          key={i}
           icon={icon}
           fill={fill}
           onPress={checkForKeyboard}
