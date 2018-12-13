@@ -25,7 +25,7 @@ export default styleSheet('Toolbar', {
     _borderRadius: '20',
     backgroundColor: '$blue',
   },
-  MyKeyBoard: {
+  MyKeyboard: {
     _size: ['100%', '100%'],
     backgroundColor: 'yellow',
   },

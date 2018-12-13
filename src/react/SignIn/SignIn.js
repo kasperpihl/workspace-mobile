@@ -42,6 +42,7 @@ export default class SignIn extends Component {
       goHome();
       return null;
     }
+
     const { emailVal, passwordVal } = this.state;
 
     return (

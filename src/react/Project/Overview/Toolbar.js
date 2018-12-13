@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from 'react-native';
 import SW from 'src/react/Project/Overview/Toolbar.swiss';
-import KeyboardDate from 'src/react/Project/Keyboards/Date/KeyboardDate';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 //In order for LayoutAnimation to work on Android
@@ -27,7 +26,7 @@ export default class Toolbar extends Component {
     this.state = {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: 0,
-      toolBarAlwaysVisible: false,
+      CurrentKeyboard: null,
     };
 
     this.keyboardDismissedManually = false;
@@ -51,6 +50,8 @@ export default class Toolbar extends Component {
     this.keyboardWillHideSubscription.remove();
   }
   keyboardWillShow = event => {
+    const { showToolbar } = this.props;
+
     LayoutAnimation.configureNext({
       duration: event.duration,
       update: {
@@ -65,19 +66,22 @@ export default class Toolbar extends Component {
     this.setState({
       toolBarPaddingBottom: toolBarPaddingBottom,
       myKeyboardHeight: 0,
-      toolBarAlwaysVisible: true,
     });
+
+    showToolbar();
   };
   keyboardWillHide = event => {
+    const { hideToolbar } = this.props;
+
     let keyboardHeight = 0;
-    let hideToolbar = false;
+    let shouldHideToolbar = true;
 
     if (this.keyboardDismissedManually) {
       this.keyboardDismissedManually = false;
       keyboardHeight =
         event.endCoordinates.height -
         (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
-      hideToolbar = true;
+      shouldHideToolbar = false;
     }
 
     LayoutAnimation.configureNext({
@@ -89,20 +93,36 @@ export default class Toolbar extends Component {
     this.setState({
       toolBarPaddingBottom: 0,
       myKeyboardHeight: keyboardHeight,
-      toolBarAlwaysVisible: hideToolbar,
     });
+
+    if (shouldHideToolbar) {
+      hideToolbar();
+    }
   };
   renderButtons() {
     const { buttons } = this.props;
 
     return buttons.map(button => {
-      const { icon, fill, onPress } = button;
+      const { icon, fill, onPress, keyboard } = button;
+      const checkForKeyboard = () => {
+        if (keyboard) {
+          this.setState({
+            CurrentKeyboard: keyboard,
+          });
+          this.keyboardDismissedManually = true;
+          Keyboard.dismiss();
+        }
+
+        if (onPress) {
+          onPress();
+        }
+      };
 
       return (
         <IconTouchableWrapper
           icon={icon}
           fill={fill}
-          onPress={onPress}
+          onPress={checkForKeyboard}
           width={'22'}
           height={'14'}
         />
@@ -110,12 +130,18 @@ export default class Toolbar extends Component {
     });
   }
   render() {
-    const {
+    let {
       toolBarPaddingBottom,
       myKeyboardHeight,
-      toolBarAlwaysVisible,
+      CurrentKeyboard,
     } = this.state;
-    const { whileHiddenView } = this.props;
+    const { whileHiddenView, toolbarHidden } = this.props;
+
+    if (toolbarHidden) {
+      toolBarPaddingBottom = 0;
+      myKeyboardHeight = 0;
+      CurrentKeyboard = null;
+    }
 
     return (
       <View
@@ -123,19 +149,15 @@ export default class Toolbar extends Component {
           paddingBottom: toolBarPaddingBottom,
         }}
       >
-        <SW.ToolbarWrapper toolBarAlwaysVisible={toolBarAlwaysVisible}>
+        <SW.ToolbarWrapper toolBarAlwaysVisible={!toolbarHidden}>
           {this.renderButtons()}
-          <SW.ChangeKeyboard
-            onPress={() => {
-              this.keyboardDismissedManually = true;
-              Keyboard.dismiss();
-            }}
-          />
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
-          <SW.MyKeyBoard>{/* <KeyboardDate /> */}</SW.MyKeyBoard>
+          <SW.MyKeyboard>
+            {CurrentKeyboard ? <CurrentKeyboard /> : null}
+          </SW.MyKeyboard>
         </View>
-        {!toolBarAlwaysVisible && whileHiddenView}
+        {toolbarHidden && whileHiddenView}
       </View>
     );
   }

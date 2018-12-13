@@ -7,6 +7,8 @@ import RangeToHighlight from 'src/react/Project/Overview/RangeToHighlight';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import Toolbar from 'src/react/Project/Overview/Toolbar';
 import ProjectStateManager from 'src/utils/project/ProjectStateManager';
+import KeyboardDate from 'src/react/Project/Keyboards/Date/KeyboardDate';
+import KeyboardAssign from 'src/react/Project/Keyboards/Assign/KeyboardAssign';
 import data from './data';
 
 console.disableYellowBox = true;
@@ -36,6 +38,7 @@ export default class Project extends Component {
     this.state = {
       rangeToHighlight: List(),
       indentToHightlight: 0,
+      toolbarHidden: true,
     };
     this.inputRefs = {};
     this.lastFocusedInputRefId = null;
@@ -47,6 +50,8 @@ export default class Project extends Component {
     this.onItemOutdent = this.onItemOutdent.bind(this);
     this.onSubmitEditing = this.onSubmitEditing.bind(this);
     this.onToggleExpand = this.onToggleExpand.bind(this);
+    this.showToolbar = this.showToolbar.bind(this);
+    this.hideToolbar = this.hideToolbar.bind(this);
 
     Navigation.events().bindComponent(this, 'ProjectOverview');
   }
@@ -65,6 +70,7 @@ export default class Project extends Component {
       });
 
       this.onItemBlur();
+      this.hideToolbar();
     }
   }
   componentWillUnmount() {
@@ -120,6 +126,16 @@ export default class Project extends Component {
   onToggleExpand(taskId) {
     this.stateManager.expandHandler.toggleExpandForId(taskId);
   }
+  showToolbar() {
+    this.setState({
+      toolbarHidden: false,
+    });
+  }
+  hideToolbar() {
+    this.setState({
+      toolbarHidden: true,
+    });
+  }
   render() {
     const {
       visibleOrder,
@@ -127,6 +143,7 @@ export default class Project extends Component {
       selectedIndex,
       rangeToHighlight,
       indentToHightlight,
+      toolbarHidden,
     } = this.state;
 
     return (
@@ -146,6 +163,9 @@ export default class Project extends Component {
             onToggleExpand={this.onToggleExpand}
           />
           <Toolbar
+            toolbarHidden={toolbarHidden}
+            hideToolbar={this.hideToolbar}
+            showToolbar={this.showToolbar}
             buttons={[
               {
                 icon: 'indent_in',
@@ -156,6 +176,16 @@ export default class Project extends Component {
                 icon: 'indent_out',
                 fill: 'blue',
                 onPress: this.onItemOutdent,
+              },
+              {
+                icon: 'indent_out',
+                fill: 'blue',
+                keyboard: KeyboardDate,
+              },
+              {
+                icon: 'indent_out',
+                fill: 'blue',
+                keyboard: KeyboardAssign,
               },
             ]}
             whileHiddenView={
@@ -169,27 +199,6 @@ export default class Project extends Component {
               </SW.SliderWrapper>
             }
           />
-          {/* <Toolbar
-            buttons={[
-              <SW.ResetKeyboard
-                onPress={() => {
-                  if (this.lastFocusedInputRefId) {
-                    this.inputRefs[this.lastFocusedInputRefId].focus();
-                  }
-                }}
-              />,
-            ]}
-            whileHiddenView={
-              <SW.SliderWrapper>
-                <Slider
-                  minimumValue={0}
-                  maximumValue={4}
-                  onValueChange={this.onSliderChange}
-                  value={0}
-                />
-              </SW.SliderWrapper>
-            }
-          /> */}
         </SW.Wrapper>
       </SafeAreaView>
     );
