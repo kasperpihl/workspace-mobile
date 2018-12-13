@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { List } from 'immutable';
 import { SafeAreaView, Slider } from 'react-native';
@@ -31,7 +31,7 @@ const onFocusButtons = [
   },
 ];
 
-export default class Project extends Component {
+export default class ProjectOverview extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -42,18 +42,8 @@ export default class Project extends Component {
     };
     this.inputRefs = {};
     this.lastFocusedInputRefId = null;
-    this.addInputRef = this.addInputRef.bind(this);
-    this.onItemFocus = this.onItemFocus.bind(this);
-    this.onItemBlur = this.onItemBlur.bind(this);
-    this.onItemTextChange = this.onItemTextChange.bind(this);
-    this.onItemIndent = this.onItemIndent.bind(this);
-    this.onItemOutdent = this.onItemOutdent.bind(this);
-    this.onSubmitEditing = this.onSubmitEditing.bind(this);
-    this.onToggleExpand = this.onToggleExpand.bind(this);
-    this.showToolbar = this.showToolbar.bind(this);
-    this.hideToolbar = this.hideToolbar.bind(this);
 
-    Navigation.events().bindComponent(this, 'ProjectOverview');
+    // Navigation.events().bindComponent(this, 'ProjectOverview');
   }
   componentWillMount() {
     this.stateManager = new ProjectStateManager(
@@ -63,7 +53,10 @@ export default class Project extends Component {
     );
     this.setState(this.stateManager.getState());
   }
-  navigationButtonPressed({ buttonId }) {
+  componentWillUnmount() {
+    this.stateManager.destroy();
+  }
+  navigationButtonPressed = ({ buttonId }) => {
     if (buttonId == 'Done') {
       Navigation.mergeOptions('ProjectOverview', {
         topBar: { rightButtons: defaultButtons },
@@ -72,24 +65,21 @@ export default class Project extends Component {
       this.onItemBlur();
       this.hideToolbar();
     }
-  }
-  componentWillUnmount() {
-    this.stateManager.destroy();
-  }
+  };
   onStateChange = state => this.setState(state);
   onSliderChange = value => {
     const depth = parseInt(value, 10);
     this.stateManager.indentHandler.enforceIndention(depth);
   };
-  addInputRef(ref, taskId) {
+  addInputRef = (ref, taskId) => {
     this.inputRefs[taskId] = ref;
-  }
-  onItemTextChange(text, taskId) {
+  };
+  onItemTextChange = (text, taskId) => {
     // Removing new lines is the only way that I found to simulate
     // single line input with multiline set to true
     this.stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
-  }
-  onItemFocus(taskId, indent) {
+  };
+  onItemFocus = (taskId, indent) => {
     const { order } = this.state;
 
     this.lastFocusedInputRefId = taskId;
@@ -104,38 +94,38 @@ export default class Project extends Component {
         rightButtons: onFocusButtons,
       },
     });
-  }
-  onItemBlur() {
+  };
+  onItemBlur = () => {
     this.inputRefs[this.lastFocusedInputRefId].blur();
-  }
-  onItemIndent() {
+  };
+  onItemIndent = () => {
     this.stateManager.indentHandler.indent(this.lastFocusedInputRefId);
     setTimeout(() => {
       this.inputRefs[this.lastFocusedInputRefId].focus();
     }, 0);
-  }
-  onItemOutdent() {
+  };
+  onItemOutdent = () => {
     this.stateManager.indentHandler.outdent(this.lastFocusedInputRefId);
     setTimeout(() => {
       this.inputRefs[this.lastFocusedInputRefId].focus();
     }, 0);
-  }
-  onSubmitEditing(e) {
+  };
+  onSubmitEditing = e => {
     this.stateManager.editHandler.enter(e);
-  }
-  onToggleExpand(taskId) {
+  };
+  onToggleExpand = taskId => {
     this.stateManager.expandHandler.toggleExpandForId(taskId);
-  }
-  showToolbar() {
+  };
+  showToolbar = () => {
     this.setState({
       toolbarHidden: false,
     });
-  }
-  hideToolbar() {
+  };
+  hideToolbar = () => {
     this.setState({
       toolbarHidden: true,
     });
-  }
+  };
   render() {
     const {
       visibleOrder,

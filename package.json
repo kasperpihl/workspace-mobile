@@ -1,12 +1,12 @@
 {
-  "name": "WorkspaceMobile",
+  "name": "workspace-mobile",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
-    "clean": "watchman watch-del-all && npm start -- --reset-cache && rm -rf node_modules && npm install && say thank you kasper",
+    "clean": "say thank you kasper && watchman watch-del-all && rm -rf node_modules && rm -rf /tmp/metro-bundler-cache-* && rm -rf /tmp/haste-map-react-native-packager-* && npm install",
     "convert-svgs": "node convert-svgs.js"
   },
   "dependencies": {

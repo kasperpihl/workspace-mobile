@@ -8,12 +8,18 @@ import ProjectList from 'src/react/Project/List/ProjectList';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
-import { init } from 'swipes-core-js';
+import { setStore } from 'swipes-core-js/utils/store/storeGet';
+import Socket from 'swipes-core-js/classes/Socket';
 
+// Init core!
 const { store, persistor } = configureStore({
-  globals: getGlobals(),
+  global: getGlobals(),
 });
-init(store);
+
+setStore(store); // Make store accessible from core
+window.socket = new Socket(store);
+// END Init core
+
 // setTimeout(() => {
 //   store.dispatch({ type: 'RESET_STATE' });
 // }, 1000);
