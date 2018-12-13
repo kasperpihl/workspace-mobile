@@ -131,19 +131,13 @@ export default class ProjectOverview extends PureComponent {
     });
   };
   getItemCount = data => data.size;
-  getItem = (data, index) => {
-    console.log(index, data);
-    return {
-      key: data.get(index),
-      taskId: data.get(index),
-    };
-  };
-  renderItem = ({ item }) => {
-    return <ProjectTask taskId={item.taskId} />;
-  };
+  getItem = (data, index) => ({
+    key: data.get(index),
+    taskId: data.get(index),
+  });
+  renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
   render() {
-    const { visibleOrder, toolbarHidden } = this.state;
-    console.log('statem', visibleOrder.toJS());
+    const { visibleOrder, selectedId } = this.state;
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <ProjectProvider stateManager={this.stateManager}>
@@ -157,7 +151,7 @@ export default class ProjectOverview extends PureComponent {
               renderItem={this.renderItem}
             />
             <Toolbar
-              toolbarHidden={toolbarHidden}
+              toolbarHidden={!selectedId}
               hideToolbar={this.hideToolbar}
               showToolbar={this.showToolbar}
               buttons={[

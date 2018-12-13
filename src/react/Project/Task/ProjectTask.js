@@ -73,7 +73,6 @@ export default class ProjectTask extends PureComponent {
       taskId,
       ...rest
     } = this.props;
-    console.log(taskId, title);
 
     return (
       <SW.Wrapper>
