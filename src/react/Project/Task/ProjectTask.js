@@ -57,6 +57,15 @@ export default class ProjectTask extends PureComponent {
       stateManager.editHandler.enter(taskId, this.selection.start);
     }
   };
+  handleComplete = () => {
+    const { taskId, stateManager, task } = this.props;
+    const { completion } = task;
+    if (completion) {
+      stateManager.completeHandler.incomplete(taskId);
+    } else {
+      stateManager.completeHandler.complete(taskId);
+    }
+  };
   handleSelectionChange = e => {
     if (this.blockNextSelectionChange) {
       this.blockNextSelectionChange = undefined;
