@@ -9,7 +9,6 @@ import ProjectProvider from 'swipes-core-js/components/project/ProjectProvider';
 import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
 
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
-import RangeToHighlight from 'src/react/Project/Overview/RangeToHighlight';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
 import Toolbar from 'src/react/Project/Overview/Toolbar';
 import KeyboardDate from 'src/react/Project/Keyboards/Date/KeyboardDate';
@@ -59,7 +58,6 @@ export default class ProjectOverview extends PureComponent {
     this.state = {
       rangeToHighlight: List(),
       indentToHightlight: 0,
-      toolbarHidden: true,
       selectedId: this.stateManager.getLocalState().get('selectedId'),
       visibleOrder: this.stateManager.getLocalState().get('visibleOrder'),
     };
@@ -76,7 +74,20 @@ export default class ProjectOverview extends PureComponent {
       ) {
         this.setState({ visibleOrder, selectedId });
       }
+
+      if (selectedId && selectedId !== this.lastSelectedId) {
+        this.lastSelectedId = selectedId;
+      }
     });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (!!this.state.selectedId !== !!prevState.selectedId) {
+      Navigation.mergeOptions('ProjectOverview', {
+        topBar: {
+          rightButtons: this.state.selectedId ? onFocusButtons : defaultButtons,
+        },
+      });
+    }
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -84,33 +95,13 @@ export default class ProjectOverview extends PureComponent {
   }
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId == 'Done') {
-      Navigation.mergeOptions('ProjectOverview', {
-        topBar: { rightButtons: defaultButtons },
-      });
-
-      this.onItemBlur();
-      this.hideToolbar();
+      const selectedId = this.stateManager.getLocalState().get('selectedId');
+      this.stateManager.selectHandler.deselect(selectedId);
     }
   };
   handleSliderChange = value => {
     const depth = parseInt(value, 10);
     this.stateManager.expandHandler.setDepth(depth);
-  };
-  onItemFocus = (taskId, indent) => {
-    const { order } = this.state;
-
-    this.lastFocusedInputRefId = taskId;
-    this.stateManager.selectHandler.select(taskId);
-    this.setState({
-      rangeToHighlight: RangeToHighlight(order, taskId),
-      indentToHightlight: indent,
-    });
-
-    Navigation.mergeOptions('ProjectOverview', {
-      topBar: {
-        rightButtons: onFocusButtons,
-      },
-    });
   };
   onItemIndent = () => {
     const selectedId = this.stateManager.getLocalState().get('selectedId');
@@ -121,15 +112,12 @@ export default class ProjectOverview extends PureComponent {
     this.stateManager.indentHandler.outdent(selectedId);
   };
   showToolbar = () => {
-    this.setState({
-      toolbarHidden: false,
-    });
+    console.log('this.lastSelectedId', this.lastSelectedId);
+    if (this.lastSelectedId) {
+      this.stateManager.selectHandler.select(this.lastSelectedId);
+    }
   };
-  hideToolbar = () => {
-    this.setState({
-      toolbarHidden: true,
-    });
-  };
+  hideToolbar() {}
   getItemCount = data => data.size;
   getItem = (data, index) => ({
     key: data.get(index),
