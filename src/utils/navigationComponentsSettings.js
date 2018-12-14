@@ -1,7 +1,7 @@
 export default {
-  ProjectList: {
-    id: 'ProjectList',
-    name: 'ProjectList',
+  Organize: {
+    id: 'Organize',
+    name: 'Organize',
   },
   ProjectOverview: {
     id: 'ProjectOverview',

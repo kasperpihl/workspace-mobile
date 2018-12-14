@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { List } from 'immutable';
-import { SafeAreaView, Slider, Text } from 'react-native';
+import { Slider, Text } from 'react-native';
 import { VirtualizedList } from 'react-native';
 
 import withRequests from 'swipes-core-js/components/withRequests';
@@ -118,54 +118,52 @@ export default class ProjectOverview extends PureComponent {
   render() {
     const { visibleOrder, selectedId } = this.state;
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-        <ProjectProvider stateManager={this.stateManager}>
-          <SW.Wrapper>
-            <VirtualizedList
-              keyboardDismissMode={'none'}
-              keyboardShouldPersistTaps={'always'}
-              getItem={this.getItem}
-              getItemCount={this.getItemCount}
-              data={visibleOrder}
-              renderItem={this.renderItem}
-            />
-            <ProjectToolbar
-              hasFocus={!!selectedId}
-              buttons={[
-                {
-                  icon: 'indent_in',
-                  fill: 'blue',
-                  onPress: this.onItemIndent,
-                },
-                {
-                  icon: 'indent_out',
-                  fill: 'blue',
-                  onPress: this.onItemOutdent,
-                },
-                {
-                  icon: 'indent_out',
-                  fill: 'blue',
-                  keyboard: KeyboardDate,
-                },
-                {
-                  icon: 'indent_out',
-                  fill: 'blue',
-                  keyboard: KeyboardAssign,
-                },
-              ]}
-            >
-              <SW.SliderWrapper>
-                <Slider
-                  minimumValue={0}
-                  maximumValue={4}
-                  onValueChange={this.handleSliderChange}
-                  value={0}
-                />
-              </SW.SliderWrapper>
-            </ProjectToolbar>
-          </SW.Wrapper>
-        </ProjectProvider>
-      </SafeAreaView>
+      <ProjectProvider stateManager={this.stateManager}>
+        <SW.Wrapper>
+          <VirtualizedList
+            keyboardDismissMode={'none'}
+            keyboardShouldPersistTaps={'always'}
+            getItem={this.getItem}
+            getItemCount={this.getItemCount}
+            data={visibleOrder}
+            renderItem={this.renderItem}
+          />
+          <ProjectToolbar
+            hasFocus={!!selectedId}
+            buttons={[
+              {
+                icon: 'indent_in',
+                fill: 'blue',
+                onPress: this.onItemIndent,
+              },
+              {
+                icon: 'indent_out',
+                fill: 'blue',
+                onPress: this.onItemOutdent,
+              },
+              {
+                icon: 'indent_out',
+                fill: 'blue',
+                keyboard: KeyboardDate,
+              },
+              {
+                icon: 'indent_out',
+                fill: 'blue',
+                keyboard: KeyboardAssign,
+              },
+            ]}
+          >
+            <SW.SliderWrapper>
+              <Slider
+                minimumValue={0}
+                maximumValue={4}
+                onValueChange={this.handleSliderChange}
+                value={0}
+              />
+            </SW.SliderWrapper>
+          </ProjectToolbar>
+        </SW.Wrapper>
+      </ProjectProvider>
     );
   }
 }

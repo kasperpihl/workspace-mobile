@@ -4,7 +4,7 @@ import HOCRootWrapper from 'src/react/HOCRootWrapper';
 import SignIn from 'src/react/SignIn/SignIn';
 import SignUp from 'src/react/SignUp/SignUp';
 import Plan from 'src/Plan';
-import ProjectList from 'src/react/Project/List/ProjectList';
+import Organize from 'src/react/Organize/Organize';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
@@ -35,8 +35,8 @@ export function registerScreens() {
     'ForgottenPassword',
     () => require('./react/ForgottenPassword/ForgottenPassword').default
   );
-  Navigation.registerComponent('ProjectList', () =>
-    HOCRootWrapper(ProjectList, store, persistor, true)
+  Navigation.registerComponent('Organize', () =>
+    HOCRootWrapper(Organize, store, persistor, true)
   );
   Navigation.registerComponent('ProjectOverview', () =>
     HOCRootWrapper(ProjectOverview, store, persistor, true)

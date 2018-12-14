@@ -10,7 +10,7 @@ export const goHome = () =>
             stack: {
               children: [
                 {
-                  component: navigationComponents.ProjectList,
+                  component: navigationComponents.Organize,
                 },
                 {
                   component: navigationComponents.ProjectOverview,

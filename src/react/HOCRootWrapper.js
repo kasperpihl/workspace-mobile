@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import { SafeAreaView } from 'react-native';
 import Redirecter from 'src/Redirecter';
 import 'src/swiss/SwissInit';
 
@@ -11,7 +12,9 @@ export default function RootWrapper(Component, store, persistor, requireAuth) {
         <Provider store={store}>
           <PersistGate persistor={persistor}>
             <Redirecter requireAuth={requireAuth}>
-              <Component />
+              <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                <Component />
+              </SafeAreaView>
             </Redirecter>
           </PersistGate>
         </Provider>

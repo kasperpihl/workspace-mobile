@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, SafeAreaView, View } from 'react-native';
+import { Button, View } from 'react-native';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import Input from 'src/react/Input/Input';
 import FormButton from 'src/react/FormButton/FormButton';
@@ -46,48 +46,46 @@ export default class SignIn extends Component {
     const { emailVal, passwordVal } = this.state;
 
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-        <SW.Wrapper>
-          <SW.HeaderText>Swipes</SW.HeaderText>
-          <SW.FormWrapper>
+      <SW.Wrapper>
+        <SW.HeaderText>Swipes</SW.HeaderText>
+        <SW.FormWrapper>
+          <Input
+            value={emailVal}
+            onChangeText={this.handleChangeText('emailVal')}
+            label={'Email'}
+            textContentType={'username'}
+          />
+          <View style={{ marginTop: 30 }}>
             <Input
-              value={emailVal}
-              onChangeText={this.handleChangeText('emailVal')}
-              label={'Email'}
-              textContentType={'username'}
-            />
-            <View style={{ marginTop: 30 }}>
-              <Input
-                value={passwordVal}
-                onChangeText={this.handleChangeText('passwordVal')}
-                label={'Password'}
-                textContentType={'password'}
-                secureTextEntry={true}
-              />
-            </View>
-            <View style={{ marginTop: 80 }}>
-              <FormButton onPress={this.handleSignIn} label={'Sign in'} />
-              <Button
-                onPress={() => {
-                  goForgottenPassword();
-                }}
-                title="Forgot your password?"
-              />
-            </View>
-          </SW.FormWrapper>
-          <View style={{ marginTop: 150 }}>
-            <SW.DontHaveAnAccountText>
-              {`Don't have an account?`}
-            </SW.DontHaveAnAccountText>
-            <Button
-              onPress={() => {
-                goSignUp();
-              }}
-              title="Sign up"
+              value={passwordVal}
+              onChangeText={this.handleChangeText('passwordVal')}
+              label={'Password'}
+              textContentType={'password'}
+              secureTextEntry={true}
             />
           </View>
-        </SW.Wrapper>
-      </SafeAreaView>
+          <View style={{ marginTop: 80 }}>
+            <FormButton onPress={this.handleSignIn} label={'Sign in'} />
+            <Button
+              onPress={() => {
+                goForgottenPassword();
+              }}
+              title="Forgot your password?"
+            />
+          </View>
+        </SW.FormWrapper>
+        <View style={{ marginTop: 150 }}>
+          <SW.DontHaveAnAccountText>
+            {`Don't have an account?`}
+          </SW.DontHaveAnAccountText>
+          <Button
+            onPress={() => {
+              goSignUp();
+            }}
+            title="Sign up"
+          />
+        </View>
+      </SW.Wrapper>
     );
   }
 }
