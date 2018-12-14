@@ -50,8 +50,6 @@ export default class Toolbar extends Component {
     this.keyboardWillHideSubscription.remove();
   }
   keyboardWillShow = event => {
-    const { showToolbar } = this.props;
-
     LayoutAnimation.configureNext({
       duration: event.duration,
       update: {
@@ -67,21 +65,14 @@ export default class Toolbar extends Component {
       toolBarPaddingBottom: toolBarPaddingBottom,
       myKeyboardHeight: 0,
     });
-
-    showToolbar();
   };
   keyboardWillHide = event => {
-    const { hideToolbar } = this.props;
-
     let keyboardHeight = 0;
-    let shouldHideToolbar = true;
-
     if (this.keyboardDismissedManually) {
       this.keyboardDismissedManually = false;
       keyboardHeight =
         event.endCoordinates.height -
         (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
-      shouldHideToolbar = false;
     }
 
     LayoutAnimation.configureNext({
@@ -94,10 +85,6 @@ export default class Toolbar extends Component {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: keyboardHeight,
     });
-
-    if (shouldHideToolbar) {
-      hideToolbar();
-    }
   };
   renderButtons() {
     const { buttons } = this.props;
@@ -135,9 +122,9 @@ export default class Toolbar extends Component {
       myKeyboardHeight,
       CurrentKeyboard,
     } = this.state;
-    const { whileHiddenView, toolbarHidden } = this.props;
+    const { whileHiddenView, hasFocus } = this.props;
 
-    const shouldShow = !toolbarHidden || CurrentKeyboard;
+    const shouldShow = hasFocus || CurrentKeyboard;
 
     if (!shouldShow) {
       toolBarPaddingBottom = 0;

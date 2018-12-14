@@ -56,8 +56,6 @@ export default class ProjectOverview extends PureComponent {
     super(props);
     this.stateManager = new ProjectStateManager(props.project);
     this.state = {
-      rangeToHighlight: List(),
-      indentToHightlight: 0,
       selectedId: this.stateManager.getLocalState().get('selectedId'),
       visibleOrder: this.stateManager.getLocalState().get('visibleOrder'),
     };
@@ -111,13 +109,6 @@ export default class ProjectOverview extends PureComponent {
     const selectedId = this.stateManager.getLocalState().get('selectedId');
     this.stateManager.indentHandler.outdent(selectedId);
   };
-  showToolbar = () => {
-    console.log('this.lastSelectedId', this.lastSelectedId);
-    if (this.lastSelectedId) {
-      this.stateManager.selectHandler.select(this.lastSelectedId);
-    }
-  };
-  hideToolbar() {}
   getItemCount = data => data.size;
   getItem = (data, index) => ({
     key: data.get(index),
@@ -139,9 +130,7 @@ export default class ProjectOverview extends PureComponent {
               renderItem={this.renderItem}
             />
             <Toolbar
-              toolbarHidden={!selectedId}
-              hideToolbar={this.hideToolbar}
-              showToolbar={this.showToolbar}
+              hasFocus={!!selectedId}
               buttons={[
                 {
                   icon: 'indent_in',
