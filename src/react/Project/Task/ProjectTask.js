@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from './ProjectTask.swiss';
 import withProjectTask from 'swipes-core-js/components/project/withProjectTask';
+import console = require('console');
 
 @withProjectTask
 export default class ProjectTask extends PureComponent {
@@ -36,15 +37,18 @@ export default class ProjectTask extends PureComponent {
     stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
   };
   handleExpandPress = () => {
-    const { stateManager, taskId, expanded } = this.props;
+    const { stateManager, taskId, task } = this.props;
+    const { expanded } = task;
     stateManager.expandHandler[expanded ? 'collapse' : 'expand'](taskId);
   };
   handleSubmitEditing = e => {
     const { stateManager, taskId } = this.props;
+    console.log(e.nativeEvent.selection, e.target.selectionStart);
     stateManager.editHandler.enter(taskId, e.target.selectionStart);
   };
   checkFocus = () => {
-    const { isSelected, selectionStart, title } = this.props;
+    const { task } = this.props;
+    const { isSelected, selectionStart } = task;
     const { isFocused } = this.state;
     if (isSelected && !isFocused) {
       this.inputRef.focus();
@@ -57,6 +61,8 @@ export default class ProjectTask extends PureComponent {
     }
   };
   render() {
+    const { taskId, task } = this.props;
+
     const {
       title,
       isSelected,
@@ -65,13 +71,7 @@ export default class ProjectTask extends PureComponent {
       completion,
       hasChildren,
       expanded,
-
-      inputRef,
-      rangeToHighlight,
-      indentToHightlight,
-      taskId,
-      ...rest
-    } = this.props;
+    } = task;
 
     return (
       <SW.Wrapper>
@@ -108,7 +108,6 @@ export default class ProjectTask extends PureComponent {
             multiline={true}
             scrollEnabled={false}
             blurOnSubmit={false}
-            {...rest}
           />
         </SW.InnerWrapper>
       </SW.Wrapper>
