@@ -137,7 +137,9 @@ export default class Toolbar extends Component {
     } = this.state;
     const { whileHiddenView, toolbarHidden } = this.props;
 
-    if (toolbarHidden) {
+    const shouldShow = !toolbarHidden || CurrentKeyboard;
+
+    if (!shouldShow) {
       toolBarPaddingBottom = 0;
       myKeyboardHeight = 0;
       CurrentKeyboard = null;
@@ -149,7 +151,7 @@ export default class Toolbar extends Component {
           paddingBottom: toolBarPaddingBottom,
         }}
       >
-        <SW.ToolbarWrapper toolBarAlwaysVisible={!toolbarHidden}>
+        <SW.ToolbarWrapper toolBarAlwaysVisible={shouldShow}>
           {this.renderButtons()}
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
@@ -157,7 +159,7 @@ export default class Toolbar extends Component {
             {CurrentKeyboard ? <CurrentKeyboard /> : null}
           </SW.MyKeyboard>
         </View>
-        {toolbarHidden && whileHiddenView}
+        {!shouldShow && whileHiddenView}
       </View>
     );
   }
