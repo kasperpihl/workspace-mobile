@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from './ProjectTask.swiss';
 import withProjectTask from 'swipes-core-js/components/project/withProjectTask';
-import console = require('console');
 
 @withProjectTask
 export default class ProjectTask extends PureComponent {
@@ -47,7 +46,7 @@ export default class ProjectTask extends PureComponent {
     stateManager.editHandler.enter(taskId, e.target.selectionStart);
   };
   checkFocus = () => {
-    const { task } = this.props;
+    const { task, stateManager } = this.props;
     const { isSelected, selectionStart } = task;
     const { isFocused } = this.state;
     if (isSelected && !isFocused) {
