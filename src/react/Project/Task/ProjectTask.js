@@ -49,9 +49,8 @@ export default class ProjectTask extends PureComponent {
     if (isSelected && !isFocused) {
       this.inputRef.focus();
       if (typeof selectionStart === 'number') {
-        const selI = Math.min(title.length, selectionStart);
-
-        this.inputRef.setSelectionRange(selI, selI);
+        // const selI = Math.min(title.length, selectionStart);
+        // this.inputRef.setSelectionRange(selI, selI);
       }
     } else if (!isSelected && isFocused) {
       this.inputRef.blur();

@@ -6,12 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
-    "clean": "say thank you kasper && watchman watch-del-all && rm -rf node_modules && rm -rf /tmp/metro-bundler-cache-* && rm -rf /tmp/haste-map-react-native-packager-* && npm install",
+    "clean": "watchman watch-del-all && rm package-lock.json && rm -rf node_modules && rm -rf /tmp/metro-bundler-cache-* && rm -rf /tmp/haste-map-react-native-packager-* && npm install && say thank you kasper",
     "convert-svgs": "node convert-svgs.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@swipesapp/core": "^1.0.18",
+    "@swipesapp/core": "^1.0.19",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.5.0",
     "react-native": "^0.57.1",
