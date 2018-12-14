@@ -7,16 +7,10 @@ export default styleSheet('ProjectToolbar', {
     _size: ['100%', '40'],
     backgroundColor: '$sw3',
     height: props => {
-      return props.toolBarAlwaysVisible ? 40 : 0;
+      return props.show ? 40 : 0;
     },
     opacity: props => {
-      return props.toolBarAlwaysVisible ? 1 : 0;
-    },
-  },
-  WhileHiddenView: {
-    _size: ['100%', '40'],
-    height: props => {
-      return props.toolBarAlwaysVisible ? 40 : 0;
+      return props.show ? 1 : 0;
     },
   },
   ChangeKeyboard: {

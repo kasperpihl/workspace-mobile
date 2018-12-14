@@ -9,7 +9,7 @@ import ProjectProvider from 'swipes-core-js/components/project/ProjectProvider';
 import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
 
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
-import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
+import SW from './ProjectOverview.swiss';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
 import KeyboardDate from 'src/react/Keyboard/Date/KeyboardDate';
 import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
@@ -153,17 +153,16 @@ export default class ProjectOverview extends PureComponent {
                   keyboard: KeyboardAssign,
                 },
               ]}
-              whileHiddenView={
-                <SW.SliderWrapper>
-                  <Slider
-                    minimumValue={0}
-                    maximumValue={4}
-                    onValueChange={this.handleSliderChange}
-                    value={0}
-                  />
-                </SW.SliderWrapper>
-              }
-            />
+            >
+              <SW.SliderWrapper>
+                <Slider
+                  minimumValue={0}
+                  maximumValue={4}
+                  onValueChange={this.handleSliderChange}
+                  value={0}
+                />
+              </SW.SliderWrapper>
+            </ProjectToolbar>
           </SW.Wrapper>
         </ProjectProvider>
       </SafeAreaView>

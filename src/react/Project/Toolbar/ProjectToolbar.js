@@ -7,7 +7,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import SW from 'src/react/Project/Toolbar/ProjectToolbar.swiss';
+import SW from './ProjectToolbar.swiss';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 //In order for LayoutAnimation to work on Android
@@ -122,7 +122,7 @@ export default class ProjectToolbar extends PureComponent {
       myKeyboardHeight,
       CurrentKeyboard,
     } = this.state;
-    const { whileHiddenView, hasFocus } = this.props;
+    const { children, hasFocus } = this.props;
 
     const shouldShow = hasFocus || CurrentKeyboard;
 
@@ -138,7 +138,7 @@ export default class ProjectToolbar extends PureComponent {
           paddingBottom: toolBarPaddingBottom,
         }}
       >
-        <SW.ToolbarWrapper toolBarAlwaysVisible={shouldShow}>
+        <SW.ToolbarWrapper show={shouldShow}>
           {this.renderButtons()}
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
@@ -146,7 +146,7 @@ export default class ProjectToolbar extends PureComponent {
             {CurrentKeyboard ? <CurrentKeyboard /> : null}
           </SW.MyKeyboard>
         </View>
-        {!shouldShow && whileHiddenView}
+        {!shouldShow && children}
       </View>
     );
   }
