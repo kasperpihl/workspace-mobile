@@ -1,7 +1,7 @@
 import { styleSheet } from 'swiss-react';
 import { TouchableOpacity } from 'react-native';
 
-export default styleSheet('Toolbar', {
+export default styleSheet('ProjectToolbar', {
   ToolbarWrapper: {
     _flex: ['row'],
     _size: ['100%', '40'],

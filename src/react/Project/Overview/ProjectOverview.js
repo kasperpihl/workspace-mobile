@@ -10,9 +10,9 @@ import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
 
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import SW from 'src/react/Project/Overview/ProjectOverview.swiss';
-import Toolbar from 'src/react/Project/Overview/Toolbar';
-import KeyboardDate from 'src/react/Project/Keyboards/Date/KeyboardDate';
-import KeyboardAssign from 'src/react/Project/Keyboards/Assign/KeyboardAssign';
+import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
+import KeyboardDate from 'src/react/Keyboard/Date/KeyboardDate';
+import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
 
 console.disableYellowBox = true;
 
@@ -129,7 +129,7 @@ export default class ProjectOverview extends PureComponent {
               data={visibleOrder}
               renderItem={this.renderItem}
             />
-            <Toolbar
+            <ProjectToolbar
               hasFocus={!!selectedId}
               buttons={[
                 {

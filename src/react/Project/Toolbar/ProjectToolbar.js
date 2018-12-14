@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Keyboard,
   LayoutAnimation,
@@ -7,7 +7,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import SW from 'src/react/Project/Overview/Toolbar.swiss';
+import SW from 'src/react/Project/Toolbar/ProjectToolbar.swiss';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 //In order for LayoutAnimation to work on Android
@@ -19,7 +19,7 @@ const IS_SAFE_AREA_SUPPORTED =
   Platform.OS === 'ios' && (height > 800 || width > 800);
 const BUMPER_HEIGHT = 15;
 
-export default class Toolbar extends Component {
+export default class ProjectToolbar extends PureComponent {
   constructor(props) {
     super(props);
 

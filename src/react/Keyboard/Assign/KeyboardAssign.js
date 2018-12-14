@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
-import SW from 'src/react/Project/Keyboards/Assign/KeyboardAssign.swiss';
+import SW from './KeyboardAssign.swiss';
 
 export default class KeyboardAssign extends PureComponent {
   render() {
