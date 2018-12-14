@@ -10,6 +10,10 @@ export default class ProjectTask extends PureComponent {
     this.state = {
       isFocused: false,
     };
+    this.selection = {
+      start: 0,
+      end: 0,
+    };
   }
   componentDidMount() {
     // Wait for sibling components to have re-rendered
@@ -31,6 +35,10 @@ export default class ProjectTask extends PureComponent {
   };
   handleChangeText = text => {
     const { taskId, stateManager } = this.props;
+    if (this.blockNextTextChange) {
+      this.blockNextTextChange = undefined;
+      return;
+    }
     // Removing new lines is the only way that I found to simulate
     // single line input with multiline set to true
     stateManager.editHandler.updateTitle(taskId, text.replace('\n', ''));
@@ -40,21 +48,35 @@ export default class ProjectTask extends PureComponent {
     const { expanded } = task;
     stateManager.expandHandler[expanded ? 'collapse' : 'expand'](taskId);
   };
-  handleSubmitEditing = e => {
+  handleKeyPress = e => {
     const { stateManager, taskId } = this.props;
-    console.log(e.nativeEvent.selection, e.target.selectionStart);
-    stateManager.editHandler.enter(taskId, e.target.selectionStart);
+    if (e.nativeEvent.key === 'Backspace' && this.selection.start === 0) {
+      stateManager.editHandler.delete(taskId);
+    } else if (e.nativeEvent.key === 'Enter') {
+      this.blockNextTextChange = true;
+      stateManager.editHandler.enter(taskId, this.selection.start);
+    }
+  };
+  handleSelectionChange = e => {
+    if (this.blockNextSelectionChange) {
+      this.blockNextSelectionChange = undefined;
+      return;
+    }
+    this.selection = e.nativeEvent.selection;
   };
   checkFocus = () => {
-    const { task, stateManager } = this.props;
-    const { isSelected, selectionStart } = task;
+    const { task, taskId, stateManager } = this.props;
+    const { isSelected, selectionStart, title } = task;
     const { isFocused } = this.state;
     if (isSelected && !isFocused) {
-      this.inputRef.focus();
       if (typeof selectionStart === 'number') {
-        // const selI = Math.min(title.length, selectionStart);
-        // this.inputRef.setSelectionRange(selI, selI);
+        const selI = Math.min(title.length, selectionStart);
+        const selection = { start: selI, end: selI };
+        this.inputRef.setNativeProps({ selection });
+        this.selection = selection;
+        this.blockNextSelectionChange = true;
       }
+      this.inputRef.focus();
     } else if (!isSelected && isFocused) {
       this.inputRef.blur();
     }
@@ -102,11 +124,11 @@ export default class ProjectTask extends PureComponent {
             value={title}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
-            onSubmitEditing={this.handleSubmitEditing}
+            onKeyPress={this.handleKeyPress}
+            onSelectionChange={this.handleSelectionChange}
             onChangeText={this.handleChangeText}
             multiline={true}
             scrollEnabled={false}
-            blurOnSubmit={false}
           />
         </SW.InnerWrapper>
       </SW.Wrapper>
