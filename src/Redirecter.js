@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { goSignIn, goHome } from './navigation';
 
 @connect(state => ({
   token: state.auth.get('token'),
 }))
-export default class Redirecter extends React.PureComponent {
+export default class Redirecter extends PureComponent {
   componentDidMount() {
     this.checkForRedirect();
   }
