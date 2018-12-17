@@ -74,13 +74,14 @@ export default class ProjectTask extends PureComponent {
     this.selection = e.nativeEvent.selection;
   };
   checkFocus = () => {
-    const { task, taskId, stateManager } = this.props;
+    const { task } = this.props;
     const { isSelected, selectionStart, title } = task;
     const { isFocused } = this.state;
     if (isSelected && !isFocused) {
       if (typeof selectionStart === 'number') {
         const selI = Math.min(title.length, selectionStart);
         const selection = { start: selI, end: selI };
+
         this.inputRef.setNativeProps({ selection });
         this.selection = selection;
         this.blockNextSelectionChange = true;
@@ -92,16 +93,7 @@ export default class ProjectTask extends PureComponent {
   };
   render() {
     const { taskId, task } = this.props;
-
-    const {
-      title,
-      isSelected,
-      selectionStart,
-      indention,
-      completion,
-      hasChildren,
-      expanded,
-    } = task;
+    const { title, indention, hasChildren, expanded } = task;
 
     return (
       <SW.Wrapper>

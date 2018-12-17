@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
-import { List } from 'immutable';
 import { Slider, Text } from 'react-native';
 import { VirtualizedList } from 'react-native';
 
