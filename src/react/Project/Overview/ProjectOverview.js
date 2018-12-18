@@ -141,12 +141,12 @@ export default class ProjectOverview extends PureComponent {
                 onPress: this.onItemOutdent,
               },
               {
-                icon: 'indent_out',
+                icon: 'members',
                 fill: 'blue',
                 keyboard: KeyboardDate,
               },
               {
-                icon: 'indent_out',
+                icon: 'back',
                 fill: 'blue',
                 keyboard: KeyboardAssign,
               },
