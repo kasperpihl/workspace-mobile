@@ -39,12 +39,12 @@ const onFocusButtons = [
       request: {
         url: 'project.get',
         body: props => ({
-          project_id: 'A123131',
+          project_id: 'PYKPMPAEFFS9TF2D',
         }),
         resPath: 'result',
       },
       cache: {
-        path: props => ['project', 'A123131'],
+        path: props => ['project', 'PYKPMPAEFFS9TF2D'],
       },
     },
   },
@@ -53,12 +53,14 @@ const onFocusButtons = [
 export default class ProjectOverview extends PureComponent {
   constructor(props) {
     super(props);
+
     this.stateManager = new ProjectStateManager(props.project);
     this.state = {
       selectedId: this.stateManager.getLocalState().get('selectedId'),
       visibleOrder: this.stateManager.getLocalState().get('visibleOrder'),
     };
     this.inputRefs = {};
+
     Navigation.events().bindComponent(this, 'ProjectOverview');
   }
   componentDidMount() {
@@ -116,6 +118,7 @@ export default class ProjectOverview extends PureComponent {
   renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
   render() {
     const { visibleOrder, selectedId } = this.state;
+
     return (
       <ProjectProvider stateManager={this.stateManager}>
         <SW.Wrapper>
