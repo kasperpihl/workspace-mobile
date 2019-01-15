@@ -6,16 +6,32 @@ import SW from './Organize.swiss';
 export default class Organize extends PureComponent {
   constructor(props) {
     super(props);
-
-    Navigation.events().bindComponent(this, 'Organize');
   }
-  navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId == 'Add') {
-      Navigation.push('Organize', {
-        component: navigationComponents.ProjectOverview,
-      });
-    }
-  };
+  componentWillMount() {
+    Navigation.mergeOptions('Organize', {
+      topBar: {
+        rightButtons: [
+          {
+            id: 'Add',
+            component: {
+              name: 'IconTouchableWrapper',
+              passProps: {
+                icon: 'back',
+                fill: 'red',
+                width: '12',
+                height: '20.5',
+                onPress: () => {
+                  Navigation.push('Organize', {
+                    component: navigationComponents.ProjectOverview,
+                  });
+                },
+              },
+            },
+          },
+        ],
+      },
+    });
+  }
   render() {
     return (
       <SW.Wrapper>

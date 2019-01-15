@@ -11,6 +11,7 @@ import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'swipes-core-js/utils/store/storeGet';
 import Socket from 'swipes-core-js/classes/socket';
+import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 // Init core!
 const { store, persistor } = configureStore({
@@ -46,5 +47,12 @@ export function registerScreens() {
   // );
   Navigation.registerComponent('Discuss', () =>
     HOCRootWrapper(Discuss, store, persistor, true)
+  );
+
+  // That's not a screen per say but a custom button component
+  // It is needed so we have svg icons in the topBar
+  Navigation.registerComponent(
+    'IconTouchableWrapper',
+    () => IconTouchableWrapper
   );
 }
