@@ -9,7 +9,6 @@ export default class Profile extends PureComponent {
     const store = storeGet();
 
     request('user.signout', {}).then(res => {
-      console.log(res);
       if (res.ok === false) {
         Alert.alert(
           'Error',
