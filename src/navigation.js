@@ -12,9 +12,9 @@ export const goHome = () =>
                 {
                   component: navigationComponents.Organize,
                 },
-                {
-                  component: navigationComponents.ProjectOverview,
-                },
+                // {
+                //   component: navigationComponents.ProjectOverview,
+                // },
               ],
               options: {
                 bottomTab: {
@@ -27,13 +27,27 @@ export const goHome = () =>
               },
             },
           },
+          // {
+          //   component: {
+          //     name: 'Plan',
+          //     options: {
+          //       bottomTab: {
+          //         fontSize: 12,
+          //         text: 'Plan',
+          //         icon: require('../assets/pngs/main_tab.png'),
+          //         selectedIcon: require('../assets/pngs/main_tab_active.png'),
+          //         selectedTextColor: 'blue',
+          //       },
+          //     },
+          //   },
+          // },
           {
             component: {
-              name: 'Plan',
+              name: 'Discuss',
               options: {
                 bottomTab: {
+                  text: 'Discuss',
                   fontSize: 12,
-                  text: 'Plan',
                   icon: require('../assets/pngs/main_tab.png'),
                   selectedIcon: require('../assets/pngs/main_tab_active.png'),
                   selectedTextColor: 'blue',
@@ -43,10 +57,10 @@ export const goHome = () =>
           },
           {
             component: {
-              name: 'Discuss',
+              name: 'Profile',
               options: {
                 bottomTab: {
-                  text: 'Discuss',
+                  text: 'Profile',
                   fontSize: 12,
                   icon: require('../assets/pngs/main_tab.png'),
                   selectedIcon: require('../assets/pngs/main_tab_active.png'),

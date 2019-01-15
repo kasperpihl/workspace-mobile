@@ -3,8 +3,9 @@ import configureStore from 'src/redux/configureStore';
 import HOCRootWrapper from 'src/react/HOCRootWrapper';
 import SignIn from 'src/react/SignIn/SignIn';
 import SignUp from 'src/react/SignUp/SignUp';
-import Plan from 'src/Plan';
+// import Plan from 'src/Plan';
 import Organize from 'src/react/Organize/Organize';
+import Profile from 'src/react/Profile/Profile';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
@@ -38,12 +39,15 @@ export function registerScreens() {
   Navigation.registerComponent('Organize', () =>
     HOCRootWrapper(Organize, store, persistor, true)
   );
+  Navigation.registerComponent('Profile', () =>
+    HOCRootWrapper(Profile, store, persistor, true)
+  );
   Navigation.registerComponent('ProjectOverview', () =>
     HOCRootWrapper(ProjectOverview, store, persistor, true)
   );
-  Navigation.registerComponent('Plan', () =>
-    HOCRootWrapper(Plan, store, persistor, true)
-  );
+  // Navigation.registerComponent('Plan', () =>
+  //   HOCRootWrapper(Plan, store, persistor, true)
+  // );
   Navigation.registerComponent('Discuss', () =>
     HOCRootWrapper(Discuss, store, persistor, true)
   );
