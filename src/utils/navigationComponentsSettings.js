@@ -2,6 +2,16 @@ export default {
   Organize: {
     id: 'Organize',
     name: 'Organize',
+    options: {
+      topBar: {
+        rightButtons: [
+          {
+            id: 'Add',
+            text: 'Add',
+          },
+        ],
+      },
+    },
   },
   Profile: {
     id: 'Profile',
