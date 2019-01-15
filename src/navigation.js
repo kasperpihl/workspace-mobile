@@ -56,8 +56,12 @@ export const goHome = () =>
             },
           },
           {
-            component: {
-              name: 'Profile',
+            stack: {
+              children: [
+                {
+                  component: navigationComponents.Profile,
+                },
+              ],
               options: {
                 bottomTab: {
                   text: 'Profile',

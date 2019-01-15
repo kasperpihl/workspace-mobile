@@ -3,6 +3,20 @@ export default {
     id: 'Organize',
     name: 'Organize',
   },
+  Profile: {
+    id: 'Profile',
+    name: 'Profile',
+    options: {
+      topBar: {
+        rightButtons: [
+          {
+            id: 'Edit',
+            text: 'Edit',
+          },
+        ],
+      },
+    },
+  },
   ProjectOverview: {
     id: 'ProjectOverview',
     name: 'ProjectOverview',

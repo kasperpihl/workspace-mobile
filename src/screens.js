@@ -21,10 +21,6 @@ setStore(store); // Make store accessible from core
 window.socket = new Socket(store);
 // END Init core
 
-// setTimeout(() => {
-//   store.dispatch({ type: 'RESET_STATE' });
-// }, 1000);
-
 export function registerScreens() {
   Navigation.registerComponent('SignIn', () =>
     HOCRootWrapper(SignIn, store, persistor, false)

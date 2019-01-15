@@ -16,7 +16,7 @@
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-device-info": "^0.24.3",
-    "react-native-navigation": "2.6.0",
+    "react-native-navigation": "2.5.2",
     "react-native-svg": "^8.0.8",
     "react-native-svg-icon": "^0.8.1",
     "react-redux": "^5.1.0",

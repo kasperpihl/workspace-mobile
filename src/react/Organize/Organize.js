@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './Organize.swiss';
 
-export default class Organize extends Component {
+export default class Organize extends PureComponent {
   handleAddProject = () => {
     Navigation.push('Organize', {
       component: navigationComponents.ProjectOverview,

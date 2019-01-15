@@ -2,11 +2,9 @@ import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { Slider, Text } from 'react-native';
 import { VirtualizedList } from 'react-native';
-
 import withRequests from 'swipes-core-js/components/withRequests';
 import ProjectProvider from 'swipes-core-js/components/project/ProjectProvider';
 import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
-
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import SW from './ProjectOverview.swiss';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';

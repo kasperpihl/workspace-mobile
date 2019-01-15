@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 export default styleSheet('Organize', {
   Wrapper: {
@@ -11,5 +11,15 @@ export default styleSheet('Organize', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+  },
+  ButtonWrapper: {
+    _el: TouchableOpacity,
+    _flex: ['column', 'center'],
+    _size: ['100%', '44'],
+  },
+  Button: {
+    _el: Text,
+    color: 'red',
+    fontSize: '18',
   },
 });
