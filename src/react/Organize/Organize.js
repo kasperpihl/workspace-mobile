@@ -16,10 +16,10 @@ export default class Organize extends PureComponent {
             component: {
               name: 'IconTouchableWrapper',
               passProps: {
-                icon: 'back',
-                fill: 'red',
-                width: '12',
-                height: '20.5',
+                icon: 'add',
+                fill: 'blue',
+                width: '17',
+                height: '17',
                 onPress: () => {
                   Navigation.push('Organize', {
                     component: navigationComponents.ProjectOverview,
