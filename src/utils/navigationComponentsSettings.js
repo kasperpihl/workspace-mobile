@@ -17,6 +17,33 @@ export default {
       },
     },
   },
+  ProjectAdd: {
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'ProjectAdd',
+            name: 'ProjectAdd',
+            options: {
+              topBar: {
+                rightButtons: [
+                  {
+                    id: 'Cancel',
+                    text: 'Cancel',
+                  },
+                ],
+              },
+              animations: {
+                showModal: {
+                  enabled: false,
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
   ProjectOverview: {
     id: 'ProjectOverview',
     name: 'ProjectOverview',

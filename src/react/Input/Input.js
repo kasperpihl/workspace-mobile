@@ -12,7 +12,7 @@ export default class Input extends PureComponent {
     this.displayToggle = props.secureTextEntry || false;
   }
   render() {
-    const { label, textContentType, value, onChangeText } = this.props;
+    const { label, textContentType, ...rest } = this.props;
     const { secureTextEntry } = this.state;
 
     return (
@@ -28,8 +28,7 @@ export default class Input extends PureComponent {
           secureTextEntry={secureTextEntry}
           textContentType={textContentType}
           autoCapitalize={'none'}
-          onChangeText={onChangeText}
-          value={value}
+          {...rest}
         />
       </SW.Wrapper>
     );

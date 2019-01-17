@@ -23,7 +23,6 @@ const defaultButtons = [
     text: 'Discuss',
   },
 ];
-
 const onFocusButtons = [
   {
     id: 'Done',
@@ -61,6 +60,12 @@ export default class ProjectOverview extends PureComponent {
 
     Navigation.events().bindComponent(this, 'ProjectOverview');
   }
+  navigationButtonPressed = ({ buttonId }) => {
+    if (buttonId == 'Done') {
+      const selectedId = this.stateManager.getLocalState().get('selectedId');
+      this.stateManager.selectHandler.deselect(selectedId);
+    }
+  };
   componentDidMount() {
     this.unsubscribe = this.stateManager.subscribe(stateManager => {
       const selectedId = this.stateManager.getLocalState().get('selectedId');
@@ -90,12 +95,6 @@ export default class ProjectOverview extends PureComponent {
     this.unsubscribe();
     this.stateManager.syncHandler.syncIfNeeded();
   }
-  navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId == 'Done') {
-      const selectedId = this.stateManager.getLocalState().get('selectedId');
-      this.stateManager.selectHandler.deselect(selectedId);
-    }
-  };
   handleSliderChange = value => {
     const depth = parseInt(value, 10);
     this.stateManager.expandHandler.setDepth(depth);

@@ -6,6 +6,7 @@ import SignUp from 'src/react/SignUp/SignUp';
 // import Plan from 'src/Plan';
 import Organize from 'src/react/Organize/Organize';
 import Profile from 'src/react/Profile/Profile';
+import ProjectAdd from 'src/react/Project/Add/ProjectAdd';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Discuss from 'src/Discuss';
 import getGlobals from 'src/utils/getGlobals';
@@ -38,6 +39,9 @@ export function registerScreens() {
   );
   Navigation.registerComponent('Profile', () =>
     HOCRootWrapper(Profile, store, persistor, true)
+  );
+  Navigation.registerComponent('ProjectAdd', () =>
+    HOCRootWrapper(ProjectAdd, store, persistor, true)
   );
   Navigation.registerComponent('ProjectOverview', () =>
     HOCRootWrapper(ProjectOverview, store, persistor, true)
