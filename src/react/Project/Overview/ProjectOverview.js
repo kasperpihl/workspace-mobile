@@ -36,12 +36,12 @@ const onFocusButtons = [
       request: {
         url: 'project.get',
         body: props => ({
-          project_id: 'PYKPMPAEFFS9TF2D',
+          project_id: props.projectId,
         }),
         resPath: 'result',
       },
       cache: {
-        path: props => ['project', 'PYKPMPAEFFS9TF2D'],
+        path: props => ['project', props.projectId],
       },
     },
   },

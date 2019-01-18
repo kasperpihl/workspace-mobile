@@ -13,7 +13,7 @@ export default function RootWrapper(Component, store, persistor, requireAuth) {
           <PersistGate persistor={persistor}>
             <Redirecter requireAuth={requireAuth}>
               <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-                <Component />
+                <Component {...this.props} />
               </SafeAreaView>
             </Redirecter>
           </PersistGate>

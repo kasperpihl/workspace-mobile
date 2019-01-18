@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, KeyboardAvoidingView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import merge from 'deepmerge';
 import request from 'swipes-core-js/utils/request';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import Input from 'src/react/Input/Input';
@@ -63,7 +64,23 @@ export default class ProjectAdd extends PureComponent {
         }
       }
 
-      console.log('the project is added!');
+      const projectId = res.updates[0].data.project_id;
+
+      this.dismissModal();
+      Navigation.push('Organize', {
+        component: merge(navigationComponents.ProjectOverview, {
+          passProps: {
+            projectId,
+          },
+          options: {
+            animations: {
+              push: {
+                enabled: false,
+              },
+            },
+          },
+        }),
+      });
     });
   }
   dismissModal() {
