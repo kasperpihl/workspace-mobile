@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
+import withRequests from 'swipes-core-js/components/withRequests';
+import { Text } from 'react-native';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './Organize.swiss';
 
@@ -19,7 +21,27 @@ const addButton = {
   },
 };
 
+@withRequests(
+  {
+    project: {
+      request: {
+        url: 'project.list',
+        body: {},
+        resPath: 'projects',
+      },
+      cache: {
+        path: props => ['projects'],
+      },
+    },
+  },
+  { renderLoader: () => <Text>loading</Text> }
+)
 export default class Organize extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    console.log(props);
+  }
   componentWillMount() {
     Navigation.mergeOptions('Organize', {
       topBar: {
