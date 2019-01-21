@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import withRequests from 'swipes-core-js/components/withRequests';
 import { FlatList, ActivityIndicator } from 'react-native';
-import ProjectListItem from 'src/react/Project/List/ProjectListItem';
+import ProjectListItem from 'src/react/Project/List/Item/ProjectListItem';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './ProjectList.swiss';
 
