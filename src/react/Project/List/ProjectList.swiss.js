@@ -13,9 +13,8 @@ export default styleSheet('ProjectList', {
     fontWeight: 'bold',
   },
   LoaderContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    _flex: 'center',
+    _size: ['100%', '100%'],
   },
   FlatListWrapper: {
     marginTop: 20,

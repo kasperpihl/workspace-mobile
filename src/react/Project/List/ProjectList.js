@@ -42,7 +42,23 @@ const addButton = {
     ),
   }
 )
-export default class ProjectList extends PureComponent {
+class ProjectList extends PureComponent {
+  render() {
+    const { projects } = this.props;
+
+    return (
+      <SW.FlatListWrapper>
+        <FlatList
+          data={projects ? projects.toJS() : []}
+          keyExtractor={item => item.project_id}
+          renderItem={({ item }) => <ProjectListItem {...item} />}
+        />
+      </SW.FlatListWrapper>
+    );
+  }
+}
+
+export default class ProjectListWrapper extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -59,13 +75,7 @@ export default class ProjectList extends PureComponent {
     return (
       <SW.Wrapper>
         <SW.HeaderText>Projects</SW.HeaderText>
-        <SW.FlatListWrapper>
-          <FlatList
-            data={projects ? projects.toJS() : []}
-            keyExtractor={item => item.project_id}
-            renderItem={({ item }) => <ProjectListItem {...item} />}
-          />
-        </SW.FlatListWrapper>
+        <ProjectList projects={projects} />
       </SW.Wrapper>
     );
   }
