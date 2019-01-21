@@ -12,4 +12,12 @@ export default styleSheet('Organize', {
     fontSize: '30',
     fontWeight: 'bold',
   },
+  LoaderContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  FlatListWrapper: {
+    marginTop: 20,
+  },
 });

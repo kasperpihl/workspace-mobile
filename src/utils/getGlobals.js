@@ -1,6 +1,8 @@
-import { Platform } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { fromJS } from 'immutable';
+
+const { width, height } = Dimensions.get('window');
 
 export default function getGlobals() {
   let apiUrl = 'https://workspace.swipesapp.com';
@@ -14,6 +16,7 @@ export default function getGlobals() {
   const pre = `sw-${Platform.OS}`;
 
   return fromJS({
+    viewSize: { width, height },
     apiUrl,
     isDev: window.__DEV__,
     version: DeviceInfo.getReadableVersion(),

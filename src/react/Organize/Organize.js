@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Navigation } from 'react-native-navigation';
 import withRequests from 'swipes-core-js/components/withRequests';
-import { Text } from 'react-native';
+import { FlatList, ActivityIndicator } from 'react-native';
+import ProjectListItem from 'src/react/Organize/ProjectListItem';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './Organize.swiss';
 
@@ -23,24 +24,27 @@ const addButton = {
 
 @withRequests(
   {
-    project: {
+    projects: {
       request: {
         url: 'project.list',
-        body: {},
         resPath: 'projects',
       },
       cache: {
-        path: props => ['projects'],
+        path: ['project'],
       },
     },
   },
-  { renderLoader: () => <Text>loading</Text> }
+  {
+    renderLoader: () => (
+      <SW.LoaderContainer>
+        <ActivityIndicator size="large" color="#007AFF" />
+      </SW.LoaderContainer>
+    ),
+  }
 )
 export default class Organize extends PureComponent {
   constructor(props) {
     super(props);
-
-    console.log(props);
   }
   componentWillMount() {
     Navigation.mergeOptions('Organize', {
@@ -50,9 +54,18 @@ export default class Organize extends PureComponent {
     });
   }
   render() {
+    const { projects } = this.props;
+
     return (
       <SW.Wrapper>
         <SW.HeaderText>Organize</SW.HeaderText>
+        <SW.FlatListWrapper>
+          <FlatList
+            data={projects ? projects.toJS() : []}
+            keyExtractor={item => item.project_id}
+            renderItem={({ item }) => <ProjectListItem {...item} />}
+          />
+        </SW.FlatListWrapper>
       </SW.Wrapper>
     );
   }
