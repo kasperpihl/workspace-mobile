@@ -43,10 +43,10 @@ export const goHome = () =>
           // },
           {
             component: {
-              name: 'Discuss',
+              name: 'Chat',
               options: {
                 bottomTab: {
-                  text: 'Discuss',
+                  text: 'Chat',
                   fontSize: 12,
                   icon: require('../assets/pngs/main_tab.png'),
                   selectedIcon: require('../assets/pngs/main_tab_active.png'),

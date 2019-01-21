@@ -8,7 +8,7 @@ import ProjectList from 'src/react/Project/List/ProjectList';
 import Profile from 'src/react/Profile/Profile';
 import ProjectAdd from 'src/react/Project/Add/ProjectAdd';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
-import Discuss from 'src/Discuss';
+import Chat from 'src/Chat';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'swipes-core-js/utils/store/storeGet';
 import Socket from 'swipes-core-js/classes/socket';
@@ -49,8 +49,8 @@ export function registerScreens() {
   // Navigation.registerComponent('Plan', () =>
   //   HOCRootWrapper(Plan, store, persistor, true)
   // );
-  Navigation.registerComponent('Discuss', () =>
-    HOCRootWrapper(Discuss, store, persistor, true)
+  Navigation.registerComponent('Chat', () =>
+    HOCRootWrapper(Chat, store, persistor, true)
   );
 
   // That's not a screen per say but a custom button component
