@@ -67,7 +67,7 @@ export default class ProjectAdd extends PureComponent {
       const projectId = res.updates[0].data.project_id;
 
       this.dismissModal();
-      Navigation.push('Organize', {
+      Navigation.push('ProjectList', {
         component: merge(navigationComponents.ProjectOverview, {
           passProps: {
             projectId,

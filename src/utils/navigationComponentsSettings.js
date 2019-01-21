@@ -1,7 +1,7 @@
 export default {
-  Organize: {
-    id: 'Organize',
-    name: 'Organize',
+  ProjectList: {
+    id: 'ProjectList',
+    name: 'ProjectList',
   },
   Profile: {
     id: 'Profile',
@@ -50,7 +50,7 @@ export default {
     options: {
       topBar: {
         backButton: {
-          title: 'Organize',
+          title: 'Projects',
         },
         rightButtons: [
           {

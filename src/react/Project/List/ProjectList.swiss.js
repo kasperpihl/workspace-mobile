@@ -1,7 +1,7 @@
 import { styleSheet } from 'swiss-react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native';
 
-export default styleSheet('Organize', {
+export default styleSheet('ProjectList', {
   Wrapper: {
     _flex: ['column', 'flex-start'],
     _size: ['100%', '100%'],

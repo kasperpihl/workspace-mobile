@@ -10,7 +10,7 @@ export const goHome = () =>
             stack: {
               children: [
                 {
-                  component: navigationComponents.Organize,
+                  component: navigationComponents.ProjectList,
                 },
                 // {
                 //   component: navigationComponents.ProjectOverview,
@@ -19,7 +19,7 @@ export const goHome = () =>
               options: {
                 bottomTab: {
                   fontSize: 12,
-                  text: 'Organize',
+                  text: 'Projects',
                   icon: require('../assets/pngs/main_tab.png'),
                   selectedIcon: require('../assets/pngs/main_tab_active.png'),
                   selectedTextColor: 'blue',

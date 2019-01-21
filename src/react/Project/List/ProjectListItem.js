@@ -8,7 +8,7 @@ import SW from './ProjectListItem.swiss';
 
 export default class ProjectListItem extends PureComponent {
   handleListClick = projectId => () => {
-    Navigation.push('Organize', {
+    Navigation.push('ProjectList', {
       component: merge(navigationComponents.ProjectOverview, {
         passProps: {
           projectId,
