@@ -5,7 +5,7 @@ import storeGet from 'swipes-core-js/utils/store/storeGet';
 import SW from './Profile.swiss';
 
 export default class Profile extends PureComponent {
-  handleLogOut() {
+  requestLogOut = () => {
     const store = storeGet();
 
     request('user.signout', {}).then(res => {
@@ -22,7 +22,20 @@ export default class Profile extends PureComponent {
         store.dispatch({ type: 'RESET_STATE' });
       }
     });
-  }
+  };
+  handleLogOut = () => {
+    Alert.alert(
+      'Are you sure?',
+      '',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'OK', onPress: this.requestLogOut },
+      ],
+      {
+        cancelable: false,
+      }
+    );
+  };
   render() {
     return (
       <SW.Wrapper>
