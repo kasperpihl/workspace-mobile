@@ -40,6 +40,7 @@ export default class ProjectAdd extends PureComponent {
       owned_by: me.get('user_id'),
     }).then(res => {
       if (res.ok === false) {
+        console.log(res);
         const errorMessage = res.error;
 
         // T_TODO I can do that much better! Have an idea how.
