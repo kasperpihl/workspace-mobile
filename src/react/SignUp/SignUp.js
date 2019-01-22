@@ -32,7 +32,7 @@ export default class SignUp extends Component {
       last_name: lastnameVal,
     }).then(res => {
       if (res.ok === false) {
-        alertErrorHandler(res.error);
+        alertErrorHandler(res);
       }
     });
   }

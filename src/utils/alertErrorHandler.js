@@ -2,16 +2,17 @@ import { Alert } from 'react-native';
 
 export default function alertErrorHandler(error) {
   let alertError = 'Error';
-  let alertSubError = 'Ooops! Something went wrong. Try again later';
+  let alertSubError = 'Ooops! Something went wrong. Please try again later';
 
-  switch (true) {
-    case /Invalid object\[\'(\w+)\'\]/.test(error):
-      const match = /Invalid object\[\'(\w+)\'\]/.exec(error);
+  if (error.error === 'Validation error') {
+    const validationError = error.errorInfo.validationError;
+
+    if (/Invalid object\[\'(\w+)\'\]/.test(validationError)) {
+      const match = /Invalid object\[\'(\w+)\'\]/.exec(validationError);
       alertSubError = `Invalid ${match[1].replace('_', ' ')}`;
-      break;
-    case /\[TO_CLIENT\]/.test(error):
-      alertSubError = error.replace('[TO_CLIENT]', '');
-      break;
+    }
+  } else if (error.error !== 'Something went wrong') {
+    alertSubError = error.error;
   }
 
   Alert.alert(alertError, alertSubError, [{ text: 'OK' }], {
