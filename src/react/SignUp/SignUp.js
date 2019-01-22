@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View, Alert } from 'react-native';
+import { Button, View } from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import { goSignIn } from 'src/navigation';
 import Input from 'src/react/Input/Input';

@@ -4,6 +4,7 @@ import request from 'swipes-core-js/utils/request';
 import { goSignIn } from 'src/navigation';
 import Input from 'src/react/Input/Input';
 import FormButton from 'src/react/FormButton/FormButton';
+import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from './ForgottenPassword.swiss';
 
 export default class ForgottenPassword extends Component {
@@ -25,9 +26,7 @@ export default class ForgottenPassword extends Component {
       email: emailVal,
     }).then(res => {
       if (res.ok === false) {
-        Alert.alert('Invalid email', '', [{ text: 'OK' }], {
-          cancelable: false,
-        });
+        alertErrorHandler(res);
       } else {
         Alert.alert(
           'Success',
