@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, KeyboardAvoidingView, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import merge from 'deepmerge';
@@ -86,6 +86,16 @@ export default class ProjectAdd extends PureComponent {
               label={'Name'}
               autoFocus={true}
             />
+            <Picker
+              selectedValue={this.state.language}
+              style={{ height: 100, width: '100%' }}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({ language: itemValue })
+              }
+            >
+              <Picker.Item label="Java" value="java" />
+              <Picker.Item label="JavaScript" value="js" />
+            </Picker>
             <View style={{ marginTop: 80 }}>
               <FormButton
                 label={'Create project'}
