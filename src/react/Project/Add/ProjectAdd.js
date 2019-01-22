@@ -7,6 +7,7 @@ import request from 'swipes-core-js/utils/request';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import Input from 'src/react/Input/Input';
 import FormButton from 'src/react/FormButton/FormButton';
+import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from './ProjectAdd.swiss';
 
 @connect(state => ({
@@ -40,29 +41,7 @@ export default class ProjectAdd extends PureComponent {
       owned_by: me.get('user_id'),
     }).then(res => {
       if (res.ok === false) {
-        console.log(res);
-        const errorMessage = res.error;
-
-        // T_TODO I can do that much better! Have an idea how.
-        if (errorMessage.search(/Invalid/) > -1) {
-          return Alert.alert(
-            'Error',
-            'The project name is empty',
-            [{ text: 'OK' }],
-            {
-              cancelable: false,
-            }
-          );
-        } else {
-          return Alert.alert(
-            'Ooops',
-            'Something happened. Try again later.',
-            [{ text: 'OK' }],
-            {
-              cancelable: false,
-            }
-          );
-        }
+        alertErrorHandler(res);
       }
 
       const projectId = res.updates[0].data.project_id;

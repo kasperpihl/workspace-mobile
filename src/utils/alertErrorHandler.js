@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 
-export default function alertErrorHandler(error) {
+export default function alertErrorHandler(error, defaultMessage = null) {
   let alertError = 'Error';
   let alertSubError = 'Ooops! Something went wrong. Please try again later';
 
@@ -13,6 +13,8 @@ export default function alertErrorHandler(error) {
     }
   } else if (error.error !== 'Something went wrong') {
     alertSubError = error.error;
+  } else if (defaultMessage) {
+    alertSubError = defaultMessage;
   }
 
   Alert.alert(alertError, alertSubError, [{ text: 'OK' }], {

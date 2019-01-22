@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Alert } from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import storeGet from 'swipes-core-js/utils/store/storeGet';
+import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from './Profile.swiss';
 
 export default class Profile extends PureComponent {
@@ -10,14 +11,7 @@ export default class Profile extends PureComponent {
 
     request('user.signout', {}).then(res => {
       if (res.ok === false) {
-        Alert.alert(
-          'Error',
-          'Something went wrong. Try again later.',
-          [{ text: 'OK' }],
-          {
-            cancelable: false,
-          }
-        );
+        alertErrorHandler(res);
       } else {
         store.dispatch({ type: 'RESET_STATE' });
       }
