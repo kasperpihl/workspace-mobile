@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import FormLabel from 'src/react/FormLabel/FormLabel';
 import SW from './Input.swiss';
 
 export default class Input extends PureComponent {
@@ -17,7 +18,7 @@ export default class Input extends PureComponent {
 
     return (
       <SW.Wrapper>
-        <SW.Label>{label}</SW.Label>
+        <FormLabel label={label} />
         <SW.PassToggle
           display={this.displayToggle}
           onPress={() => {
