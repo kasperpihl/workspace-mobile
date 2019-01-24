@@ -1,17 +1,21 @@
 import React, { PureComponent } from 'react';
-import { View, KeyboardAvoidingView, Picker } from 'react-native';
+import { View, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import { List, fromJS } from 'immutable';
 import merge from 'deepmerge';
 import request from 'swipes-core-js/utils/request';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import Input from 'src/react/Input/Input';
 import FormButton from 'src/react/FormButton/FormButton';
+import FormLabel from 'src/react/FormLabel/FormLabel';
+import Picker from 'src/react/Picker/Picker';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from './ProjectAdd.swiss';
 
 @connect(state => ({
-  me: state.me,
+  myId: state.me.get('user_id'),
+  organization: state.organization.toList(),
 }))
 export default class ProjectAdd extends PureComponent {
   constructor(props) {
@@ -19,6 +23,7 @@ export default class ProjectAdd extends PureComponent {
 
     this.state = {
       projectName: '',
+      organization_id: props.myId,
     };
 
     this.handleAddProject = this.handleAddProject.bind(this);
@@ -32,13 +37,17 @@ export default class ProjectAdd extends PureComponent {
   handleChangeText = field => value => {
     this.setState({ [field]: value });
   };
+  handlePickerChange = value => {
+    this.setState({
+      organization_id: value,
+    });
+  };
   handleAddProject() {
-    const { me } = this.props;
-    const { projectName } = this.state;
+    const { projectName, organization_id } = this.state;
 
     request('project.add', {
       name: projectName,
-      owned_by: me.get('user_id'),
+      owned_by: organization_id,
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res);
@@ -73,7 +82,17 @@ export default class ProjectAdd extends PureComponent {
     });
   }
   render() {
+    const { myId } = this.props;
     const { projectName } = this.state;
+    const organizations = new List(
+      fromJS([
+        {
+          label: 'Personal',
+          value: myId,
+        },
+      ])
+    );
+    // TODO Need to add the list of organizations that comes from the server.
 
     return (
       <KeyboardAvoidingView behavior="padding">
@@ -86,16 +105,16 @@ export default class ProjectAdd extends PureComponent {
               label={'Name'}
               autoFocus={true}
             />
-            <Picker
-              selectedValue={this.state.language}
-              style={{ height: 100, width: '100%' }}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ language: itemValue })
-              }
-            >
-              <Picker.Item label="Java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
-            </Picker>
+            <View style={{ marginTop: 30 }}>
+              <FormLabel label={'Pick organization'} />
+            </View>
+            <View style={{ marginTop: 10 }}>
+              <Picker
+                values={organizations}
+                selectedValue={myId}
+                onChange={this.handlePickerChange}
+              />
+            </View>
             <View style={{ marginTop: 80 }}>
               <FormButton
                 label={'Create project'}
