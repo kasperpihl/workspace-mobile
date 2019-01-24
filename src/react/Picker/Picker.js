@@ -22,8 +22,6 @@ export default class Picker extends PureComponent {
     const { values } = this.props;
     const { selectedValue } = this.state;
 
-    console.log(values.toJS());
-
     return (
       <SW.Wrapper>
         {values.map(item => {
