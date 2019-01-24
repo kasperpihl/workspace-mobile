@@ -21,28 +21,24 @@ export default class ProjectAdd extends PureComponent {
   constructor(props) {
     super(props);
 
-    const organizations = new List(
+    Navigation.events().bindComponent(this, 'ProjectAdd');
+  }
+  state = {
+    projectName: '',
+    organization_id: this.props.myId,
+    organizations: new List(
       fromJS([
         {
           label: 'Personal',
-          value: props.myId,
+          value: this.props.myId,
         },
       ])
     ).concat(
-      props.organization.map(o => {
+      this.props.organization.map(o => {
         return Map({ label: o.get('name'), value: o.get('organization_id') });
       })
-    );
-
-    this.state = {
-      organizations,
-      projectName: '',
-      organization_id: props.myId,
-    };
-
-    this.handleAddProject = this.handleAddProject.bind(this);
-    Navigation.events().bindComponent(this, 'ProjectAdd');
-  }
+    ),
+  };
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId === 'Cancel') {
       this.dismissModal();
@@ -56,7 +52,7 @@ export default class ProjectAdd extends PureComponent {
       organization_id: value,
     });
   };
-  handleAddProject() {
+  handleAddProject = () => {
     const { projectName, organization_id } = this.state;
 
     request('project.add', {
@@ -85,7 +81,7 @@ export default class ProjectAdd extends PureComponent {
         }),
       });
     });
-  }
+  };
   dismissModal() {
     Navigation.dismissModal('ProjectAdd', {
       animations: {
@@ -116,7 +112,7 @@ export default class ProjectAdd extends PureComponent {
             <View style={{ marginTop: 10 }}>
               <Picker
                 values={organizations}
-                selectedValue={myId}
+                defaultValue={myId}
                 onChange={this.handlePickerChange}
               />
             </View>

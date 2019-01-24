@@ -2,13 +2,9 @@ import React, { PureComponent } from 'react';
 import SW from './Picker.swiss';
 
 export default class Picker extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedValue: props.selectedValue || null,
-    };
-  }
+  state = {
+    selectedValue: this.props.defaultValue || null,
+  };
   onPressHandler(value) {
     const { onChange } = this.props;
 
