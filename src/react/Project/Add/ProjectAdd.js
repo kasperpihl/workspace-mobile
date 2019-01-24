@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { List, fromJS } from 'immutable';
+import { List, fromJS, Map } from 'immutable';
 import merge from 'deepmerge';
 import request from 'swipes-core-js/utils/request';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
@@ -21,7 +21,21 @@ export default class ProjectAdd extends PureComponent {
   constructor(props) {
     super(props);
 
+    const organizations = new List(
+      fromJS([
+        {
+          label: 'Personal',
+          value: props.myId,
+        },
+      ])
+    ).concat(
+      props.organization.map(o => {
+        return Map({ label: o.get('name'), value: o.get('organization_id') });
+      })
+    );
+
     this.state = {
+      organizations,
       projectName: '',
       organization_id: props.myId,
     };
@@ -83,16 +97,7 @@ export default class ProjectAdd extends PureComponent {
   }
   render() {
     const { myId } = this.props;
-    const { projectName } = this.state;
-    const organizations = new List(
-      fromJS([
-        {
-          label: 'Personal',
-          value: myId,
-        },
-      ])
-    );
-    // TODO Need to add the list of organizations that comes from the server.
+    const { projectName, organizations } = this.state;
 
     return (
       <KeyboardAvoidingView behavior="padding">
