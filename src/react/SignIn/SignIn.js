@@ -4,6 +4,7 @@ import request from 'swipes-core-js/utils/request';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import Input from 'src/react/Input/Input';
 import FormButton from 'src/react/FormButton/FormButton';
+import FormLabel from 'src/react/FormLabel/FormLabel';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from 'src/react/SignIn/SignIn.swiss';
 
@@ -46,17 +47,17 @@ export default class SignIn extends Component {
       <SW.Wrapper>
         <SW.HeaderText>Swipes</SW.HeaderText>
         <SW.FormWrapper>
+          <FormLabel label={'Email'} />
           <Input
             value={emailVal}
             onChangeText={this.handleChangeText('emailVal')}
-            label={'Email'}
             textContentType={'username'}
           />
           <View style={{ marginTop: 30 }}>
+            <FormLabel label={'Password'} />
             <Input
               value={passwordVal}
               onChangeText={this.handleChangeText('passwordVal')}
-              label={'Password'}
               textContentType={'password'}
               secureTextEntry={true}
             />

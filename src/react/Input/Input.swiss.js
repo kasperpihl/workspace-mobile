@@ -26,7 +26,7 @@ export default styleSheet('Input', {
     _borderRadius: '10',
     position: 'absolute',
     right: '0',
-    top: '27',
+    top: '15',
     zIndex: '1',
     backgroundColor: '$blue',
     display: props => {

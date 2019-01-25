@@ -100,10 +100,10 @@ export default class ProjectAdd extends PureComponent {
         <SW.Wrapper>
           <SW.HeaderText>Add project</SW.HeaderText>
           <SW.FormWrapper>
+            <FormLabel label={'Name'} />
             <Input
               value={projectName}
               onChangeText={this.handleChangeText('projectName')}
-              label={'Name'}
               autoFocus={true}
             />
             <View style={{ marginTop: 30 }}>

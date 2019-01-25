@@ -4,6 +4,7 @@ import request from 'swipes-core-js/utils/request';
 import { goSignIn } from 'src/navigation';
 import Input from 'src/react/Input/Input';
 import FormButton from 'src/react/FormButton/FormButton';
+import FormLabel from 'src/react/FormLabel/FormLabel';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from 'src/react/SignUp/SignUp.swiss';
 
@@ -41,25 +42,19 @@ export default class SignUp extends Component {
       <SW.Wrapper>
         <SW.HeaderText>Swipes</SW.HeaderText>
         <SW.FormWrapper>
-          <Input
-            label={'Email'}
-            onChangeText={this.handleChangeText('emailVal')}
-          />
+          <FormLabel label={'Email'} />
+          <Input onChangeText={this.handleChangeText('emailVal')} />
           <View style={{ marginTop: 30 }}>
-            <Input
-              label={'First name'}
-              onChangeText={this.handleChangeText('firstnameVal')}
-            />
+            <FormLabel label={'First name'} />
+            <Input onChangeText={this.handleChangeText('firstnameVal')} />
           </View>
           <View style={{ marginTop: 30 }}>
-            <Input
-              label={'Last name'}
-              onChangeText={this.handleChangeText('lastnameVal')}
-            />
+            <FormLabel label={'Last name'} />
+            <Input onChangeText={this.handleChangeText('lastnameVal')} />
           </View>
           <View style={{ marginTop: 30 }}>
+            <FormLabel label={'Password'} />
             <Input
-              label={'Password'}
               textContentType={'password'}
               secureTextEntry={true}
               onChangeText={this.handleChangeText('passwordVal')}
