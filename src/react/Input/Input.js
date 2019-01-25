@@ -12,7 +12,7 @@ export default class Input extends PureComponent {
     this.displayToggle = props.secureTextEntry || false;
   }
   render() {
-    const { textContentType, ...rest } = this.props;
+    const { inputRef, ...rest } = this.props;
     const { secureTextEntry } = this.state;
 
     return (
@@ -24,8 +24,12 @@ export default class Input extends PureComponent {
           }}
         />
         <SW.TextInput
+          innerRef={c => {
+            if (inputRef) {
+              inputRef(c);
+            }
+          }}
           secureTextEntry={secureTextEntry}
-          textContentType={textContentType}
           autoCapitalize={'none'}
           {...rest}
         />

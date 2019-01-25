@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, View } from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import { goSignIn } from 'src/navigation';
-import Input from 'src/react/Input/Input';
+import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
@@ -42,27 +42,38 @@ export default class SignUp extends Component {
       <SW.Wrapper>
         <SW.HeaderText>Swipes</SW.HeaderText>
         <SW.FormWrapper>
-          <FormLabel label={'Email'} />
-          <Input onChangeText={this.handleChangeText('emailVal')} />
-          <View style={{ marginTop: 30 }}>
-            <FormLabel label={'First name'} />
-            <Input onChangeText={this.handleChangeText('firstnameVal')} />
-          </View>
-          <View style={{ marginTop: 30 }}>
-            <FormLabel label={'Last name'} />
-            <Input onChangeText={this.handleChangeText('lastnameVal')} />
-          </View>
-          <View style={{ marginTop: 30 }}>
-            <FormLabel label={'Password'} />
-            <Input
-              textContentType={'password'}
-              secureTextEntry={true}
-              onChangeText={this.handleChangeText('passwordVal')}
-            />
-          </View>
-          <View style={{ marginTop: 80 }}>
-            <FormButton onPress={this.handleSignUp} label={'Create account'} />
-          </View>
+          <Form>
+            <FormLabel label={'Email'} />
+            <FormTextInput onChangeText={this.handleChangeText('emailVal')} />
+            <View style={{ marginTop: 30 }}>
+              <FormLabel label={'First name'} />
+              <FormTextInput
+                onChangeText={this.handleChangeText('firstnameVal')}
+              />
+            </View>
+            <View style={{ marginTop: 30 }}>
+              <FormLabel label={'Last name'} />
+              <FormTextInput
+                onChangeText={this.handleChangeText('lastnameVal')}
+              />
+            </View>
+            <View style={{ marginTop: 30 }}>
+              <FormLabel label={'Password'} />
+              <FormTextInput
+                last
+                textContentType={'password'}
+                secureTextEntry={true}
+                onChangeText={this.handleChangeText('passwordVal')}
+                onSubmitEditing={this.handleSignUp}
+              />
+            </View>
+            <View style={{ marginTop: 80 }}>
+              <FormButton
+                onPress={this.handleSignUp}
+                label={'Create account'}
+              />
+            </View>
+          </Form>
         </SW.FormWrapper>
         <View style={{ marginTop: 100 }}>
           <SW.DontHaveAnAccountText>

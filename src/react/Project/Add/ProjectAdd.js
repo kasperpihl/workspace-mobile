@@ -6,7 +6,7 @@ import { List, fromJS, Map } from 'immutable';
 import merge from 'deepmerge';
 import request from 'swipes-core-js/utils/request';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
-import Input from 'src/react/Input/Input';
+import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
 import Picker from 'src/react/Picker/Picker';
@@ -100,28 +100,32 @@ export default class ProjectAdd extends PureComponent {
         <SW.Wrapper>
           <SW.HeaderText>Add project</SW.HeaderText>
           <SW.FormWrapper>
-            <FormLabel label={'Name'} />
-            <Input
-              value={projectName}
-              onChangeText={this.handleChangeText('projectName')}
-              autoFocus={true}
-            />
-            <View style={{ marginTop: 30 }}>
-              <FormLabel label={'Pick organization'} />
-            </View>
-            <View style={{ marginTop: 10 }}>
-              <Picker
-                values={organizations}
-                defaultValue={myId}
-                onChange={this.handlePickerChange}
+            <Form>
+              <FormLabel label={'Name'} />
+              <FormTextInput
+                last
+                value={projectName}
+                onChangeText={this.handleChangeText('projectName')}
+                autoFocus={true}
+                onSubmitEditing={this.handleAddProject}
               />
-            </View>
-            <View style={{ marginTop: 80 }}>
-              <FormButton
-                label={'Create project'}
-                onPress={this.handleAddProject}
-              />
-            </View>
+              <View style={{ marginTop: 30 }}>
+                <FormLabel label={'Pick organization'} />
+              </View>
+              <View style={{ marginTop: 10 }}>
+                <Picker
+                  values={organizations}
+                  defaultValue={myId}
+                  onChange={this.handlePickerChange}
+                />
+              </View>
+              <View style={{ marginTop: 80 }}>
+                <FormButton
+                  label={'Create project'}
+                  onPress={this.handleAddProject}
+                />
+              </View>
+            </Form>
           </SW.FormWrapper>
         </SW.Wrapper>
       </KeyboardAvoidingView>
