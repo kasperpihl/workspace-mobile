@@ -1,5 +1,4 @@
 import { styleSheet } from 'swiss-react';
-import { TouchableOpacity } from 'react-native';
 
 export default styleSheet('ProjectToolbar', {
   ToolbarWrapper: {
@@ -13,11 +12,8 @@ export default styleSheet('ProjectToolbar', {
       return props.show ? 1 : 0;
     },
   },
-  ChangeKeyboard: {
-    _el: TouchableOpacity,
-    _size: ['40', '40'],
-    _borderRadius: '20',
-    backgroundColor: '$blue',
+  RightButton: {
+    marginLeft: 'auto',
   },
   MyKeyboard: {
     _size: ['100%', '100%'],

@@ -6,6 +6,7 @@ import {
   View,
   Platform,
   Dimensions,
+  Button,
 } from 'react-native';
 import SW from './ProjectToolbar.swiss';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
@@ -91,30 +92,55 @@ export default class ProjectToolbar extends PureComponent {
 
     return buttons.map((button, i) => {
       const { icon, fill, onPress, keyboard } = button;
-      const checkForKeyboard = () => {
+      const onPressLocal = () => {
+        // Check if custom keyboard option is assigned
         if (keyboard) {
           this.setState({
             CurrentKeyboard: keyboard,
           });
+
+          // if there is custom keyboard we want to show it
+          // and manually hide the original one
           this.keyboardDismissedManually = true;
           Keyboard.dismiss();
         }
 
+        // if there is onPress fuction assigned
         if (onPress) {
           onPress();
         }
       };
+
       return (
         <IconTouchableWrapper
           key={i}
           icon={icon}
           fill={fill}
-          onPress={checkForKeyboard}
+          onPress={onPressLocal}
           width={'22'}
           height={'14'}
         />
       );
     });
+  }
+  renderDoneButton() {
+    const { onPressDoneButton } = this.props;
+    const onPressLocal = () => {
+      // Reset the custom keyboard
+      this.setState({
+        CurrentKeyboard: null,
+      });
+
+      if (onPressDoneButton) {
+        onPressDoneButton();
+      }
+    };
+
+    return (
+      <SW.RightButton>
+        <Button onPress={onPressLocal} title="Done" />
+      </SW.RightButton>
+    );
   }
   render() {
     let {
@@ -140,6 +166,7 @@ export default class ProjectToolbar extends PureComponent {
       >
         <SW.ToolbarWrapper show={shouldShow}>
           {this.renderButtons()}
+          {this.renderDoneButton()}
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
           <SW.MyKeyboard>

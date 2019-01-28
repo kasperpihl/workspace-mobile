@@ -8,7 +8,7 @@ import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import SW from './ProjectOverview.swiss';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
-import KeyboardDate from 'src/react/Keyboard/Date/KeyboardDate';
+// import KeyboardDate from 'src/react/Keyboard/Date/KeyboardDate';
 import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
 
 console.disableYellowBox = true;
@@ -21,12 +21,6 @@ const defaultButtons = [
   {
     id: 'Discuss',
     text: 'Discuss',
-  },
-];
-const onFocusButtons = [
-  {
-    id: 'Done',
-    text: 'Done',
   },
 ];
 
@@ -61,10 +55,7 @@ export default class ProjectOverview extends PureComponent {
     Navigation.events().bindComponent(this, 'ProjectOverview');
   }
   navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId == 'Done') {
-      const selectedId = this.stateManager.getLocalState().get('selectedId');
-      this.stateManager.selectHandler.deselect(selectedId);
-    }
+    // TODO edit, discuss
   };
   componentDidMount() {
     this.unsubscribe = this.stateManager.subscribe(stateManager => {
@@ -81,15 +72,12 @@ export default class ProjectOverview extends PureComponent {
         this.lastSelectedId = selectedId;
       }
     });
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (!!this.state.selectedId !== !!prevState.selectedId) {
-      Navigation.mergeOptions('ProjectOverview', {
-        topBar: {
-          rightButtons: this.state.selectedId ? onFocusButtons : defaultButtons,
-        },
-      });
-    }
+
+    Navigation.mergeOptions('ProjectOverview', {
+      topBar: {
+        rightButtons: defaultButtons,
+      },
+    });
   }
   componentWillUnmount() {
     this.unsubscribe();
@@ -128,6 +116,12 @@ export default class ProjectOverview extends PureComponent {
           />
           <ProjectToolbar
             hasFocus={!!selectedId}
+            onPressDoneButton={() => {
+              const selectedId = this.stateManager
+                .getLocalState()
+                .get('selectedId');
+              this.stateManager.selectHandler.deselect(selectedId);
+            }}
             buttons={[
               {
                 icon: 'indent_in',
@@ -141,11 +135,6 @@ export default class ProjectOverview extends PureComponent {
               },
               {
                 icon: 'members',
-                fill: 'blue',
-                keyboard: KeyboardDate,
-              },
-              {
-                icon: 'back',
                 fill: 'blue',
                 keyboard: KeyboardAssign,
               },
