@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
+import Icon from 'src/react/Icon/Icon';
 import SW from './ProjectTask.swiss';
 import withProjectTask from 'swipes-core-js/components/project/withProjectTask';
 
@@ -123,7 +124,11 @@ export default class ProjectTask extends PureComponent {
         })}
         <SW.InnerWrapper>
           <SW.CircleWrapper onPress={this.handleComplete}>
-            <SW.Circle completion={completion} />
+            <SW.Circle completion={completion}>
+              {completion && (
+                <Icon name="check" fill="white" width={15} height={10} />
+              )}
+            </SW.Circle>
           </SW.CircleWrapper>
           <SW.Input
             innerRef={c => (this.inputRef = c)}

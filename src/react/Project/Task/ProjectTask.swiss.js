@@ -28,6 +28,7 @@ export default styleSheet('ProjectInput', {
     _borderRadius: 22,
   },
   Circle: {
+    _flex: 'center',
     _size: ['22', '22'],
     _border: ['1', '$blue'],
     _borderRadius: 11,

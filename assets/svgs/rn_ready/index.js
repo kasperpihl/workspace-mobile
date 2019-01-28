@@ -4,6 +4,7 @@ import expand from './expand';
 import back from './back';
 import members from './members';
 import add from './add';
+import check from './check';
 
 export default {
   indent_in,
@@ -12,4 +13,5 @@ export default {
   back,
   members,
   add,
+  check,
 };
