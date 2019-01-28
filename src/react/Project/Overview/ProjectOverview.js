@@ -115,7 +115,6 @@ export default class ProjectOverview extends PureComponent {
   renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
   render() {
     const { visibleOrder, selectedId } = this.state;
-
     return (
       <ProjectProvider stateManager={this.stateManager}>
         <SW.Wrapper>

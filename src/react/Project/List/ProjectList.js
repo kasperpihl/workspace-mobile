@@ -30,7 +30,7 @@ const addButton = {
         resPath: 'projects',
       },
       cache: {
-        path: ['project'],
+        path: ['projectList'],
       },
     },
   },
