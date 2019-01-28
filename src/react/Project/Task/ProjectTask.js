@@ -60,6 +60,7 @@ export default class ProjectTask extends PureComponent {
   handleComplete = () => {
     const { taskId, stateManager, task } = this.props;
     const { completion } = task;
+
     if (completion) {
       stateManager.completeHandler.incomplete(taskId);
     } else {
@@ -69,8 +70,10 @@ export default class ProjectTask extends PureComponent {
   handleSelectionChange = e => {
     if (this.blockNextSelectionChange) {
       this.blockNextSelectionChange = undefined;
+
       return;
     }
+
     this.selection = e.nativeEvent.selection;
   };
   checkFocus = () => {
@@ -93,7 +96,7 @@ export default class ProjectTask extends PureComponent {
   };
   render() {
     const { taskId, task } = this.props;
-    const { title, indention, hasChildren, expanded } = task;
+    const { title, indention, hasChildren, expanded, completion } = task;
 
     return (
       <SW.Wrapper>
@@ -119,7 +122,9 @@ export default class ProjectTask extends PureComponent {
           );
         })}
         <SW.InnerWrapper>
-          <SW.Circle />
+          <SW.CircleWrapper onPress={this.handleComplete}>
+            <SW.Circle completion={completion} />
+          </SW.CircleWrapper>
           <SW.Input
             innerRef={c => (this.inputRef = c)}
             value={title}

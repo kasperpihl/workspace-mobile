@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { TextInput } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native';
 
 export default styleSheet('ProjectInput', {
   Wrapper: {
@@ -21,11 +21,20 @@ export default styleSheet('ProjectInput', {
   MarginForExpandArrow: {
     marginLeft: props => (props.hasChildren ? 0 : 44),
   },
+  CircleWrapper: {
+    _el: TouchableOpacity,
+    _flex: 'center',
+    _size: ['44', '44'],
+    _borderRadius: 22,
+  },
   Circle: {
     _size: ['22', '22'],
     _border: ['1', '$blue'],
     _borderRadius: 11,
-    margin: 11,
+
+    completion: {
+      backgroundColor: '$blue',
+    },
   },
   Input: {
     _el: TextInput,
