@@ -89,6 +89,11 @@ export default class ProjectToolbar extends PureComponent {
   };
   renderButtons() {
     const { buttons } = this.props;
+    const { CurrentKeyboard } = this.state;
+
+    if (CurrentKeyboard) {
+      return null;
+    }
 
     return buttons.map((button, i) => {
       const { icon, fill, onPress, keyboard } = button;
@@ -142,6 +147,30 @@ export default class ProjectToolbar extends PureComponent {
       </SW.RightButton>
     );
   }
+  renderBackButton() {
+    const { onPressBackButton } = this.props;
+    const { CurrentKeyboard } = this.state;
+
+    if (!CurrentKeyboard) {
+      return null;
+    }
+
+    return (
+      <IconTouchableWrapper
+        icon={'back'}
+        fill={'blue'}
+        onPress={() => {
+          this.setState({
+            CurrentKeyboard: null,
+          });
+
+          onPressBackButton();
+        }}
+        width={'22'}
+        height={'14'}
+      />
+    );
+  }
   render() {
     let {
       toolBarPaddingBottom,
@@ -165,6 +194,7 @@ export default class ProjectToolbar extends PureComponent {
         }}
       >
         <SW.ToolbarWrapper show={shouldShow}>
+          {this.renderBackButton()}
           {this.renderButtons()}
           {this.renderDoneButton()}
         </SW.ToolbarWrapper>
