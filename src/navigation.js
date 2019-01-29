@@ -90,8 +90,14 @@ export const goSignIn = () =>
 export const goSignUp = () =>
   Navigation.setRoot({
     root: {
-      component: {
-        name: 'SignUp',
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'SignUpStepOne',
+            },
+          },
+        ],
       },
     },
   });

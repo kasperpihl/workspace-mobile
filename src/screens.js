@@ -2,7 +2,8 @@ import { Navigation } from 'react-native-navigation';
 import configureStore from 'src/redux/configureStore';
 import HOCRootWrapper from 'src/react/HOCRootWrapper';
 import SignIn from 'src/react/SignIn/SignIn';
-import SignUp from 'src/react/SignUp/SignUp';
+import SignUpStepOne from 'src/react/SignUp/SignUpStepOne';
+import SignUpStepTwo from 'src/react/SignUp/SignUpStepTwo';
 // import Plan from 'src/Plan';
 import ProjectList from 'src/react/Project/List/ProjectList';
 import Profile from 'src/react/Profile/Profile';
@@ -29,6 +30,12 @@ export function registerScreens() {
   );
   Navigation.registerComponent('SignUp', () =>
     HOCRootWrapper(SignUp, store, persistor, false)
+  );
+  Navigation.registerComponent('SignUpStepOne', () =>
+    HOCRootWrapper(SignUpStepOne, store, persistor, false)
+  );
+  Navigation.registerComponent('SignUpStepTwo', () =>
+    HOCRootWrapper(SignUpStepTwo, store, persistor, false)
   );
   Navigation.registerComponent(
     'ForgottenPassword',
