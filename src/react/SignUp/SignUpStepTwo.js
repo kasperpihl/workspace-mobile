@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 import request from 'swipes-core-js/utils/request';
-import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
