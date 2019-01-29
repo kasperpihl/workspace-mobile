@@ -17,6 +17,5 @@ export default styleSheet('ProjectToolbar', {
   },
   MyKeyboard: {
     _size: ['100%', '100%'],
-    backgroundColor: 'yellow',
   },
 });

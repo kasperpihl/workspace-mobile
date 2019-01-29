@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { Slider, Text } from 'react-native';
 import { VirtualizedList } from 'react-native';
@@ -41,6 +42,10 @@ const defaultButtons = [
   },
   { renderLoader: () => <Text>loading</Text> }
 )
+@connect(state => ({
+  myId: state.me.get('user_id'),
+  organization: state.organization,
+}))
 export default class ProjectOverview extends PureComponent {
   constructor(props) {
     super(props);
@@ -54,6 +59,10 @@ export default class ProjectOverview extends PureComponent {
 
     Navigation.events().bindComponent(this, 'ProjectOverview');
   }
+  orgUsers = this.props.organization.getIn([
+    this.props.project.get('owned_by'),
+    'users',
+  ]);
   navigationButtonPressed = ({ buttonId }) => {
     // TODO edit, discuss
   };
@@ -102,6 +111,7 @@ export default class ProjectOverview extends PureComponent {
   });
   renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
   render() {
+    const { project } = this.props;
     const { visibleOrder, selectedId } = this.state;
 
     return (
@@ -141,6 +151,15 @@ export default class ProjectOverview extends PureComponent {
                 icon: 'members',
                 fill: 'blue',
                 keyboard: KeyboardAssign,
+                getKeyboardProps: () => {
+                  return {
+                    users: this.orgUsers,
+                    lastSelectedTask: project.getIn([
+                      'tasks_by_id',
+                      this.lastSelectedId,
+                    ]),
+                  };
+                },
               },
             ]}
           >

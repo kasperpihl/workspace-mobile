@@ -28,6 +28,7 @@ export default class ProjectToolbar extends PureComponent {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: 0,
       CurrentKeyboard: null,
+      CurrentKeyboardProps: {},
     };
 
     this.keyboardDismissedManually = false;
@@ -87,6 +88,12 @@ export default class ProjectToolbar extends PureComponent {
       myKeyboardHeight: keyboardHeight,
     });
   };
+  resetCurrentKeyboardState = () => {
+    this.setState({
+      CurrentKeyboard: null,
+      CurrentKeyboardProps: {},
+    });
+  };
   renderButtons() {
     const { buttons } = this.props;
     const { CurrentKeyboard } = this.state;
@@ -96,12 +103,18 @@ export default class ProjectToolbar extends PureComponent {
     }
 
     return buttons.map((button, i) => {
-      const { icon, fill, onPress, keyboard } = button;
+      const { icon, fill, onPress, keyboard, getKeyboardProps } = button;
       const onPressLocal = () => {
         // Check if custom keyboard option is assigned
+        let keyboardProps = {};
         if (keyboard) {
+          if (getKeyboardProps) {
+            keyboardProps = getKeyboardProps();
+          }
+
           this.setState({
             CurrentKeyboard: keyboard,
+            CurrentKeyboardProps: keyboardProps,
           });
 
           // if there is custom keyboard we want to show it
@@ -131,10 +144,7 @@ export default class ProjectToolbar extends PureComponent {
   renderDoneButton() {
     const { onPressDoneButton } = this.props;
     const onPressLocal = () => {
-      // Reset the custom keyboard
-      this.setState({
-        CurrentKeyboard: null,
-      });
+      this.resetCurrentKeyboardState();
 
       if (onPressDoneButton) {
         onPressDoneButton();
@@ -160,9 +170,7 @@ export default class ProjectToolbar extends PureComponent {
         icon={'back'}
         fill={'blue'}
         onPress={() => {
-          this.setState({
-            CurrentKeyboard: null,
-          });
+          this.resetCurrentKeyboardState();
 
           onPressBackButton();
         }}
@@ -176,6 +184,7 @@ export default class ProjectToolbar extends PureComponent {
       toolBarPaddingBottom,
       myKeyboardHeight,
       CurrentKeyboard,
+      CurrentKeyboardProps,
     } = this.state;
     const { children, hasFocus } = this.props;
 
@@ -185,6 +194,7 @@ export default class ProjectToolbar extends PureComponent {
       toolBarPaddingBottom = 0;
       myKeyboardHeight = 0;
       CurrentKeyboard = null;
+      CurrentKeyboardProps = {};
     }
 
     return (
@@ -200,7 +210,9 @@ export default class ProjectToolbar extends PureComponent {
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
           <SW.MyKeyboard>
-            {CurrentKeyboard ? <CurrentKeyboard /> : null}
+            {CurrentKeyboard ? (
+              <CurrentKeyboard {...CurrentKeyboardProps} />
+            ) : null}
           </SW.MyKeyboard>
         </View>
         {!shouldShow && children}
