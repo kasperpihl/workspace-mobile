@@ -132,7 +132,6 @@ export default class ProjectToolbar extends PureComponent {
           Keyboard.dismiss();
         }
 
-        // if there is onPress fuction assigned
         if (onPress) {
           onPress();
         }
