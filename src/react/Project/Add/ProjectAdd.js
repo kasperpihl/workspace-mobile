@@ -15,7 +15,7 @@ import SW from './ProjectAdd.swiss';
 
 @connect(state => ({
   myId: state.me.get('user_id'),
-  organization: state.organization.toList(),
+  organizations: state.organizations.toList(),
 }))
 export default class ProjectAdd extends PureComponent {
   constructor(props) {
@@ -34,7 +34,7 @@ export default class ProjectAdd extends PureComponent {
         },
       ])
     ).concat(
-      this.props.organization.map(o => {
+      this.props.organizations.map(o => {
         return Map({ label: o.get('name'), value: o.get('organization_id') });
       })
     ),

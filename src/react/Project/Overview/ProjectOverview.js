@@ -44,7 +44,7 @@ const defaultButtons = [
 )
 @connect(state => ({
   myId: state.me.get('user_id'),
-  organization: state.organization,
+  organizations: state.organizations,
 }))
 export default class ProjectOverview extends PureComponent {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class ProjectOverview extends PureComponent {
 
     Navigation.events().bindComponent(this, 'ProjectOverview');
   }
-  orgUsers = this.props.organization.getIn([
+  orgUsers = this.props.organizations.getIn([
     this.props.project.get('owned_by'),
     'users',
   ]);
