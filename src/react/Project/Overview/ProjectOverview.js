@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { Slider, Text } from 'react-native';
+import { Slider, Text, ActivityIndicator } from 'react-native';
 import { VirtualizedList } from 'react-native';
 import withRequests from 'swipes-core-js/components/withRequests';
 import ProjectProvider from 'swipes-core-js/components/project/ProjectProvider';
@@ -40,7 +40,13 @@ const defaultButtons = [
       },
     },
   },
-  { renderLoader: () => <Text>loading</Text> }
+  {
+    renderLoader: () => (
+      <SW.LoaderContainer>
+        <ActivityIndicator size="large" color="#007AFF" />
+      </SW.LoaderContainer>
+    ),
+  }
 )
 @connect(state => ({
   myId: state.me.get('user_id'),

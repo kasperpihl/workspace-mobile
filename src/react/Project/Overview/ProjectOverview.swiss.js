@@ -20,4 +20,8 @@ export default styleSheet('ProjectOverview', {
     _size: ['100%', 'auto'],
     _padding: [0, 30],
   },
+  LoaderContainer: {
+    _flex: 'center',
+    _size: ['100%', '100%'],
+  },
 });
