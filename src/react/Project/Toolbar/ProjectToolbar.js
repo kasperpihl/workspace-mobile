@@ -21,20 +21,23 @@ const IS_SAFE_AREA_SUPPORTED =
 const BUMPER_HEIGHT = 15;
 
 export default class ProjectToolbar extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      toolBarPaddingBottom: 0,
-      myKeyboardHeight: 0,
-      CurrentKeyboard: null,
-      CurrentKeyboardProps: {},
-    };
-
-    this.keyboardDismissedManually = false;
-    this.keyboardWillShow = this.keyboardWillShow.bind(this);
-    this.keyboardWillHide = this.keyboardWillHide.bind(this);
-  }
+  state = {
+    toolBarPaddingBottom: 0,
+    myKeyboardHeight: 0,
+    CustomKeyboard: null,
+    customKeyboardProps: {},
+    customKeyboardIsShown: false,
+  };
+  layoutAnimationKeyboardDuration = null;
+  layoutAnimationKeyboardEasing = null;
+  configureNextLayoutAnimation = () => {
+    LayoutAnimation.configureNext({
+      duration: this.layoutAnimationKeyboardDuration,
+      update: {
+        type: LayoutAnimation.Types[this.layoutAnimationKeyboardEasing],
+      },
+    });
+  };
   componentWillMount() {
     // Keyboard management
     this.keyboardWillShowSubscription = Keyboard.addListener(
@@ -51,17 +54,25 @@ export default class ProjectToolbar extends PureComponent {
     this.keyboardWillShowSubscription.remove();
     this.keyboardWillHideSubscription.remove();
   }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      this.props.hasFocus !== prevProps.hasFocus &&
+      this.props.hasFocus === true
+    ) {
+      this.setState({
+        customKeyboardIsShown: false,
+      });
+    }
+  }
   keyboardWillShow = event => {
-    LayoutAnimation.configureNext({
-      duration: event.duration,
-      update: {
-        type: LayoutAnimation.Types[event.easing],
-      },
-    });
-
     const keyboardHeight = event.endCoordinates.height;
     const toolBarPaddingBottom =
       keyboardHeight - (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
+
+    this.layoutAnimationKeyboardDuration = event.duration;
+    this.layoutAnimationKeyboardEasing = event.easing;
+
+    this.configureNextLayoutAnimation();
 
     this.setState({
       toolBarPaddingBottom: toolBarPaddingBottom,
@@ -69,36 +80,35 @@ export default class ProjectToolbar extends PureComponent {
     });
   };
   keyboardWillHide = event => {
+    const { CustomKeyboard } = this.state;
     let keyboardHeight = 0;
-    if (this.keyboardDismissedManually) {
-      this.keyboardDismissedManually = false;
+
+    if (CustomKeyboard) {
       keyboardHeight =
         event.endCoordinates.height -
         (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
     }
 
-    LayoutAnimation.configureNext({
-      duration: event.duration,
-      update: {
-        type: LayoutAnimation.Types[event.easing],
-      },
-    });
+    this.configureNextLayoutAnimation();
+
     this.setState({
       toolBarPaddingBottom: 0,
       myKeyboardHeight: keyboardHeight,
     });
   };
-  resetCurrentKeyboardState = () => {
+  resetCustomKeyboardState = () => {
     this.setState({
-      CurrentKeyboard: null,
-      CurrentKeyboardProps: {},
+      myKeyboardHeight: 0,
+      CustomKeyboard: null,
+      customKeyboardProps: {},
+      customKeyboardIsShown: false,
     });
   };
   renderButtons() {
     const { buttons } = this.props;
-    const { CurrentKeyboard } = this.state;
+    const { customKeyboardIsShown } = this.state;
 
-    if (CurrentKeyboard) {
+    if (customKeyboardIsShown) {
       return null;
     }
 
@@ -113,13 +123,12 @@ export default class ProjectToolbar extends PureComponent {
           }
 
           this.setState({
-            CurrentKeyboard: keyboard,
-            CurrentKeyboardProps: keyboardProps,
+            CustomKeyboard: keyboard,
+            customKeyboardProps: keyboardProps,
+            customKeyboardIsShown: true,
           });
 
-          // if there is custom keyboard we want to show it
-          // and manually hide the original one
-          this.keyboardDismissedManually = true;
+          // Dismiss the keyboard manually so we can show our custom keyboard
           Keyboard.dismiss();
         }
 
@@ -144,7 +153,8 @@ export default class ProjectToolbar extends PureComponent {
   renderDoneButton() {
     const { onPressDoneButton } = this.props;
     const onPressLocal = () => {
-      this.resetCurrentKeyboardState();
+      this.configureNextLayoutAnimation();
+      this.resetCustomKeyboardState();
 
       if (onPressDoneButton) {
         onPressDoneButton();
@@ -159,9 +169,9 @@ export default class ProjectToolbar extends PureComponent {
   }
   renderBackButton() {
     const { onPressBackButton } = this.props;
-    const { CurrentKeyboard } = this.state;
+    const { customKeyboardIsShown } = this.state;
 
-    if (!CurrentKeyboard) {
+    if (!customKeyboardIsShown) {
       return null;
     }
 
@@ -170,8 +180,9 @@ export default class ProjectToolbar extends PureComponent {
         icon={'back'}
         fill={'blue'}
         onPress={() => {
-          this.resetCurrentKeyboardState();
-
+          this.setState({
+            customKeyboardIsShown: false,
+          });
           onPressBackButton();
         }}
         width={'22'}
@@ -183,19 +194,11 @@ export default class ProjectToolbar extends PureComponent {
     let {
       toolBarPaddingBottom,
       myKeyboardHeight,
-      CurrentKeyboard,
-      CurrentKeyboardProps,
+      CustomKeyboard,
+      customKeyboardProps,
     } = this.state;
     const { children, hasFocus } = this.props;
-
-    const shouldShow = hasFocus || CurrentKeyboard;
-
-    if (!shouldShow) {
-      toolBarPaddingBottom = 0;
-      myKeyboardHeight = 0;
-      CurrentKeyboard = null;
-      CurrentKeyboardProps = {};
-    }
+    const shouldShow = hasFocus || CustomKeyboard;
 
     return (
       <View
@@ -210,9 +213,7 @@ export default class ProjectToolbar extends PureComponent {
         </SW.ToolbarWrapper>
         <View style={{ height: myKeyboardHeight }}>
           <SW.MyKeyboard>
-            {CurrentKeyboard ? (
-              <CurrentKeyboard {...CurrentKeyboardProps} />
-            ) : null}
+            {CustomKeyboard && <CustomKeyboard {...customKeyboardProps} />}
           </SW.MyKeyboard>
         </View>
         {!shouldShow && children}
