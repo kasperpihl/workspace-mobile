@@ -28,8 +28,8 @@ export default class ProjectToolbar extends PureComponent {
     customKeyboardProps: {},
     customKeyboardIsShown: false,
   };
-  layoutAnimationKeyboardDuration = null;
-  layoutAnimationKeyboardEasing = null;
+  layoutAnimationKeyboardDuration = 250;
+  layoutAnimationKeyboardEasing = 'keyboard';
   configureNextLayoutAnimation = () => {
     LayoutAnimation.configureNext({
       duration: this.layoutAnimationKeyboardDuration,
