@@ -27,6 +27,7 @@ export default class ProjectToolbar extends PureComponent {
     CustomKeyboard: null,
     customKeyboardProps: {},
     customKeyboardIsShown: false,
+    customKeyboardTitle: '',
   };
   layoutAnimationKeyboardDuration = 250;
   layoutAnimationKeyboardEasing = 'keyboard';
@@ -113,16 +114,25 @@ export default class ProjectToolbar extends PureComponent {
     }
 
     return buttons.map((button, i) => {
-      const { icon, fill, onPress, keyboard, getKeyboardProps } = button;
+      const {
+        icon,
+        fill,
+        onPress,
+        keyboard,
+        getKeyboardProps,
+        customKeyboardTitle,
+      } = button;
       const onPressLocal = () => {
         // Check if custom keyboard option is assigned
         let keyboardProps = {};
+
         if (keyboard) {
           if (getKeyboardProps) {
             keyboardProps = getKeyboardProps();
           }
 
           this.setState({
+            customKeyboardTitle,
             CustomKeyboard: keyboard,
             customKeyboardProps: keyboardProps,
             customKeyboardIsShown: true,
@@ -151,6 +161,7 @@ export default class ProjectToolbar extends PureComponent {
   }
   renderDoneButton() {
     const { onPressDoneButton } = this.props;
+    const { customKeyboardIsShown } = this.state;
     const onPressLocal = () => {
       this.configureNextLayoutAnimation();
       this.resetCustomKeyboardState();
@@ -161,7 +172,7 @@ export default class ProjectToolbar extends PureComponent {
     };
 
     return (
-      <SW.RightButton>
+      <SW.RightButton customKeyboardIsShown={customKeyboardIsShown}>
         <Button onPress={onPressLocal} title="Done" />
       </SW.RightButton>
     );
@@ -189,12 +200,22 @@ export default class ProjectToolbar extends PureComponent {
       />
     );
   }
+  renderTitle() {
+    const { customKeyboardIsShown, customKeyboardTitle } = this.state;
+
+    if (!customKeyboardIsShown) {
+      return null;
+    }
+
+    return <SW.Title>{customKeyboardTitle}</SW.Title>;
+  }
   render() {
     let {
       toolBarPaddingBottom,
       myKeyboardHeight,
       CustomKeyboard,
       customKeyboardProps,
+      customKeyboardIsShown,
     } = this.state;
     const { children, hasFocus } = this.props;
     const shouldShow = hasFocus || CustomKeyboard;
@@ -205,8 +226,12 @@ export default class ProjectToolbar extends PureComponent {
           paddingBottom: toolBarPaddingBottom,
         }}
       >
-        <SW.ToolbarWrapper show={shouldShow}>
+        <SW.ToolbarWrapper
+          show={shouldShow}
+          customKeyboardIsShown={customKeyboardIsShown}
+        >
           {this.renderBackButton()}
+          {this.renderTitle()}
           {this.renderButtons()}
           {this.renderDoneButton()}
         </SW.ToolbarWrapper>

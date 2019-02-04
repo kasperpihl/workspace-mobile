@@ -157,6 +157,7 @@ export default class ProjectOverview extends PureComponent {
                 icon: 'members',
                 fill: 'blue',
                 keyboard: KeyboardAssign,
+                customKeyboardTitle: 'Assignees',
                 getKeyboardProps: () => {
                   return {
                     users: this.orgUsers,

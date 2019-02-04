@@ -1,4 +1,5 @@
 import { styleSheet } from 'swiss-react';
+import { Text } from 'react-native';
 
 export default styleSheet('ProjectToolbar', {
   ToolbarWrapper: {
@@ -11,9 +12,19 @@ export default styleSheet('ProjectToolbar', {
     opacity: props => {
       return props.show ? 1 : 0;
     },
+    justifyContent: props => {
+      return props.customKeyboardIsShown ? 'space-between' : 'flex-start';
+    },
+  },
+  Title: {
+    _el: Text,
+    alignSelf: 'center',
+    fontWeight: 'bold',
   },
   RightButton: {
-    marginLeft: 'auto',
+    marginLeft: props => {
+      return props.customKeyboardIsShown ? '' : 'auto';
+    },
   },
   MyKeyboard: {
     _size: ['100%', '100%'],
