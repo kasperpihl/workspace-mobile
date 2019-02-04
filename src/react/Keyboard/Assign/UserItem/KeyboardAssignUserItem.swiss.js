@@ -16,4 +16,7 @@ export default styleSheet('KeyboardAssignUserItem', {
     backgroundColor: '$sw3',
     marginRight: '5',
   },
+  RightButton: {
+    marginLeft: 'auto',
+  },
 });

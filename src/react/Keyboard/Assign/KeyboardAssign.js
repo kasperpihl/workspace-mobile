@@ -10,7 +10,36 @@ export default class KeyboardAssign extends PureComponent {
     key: data.getIn([index, 'user_id']),
     user: data.get(index),
   });
-  renderItem = ({ item }) => <KeyboardAssignUserItem item={item} />;
+  renderItem = ({ item }) => {
+    const { lastSelectedTask } = this.props;
+    const assignees = lastSelectedTask.get('assignees');
+    const user = item.user;
+    const assigned = assignees.includes(user.get('user_id'));
+
+    return (
+      <KeyboardAssignUserItem
+        item={item}
+        assigned={assigned}
+        onPress={this.onItemPressed}
+      />
+    );
+  };
+  onItemPressed = (user_id, assigned) => {
+    const { stateManager, lastSelectedTask } = this.props;
+    const assignees = lastSelectedTask.get('assignees');
+    let finalAssignees;
+
+    if (assigned) {
+      finalAssignees = assignees.push(user_id);
+    } else {
+      finalAssignees = assignees.filter(x => x !== user_id);
+    }
+
+    stateManager.editHandler.updateAssignees(
+      lastSelectedTask.get('task_id'),
+      finalAssignees
+    );
+  };
   render() {
     const { users } = this.props;
 

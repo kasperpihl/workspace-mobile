@@ -160,6 +160,7 @@ export default class ProjectOverview extends PureComponent {
                 customKeyboardTitle: 'Assignees',
                 getKeyboardProps: () => {
                   return {
+                    stateManager: this.stateManager,
                     users: this.orgUsers,
                     lastSelectedTask: project.getIn([
                       'tasks_by_id',
