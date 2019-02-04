@@ -5,6 +5,8 @@ import back from './back';
 import members from './members';
 import add from './add';
 import check from './check';
+import plus from './plus';
+import x from './x';
 
 export default {
   indent_in,
@@ -14,4 +16,6 @@ export default {
   members,
   add,
   check,
+  plus,
+  x,
 };

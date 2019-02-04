@@ -5,6 +5,8 @@ import expand from './expand';
 import indent_in from './indent_in';
 import indent_out from './indent_out';
 import members from './members';
+import plus from './plus';
+import x from './x';
 
 export default {
   add,
@@ -14,4 +16,6 @@ export default {
   indent_in,
   indent_out,
   members,
+  plus,
+  x,
 };
