@@ -80,10 +80,10 @@ export default class ProjectToolbar extends PureComponent {
     });
   };
   keyboardWillHide = event => {
-    const { CustomKeyboard } = this.state;
+    const { customKeyboardIsShown } = this.state;
     let keyboardHeight = 0;
 
-    if (CustomKeyboard) {
+    if (customKeyboardIsShown) {
       keyboardHeight =
         event.endCoordinates.height -
         (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
