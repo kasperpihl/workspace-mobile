@@ -20,12 +20,6 @@ export default styleSheet('ProjectListItem', {
     paddingVertical: 5,
     paddingRight: 10,
   },
-  BlueCircle: {
-    _borderRadius: 11,
-    width: 22,
-    height: 22,
-    backgroundColor: '$blue',
-  },
   LineOfText: {
     _el: Text,
     fontSize: 12,

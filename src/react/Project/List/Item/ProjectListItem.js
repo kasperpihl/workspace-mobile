@@ -4,6 +4,7 @@ import { Navigation } from 'react-native-navigation';
 import merge from 'deepmerge';
 import orgGetBelonging from 'swipes-core-js/utils/org/orgGetBelonging';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
+import ProgressCircle from 'src/react/ProgressCircle/ProgressCircle';
 import SW from './ProjectListItem.swiss';
 
 export default class ProjectListItem extends PureComponent {
@@ -17,13 +18,13 @@ export default class ProjectListItem extends PureComponent {
     });
   };
   render() {
-    const { project_id, name, owned_by } = this.props;
+    const { project_id, name, owned_by, completion_percentage } = this.props;
 
     return (
       <TouchableOpacity onPress={this.handleListClick(project_id)}>
         <SW.Wrapper>
           <SW.LeftSide>
-            <SW.BlueCircle />
+            <ProgressCircle percent={completion_percentage} />
           </SW.LeftSide>
           <SW.Middle>
             <SW.LineOfText numberOfLines={1} topic>
