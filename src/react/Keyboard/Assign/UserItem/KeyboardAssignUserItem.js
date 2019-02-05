@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
 import userGetFullName from 'swipes-core-js/utils/user/userGetFullName';
+import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from './KeyboardAssignUserItem.swiss';
 
@@ -22,10 +23,9 @@ export default class KeyboardAssignUserItem extends PureComponent {
   render() {
     const { item, assigned, onPress } = this.props;
     const user = item.user;
-    const fullName = userGetFullName(
-      user.get('user_id'),
-      user.get('organization_id')
-    );
+    const userId = user.get('user_id');
+    const organizationId = user.get('organization_id');
+    const fullName = userGetFullName(userId, organizationId);
 
     return (
       <SW.Wrapper
@@ -33,8 +33,8 @@ export default class KeyboardAssignUserItem extends PureComponent {
           onPress(user.get('user_id'), !assigned);
         }}
       >
-        <SW.Circle />
-        <Text>{fullName}</Text>
+        <AssigneeImage userId={userId} organizationId={organizationId} />
+        <SW.FullName>{fullName}</SW.FullName>
         <SW.RightButton>{this.renderRightButton()}</SW.RightButton>
       </SW.Wrapper>
     );

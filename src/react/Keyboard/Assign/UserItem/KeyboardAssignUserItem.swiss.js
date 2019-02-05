@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
 export default styleSheet('KeyboardAssignUserItem', {
   Wrapper: {
@@ -18,5 +18,9 @@ export default styleSheet('KeyboardAssignUserItem', {
   },
   RightButton: {
     marginLeft: 'auto',
+  },
+  FullName: {
+    _el: Text,
+    marginLeft: '5',
   },
 });
