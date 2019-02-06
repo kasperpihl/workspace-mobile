@@ -12,7 +12,7 @@ import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Chat from 'src/Chat';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'swipes-core-js/utils/store/storeGet';
-import Socket from 'swipes-core-js/classes/socket';
+import Socket from 'swipes-core-js/classes/Socket';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 // Init core!
