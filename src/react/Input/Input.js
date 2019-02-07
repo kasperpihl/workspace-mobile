@@ -4,16 +4,23 @@ import SW from './Input.swiss';
 export default class Input extends PureComponent {
   state = {
     value: this.props.value || '',
-    secureTextEntry: this.props.secureTextEntry || false,
+    secureTextEntry: false,
   };
-  displayToggle = this.props.secureTextEntry || false;
+  displayToggle = this.props.passwordField || false;
   changeFieldSecutiry = () => {
     const { secureTextEntry } = this.state;
 
     this.setState({ secureTextEntry: !secureTextEntry });
   };
+  componentDidMount() {
+    const { passwordField } = this.props;
+
+    if (passwordField) {
+      this.changeFieldSecutiry();
+    }
+  }
   render() {
-    const { inputRef, ...rest } = this.props;
+    const { inputRef, passwordField, ...rest } = this.props;
     const { secureTextEntry } = this.state;
 
     return (

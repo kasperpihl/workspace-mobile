@@ -52,7 +52,6 @@ export default class SignIn extends Component {
             <FormTextInput
               value={emailVal}
               onChangeText={this.handleChangeText('emailVal')}
-              textContentType={'username'}
             />
             <View style={{ marginTop: 30 }}>
               <FormLabel label={'Password'} />
@@ -60,8 +59,7 @@ export default class SignIn extends Component {
                 last
                 value={passwordVal}
                 onChangeText={this.handleChangeText('passwordVal')}
-                textContentType={'password'}
-                secureTextEntry={true}
+                passwordField={true}
                 onSubmitEditing={this.handleSignIn}
               />
             </View>
