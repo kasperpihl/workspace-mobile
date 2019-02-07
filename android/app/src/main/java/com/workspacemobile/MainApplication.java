@@ -5,15 +5,14 @@ import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
-import com.facebook.react.BuildConfig;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends NavigationApplication {
 
-  @Override
-  protected ReactGateway createReactGateway() {
+    @Override
+    protected ReactGateway createReactGateway() {
         ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
             @Override
             protected String getJSMainModuleName() {
@@ -25,19 +24,19 @@ public class MainApplication extends NavigationApplication {
 
     @Override
     public boolean isDebug() {
-      return BuildConfig.DEBUG;
+        return BuildConfig.DEBUG;
     }
 
     protected List<ReactPackage> getPackages() {
         // Add additional packages you require here
-            // No need to add RnnPackage and MainReactPackage
-            return Arrays.<ReactPackage>asList(
-                // eg. new VectorIconsPackage()
-            );
+        // No need to add RnnPackage and MainReactPackage
+        return Arrays.<ReactPackage>asList(
+        // eg. new VectorIconsPackage()
+        );
     }
 
-@Override
-  public List<ReactPackage> createAdditionalReactPackages() {
-    return getPackages();
-  }
+    @Override
+    public List<ReactPackage> createAdditionalReactPackages() {
+        return getPackages();
+    }
 }
