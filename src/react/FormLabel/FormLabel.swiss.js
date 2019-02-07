@@ -8,9 +8,10 @@ export default styleSheet('FormLabel', {
   },
   Label: {
     _el: Text,
-    fontSize: '10',
+    fontSize: 10,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: '$sw2',
+    color: 'black',
+    backgroundColor: 'red',
   },
 });

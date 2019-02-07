@@ -29,8 +29,5 @@ export default styleSheet('Input', {
     top: '15',
     zIndex: '1',
     backgroundColor: '$blue',
-    display: props => {
-      return props.display ? '' : 'none';
-    },
   },
 });
