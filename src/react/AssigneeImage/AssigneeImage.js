@@ -14,7 +14,7 @@ export default props => {
 
   return (
     <SW.InitialWrapper size={size}>
-      <SW.Initial>{initials}</SW.Initial>
+      <SW.Initial>{initials.toUpperCase()}</SW.Initial>
     </SW.InitialWrapper>
   );
 };

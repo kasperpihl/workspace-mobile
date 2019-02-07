@@ -8,8 +8,7 @@ export default class FormLabel extends PureComponent {
 
     return (
       <SW.Wrapper>
-        <Text>{label}</Text>
-        <SW.Label>{label}</SW.Label>
+        <SW.Label>{label.toUpperCase()}</SW.Label>
       </SW.Wrapper>
     );
   }

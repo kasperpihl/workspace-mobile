@@ -10,7 +10,6 @@ export default styleSheet('Input', {
     _el: Text,
     fontSize: '10',
     fontWeight: 'bold',
-    textTransform: 'uppercase',
     color: '$sw2',
   },
   TextInput: {
