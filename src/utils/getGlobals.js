@@ -6,12 +6,17 @@ const { width, height } = Dimensions.get('window');
 
 export default function getGlobals() {
   let apiUrl = 'https://workspace.swipesapp.com';
+
   if (
     window.__DEV__ ||
     DeviceInfo.getBundleId() === 'com.swipesapp.iosstaging' ||
     DeviceInfo.getBundleId() === 'com.swipesapp.androidstaging'
   ) {
-    apiUrl = 'http://localhost:5000';
+    if (Platform.OS === 'ios') {
+      apiUrl = 'http://localhost:5000';
+    } else {
+      apiUrl = 'http://10.0.2.2:5000';
+    }
   }
   const pre = `sw-${Platform.OS}`;
 
