@@ -20,7 +20,7 @@ export default class Input extends PureComponent {
     }
   }
   render() {
-    const { inputRef, passwordField, ...rest } = this.props;
+    const { inputRef, ...rest } = this.props;
     const { secureTextEntry } = this.state;
 
     return (
