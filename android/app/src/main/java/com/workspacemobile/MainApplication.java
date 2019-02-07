@@ -5,6 +5,7 @@ import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MainApplication extends NavigationApplication {
     protected List<ReactPackage> getPackages() {
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
-        return Arrays.<ReactPackage>asList(
+        return Arrays.<ReactPackage>asList(new RNDeviceInfo()
         // eg. new VectorIconsPackage()
         );
     }
