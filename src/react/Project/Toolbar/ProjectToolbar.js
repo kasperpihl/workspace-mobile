@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import {
   Keyboard,
   LayoutAnimation,
-  UIManager,
+  // UIManager,
   View,
   Platform,
   Dimensions,
@@ -11,9 +11,18 @@ import {
 import SW from './ProjectToolbar.swiss';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
-//In order for LayoutAnimation to work on Android
-// UIManager.setLayoutAnimationEnabledExperimental &&
-//   UIManager.setLayoutAnimationEnabledExperimental(true);
+// In order for LayoutAnimation to work on Android
+// I'm not doing layoutAnimations on Android because the behaviour is unpredictable
+// and the performance is just not good :/
+// if (Platform.OS === 'android') {
+//   UIManager.setLayoutAnimationEnabledExperimental &&
+//     UIManager.setLayoutAnimationEnabledExperimental(true);
+// }
+
+let keyboardSubType = 'keyboardWill';
+if (Platform.OS === 'android') {
+  keyboardSubType = 'keyboardDid';
+}
 
 const { height, width } = Dimensions.get('window');
 const IS_SAFE_AREA_SUPPORTED =
@@ -22,6 +31,7 @@ const BUMPER_HEIGHT = 15;
 
 export default class ProjectToolbar extends PureComponent {
   state = {
+    // This one is always 0 for Android
     toolBarPaddingBottom: 0,
     myKeyboardHeight: 0,
     CustomKeyboard: null,
@@ -29,9 +39,17 @@ export default class ProjectToolbar extends PureComponent {
     customKeyboardIsShown: false,
     customKeyboardTitle: '',
   };
+  keyboardOriginalHeight = 0;
   layoutAnimationKeyboardDuration = 250;
-  layoutAnimationKeyboardEasing = 'keyboard';
+  layoutAnimationKeyboardEasing =
+    Platform.OS === 'android' ? 'linear' : 'keyboard';
   configureNextLayoutAnimation = () => {
+    // I'm not doing layoutAnimations on Android because the behaviour is unpredictable
+    // and the performance is just not good :/
+    if (Platform.OS === 'android') {
+      return;
+    }
+
     LayoutAnimation.configureNext({
       duration: this.layoutAnimationKeyboardDuration,
       update: {
@@ -41,19 +59,19 @@ export default class ProjectToolbar extends PureComponent {
   };
   componentWillMount() {
     // Keyboard management
-    this.keyboardWillShowSubscription = Keyboard.addListener(
-      'keyboardWillShow',
-      this.keyboardWillShow
+    this.keyboardShowSubscription = Keyboard.addListener(
+      `${keyboardSubType}Show`,
+      this[`${keyboardSubType}Show`]
     );
-    this.keyboardWillHideSubscription = Keyboard.addListener(
-      'keyboardWillHide',
-      this.keyboardWillHide
+    this.keyboardHideSubscription = Keyboard.addListener(
+      `${keyboardSubType}Hide`,
+      this[`${keyboardSubType}Hide`]
     );
   }
   componentWillUnmount() {
     // Keyboard management
-    this.keyboardWillShowSubscription.remove();
-    this.keyboardWillHideSubscription.remove();
+    this.keyboardShowSubscription.remove();
+    this.keyboardHideSubscription.remove();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (
@@ -65,13 +83,20 @@ export default class ProjectToolbar extends PureComponent {
       });
     }
   }
-  keyboardWillShow = event => {
-    const keyboardHeight = event.endCoordinates.height;
-    const toolBarPaddingBottom =
-      keyboardHeight - (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
+  keyboardShow = event => {
+    let toolBarPaddingBottom;
+    this.keyboardOriginalHeight = event.endCoordinates.height;
 
-    this.layoutAnimationKeyboardDuration = event.duration;
-    this.layoutAnimationKeyboardEasing = event.easing;
+    if (Platform.OS === 'ios') {
+      toolBarPaddingBottom =
+        this.keyboardOriginalHeight -
+        (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
+    }
+
+    this.layoutAnimationKeyboardDuration =
+      event.duration || this.layoutAnimationKeyboardDuration;
+    this.layoutAnimationKeyboardEasing =
+      event.easing || this.layoutAnimationKeyboardEasing;
 
     this.configureNextLayoutAnimation();
 
@@ -80,13 +105,13 @@ export default class ProjectToolbar extends PureComponent {
       myKeyboardHeight: 0,
     });
   };
-  keyboardWillHide = event => {
+  keyboardHide = event => {
     const { customKeyboardIsShown } = this.state;
     let keyboardHeight = 0;
 
     if (customKeyboardIsShown) {
       keyboardHeight =
-        event.endCoordinates.height -
+        this.keyboardOriginalHeight -
         (IS_SAFE_AREA_SUPPORTED ? BUMPER_HEIGHT + 20 : 0);
     }
 
@@ -96,6 +121,18 @@ export default class ProjectToolbar extends PureComponent {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: keyboardHeight,
     });
+  };
+  keyboardWillShow = event => {
+    this.keyboardShow(event);
+  };
+  keyboardDidShow = event => {
+    this.keyboardShow(event);
+  };
+  keyboardWillHide = event => {
+    this.keyboardHide(event);
+  };
+  keyboardDidHide = event => {
+    this.keyboardHide(event);
   };
   resetCustomKeyboardState = () => {
     this.setState({
