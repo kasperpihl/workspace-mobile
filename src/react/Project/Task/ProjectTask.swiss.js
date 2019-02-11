@@ -19,7 +19,7 @@ export default styleSheet('ProjectInput', {
     marginLeft: 21,
   },
   MarginForExpandArrow: {
-    marginLeft: props => (props.hasChildren ? 0 : 44),
+    marginLeft: get => (get('hasChildren') ? 0 : 44),
   },
   CircleWrapper: {
     _el: TouchableOpacity,

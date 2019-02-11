@@ -1,12 +1,12 @@
-import { addMixin } from "swiss-react";
+import { addMixin } from 'swiss-react';
 
-addMixin("font", function font(props, fontSize, color, lineHeight, fontWeight) {
-  if (typeof lineHeight === "string" && !fontWeight) {
+addMixin('font', function font(fontSize, color, lineHeight, fontWeight) {
+  if (typeof lineHeight === 'string' && !fontWeight) {
     return {
       fontSize,
       color,
       fontWeight: lineHeight,
-      includeFontPadding: false
+      includeFontPadding: false,
     };
   }
 
@@ -15,6 +15,6 @@ addMixin("font", function font(props, fontSize, color, lineHeight, fontWeight) {
     color,
     lineHeight,
     fontWeight,
-    includeFontPadding: false
+    includeFontPadding: false,
   };
 });

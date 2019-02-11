@@ -1,130 +1,129 @@
-import { addMixin } from "swiss-react";
+import { addMixin } from 'swiss-react';
 
-addMixin("flex", function flex(
-  props,
+addMixin('flex', function flex(
   direction,
   directionHorizontal,
   directionVertical
 ) {
   let flexContainer = {};
 
-  if (direction === "center") {
+  if (direction === 'center') {
     flexContainer = Object.assign(flexContainer, {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center"
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     });
   }
 
-  if (direction === "row") {
+  if (direction === 'row') {
     flexContainer = Object.assign(flexContainer, { flexDirection: direction });
 
     switch (directionHorizontal) {
-      case "flex-start":
-      case "left":
+      case 'flex-start':
+      case 'left':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "flex-start"
+          justifyContent: 'flex-start',
         });
         break;
-      case "center":
+      case 'center':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "center"
+          justifyContent: 'center',
         });
         break;
-      case "flex-end":
-      case "right":
+      case 'flex-end':
+      case 'right':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "flex-end"
+          justifyContent: 'flex-end',
         });
         break;
-      case "space-between":
-      case "between":
+      case 'space-between':
+      case 'between':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "space-between"
+          justifyContent: 'space-between',
         });
         break;
-      case "space-around":
-      case "around":
+      case 'space-around':
+      case 'around':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "space-around"
+          justifyContent: 'space-around',
         });
         break;
     }
 
     switch (directionVertical) {
-      case "flex-start":
-      case "top":
+      case 'flex-start':
+      case 'top':
         flexContainer = Object.assign(flexContainer, {
-          alignItems: "flex-start"
+          alignItems: 'flex-start',
         });
         break;
-      case "center":
-        flexContainer = Object.assign(flexContainer, { alignItems: "center" });
+      case 'center':
+        flexContainer = Object.assign(flexContainer, { alignItems: 'center' });
         break;
-      case "stretch":
-        flexContainer = Object.assign(flexContainer, { alignItems: "stretch" });
+      case 'stretch':
+        flexContainer = Object.assign(flexContainer, { alignItems: 'stretch' });
         break;
-      case "flex-end":
-      case "bottom":
+      case 'flex-end':
+      case 'bottom':
         flexContainer = Object.assign(flexContainer, {
-          alignItems: "flex-end"
+          alignItems: 'flex-end',
         });
         break;
     }
   }
 
-  if (direction === "column") {
+  if (direction === 'column') {
     flexContainer = Object.assign(flexContainer, { flexDirection: direction });
 
     switch (directionHorizontal) {
-      case "flex-start":
-      case "top":
+      case 'flex-start':
+      case 'top':
         flexContainer = Object.assign(flexContainer, {
-          alignItems: "flex-start"
+          alignItems: 'flex-start',
         });
         break;
-      case "center":
-        flexContainer = Object.assign(flexContainer, { alignItems: "center" });
+      case 'center':
+        flexContainer = Object.assign(flexContainer, { alignItems: 'center' });
         break;
-      case "stretch":
-        flexContainer = Object.assign(flexContainer, { alignItems: "stretch" });
+      case 'stretch':
+        flexContainer = Object.assign(flexContainer, { alignItems: 'stretch' });
         break;
-      case "flex-end":
-      case "bottom":
+      case 'flex-end':
+      case 'bottom':
         flexContainer = Object.assign(flexContainer, {
-          alignItems: "flex-end"
+          alignItems: 'flex-end',
         });
         break;
     }
 
     switch (directionVertical) {
-      case "flex-start":
-      case "left":
+      case 'flex-start':
+      case 'left':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "flex-start"
+          justifyContent: 'flex-start',
         });
         break;
-      case "center":
+      case 'center':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "center"
+          justifyContent: 'center',
         });
         break;
-      case "flex-end":
-      case "right":
+      case 'flex-end':
+      case 'right':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "flex-end"
+          justifyContent: 'flex-end',
         });
         break;
-      case "space-between":
-      case "between":
+      case 'space-between':
+      case 'between':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "space-between"
+          justifyContent: 'space-between',
         });
         break;
-      case "space-around":
-      case "around":
+      case 'space-around':
+      case 'around':
         flexContainer = Object.assign(flexContainer, {
-          justifyContent: "space-around"
+          justifyContent: 'space-around',
         });
         break;
     }

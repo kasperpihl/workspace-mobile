@@ -4,15 +4,15 @@ import { Text, Image } from 'react-native';
 export default styleSheet('AssigneeImage', {
   Image: {
     _el: Image,
-    _size: props => props.size,
-    borderRadius: props => props.size / 2,
+    _size: get => get('size'),
+    borderRadius: get => get('size') / 2,
   },
   InitialWrapper: {
-    _size: props => props.size,
+    _size: get => get('size'),
     backgroundColor: '$sw3',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: props => props.size / 2,
+    borderRadius: get => get('size') / 2,
   },
   Initial: {
     _el: Text,

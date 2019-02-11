@@ -6,14 +6,14 @@ export default styleSheet('ProjectToolbar', {
     _flex: ['row'],
     _size: ['100%', '40'],
     backgroundColor: '$sw3',
-    height: props => {
-      return props.show ? 40 : 0;
+    height: get => {
+      return get('show') ? 40 : 0;
     },
-    opacity: props => {
-      return props.show ? 1 : 0;
+    opacity: get => {
+      return get('show') ? 1 : 0;
     },
-    justifyContent: props => {
-      return props.customKeyboardIsShown ? 'space-between' : 'flex-start';
+    justifyContent: get => {
+      return get('customKeyboardIsShown') ? 'space-between' : 'flex-start';
     },
   },
   Title: {
@@ -22,8 +22,8 @@ export default styleSheet('ProjectToolbar', {
     fontWeight: 'bold',
   },
   RightButton: {
-    marginLeft: props => {
-      return props.customKeyboardIsShown ? '' : 'auto';
+    marginLeft: get => {
+      return get('customKeyboardIsShown') ? '' : 'auto';
     },
   },
   MyKeyboard: {

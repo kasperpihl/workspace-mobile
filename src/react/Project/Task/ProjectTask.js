@@ -99,6 +99,8 @@ export default class ProjectTask extends PureComponent {
     const { taskId, task } = this.props;
     const { title, indention, hasChildren, expanded, completion } = task;
 
+    return null;
+
     return (
       <SW.Wrapper>
         {hasChildren && (

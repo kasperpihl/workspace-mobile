@@ -1,6 +1,6 @@
-import { addMixin } from "swiss-react";
+import { addMixin } from 'swiss-react';
 
-addMixin("size", function size(props, width, height) {
+addMixin('size', function size(width, height) {
   if (width === 1) {
     return { flex: 1 };
   }
@@ -8,14 +8,14 @@ addMixin("size", function size(props, width, height) {
   if (width && !height) {
     return {
       width,
-      height: width
+      height: width,
     };
   }
 
   if (width && height) {
     return {
       width,
-      height
+      height,
     };
   }
 });
