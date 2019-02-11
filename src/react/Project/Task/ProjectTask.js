@@ -20,6 +20,9 @@ export default class ProjectTask extends PureComponent {
     // Wait for sibling components to have re-rendered
     setTimeout(this.checkFocus, 0);
   }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    this.checkFocus();
+  }
   componentDidUpdate() {
     // Wait for all components to have re-rendered
     setTimeout(this.checkFocus, 0);
@@ -81,6 +84,7 @@ export default class ProjectTask extends PureComponent {
     const { task } = this.props;
     const { isSelected, selectionStart, title } = task;
     const { isFocused } = this.state;
+
     if (isSelected && !isFocused) {
       if (typeof selectionStart === 'number') {
         const selI = Math.min(title.length, selectionStart);
@@ -91,15 +95,11 @@ export default class ProjectTask extends PureComponent {
         this.blockNextSelectionChange = true;
       }
       this.inputRef.focus();
-    } else if (!isSelected && isFocused) {
-      this.inputRef.blur();
     }
   };
   render() {
     const { taskId, task } = this.props;
     const { title, indention, hasChildren, expanded, completion } = task;
-
-    return null;
 
     return (
       <SW.Wrapper>

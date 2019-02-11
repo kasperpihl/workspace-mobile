@@ -203,6 +203,10 @@ export default class ProjectToolbar extends PureComponent {
       this.configureNextLayoutAnimation();
       this.resetCustomKeyboardState();
 
+      // Dismiss the keyboard manually because we are done with it.
+      // And then way we don't care about bluring the input and handling that case
+      Keyboard.dismiss();
+
       if (onPressDoneButton) {
         onPressDoneButton();
       }
