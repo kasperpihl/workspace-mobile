@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, KeyboardAvoidingView } from 'react-native';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { List, fromJS, Map } from 'immutable';
@@ -94,9 +94,10 @@ export default class ProjectAdd extends PureComponent {
   render() {
     const { myId } = this.props;
     const { projectName, organizations } = this.state;
+    const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
-      <KeyboardAvoidingView behavior="padding">
+      <KeyboardAvoidingView behavior={behavior}>
         <SW.Wrapper>
           <SW.HeaderText>Add project</SW.HeaderText>
           <SW.FormWrapper>
