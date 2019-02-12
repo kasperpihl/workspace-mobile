@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import merge from 'deepmerge';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import orgGetBelonging from 'swipes-core-js/utils/org/orgGetBelonging';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
-import ProgressCircle from 'src/react/ProgressCircle/ProgressCircle';
 import SW from './ProjectListItem.swiss';
 
 export default class ProjectListItem extends PureComponent {
@@ -24,7 +24,16 @@ export default class ProjectListItem extends PureComponent {
       <TouchableOpacity onPress={this.handleListClick(project_id)}>
         <SW.Wrapper>
           <SW.LeftSide>
-            <ProgressCircle percent={completion_percentage} />
+            <AnimatedCircularProgress
+              size={22}
+              width={11}
+              backgroundWidth={11}
+              fill={25}
+              tintColor="#05A851"
+              duration={0}
+              rotation={0}
+              backgroundColor="#D5EDD1"
+            />
           </SW.LeftSide>
           <SW.Middle>
             <SW.LineOfText numberOfLines={1} topic>
