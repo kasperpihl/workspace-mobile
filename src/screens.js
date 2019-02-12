@@ -1,4 +1,7 @@
+import React from 'react';
+import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import { SwissProvider } from 'swiss-react';
 import configureStore from 'src/redux/configureStore';
 import HOCRootWrapper from 'src/react/HOCRootWrapper';
 import SignIn from 'src/react/SignIn/SignIn';
@@ -62,8 +65,15 @@ export function registerScreens() {
 
   // That's not a screen per say but a custom button component
   // It is needed so we have svg icons in the topBar
-  Navigation.registerComponent(
-    'IconTouchableWrapper',
-    () => IconTouchableWrapper
-  );
+  Navigation.registerComponent('IconTouchableWrapper', () => {
+    return class SpecialStupidWrapper extends React.PureComponent {
+      render() {
+        return (
+          <SwissProvider defaultEl={View}>
+            <IconTouchableWrapper {...this.props} />
+          </SwissProvider>
+        );
+      }
+    };
+  });
 }
