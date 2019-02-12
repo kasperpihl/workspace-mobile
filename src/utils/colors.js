@@ -10,6 +10,7 @@ export default {
   blue60: '#66AFFF',
   blue80: '#3394FF',
   red: '#FD6150',
-  green: '#25DB6F',
   yellow: '#FFB038',
+  green: '#05A851',
+  green5: '#D5EDD1',
 };

@@ -5,6 +5,7 @@ import merge from 'deepmerge';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import orgGetBelonging from 'swipes-core-js/utils/org/orgGetBelonging';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
+import colors from 'src/utils/colors';
 import SW from './ProjectListItem.swiss';
 
 export default class ProjectListItem extends PureComponent {
@@ -29,10 +30,10 @@ export default class ProjectListItem extends PureComponent {
               width={11}
               backgroundWidth={11}
               fill={completion_percentage}
-              tintColor="#05A851"
+              tintColor={colors['green']}
               duration={0}
               rotation={0}
-              backgroundColor="#D5EDD1"
+              backgroundColor={colors['green5']}
             />
           </SW.LeftSide>
           <SW.Middle>
