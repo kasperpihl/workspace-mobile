@@ -28,7 +28,7 @@ export default class ProjectListItem extends PureComponent {
               size={22}
               width={11}
               backgroundWidth={11}
-              fill={25}
+              fill={completion_percentage}
               tintColor="#05A851"
               duration={0}
               rotation={0}
