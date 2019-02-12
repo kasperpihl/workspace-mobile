@@ -17,15 +17,13 @@ export default class ProjectTask extends PureComponent {
     };
   }
   componentDidMount() {
-    // Wait for sibling components to have re-rendered
-    setTimeout(this.checkFocus, 0);
+    this.checkFocus();
   }
   getSnapshotBeforeUpdate(prevProps, prevState) {
     this.checkFocus();
   }
   componentDidUpdate() {
-    // Wait for all components to have re-rendered
-    setTimeout(this.checkFocus, 0);
+    this.checkFocus();
   }
   handleFocus = () => {
     const { taskId, stateManager } = this.props;
@@ -39,6 +37,7 @@ export default class ProjectTask extends PureComponent {
   };
   handleChangeText = text => {
     const { taskId, stateManager } = this.props;
+
     if (this.blockNextTextChange) {
       this.blockNextTextChange = undefined;
       return;
@@ -50,10 +49,12 @@ export default class ProjectTask extends PureComponent {
   handleExpandPress = () => {
     const { stateManager, taskId, task } = this.props;
     const { expanded } = task;
+
     stateManager.expandHandler[expanded ? 'collapse' : 'expand'](taskId);
   };
   handleKeyPress = e => {
     const { stateManager, taskId } = this.props;
+
     if (e.nativeEvent.key === 'Backspace' && this.selection.start === 0) {
       stateManager.editHandler.delete(taskId);
     } else if (e.nativeEvent.key === 'Enter') {
