@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, View } from 'react-native';
+import { Button, View, KeyboardAvoidingView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
@@ -43,43 +43,58 @@ export default class SignUpStepOne extends PureComponent {
     });
   };
   render() {
+    const { emailVal, passwordVal } = this.state;
+
     return (
-      <SW.Wrapper>
-        <SW.HeaderText>Swipes</SW.HeaderText>
-        <SW.FormWrapper>
-          <Form>
-            <FormLabel label={'Email'} />
-            <FormTextInput onChangeText={this.handleChangeText('emailVal')} />
-            <View style={{ marginTop: 30 }}>
-              <FormLabel label={'Password'} />
-              <FormTextInput
-                last
-                textContentType={'password'}
-                secureTextEntry={true}
-                onChangeText={this.handleChangeText('passwordVal')}
-                onSubmitEditing={this.goToNextStep}
-              />
-            </View>
-            <View style={{ marginTop: 80 }}>
-              <FormButton
-                onPress={this.goToNextStep}
-                label={'Create account'}
-              />
-            </View>
-          </Form>
-        </SW.FormWrapper>
-        <View style={{ marginTop: 100 }}>
-          <SW.DontHaveAnAccountText>
-            {`Already have an account?`}
-          </SW.DontHaveAnAccountText>
-          <Button
-            onPress={() => {
-              goSignIn();
-            }}
-            title="Sign In"
-          />
-        </View>
-      </SW.Wrapper>
+      <KeyboardAvoidingView behavior="padding">
+        <SW.Wrapper>
+          <SW.HeaderTextWrapper>
+            <SW.HeaderText>Swipes</SW.HeaderText>
+          </SW.HeaderTextWrapper>
+          <SW.FormWrapper>
+            <Form
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                flex: 1,
+              }}
+            >
+              <View>
+                <FormLabel label={'Email'} />
+                <FormTextInput
+                  value={emailVal}
+                  onChangeText={this.handleChangeText('emailVal')}
+                />
+              </View>
+              <View>
+                <FormLabel label={'Password'} />
+                <FormTextInput
+                  last
+                  value={passwordVal}
+                  passwordField={true}
+                  onChangeText={this.handleChangeText('passwordVal')}
+                  onSubmitEditing={this.goToNextStep}
+                />
+              </View>
+              <View>
+                <FormButton
+                  onPress={this.goToNextStep}
+                  label={'Create account'}
+                />
+              </View>
+            </Form>
+          </SW.FormWrapper>
+          <SW.FooterWrapper>
+            <SW.FooterText>{`Already have an account?`}</SW.FooterText>
+            <Button
+              onPress={() => {
+                goSignIn();
+              }}
+              title="Sign In"
+            />
+          </SW.FooterWrapper>
+        </SW.Wrapper>
+      </KeyboardAvoidingView>
     );
   }
 }

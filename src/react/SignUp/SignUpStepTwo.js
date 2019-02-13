@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
+import { Button, View, KeyboardAvoidingView } from 'react-native';
 import request from 'swipes-core-js/utils/request';
+import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
@@ -35,30 +36,57 @@ export default class SignUpStepTwo extends PureComponent {
     });
   };
   render() {
+    const { firstnameVal, lastnameVal } = this.state;
+
     return (
-      <SW.Wrapper>
-        <SW.HeaderText>Swipes</SW.HeaderText>
-        <SW.FormWrapper>
-          <Form>
-            <FormLabel label={'First name'} />
-            <FormTextInput
-              onChangeText={this.handleChangeText('firstnameVal')}
+      <KeyboardAvoidingView behavior="padding">
+        <SW.Wrapper>
+          <SW.HeaderTextWrapper>
+            <SW.HeaderText>Swipes</SW.HeaderText>
+          </SW.HeaderTextWrapper>
+          <SW.FormWrapper>
+            <Form
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                flex: 1,
+              }}
+            >
+              <View>
+                <FormLabel label={'First name'} />
+                <FormTextInput
+                  value={firstnameVal}
+                  onChangeText={this.handleChangeText('firstnameVal')}
+                />
+              </View>
+              <View>
+                <FormLabel label={'Last name'} />
+                <FormTextInput
+                  last
+                  value={lastnameVal}
+                  onChangeText={this.handleChangeText('lastnameVal')}
+                  onSubmitEditing={this.handleSignUp}
+                />
+              </View>
+              <View>
+                <FormButton
+                  onPress={this.handleSignUp}
+                  label={`Let's get started`}
+                />
+              </View>
+            </Form>
+          </SW.FormWrapper>
+          <SW.FooterWrapper>
+            <SW.FooterText>{`Already have an account?`}</SW.FooterText>
+            <Button
+              onPress={() => {
+                goSignIn();
+              }}
+              title="Sign In"
             />
-            <View style={{ marginTop: 30 }}>
-              <FormLabel label={'Last name'} />
-              <FormTextInput
-                onChangeText={this.handleChangeText('lastnameVal')}
-              />
-            </View>
-            <View style={{ marginTop: 80 }}>
-              <FormButton
-                onPress={this.handleSignUp}
-                label={`Let's get started`}
-              />
-            </View>
-          </Form>
-        </SW.FormWrapper>
-      </SW.Wrapper>
+          </SW.FooterWrapper>
+        </SW.Wrapper>
+      </KeyboardAvoidingView>
     );
   }
 }

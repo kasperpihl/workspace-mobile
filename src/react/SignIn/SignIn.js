@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View } from 'react-native';
+import { Button, View, KeyboardAvoidingView } from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import FormButton from 'src/react/FormButton/FormButton';
@@ -44,48 +44,58 @@ export default class SignIn extends Component {
     const { emailVal, passwordVal } = this.state;
 
     return (
-      <SW.Wrapper>
-        <SW.HeaderText>Swipes</SW.HeaderText>
-        <SW.FormWrapper>
-          <Form>
-            <FormLabel label={'Email'} />
-            <FormTextInput
-              value={emailVal}
-              onChangeText={this.handleChangeText('emailVal')}
+      <KeyboardAvoidingView behavior="padding">
+        <SW.Wrapper>
+          <SW.HeaderTextWrapper>
+            <SW.HeaderText>Swipes</SW.HeaderText>
+          </SW.HeaderTextWrapper>
+          <SW.FormWrapper>
+            <Form
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                flex: 1,
+              }}
+            >
+              <View>
+                <FormLabel label={'Email'} />
+                <FormTextInput
+                  value={emailVal}
+                  onChangeText={this.handleChangeText('emailVal')}
+                />
+              </View>
+              <View>
+                <FormLabel label={'Password'} />
+                <FormTextInput
+                  last
+                  value={passwordVal}
+                  onChangeText={this.handleChangeText('passwordVal')}
+                  passwordField={true}
+                  onSubmitEditing={this.handleSignIn}
+                />
+              </View>
+              <View>
+                <FormButton onPress={this.handleSignIn} label={'Sign in'} />
+                <Button
+                  onPress={() => {
+                    goForgottenPassword();
+                  }}
+                  title="Forgot your password?"
+                />
+              </View>
+            </Form>
+          </SW.FormWrapper>
+          <SW.FooterWrapper>
+            <SW.FooterText>{`Don't have an account?`}</SW.FooterText>
+            <Button
+              onPress={() => {
+                goSignUp();
+              }}
+              title="Sign up"
             />
-            <View style={{ marginTop: 30 }}>
-              <FormLabel label={'Password'} />
-              <FormTextInput
-                last
-                value={passwordVal}
-                onChangeText={this.handleChangeText('passwordVal')}
-                passwordField={true}
-                onSubmitEditing={this.handleSignIn}
-              />
-            </View>
-            <View style={{ marginTop: 80 }}>
-              <FormButton onPress={this.handleSignIn} label={'Sign in'} />
-              <Button
-                onPress={() => {
-                  goForgottenPassword();
-                }}
-                title="Forgot your password?"
-              />
-            </View>
-          </Form>
-        </SW.FormWrapper>
-        <View style={{ marginTop: 150 }}>
-          <SW.DontHaveAnAccountText>
-            {`Don't have an account?`}
-          </SW.DontHaveAnAccountText>
-          <Button
-            onPress={() => {
-              goSignUp();
-            }}
-            title="Sign up"
-          />
-        </View>
-      </SW.Wrapper>
+          </SW.FooterWrapper>
+        </SW.Wrapper>
+      </KeyboardAvoidingView>
     );
   }
 }
