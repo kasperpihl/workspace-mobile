@@ -10,6 +10,7 @@ import SignUpStepTwo from 'src/react/SignUp/SignUpStepTwo';
 // import Plan from 'src/Plan';
 import ProjectList from 'src/react/Project/List/ProjectList';
 import Profile from 'src/react/Profile/Profile';
+import ForgottenPassword from 'src/react/ForgottenPassword/ForgottenPassword';
 import ProjectAdd from 'src/react/Project/Add/ProjectAdd';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import Chat from 'src/Chat';
@@ -40,9 +41,8 @@ export function registerScreens() {
   Navigation.registerComponent('SignUpStepTwo', () =>
     HOCRootWrapper(SignUpStepTwo, store, persistor, false)
   );
-  Navigation.registerComponent(
-    'ForgottenPassword',
-    () => require('./react/ForgottenPassword/ForgottenPassword').default
+  Navigation.registerComponent('ForgottenPassword', () =>
+    HOCRootWrapper(ForgottenPassword, store, persistor, false)
   );
   Navigation.registerComponent('ProjectList', () =>
     HOCRootWrapper(ProjectList, store, persistor, true)
