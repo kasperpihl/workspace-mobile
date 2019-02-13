@@ -99,28 +99,36 @@ export default class ProjectAdd extends PureComponent {
     return (
       <KeyboardAvoidingView behavior={behavior}>
         <SW.Wrapper>
-          <SW.HeaderText>Add project</SW.HeaderText>
+          <SW.HeaderTextWrapper>
+            <SW.HeaderText>Add project</SW.HeaderText>
+          </SW.HeaderTextWrapper>
           <SW.FormWrapper>
-            <Form>
-              <FormLabel label={'Name'} />
-              <FormTextInput
-                last
-                value={projectName}
-                onChangeText={this.handleChangeText('projectName')}
-                autoFocus={true}
-                onSubmitEditing={this.handleAddProject}
-              />
-              <View style={{ marginTop: 30 }}>
-                <FormLabel label={'Pick organization'} />
+            <Form
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                flex: 1,
+              }}
+            >
+              <View>
+                <FormLabel label={'Name'} />
+                <FormTextInput
+                  last
+                  value={projectName}
+                  onChangeText={this.handleChangeText('projectName')}
+                  autoFocus={true}
+                  onSubmitEditing={this.handleAddProject}
+                />
               </View>
-              <View style={{ marginTop: 10 }}>
+              <View>
+                <FormLabel label={'Pick organization'} />
                 <Picker
                   values={organizations}
                   defaultValue={myId}
                   onChange={this.handlePickerChange}
                 />
               </View>
-              <View style={{ marginTop: 80 }}>
+              <View>
                 <FormButton
                   label={'Create project'}
                   onPress={this.handleAddProject}
@@ -128,6 +136,7 @@ export default class ProjectAdd extends PureComponent {
               </View>
             </Form>
           </SW.FormWrapper>
+          <SW.FooterWrapper />
         </SW.Wrapper>
       </KeyboardAvoidingView>
     );
