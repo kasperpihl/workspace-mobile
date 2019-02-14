@@ -61,11 +61,11 @@ export default class ProjectToolbar extends PureComponent {
     // Keyboard management
     this.keyboardShowSubscription = Keyboard.addListener(
       `${keyboardSubType}Show`,
-      this[`${keyboardSubType}Show`]
+      this.keyboardShow
     );
     this.keyboardHideSubscription = Keyboard.addListener(
       `${keyboardSubType}Hide`,
-      this[`${keyboardSubType}Hide`]
+      this.keyboardHide
     );
   }
   componentWillUnmount() {
@@ -121,18 +121,6 @@ export default class ProjectToolbar extends PureComponent {
       toolBarPaddingBottom: 0,
       myKeyboardHeight: keyboardHeight,
     });
-  };
-  keyboardWillShow = event => {
-    this.keyboardShow(event);
-  };
-  keyboardDidShow = event => {
-    this.keyboardShow(event);
-  };
-  keyboardWillHide = event => {
-    this.keyboardHide(event);
-  };
-  keyboardDidHide = event => {
-    this.keyboardHide(event);
   };
   resetCustomKeyboardState = () => {
     this.setState({
