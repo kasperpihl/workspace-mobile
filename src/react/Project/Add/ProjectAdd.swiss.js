@@ -22,6 +22,5 @@ export default styleSheet('ProjectAdd', {
   },
   FooterWrapper: {
     flex: 0.3,
-    backgroundColor: 'red',
   },
 });

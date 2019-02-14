@@ -7,13 +7,9 @@ export default styleSheet('SignUp', {
     _size: ['100%', '100%'],
     _padding: [0, 20],
   },
-  FormWrapper: {
-    _size: ['100%'],
-    flex: 1.7,
-  },
   HeaderTextWrapper: {
     _flex: ['column', 'center', 'center'],
-    flex: 1,
+    flex: 0.5,
   },
   HeaderText: {
     _el: Text,
@@ -22,7 +18,7 @@ export default styleSheet('SignUp', {
   },
   FooterWrapper: {
     _flex: ['column', 'center', 'center'],
-    flex: 1,
+    flex: 1.5,
   },
   FooterText: {
     _el: Text,

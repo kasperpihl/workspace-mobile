@@ -11,12 +11,14 @@ import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
 import Picker from 'src/react/Picker/Picker';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
+import withKeyboard from 'src/utils/withKeyboard';
 import SW from './ProjectAdd.swiss';
 
 @connect(state => ({
   myId: state.me.get('user_id'),
   organizations: state.organizations.toList(),
 }))
+@withKeyboard
 export default class ProjectAdd extends PureComponent {
   constructor(props) {
     super(props);
@@ -92,16 +94,18 @@ export default class ProjectAdd extends PureComponent {
     });
   }
   render() {
-    const { myId } = this.props;
+    const { myId, keyboardIsShown } = this.props;
     const { projectName, organizations } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
       <KeyboardAvoidingView behavior={behavior}>
         <SW.Wrapper>
-          <SW.HeaderTextWrapper>
-            <SW.HeaderText>Add project</SW.HeaderText>
-          </SW.HeaderTextWrapper>
+          {!keyboardIsShown && (
+            <SW.HeaderTextWrapper>
+              <SW.HeaderText>Add Project</SW.HeaderText>
+            </SW.HeaderTextWrapper>
+          )}
           <SW.FormWrapper>
             <Form
               style={{

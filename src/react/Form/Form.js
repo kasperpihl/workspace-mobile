@@ -32,6 +32,7 @@ class Form extends React.Component {
       const inputCount = this.inputCount;
 
       return React.cloneElement(child, {
+        blurOnSubmit: child.props.last ? true : false,
         returnKeyType: child.props.last ? 'go' : 'next',
         onEnter: () => {
           const nextInputIndex = inputCount + 1;

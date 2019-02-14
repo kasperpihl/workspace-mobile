@@ -6,8 +6,10 @@ import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
+import withKeyboard from 'src/utils/withKeyboard';
 import SW from 'src/react/SignIn/SignIn.swiss';
 
+@withKeyboard
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +36,7 @@ export default class SignIn extends Component {
     });
   }
   render() {
-    const { signedIn } = this.props;
+    const { signedIn, keyboardIsShown } = this.props;
 
     if (signedIn) {
       goHome();
@@ -44,58 +46,65 @@ export default class SignIn extends Component {
     const { emailVal, passwordVal } = this.state;
 
     return (
-      <KeyboardAvoidingView behavior="padding">
-        <SW.Wrapper>
+      <SW.Wrapper>
+        {!keyboardIsShown && (
           <SW.HeaderTextWrapper>
             <SW.HeaderText>Swipes</SW.HeaderText>
           </SW.HeaderTextWrapper>
-          <SW.FormWrapper>
-            <Form
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'space-around',
-                flex: 1,
-              }}
-            >
-              <View>
-                <FormLabel label={'Email'} />
-                <FormTextInput
-                  value={emailVal}
-                  onChangeText={this.handleChangeText('emailVal')}
-                />
-              </View>
-              <View>
-                <FormLabel label={'Password'} />
-                <FormTextInput
-                  last
-                  value={passwordVal}
-                  onChangeText={this.handleChangeText('passwordVal')}
-                  passwordField={true}
-                  onSubmitEditing={this.handleSignIn}
-                />
-              </View>
-              <View>
-                <FormButton onPress={this.handleSignIn} label={'Sign in'} />
-                <Button
-                  onPress={() => {
-                    goForgottenPassword();
-                  }}
-                  title="Forgot your password?"
-                />
-              </View>
-            </Form>
-          </SW.FormWrapper>
-          <SW.FooterWrapper>
-            <SW.FooterText>{`Don't have an account?`}</SW.FooterText>
-            <Button
-              onPress={() => {
-                goSignUp();
-              }}
-              title="Sign up"
-            />
-          </SW.FooterWrapper>
-        </SW.Wrapper>
-      </KeyboardAvoidingView>
+        )}
+        <KeyboardAvoidingView
+          style={{
+            width: '100%',
+            height: '100%',
+            flex: 1.7,
+          }}
+          behavior="padding"
+        >
+          <Form
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              flex: 1,
+            }}
+          >
+            <View>
+              <FormLabel label={'Email'} />
+              <FormTextInput
+                value={emailVal}
+                onChangeText={this.handleChangeText('emailVal')}
+              />
+            </View>
+            <View>
+              <FormLabel label={'Password'} />
+              <FormTextInput
+                last
+                value={passwordVal}
+                onChangeText={this.handleChangeText('passwordVal')}
+                passwordField={true}
+                onSubmitEditing={this.handleSignIn}
+              />
+            </View>
+            <View>
+              <FormButton onPress={this.handleSignIn} label={'Sign in'} />
+              <Button
+                onPress={() => {
+                  goForgottenPassword();
+                }}
+                title="Forgot your password?"
+              />
+            </View>
+          </Form>
+        </KeyboardAvoidingView>
+        <SW.FooterWrapper>
+          <SW.FooterText>{`Don't have an account?`}</SW.FooterText>
+          <Button
+            onPress={() => {
+              goSignUp();
+            }}
+            title="Sign up"
+          />
+        </SW.FooterWrapper>
+      </SW.Wrapper>
     );
   }
 }

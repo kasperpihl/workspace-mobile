@@ -7,10 +7,6 @@ export default styleSheet('SignIn', {
     _size: ['100%', '100%'],
     _padding: [0, 20],
   },
-  FormWrapper: {
-    _size: ['100%'],
-    flex: 1.7,
-  },
   HeaderTextWrapper: {
     _flex: ['column', 'center', 'center'],
     flex: 1,
