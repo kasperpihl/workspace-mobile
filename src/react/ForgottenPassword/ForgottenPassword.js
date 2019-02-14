@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Button, View, Alert, KeyboardAvoidingView } from 'react-native';
+import {
+  Button,
+  View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
@@ -44,9 +50,10 @@ export default class ForgottenPassword extends Component {
   };
   render() {
     const { emailVal } = this.state;
+    const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
-      <KeyboardAvoidingView behavior="padding">
+      <KeyboardAvoidingView behavior={behavior}>
         <SW.Wrapper>
           <SW.HeaderText>Forgot password?</SW.HeaderText>
           <SW.CopyText>

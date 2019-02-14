@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Keyboard, TextInput, Platform } from 'react-native';
+import { Keyboard, Platform } from 'react-native';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
 let keyboardSubType = 'keyboardWill';

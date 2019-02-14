@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, View, KeyboardAvoidingView } from 'react-native';
+import { Button, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
@@ -47,6 +47,7 @@ export default class SignUpStepOne extends PureComponent {
   render() {
     const { keyboardIsShown } = this.props;
     const { emailVal, passwordVal } = this.state;
+    const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
       <SW.Wrapper>
@@ -61,7 +62,7 @@ export default class SignUpStepOne extends PureComponent {
             height: '100%',
             flex: 1.7,
           }}
-          behavior="padding"
+          behavior={behavior}
         >
           <Form
             style={{

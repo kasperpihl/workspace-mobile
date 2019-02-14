@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View, KeyboardAvoidingView } from 'react-native';
+import { Button, View, KeyboardAvoidingView, Platform } from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import FormButton from 'src/react/FormButton/FormButton';
@@ -37,6 +37,7 @@ export default class SignIn extends Component {
   }
   render() {
     const { signedIn, keyboardIsShown } = this.props;
+    const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     if (signedIn) {
       goHome();
@@ -58,7 +59,7 @@ export default class SignIn extends Component {
             height: '100%',
             flex: 1.7,
           }}
-          behavior="padding"
+          behavior={behavior}
         >
           <Form
             style={{
