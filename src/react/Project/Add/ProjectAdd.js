@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { List, fromJS, Map } from 'immutable';
@@ -99,50 +99,57 @@ export default class ProjectAdd extends PureComponent {
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
-      <KeyboardAvoidingView behavior={behavior}>
-        <SW.Wrapper>
-          {!keyboardIsShown && (
-            <SW.HeaderTextWrapper>
-              <SW.HeaderText>Add Project</SW.HeaderText>
-            </SW.HeaderTextWrapper>
-          )}
-          <SW.FormWrapper>
-            <Form
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'space-around',
-                flex: 1,
-              }}
-            >
-              <View>
-                <FormLabel label={'Name'} />
-                <FormTextInput
-                  last
-                  value={projectName}
-                  onChangeText={this.handleChangeText('projectName')}
-                  autoFocus={true}
-                  onSubmitEditing={this.handleAddProject}
-                />
-              </View>
-              <View>
-                <FormLabel label={'Pick organization'} />
-                <Picker
-                  values={organizations}
-                  defaultValue={myId}
-                  onChange={this.handlePickerChange}
-                />
-              </View>
-              <View>
-                <FormButton
-                  label={'Create project'}
-                  onPress={this.handleAddProject}
-                />
-              </View>
-            </Form>
-          </SW.FormWrapper>
-          <SW.FooterWrapper />
-        </SW.Wrapper>
-      </KeyboardAvoidingView>
+      <ScrollView
+        alwaysBounceVertical={false}
+        contentContainerStyle={{
+          flex: 1,
+        }}
+      >
+        <KeyboardAvoidingView behavior={behavior}>
+          <SW.Wrapper>
+            {!keyboardIsShown && (
+              <SW.HeaderTextWrapper>
+                <SW.HeaderText>Add Project</SW.HeaderText>
+              </SW.HeaderTextWrapper>
+            )}
+            <SW.FormWrapper>
+              <Form
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  flex: 1,
+                }}
+              >
+                <View>
+                  <FormLabel label={'Name'} />
+                  <FormTextInput
+                    last
+                    value={projectName}
+                    onChangeText={this.handleChangeText('projectName')}
+                    autoFocus={true}
+                    onSubmitEditing={this.handleAddProject}
+                  />
+                </View>
+                <View>
+                  <FormLabel label={'Pick organization'} />
+                  <Picker
+                    values={organizations}
+                    defaultValue={myId}
+                    onChange={this.handlePickerChange}
+                  />
+                </View>
+                <View>
+                  <FormButton
+                    label={'Create project'}
+                    onPress={this.handleAddProject}
+                  />
+                </View>
+              </Form>
+            </SW.FormWrapper>
+            <SW.FooterWrapper />
+          </SW.Wrapper>
+        </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 }

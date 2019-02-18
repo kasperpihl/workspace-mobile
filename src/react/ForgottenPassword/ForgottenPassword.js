@@ -5,6 +5,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
 } from 'react-native';
 import request from 'swipes-core-js/utils/request';
 import { goSignIn } from 'src/navigation';
@@ -53,46 +54,53 @@ export default class ForgottenPassword extends Component {
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
-      <KeyboardAvoidingView behavior={behavior}>
-        <SW.Wrapper>
-          <SW.HeaderText>Forgot password?</SW.HeaderText>
-          <SW.CopyText>
-            {`Enter you email and we'll send you an email to reset your password.`}
-          </SW.CopyText>
-          <SW.FormWrapper>
-            <Form
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'space-around',
-                flex: 1,
-              }}
-            >
-              <View>
-                <FormLabel label={'Email'} />
-                <FormTextInput
-                  last
-                  value={emailVal}
-                  textContentType={'username'}
-                  onChangeText={this.handleChangeText('emailVal')}
-                  onSubmitEditing={this.handleSendResetEmail}
-                />
-              </View>
-              <View>
-                <FormButton
-                  label={'Reset password'}
-                  onPress={this.handleSendResetEmail}
-                />
-                <Button
-                  onPress={() => {
-                    goSignIn();
-                  }}
-                  title="Cancel"
-                />
-              </View>
-            </Form>
-          </SW.FormWrapper>
-        </SW.Wrapper>
-      </KeyboardAvoidingView>
+      <ScrollView
+        alwaysBounceVertical={false}
+        contentContainerStyle={{
+          flex: 1,
+        }}
+      >
+        <KeyboardAvoidingView behavior={behavior}>
+          <SW.Wrapper>
+            <SW.HeaderText>Forgot password?</SW.HeaderText>
+            <SW.CopyText>
+              {`Enter you email and we'll send you an email to reset your password.`}
+            </SW.CopyText>
+            <SW.FormWrapper>
+              <Form
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  flex: 1,
+                }}
+              >
+                <View>
+                  <FormLabel label={'Email'} />
+                  <FormTextInput
+                    last
+                    value={emailVal}
+                    textContentType={'username'}
+                    onChangeText={this.handleChangeText('emailVal')}
+                    onSubmitEditing={this.handleSendResetEmail}
+                  />
+                </View>
+                <View>
+                  <FormButton
+                    label={'Reset password'}
+                    onPress={this.handleSendResetEmail}
+                  />
+                  <Button
+                    onPress={() => {
+                      goSignIn();
+                    }}
+                    title="Cancel"
+                  />
+                </View>
+              </Form>
+            </SW.FormWrapper>
+          </SW.Wrapper>
+        </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 }

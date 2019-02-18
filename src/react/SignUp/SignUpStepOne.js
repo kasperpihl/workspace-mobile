@@ -1,5 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Button, View, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  Button,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
@@ -50,62 +56,69 @@ export default class SignUpStepOne extends PureComponent {
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
-      <SW.Wrapper>
-        {!keyboardIsShown && (
-          <SW.HeaderTextWrapper>
-            <SW.HeaderText>Swipes</SW.HeaderText>
-          </SW.HeaderTextWrapper>
-        )}
-        <KeyboardAvoidingView
-          style={{
-            width: '100%',
-            height: '100%',
-            flex: 1.7,
-          }}
-          behavior={behavior}
-        >
-          <Form
+      <ScrollView
+        alwaysBounceVertical={false}
+        contentContainerStyle={{
+          flex: 1,
+        }}
+      >
+        <SW.Wrapper>
+          {!keyboardIsShown && (
+            <SW.HeaderTextWrapper>
+              <SW.HeaderText>Swipes</SW.HeaderText>
+            </SW.HeaderTextWrapper>
+          )}
+          <KeyboardAvoidingView
             style={{
-              flexDirection: 'column',
-              justifyContent: 'space-around',
-              flex: 1,
+              width: '100%',
+              height: '100%',
+              flex: 1.7,
             }}
+            behavior={behavior}
           >
-            <View>
-              <FormLabel label={'Email'} />
-              <FormTextInput
-                value={emailVal}
-                onChangeText={this.handleChangeText('emailVal')}
-              />
-            </View>
-            <View>
-              <FormLabel label={'Password'} />
-              <FormTextInput
-                last
-                value={passwordVal}
-                passwordField={true}
-                onChangeText={this.handleChangeText('passwordVal')}
-                onSubmitEditing={this.goToNextStep}
-              />
-            </View>
-            <View>
-              <FormButton
-                onPress={this.goToNextStep}
-                label={'Create account'}
-              />
-            </View>
-          </Form>
-        </KeyboardAvoidingView>
-        <SW.FooterWrapper>
-          <SW.FooterText>{`Already have an account?`}</SW.FooterText>
-          <Button
-            onPress={() => {
-              goSignIn();
-            }}
-            title="Sign In"
-          />
-        </SW.FooterWrapper>
-      </SW.Wrapper>
+            <Form
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                flex: 1,
+              }}
+            >
+              <View>
+                <FormLabel label={'Email'} />
+                <FormTextInput
+                  value={emailVal}
+                  onChangeText={this.handleChangeText('emailVal')}
+                />
+              </View>
+              <View>
+                <FormLabel label={'Password'} />
+                <FormTextInput
+                  last
+                  value={passwordVal}
+                  passwordField={true}
+                  onChangeText={this.handleChangeText('passwordVal')}
+                  onSubmitEditing={this.goToNextStep}
+                />
+              </View>
+              <View>
+                <FormButton
+                  onPress={this.goToNextStep}
+                  label={'Create account'}
+                />
+              </View>
+            </Form>
+          </KeyboardAvoidingView>
+          <SW.FooterWrapper>
+            <SW.FooterText>{`Already have an account?`}</SW.FooterText>
+            <Button
+              onPress={() => {
+                goSignIn();
+              }}
+              title="Sign In"
+            />
+          </SW.FooterWrapper>
+        </SW.Wrapper>
+      </ScrollView>
     );
   }
 }
