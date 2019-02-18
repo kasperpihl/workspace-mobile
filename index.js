@@ -8,6 +8,7 @@ Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions({
     topBar: {
       noBorder: true,
+      elevation: 0,
     },
   });
 
