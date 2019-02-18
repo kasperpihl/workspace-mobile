@@ -6,16 +6,13 @@ import withProjectTask from 'swipes-core-js/components/project/withProjectTask';
 
 @withProjectTask
 export default class ProjectTask extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFocused: false,
-    };
-    this.selection = {
-      start: 0,
-      end: 0,
-    };
-  }
+  state = {
+    isFocused: false,
+  };
+  selection = {
+    start: 0,
+    end: 0,
+  };
   componentDidMount() {
     this.checkFocus();
   }
