@@ -56,6 +56,7 @@ export default class ForgottenPassword extends Component {
     return (
       <ScrollView
         alwaysBounceVertical={false}
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           flex: 1,
         }}

@@ -58,6 +58,7 @@ export default class SignUpStepOne extends PureComponent {
     return (
       <ScrollView
         alwaysBounceVertical={false}
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           flex: 1,
         }}

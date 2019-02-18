@@ -101,6 +101,7 @@ export default class ProjectAdd extends PureComponent {
     return (
       <ScrollView
         alwaysBounceVertical={false}
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           flex: 1,
         }}
