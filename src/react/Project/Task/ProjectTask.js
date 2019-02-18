@@ -54,10 +54,11 @@ export default class ProjectTask extends PureComponent {
 
     if (e.nativeEvent.key === 'Backspace' && this.selection.start === 0) {
       stateManager.editHandler.delete(taskId);
-    } else if (e.nativeEvent.key === 'Enter') {
-      this.blockNextTextChange = true;
-      stateManager.editHandler.enter(taskId, this.selection.start);
     }
+  };
+  handleSubmit = e => {
+    const { stateManager, taskId } = this.props;
+    stateManager.editHandler.enter(taskId, this.selection.start);
   };
   handleComplete = () => {
     const { taskId, stateManager, task } = this.props;
@@ -70,12 +71,6 @@ export default class ProjectTask extends PureComponent {
     }
   };
   handleSelectionChange = e => {
-    if (this.blockNextSelectionChange) {
-      this.blockNextSelectionChange = undefined;
-
-      return;
-    }
-
     this.selection = e.nativeEvent.selection;
   };
   checkFocus = () => {
@@ -90,14 +85,20 @@ export default class ProjectTask extends PureComponent {
 
         this.inputRef.setNativeProps({ selection });
         this.selection = selection;
-        this.blockNextSelectionChange = true;
       }
       this.inputRef.focus();
     }
   };
   render() {
     const { taskId, task } = this.props;
-    const { title, indention, hasChildren, expanded, completion } = task;
+    const {
+      title,
+      indention,
+      hasChildren,
+      expanded,
+      completion,
+      isSelected,
+    } = task;
 
     return (
       <SW.Wrapper>
@@ -133,6 +134,7 @@ export default class ProjectTask extends PureComponent {
           <SW.Input
             innerRef={c => (this.inputRef = c)}
             value={title}
+            autoFocus={isSelected}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyPress={this.handleKeyPress}
@@ -140,6 +142,8 @@ export default class ProjectTask extends PureComponent {
             onChangeText={this.handleChangeText}
             multiline={true}
             scrollEnabled={false}
+            blurOnSubmit={false}
+            onSubmitEditing={this.handleSubmit}
           />
         </SW.InnerWrapper>
       </SW.Wrapper>
