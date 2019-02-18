@@ -127,7 +127,6 @@ export default class ProjectAdd extends PureComponent {
                     last
                     value={projectName}
                     onChangeText={this.handleChangeText('projectName')}
-                    autoFocus={true}
                     onSubmitEditing={this.handleAddProject}
                   />
                 </View>
