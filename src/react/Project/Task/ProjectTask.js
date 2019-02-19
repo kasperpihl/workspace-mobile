@@ -18,6 +18,7 @@ export default class ProjectTask extends PureComponent {
   }
   getSnapshotBeforeUpdate(prevProps, prevState) {
     this.checkFocus();
+    return null;
   }
   componentDidUpdate() {
     this.checkFocus();
