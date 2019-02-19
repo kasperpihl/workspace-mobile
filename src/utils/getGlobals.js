@@ -5,25 +5,26 @@ import { fromJS } from 'immutable';
 const { width, height } = Dimensions.get('window');
 
 export default function getGlobals() {
-  let apiUrl = 'https://workspace.swipesapp.com';
+  const bundleId = DeviceInfo.getBundleId();
+  const isDev =
+    bundleId === 'com.workspacemobile.androiddev' ||
+    bundleId === 'com.workspacemobile.iosdev';
 
+  let apiUrl = 'https://wspc.io';
   if (
-    window.__DEV__ ||
-    DeviceInfo.getBundleId() === 'com.swipesapp.iosstaging' ||
-    DeviceInfo.getBundleId() === 'com.swipesapp.androidstaging'
+    isDev
+    // bundleId === 'com.workspacemobile.androidstaging' ||
+    // bundleId === 'com.workspacemobile.iosstaging'
   ) {
-    if (Platform.OS === 'ios') {
-      apiUrl = 'http://localhost:5000';
-    } else {
-      apiUrl = 'http://10.0.2.2:5000';
-    }
+    apiUrl = 'http://192.168.1.48:5000';
+    // apiUrl = 'http://localhost:5000';
   }
   const pre = `sw-${Platform.OS}`;
 
   return fromJS({
-    viewSize: { width, height },
     apiUrl,
-    isDev: window.__DEV__,
+    isDev,
+    viewSize: { width, height },
     version: DeviceInfo.getReadableVersion(),
     withoutNotes: true,
     platform: Platform.OS,

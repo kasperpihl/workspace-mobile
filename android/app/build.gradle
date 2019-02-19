@@ -109,6 +109,16 @@ android {
         }
         multiDexEnabled true
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -122,9 +132,24 @@ android {
         }
     }
     buildTypes {
-        release {
+        debug {
+            resValue "string", "app_name", "SwipesDev"
+            applicationIdSuffix '.androiddev'
+        }
+        releaseStaging {
+            applicationIdSuffix '.androidstaging'
+            resValue "string", "app_name", "Swipes Staging"
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            matchingFallbacks = ['debug']
+        }
+        release {
+            resValue "string", "app_name", "Swipes"
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            matchingFallbacks = ['debug']
         }
     }
     // applicationVariants are e.g. debug, release
