@@ -5,17 +5,11 @@ import { fromJS } from 'immutable';
 const { width, height } = Dimensions.get('window');
 
 export default function getGlobals() {
-  const bundleId = DeviceInfo.getBundleId();
-  const isDev =
-    bundleId === 'com.workspacemobile.androiddev' ||
-    bundleId === 'com.workspacemobile.iosdev';
+  // const bundleId = DeviceInfo.getBundleId();
+  const isDev = __DEV__;
 
   let apiUrl = 'https://wspc.io';
-  if (
-    isDev
-    // bundleId === 'com.workspacemobile.androidstaging' ||
-    // bundleId === 'com.workspacemobile.iosstaging'
-  ) {
+  if (isDev) {
     apiUrl = 'http://192.168.1.48:5000';
     // apiUrl = 'http://localhost:5000';
   }
