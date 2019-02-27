@@ -70,7 +70,7 @@ export default class ProjectOverview extends PureComponent {
     'users',
   ]);
   navigationButtonPressed = ({ buttonId }) => {
-    // TODO edit, discuss
+    // T_TODO edit, discuss
   };
   componentDidMount() {
     this.unsubscribe = this.stateManager.subscribe(stateManager => {

@@ -52,6 +52,7 @@ function ChatList({ myId, type, unreadCounter, componentId }) {
     }
   );
 
+  // T_TODO remove that at some point
   console.log(req);
 
   const renderLoader = () => {
