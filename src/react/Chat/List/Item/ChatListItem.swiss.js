@@ -18,6 +18,10 @@ export default styleSheet('ChatListItem', {
     marginLeft: 15,
     marginTop: 15,
     backgroundColor: '$blue',
+    opacity: 0,
+    unread: {
+      opacity: 1,
+    },
   },
   RightSide: {
     _flex: 'column',

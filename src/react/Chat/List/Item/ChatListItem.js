@@ -5,28 +5,30 @@ import userGetFirstName from 'swipes-core-js/utils/user/userGetFirstName';
 import orgGetBelonging from 'swipes-core-js/utils/org/orgGetBelonging';
 import SW from './ChatListItem.swiss';
 
-export default function ChatListItem({ item }) {
+export default function ChatListItem({ item, myId }) {
   const {
     topic,
     last_comment,
     last_comment_at,
     last_comment_by,
+    followers,
     owned_by,
   } = item;
-  const unread = false;
   const firstName = userGetFirstName(last_comment_by, owned_by);
   const orgName = orgGetBelonging(owned_by);
+  const ts = followers[myId];
+  const unread = ts === 'n' || ts < last_comment_at;
 
   return (
     <TouchableOpacity>
       <SW.Wrapper>
         <SW.LeftSide>
-          <SW.UnreadDot />
+          <SW.UnreadDot unread={unread} />
         </SW.LeftSide>
         <SW.RightSide>
           <SW.TopicRow>
             <SW.TopicText>
-              <SW.LineOfText numberOfLines={1} topic unread={unread}>
+              <SW.LineOfText numberOfLines={1} topic>
                 {topic}
               </SW.LineOfText>
             </SW.TopicText>

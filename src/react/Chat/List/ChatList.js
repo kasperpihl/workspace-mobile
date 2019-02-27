@@ -72,7 +72,7 @@ function ChatList({ myId, type, unreadCounter, componentId }) {
           onEndReached={() => req.fetchNext()}
           onEndReachedThreshold={0}
           keyExtractor={item => item.discussion_id}
-          renderItem={({ item }) => <ChatListItem item={item} />}
+          renderItem={({ item }) => <ChatListItem item={item} myId={myId} />}
           // ListFooterComponent={() => this.renderListFooter(p.loading)}
         />
       );
