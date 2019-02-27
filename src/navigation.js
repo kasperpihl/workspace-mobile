@@ -42,8 +42,15 @@ export const goHome = () =>
           //   },
           // },
           {
-            component: {
-              name: 'Chat',
+            stack: {
+              children: [
+                {
+                  component: navigationComponents.ChatList,
+                },
+                // {
+                //   component: navigationComponents.ProjectOverview,
+                // },
+              ],
               options: {
                 bottomTab: {
                   text: 'Chat',

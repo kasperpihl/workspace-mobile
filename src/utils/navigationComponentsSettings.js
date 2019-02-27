@@ -70,4 +70,8 @@ export default {
       },
     },
   },
+  ChatList: {
+    id: 'ChatList',
+    name: 'ChatList',
+  },
 };
