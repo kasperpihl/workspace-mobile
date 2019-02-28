@@ -33,10 +33,10 @@ function ChatList({ myId, type, unreadCounter, componentId }) {
       topBar: {
         rightButtons: [addButton],
       },
-      // bottomTab: {
-      //   badge: 2,
-      //   badgeColor: 'red',
-      // },
+      bottomTab: {
+        badge: unreadCounter ? `${unreadCounter}` : null,
+        badgeColor: 'red',
+      },
     });
   }, []);
 
