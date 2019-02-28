@@ -1,15 +1,14 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { Slider, Text, ActivityIndicator } from 'react-native';
+import { Slider, ActivityIndicator } from 'react-native';
 import { VirtualizedList } from 'react-native';
-import withRequests from 'swipes-core-js/components/withRequests';
-import ProjectProvider from 'swipes-core-js/components/project/ProjectProvider';
-import ProjectStateManager from 'swipes-core-js/classes/ProjectStateManager';
+import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
+import useProjectSlice from 'core/react/_hooks/useProjectSlice';
+import useSyncedProject from 'core/react/_hooks/useSyncedProject';
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import SW from './ProjectOverview.swiss';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
-// import KeyboardDate from 'src/react/Keyboard/Date/KeyboardDate';
 import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
 
 console.disableYellowBox = true;
@@ -25,163 +24,125 @@ const defaultButtons = [
   },
 ];
 
-@withRequests(
-  {
-    project: {
-      request: {
-        url: 'project.get',
-        body: props => ({
-          project_id: props.projectId,
-        }),
-        resPath: 'result',
-      },
-      cache: {
-        path: props => ['project', props.projectId],
-      },
-    },
-  },
-  {
-    renderLoader: () => (
-      <SW.LoaderContainer>
-        <ActivityIndicator size="large" color="#007AFF" />
-      </SW.LoaderContainer>
-    ),
-  }
-)
-@connect(state => ({
-  myId: state.me.get('user_id'),
+export default connect(state => ({
   organizations: state.organizations,
-}))
-export default class ProjectOverview extends PureComponent {
-  constructor(props) {
-    super(props);
+}))(ProjectOverview);
 
-    this.stateManager = new ProjectStateManager(props.project);
-    this.state = {
-      selectedId: this.stateManager.getLocalState().get('selectedId'),
-      visibleOrder: this.stateManager.getLocalState().get('visibleOrder'),
-    };
-    this.inputRefs = {};
+function ProjectOverview({ organizations, projectId }) {
+  const stateManager = useSyncedProject(projectId);
+  const [selectedId, visibleOrder, projectName, ownedBy] = useProjectSlice(
+    stateManager,
+    (clientState, localState) => [
+      localState.get('selectedId'),
+      localState.get('visibleOrder'),
+      clientState.get('name'),
+      clientState.get('owned_by'),
+    ]
+  );
+  const orgUsers = organizations.getIn([ownedBy, 'users']);
 
-    Navigation.events().bindComponent(this, 'ProjectOverview');
-  }
-  orgUsers = this.props.organizations.getIn([
-    this.props.project.get('owned_by'),
-    'users',
-  ]);
-  navigationButtonPressed = ({ buttonId }) => {
-    // T_TODO edit, discuss
-  };
-  componentDidMount() {
-    this.unsubscribe = this.stateManager.subscribe(stateManager => {
-      const selectedId = this.stateManager.getLocalState().get('selectedId');
-      const visibleOrder = stateManager.getLocalState().get('visibleOrder');
-      if (
-        visibleOrder !== this.state.visibleOrder ||
-        selectedId !== this.state.selectedId
-      ) {
-        this.setState({ visibleOrder, selectedId });
-      }
+  const lastSelectedId = useRef();
+  useEffect(() => {
+    lastSelectedId.current = selectedId;
+  });
 
-      if (selectedId && selectedId !== this.lastSelectedId) {
-        this.lastSelectedId = selectedId;
-      }
-    });
-
+  useEffect(() => {
     Navigation.mergeOptions('ProjectOverview', {
       topBar: {
         rightButtons: defaultButtons,
       },
     });
+  }, []);
+
+  // useBeforeUnload(() => {
+  //   stateManager && stateManager.syncHandler.syncIfNeeded();
+  // });
+
+  if (!visibleOrder) {
+    return (
+      <SW.LoaderContainer>
+        <ActivityIndicator size="large" color="#007AFF" />
+      </SW.LoaderContainer>
+    );
   }
-  componentWillUnmount() {
-    this.unsubscribe();
-    this.stateManager.syncHandler.syncIfNeeded();
-  }
-  handleSliderChange = value => {
-    const depth = parseInt(value, 10);
-    this.stateManager.expandHandler.setDepth(depth);
+
+  // const handleSliderChange = value => {
+  //   const depth = parseInt(value, 10);
+  //   stateManager.expandHandler.setDepth(depth);
+  // };
+  const onItemIndent = () => {
+    stateManager.indentHandler.indent(selectedId);
   };
-  onItemIndent = () => {
-    const selectedId = this.stateManager.getLocalState().get('selectedId');
-    this.stateManager.indentHandler.indent(selectedId);
+  const onItemOutdent = () => {
+    stateManager.indentHandler.outdent(selectedId);
   };
-  onItemOutdent = () => {
-    const selectedId = this.stateManager.getLocalState().get('selectedId');
-    this.stateManager.indentHandler.outdent(selectedId);
-  };
-  getItemCount = data => data.size;
-  getItem = (data, index) => ({
+  const getItemCount = data => data.size;
+  const getItem = (data, index) => ({
     key: data.get(index),
     taskId: data.get(index),
   });
-  renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
-  render() {
-    const { project } = this.props;
-    const { visibleOrder, selectedId } = this.state;
+  const renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
 
-    return (
-      <ProjectProvider stateManager={this.stateManager}>
-        <SW.Wrapper>
-          <VirtualizedList
-            keyboardDismissMode={'none'}
-            keyboardShouldPersistTaps={'always'}
-            getItem={this.getItem}
-            getItemCount={this.getItemCount}
-            data={visibleOrder}
-            renderItem={this.renderItem}
-          />
-          <ProjectToolbar
-            hasFocus={!!selectedId}
-            onPressDoneButton={() => {
-              const selectedId = this.stateManager
-                .getLocalState()
-                .get('selectedId');
-              this.stateManager.selectHandler.deselect(selectedId);
-            }}
-            onPressBackButton={() => {
-              this.stateManager.selectHandler.select(this.lastSelectedId);
-            }}
-            buttons={[
-              {
-                icon: 'indent_in',
-                fill: 'blue',
-                onPress: this.onItemIndent,
+  return (
+    <ProjectProvider stateManager={stateManager}>
+      <SW.Wrapper>
+        <VirtualizedList
+          keyboardDismissMode={'none'}
+          keyboardShouldPersistTaps={'always'}
+          getItem={getItem}
+          getItemCount={getItemCount}
+          data={visibleOrder}
+          renderItem={renderItem}
+        />
+        <ProjectToolbar
+          hasFocus={!!selectedId}
+          onPressDoneButton={() => {
+            const selectedId = stateManager.getLocalState().get('selectedId');
+            stateManager.selectHandler.deselect(selectedId);
+          }}
+          onPressBackButton={() => {
+            stateManager.selectHandler.select(lastSelectedId.current);
+          }}
+          buttons={[
+            {
+              icon: 'indent_in',
+              fill: 'blue',
+              onPress: onItemIndent,
+            },
+            {
+              icon: 'indent_out',
+              fill: 'blue',
+              onPress: onItemOutdent,
+            },
+            {
+              icon: 'members',
+              fill: 'blue',
+              keyboard: KeyboardAssign,
+              customKeyboardTitle: 'Assignees',
+              getKeyboardProps: () => {
+                return {
+                  stateManager: stateManager,
+                  users: orgUsers,
+                  lastSelectedTask: project.getIn([
+                    // T_TODO Ask Kasper about that
+                    'tasks_by_id',
+                    lastSelectedId.current,
+                  ]),
+                };
               },
-              {
-                icon: 'indent_out',
-                fill: 'blue',
-                onPress: this.onItemOutdent,
-              },
-              {
-                icon: 'members',
-                fill: 'blue',
-                keyboard: KeyboardAssign,
-                customKeyboardTitle: 'Assignees',
-                getKeyboardProps: () => {
-                  return {
-                    stateManager: this.stateManager,
-                    users: this.orgUsers,
-                    lastSelectedTask: project.getIn([
-                      'tasks_by_id',
-                      this.lastSelectedId,
-                    ]),
-                  };
-                },
-              },
-            ]}
-          >
-            <SW.SliderWrapper>
-              <Slider
-                minimumValue={0}
-                maximumValue={4}
-                onValueChange={this.handleSliderChange}
-                value={0}
-              />
-            </SW.SliderWrapper>
-          </ProjectToolbar>
-        </SW.Wrapper>
-      </ProjectProvider>
-    );
-  }
+            },
+          ]}
+        >
+          {/* <SW.SliderWrapper>
+            <Slider
+              minimumValue={0}
+              maximumValue={4}
+              onValueChange={this.handleSliderChange}
+              value={0}
+            />
+          </SW.SliderWrapper> */}
+        </ProjectToolbar>
+      </SW.Wrapper>
+    </ProjectProvider>
+  );
 }

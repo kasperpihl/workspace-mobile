@@ -1,6 +1,6 @@
 import React from 'react';
-import userGetInitials from 'swipes-core-js/utils/user/userGetInitials';
-import userGetPhoto from 'swipes-core-js/utils/user/userGetPhoto';
+import userGetInitials from 'core/utils/user/userGetInitials';
+import userGetPhoto from 'core/utils/user/userGetPhoto';
 import SW from './AssigneeImage.swiss';
 
 export default props => {

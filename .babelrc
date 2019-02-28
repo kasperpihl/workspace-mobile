@@ -12,7 +12,7 @@
       {
         "alias": {
           "src": "./src",
-          "swipes-core-js": "@swipesapp/core/dist",
+          "core": "@swipesapp/core/dist",
           "assets": "./assets"
         }
       }

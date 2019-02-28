@@ -15,8 +15,8 @@ import ProjectAdd from 'src/react/Project/Add/ProjectAdd';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import ChatList from 'src/react/Chat/List/ChatList.js';
 import getGlobals from 'src/utils/getGlobals';
-import { setStore } from 'swipes-core-js/utils/store/storeGet';
-import Socket from 'swipes-core-js/classes/Socket';
+import { setStore } from 'core/utils/store/storeGet';
+import Socket from 'core/classes/Socket';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 
 // Init core!

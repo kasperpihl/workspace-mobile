@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FlatList, ActivityIndicator, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import usePaginationRequest from 'swipes-core-js/react/_hooks/usePaginationRequest';
+import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
 import ChatListItem from 'src/react/Chat/List/Item/ChatListItem';
 import SW from './ChatList.swiss';
 

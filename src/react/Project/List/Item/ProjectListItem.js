@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import merge from 'deepmerge';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import orgGetBelonging from 'swipes-core-js/utils/org/orgGetBelonging';
+import orgGetBelonging from 'core/utils/org/orgGetBelonging';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import colors from 'src/utils/colors';
 import SW from './ProjectListItem.swiss';

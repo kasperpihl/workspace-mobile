@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { List, fromJS, Map } from 'immutable';
 import merge from 'deepmerge';
-import request from 'swipes-core-js/utils/request';
+import request from 'core/utils/request';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';

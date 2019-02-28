@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Alert } from 'react-native';
-import request from 'swipes-core-js/utils/request';
-import storeGet from 'swipes-core-js/utils/store/storeGet';
+import request from 'core/utils/request';
+import storeGet from 'core/utils/store/storeGet';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import SW from './Profile.swiss';
 

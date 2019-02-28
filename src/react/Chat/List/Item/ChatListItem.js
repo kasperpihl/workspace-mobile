@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import timeGetDayOrTime from 'swipes-core-js/utils/time/timeGetDayOrTime';
-import userGetFirstName from 'swipes-core-js/utils/user/userGetFirstName';
-import orgGetBelonging from 'swipes-core-js/utils/org/orgGetBelonging';
+import timeGetDayOrTime from 'core/utils/time/timeGetDayOrTime';
+import userGetFirstName from 'core/utils/user/userGetFirstName';
+import orgGetBelonging from 'core/utils/org/orgGetBelonging';
 import SW from './ChatListItem.swiss';
 
 export default function ChatListItem({ item, myId }) {

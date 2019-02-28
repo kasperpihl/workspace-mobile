@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 import { Navigation } from 'react-native-navigation';
-import withRequests from 'swipes-core-js/components/withRequests';
+import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
 import { FlatList, ActivityIndicator } from 'react-native';
 import ProjectListItem from 'src/react/Project/List/Item/ProjectListItem';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
@@ -22,61 +22,58 @@ const addButton = {
   },
 };
 
-@withRequests(
-  {
-    projects: {
-      request: {
-        url: 'project.list',
-        resPath: 'projects',
-      },
-      cache: {
-        path: ['projectList'],
-      },
-    },
-  },
-  {
-    renderLoader: () => (
-      <SW.LoaderContainer>
-        <ActivityIndicator size="large" color="#007AFF" />
-      </SW.LoaderContainer>
-    ),
-  }
-)
-class ProjectList extends PureComponent {
-  render() {
-    const { projects } = this.props;
-
-    return (
-      <SW.FlatListWrapper>
-        <FlatList
-          data={projects ? projects.toJS() : []}
-          keyExtractor={item => item.project_id}
-          renderItem={({ item }) => <ProjectListItem {...item} />}
-        />
-      </SW.FlatListWrapper>
-    );
-  }
-}
-
-export default class ProjectListWrapper extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-  componentWillMount() {
+export default function ProjectList() {
+  useEffect(() => {
     Navigation.mergeOptions('ProjectList', {
       topBar: {
         rightButtons: [addButton],
       },
     });
-  }
-  render() {
-    const { projects } = this.props;
+  }, []);
 
-    return (
-      <SW.Wrapper>
-        <SW.HeaderText>Projects</SW.HeaderText>
-        <ProjectList projects={projects} />
-      </SW.Wrapper>
-    );
-  }
+  const req = usePaginationRequest(
+    'project.list',
+    {},
+    {
+      cursorKey: 'skip',
+      idAttribute: 'project_id',
+      resultPath: 'projects',
+    }
+  );
+
+  const renderLoader = () => {
+    if (req.error || req.loading) {
+      return (
+        <SW.LoaderContainer>
+          <ActivityIndicator size="large" color="#007AFF" />
+        </SW.LoaderContainer>
+      );
+    }
+  };
+
+  const renderList = () => {
+    if (!req.error || !req.loading) {
+      const projects = req.items;
+
+      return (
+        <SW.FlatListWrapper>
+          <FlatList
+            data={projects ? projects : []}
+            keyExtractor={item => item.project_id}
+            renderItem={({ item }) => <ProjectListItem {...item} />}
+            onEndReached={() => req.fetchNext()}
+            onEndReachedThreshold={0}
+          />
+        </SW.FlatListWrapper>
+      );
+    }
+  };
+
+  return (
+    <SW.Wrapper>
+      <SW.HeaderText>Projects</SW.HeaderText>
+      {renderLoader()}
+      {renderList()}
+    </SW.Wrapper>
+  );
 }

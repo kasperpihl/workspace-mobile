@@ -6,7 +6,7 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import request from 'swipes-core-js/utils/request';
+import request from 'core/utils/request';
 import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';

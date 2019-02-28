@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Text } from 'react-native';
-import userGetFullName from 'swipes-core-js/utils/user/userGetFullName';
+import userGetFullName from 'core/utils/user/userGetFullName';
 import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from './KeyboardAssignUserItem.swiss';

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import Icon from 'src/react/Icon/Icon';
 import SW from './ProjectTask.swiss';
-import withProjectTask from 'swipes-core-js/components/project/withProjectTask';
+import withProjectTask from 'core/react/_hocs/Project/withProjectTask';
 
 @withProjectTask
 export default class ProjectTask extends PureComponent {
