@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { Slider, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { VirtualizedList } from 'react-native';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
 import useProjectSlice from 'core/react/_hooks/useProjectSlice';
@@ -134,16 +134,7 @@ function ProjectOverview({ organizations, projectId }) {
               },
             },
           ]}
-        >
-          {/* <SW.SliderWrapper>
-            <Slider
-              minimumValue={0}
-              maximumValue={4}
-              onValueChange={this.handleSliderChange}
-              value={0}
-            />
-          </SW.SliderWrapper> */}
-        </ProjectToolbar>
+        />
       </SW.Wrapper>
     </ProjectProvider>
   );
