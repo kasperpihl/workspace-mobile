@@ -30,20 +30,26 @@ export default connect(state => ({
 
 function ProjectOverview({ organizations, projectId }) {
   const stateManager = useSyncedProject(projectId);
-  const [selectedId, visibleOrder, projectName, ownedBy] = useProjectSlice(
-    stateManager,
-    (clientState, localState) => [
-      localState.get('selectedId'),
-      localState.get('visibleOrder'),
-      clientState.get('name'),
-      clientState.get('owned_by'),
-    ]
-  );
+  const [
+    selectedId,
+    visibleOrder,
+    projectName,
+    ownedBy,
+    tasksById,
+  ] = useProjectSlice(stateManager, (clientState, localState) => [
+    localState.get('selectedId'),
+    localState.get('visibleOrder'),
+    clientState.get('name'),
+    clientState.get('owned_by'),
+    clientState.get('tasks_by_id'),
+  ]);
   const orgUsers = organizations.getIn([ownedBy, 'users']);
 
   const lastSelectedId = useRef();
   useEffect(() => {
-    lastSelectedId.current = selectedId;
+    if (selectedId) {
+      lastSelectedId.current = selectedId;
+    }
   });
 
   useEffect(() => {
@@ -123,11 +129,7 @@ function ProjectOverview({ organizations, projectId }) {
                 return {
                   stateManager: stateManager,
                   users: orgUsers,
-                  lastSelectedTask: project.getIn([
-                    // T_TODO Ask Kasper about that
-                    'tasks_by_id',
-                    lastSelectedId.current,
-                  ]),
+                  lastSelectedTask: tasksById.get(lastSelectedId.current),
                 };
               },
             },
