@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import { FlatList, ActivityIndicator, Text } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { FlatList, ActivityIndicator } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
 import useUpdate from 'core/react/_hooks/useUpdate';
 import ChatListItem from 'src/react/Chat/List/Item/ChatListItem';
+import Tabs from 'src/react/Tabs/Tabs';
 import SW from './ChatList.swiss';
 
 const addButton = {
@@ -23,28 +24,11 @@ const addButton = {
   },
 };
 
-export default connect(state => ({
-  myId: state.me.get('user_id'),
-  unreadCounter: state.connection.get('unread').size,
-}))(ChatList);
-
-function ChatList({ myId, type, unreadCounter, componentId }) {
-  useEffect(() => {
-    Navigation.mergeOptions(componentId, {
-      topBar: {
-        rightButtons: [addButton],
-      },
-      bottomTab: {
-        badge: unreadCounter ? `${unreadCounter}` : null,
-        badgeColor: 'red',
-      },
-    });
-  }, []);
-
+function ChatList({ myId, type }) {
   const req = usePaginationRequest(
     'discussion.list',
     {
-      type: 'following', // T_TODO until I put tabs
+      type,
     },
     {
       idAttribute: 'discussion_id',
@@ -92,9 +76,43 @@ function ChatList({ myId, type, unreadCounter, componentId }) {
 
   return (
     <SW.Wrapper>
-      <SW.HeaderText>Chat</SW.HeaderText>
       {renderLoader()}
       {renderList()}
     </SW.Wrapper>
   );
 }
+
+function ChatListWrapper({ myId, unreadCounter, componentId }) {
+  const [type, setType] = useState('following');
+
+  useEffect(() => {
+    Navigation.mergeOptions(componentId, {
+      topBar: {
+        rightButtons: [addButton],
+      },
+      bottomTab: {
+        badge: unreadCounter ? `${unreadCounter}` : null,
+        badgeColor: 'red',
+      },
+    });
+  }, []);
+
+  return (
+    <SW.Wrapper>
+      <SW.HeaderText>Chat</SW.HeaderText>
+      <Tabs
+        tabs={['following', 'all other']}
+        selected={type}
+        onPress={tab => {
+          setType(tab);
+        }}
+      />
+      <ChatList myId={myId} key={type} type={type} />
+    </SW.Wrapper>
+  );
+}
+
+export default connect(state => ({
+  myId: state.me.get('user_id'),
+  unreadCounter: state.connection.get('unread').size,
+}))(ChatListWrapper);
