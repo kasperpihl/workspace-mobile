@@ -7,9 +7,10 @@ import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
 import useProjectSlice from 'core/react/_hooks/useProjectSlice';
 import useSyncedProject from 'core/react/_hooks/useSyncedProject';
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
-import SW from './ProjectOverview.swiss';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
 import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
+import useAppState from 'src/react/_hooks/useAppState';
+import SW from './ProjectOverview.swiss';
 
 console.disableYellowBox = true;
 
@@ -60,9 +61,9 @@ function ProjectOverview({ organizations, projectId }) {
     });
   }, []);
 
-  // useBeforeUnload(() => {
-  //   stateManager && stateManager.syncHandler.syncIfNeeded();
-  // });
+  useAppState(() => {
+    stateManager && stateManager.syncHandler.syncIfNeeded();
+  });
 
   if (!visibleOrder) {
     return (
