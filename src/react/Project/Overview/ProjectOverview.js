@@ -72,10 +72,6 @@ function ProjectOverview({ organizations, projectId }) {
     );
   }
 
-  // const handleSliderChange = value => {
-  //   const depth = parseInt(value, 10);
-  //   stateManager.expandHandler.setDepth(depth);
-  // };
   const onItemIndent = () => {
     stateManager.indentHandler.indent(selectedId);
   };
