@@ -17,4 +17,8 @@ export default styleSheet('ChatList', {
     _flex: 'center',
     _size: ['100%', '100%'],
   },
+  ListWrapper: {
+    flex: 1,
+    _size: ['100%', '100%'],
+  },
 });

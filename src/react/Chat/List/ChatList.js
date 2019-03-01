@@ -75,10 +75,10 @@ function ChatList({ myId, type }) {
   };
 
   return (
-    <SW.Wrapper>
+    <SW.ListWrapper>
       {renderLoader()}
       {renderList()}
-    </SW.Wrapper>
+    </SW.ListWrapper>
   );
 }
 
