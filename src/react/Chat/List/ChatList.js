@@ -3,6 +3,7 @@ import { FlatList, ActivityIndicator, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
+import useUpdate from 'core/react/_hooks/useUpdate';
 import ChatListItem from 'src/react/Chat/List/Item/ChatListItem';
 import SW from './ChatList.swiss';
 
@@ -52,8 +53,17 @@ function ChatList({ myId, type, unreadCounter, componentId }) {
     }
   );
 
-  // T_TODO remove that at some point
-  console.log(req);
+  useUpdate('discussion', update => {
+    if (!update.last_comment) {
+      return req.mergeItem(update);
+    }
+    if (
+      (type === 'following' && update.followers[myId]) ||
+      (type === 'all other' && !update.followers[myId])
+    ) {
+      req.fetchNew();
+    }
+  });
 
   const renderLoader = () => {
     if (req.error || req.loading) {
