@@ -26,10 +26,16 @@ export default {
             name: 'ProjectAdd',
             options: {
               topBar: {
-                rightButtons: [
+                leftButtons: [
                   {
                     id: 'Cancel',
                     text: 'Cancel',
+                  },
+                ],
+                rightButtons: [
+                  {
+                    id: 'Create',
+                    text: 'Create',
                   },
                 ],
               },

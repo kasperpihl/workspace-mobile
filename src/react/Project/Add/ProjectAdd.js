@@ -45,6 +45,9 @@ export default class ProjectAdd extends PureComponent {
     if (buttonId === 'Cancel') {
       this.dismissModal();
     }
+    if (buttonId === 'Create') {
+      this.handleAddProject();
+    }
   };
   handleChangeText = field => value => {
     this.setState({ [field]: value });
@@ -58,14 +61,14 @@ export default class ProjectAdd extends PureComponent {
     const { projectName, organization_id } = this.state;
 
     request('project.add', {
-      name: projectName,
+      title: projectName,
       owned_by: organization_id,
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res);
       }
 
-      const projectId = res.updates[0].data.project_id;
+      const projectId = res.update.rows[0].data.project_id;
 
       this.dismissModal();
       Navigation.push('ProjectList', {
@@ -136,12 +139,6 @@ export default class ProjectAdd extends PureComponent {
                     values={organizations}
                     defaultValue={myId}
                     onChange={this.handlePickerChange}
-                  />
-                </View>
-                <View>
-                  <FormButton
-                    label={'Create project'}
-                    onPress={this.handleAddProject}
                   />
                 </View>
               </Form>
