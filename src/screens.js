@@ -14,6 +14,7 @@ import ForgottenPassword from 'src/react/ForgottenPassword/ForgottenPassword';
 import ProjectAdd from 'src/react/Project/Add/ProjectAdd';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import ChatList from 'src/react/Chat/List/ChatList.js';
+import ChatAdd from 'src/react/Chat/Add/ChatAdd.js';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'core/utils/store/storeGet';
 import Socket from 'core/classes/Socket';
@@ -61,6 +62,9 @@ export function registerScreens() {
   // );
   Navigation.registerComponent('ChatList', () =>
     HOCRootWrapper(ChatList, store, persistor, true)
+  );
+  Navigation.registerComponent('ChatAdd', () =>
+    HOCRootWrapper(ChatAdd, store, persistor, true)
   );
 
   // That's not a screen per say but a custom button component

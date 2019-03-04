@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -6,6 +6,7 @@ import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
 import useUpdate from 'core/react/_hooks/useUpdate';
 import ChatListItem from 'src/react/Chat/List/Item/ChatListItem';
 import Tabs from 'src/react/Tabs/Tabs';
+import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './ChatList.swiss';
 
 const addButton = {
@@ -18,7 +19,7 @@ const addButton = {
       width: '17',
       height: '17',
       onPress: () => {
-        console.log('chushki');
+        Navigation.showModal(navigationComponents.ChatAdd);
       },
     },
   },

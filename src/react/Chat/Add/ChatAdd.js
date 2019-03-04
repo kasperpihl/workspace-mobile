@@ -11,14 +11,14 @@ import FormLabel from 'src/react/FormLabel/FormLabel';
 import Picker from 'src/react/Picker/Picker';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import withKeyboard from 'src/utils/withKeyboard';
-import SW from './ProjectAdd.swiss';
+import SW from './ChatAdd.swiss';
 
 @connect(state => ({
   myId: state.me.get('user_id'),
-  organizations: state.organizations.toList(),
+  organizations: state.organizations,
 }))
 @withKeyboard
-export default class ProjectAdd extends PureComponent {
+export default class ChatAdd extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -35,9 +35,22 @@ export default class ProjectAdd extends PureComponent {
         },
       ])
     ).concat(
-      this.props.organizations.map(o => {
+      this.props.organizations.toList().map(o => {
         return Map({ label: o.get('name'), value: o.get('organization_id') });
       })
+    ),
+    pricacyOptionsEnabled: false,
+    pricacyOptions: new List(
+      fromJS([
+        {
+          label: 'Public',
+          value: 'public',
+        },
+        {
+          label: 'Private',
+          value: 'private',
+        },
+      ])
     ),
   };
   navigationButtonPressed = ({ buttonId }) => {
@@ -45,49 +58,53 @@ export default class ProjectAdd extends PureComponent {
       this.dismissModal();
     }
     if (buttonId === 'Create') {
-      this.handleAddProject();
+      // this.handleAddProject();
     }
   };
   handleChangeText = field => value => {
     this.setState({ [field]: value });
   };
-  handlePickerChange = value => {
+  handleOrganizationChange = value => {
+    const { myId, organizations } = this.props;
+
     this.setState({
       organization_id: value,
+      pricacyOptionsEnabled: myId === value ? false : true,
+      orgUsers: myId === value ? null : organizations.getIn([value, 'users']),
     });
   };
-  handleAddProject = () => {
-    const { projectName, organization_id } = this.state;
+  handleAddChat = () => {
+    const { chatTitle, organization_id } = this.state;
 
-    request('project.add', {
-      title: projectName,
+    request('discussion.add', {
+      title: chatTitle,
       owned_by: organization_id,
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res);
       }
 
-      const projectId = res.update.rows[0].data.project_id;
+      // const projectId = res.update.rows[0].data.project_id;
 
       this.dismissModal();
-      Navigation.push('ProjectList', {
-        component: merge(navigationComponents.ProjectOverview, {
-          passProps: {
-            projectId,
-          },
-          options: {
-            animations: {
-              push: {
-                enabled: false,
-              },
-            },
-          },
-        }),
-      });
+      // Navigation.push('ProjectList', {
+      //   component: merge(navigationComponents.ProjectOverview, {
+      //     passProps: {
+      //       projectId,
+      //     },
+      //     options: {
+      //       animations: {
+      //         push: {
+      //           enabled: false,
+      //         },
+      //       },
+      //     },
+      //   }),
+      // });
     });
   };
   dismissModal() {
-    Navigation.dismissModal('ProjectAdd', {
+    Navigation.dismissModal('ChatAdd', {
       animations: {
         dismissModal: {
           enabled: false,
@@ -97,32 +114,28 @@ export default class ProjectAdd extends PureComponent {
   }
   render() {
     const { myId, keyboardIsShown } = this.props;
-    const { projectName, organizations } = this.state;
+    const {
+      projectName,
+      organizations,
+      pricacyOptions,
+      pricacyOptionsEnabled,
+    } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
       <ScrollView
         alwaysBounceVertical={false}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          flex: 1,
-        }}
       >
         <KeyboardAvoidingView behavior={behavior}>
           <SW.Wrapper>
             {!keyboardIsShown && (
               <SW.HeaderTextWrapper>
-                <SW.HeaderText>Add Project</SW.HeaderText>
+                <SW.HeaderText>New Chat</SW.HeaderText>
               </SW.HeaderTextWrapper>
             )}
             <SW.FormWrapper>
-              <Form
-                style={{
-                  flexDirection: 'column',
-                  justifyContent: 'space-around',
-                  flex: 1,
-                }}
-              >
+              <Form>
                 <View>
                   <FormLabel label={'Name'} />
                   <FormTextInput
@@ -132,17 +145,36 @@ export default class ProjectAdd extends PureComponent {
                     onSubmitEditing={this.handleAddProject}
                   />
                 </View>
-                <View>
+                <View style={{ marginTop: 40 }}>
                   <FormLabel label={'Pick organization'} />
                   <Picker
                     values={organizations}
                     defaultValue={myId}
-                    onChange={this.handlePickerChange}
+                    onChange={this.handleOrganizationChange}
                   />
                 </View>
+                {pricacyOptionsEnabled && (
+                  <View style={{ marginTop: 40 }}>
+                    <FormLabel label={'Choose privacy'} />
+                    <Picker
+                      values={pricacyOptions}
+                      defaultValue={'public'}
+                      // onChange={this.handlePickerChange}
+                    />
+                  </View>
+                )}
+                {pricacyOptionsEnabled && (
+                  <View style={{ marginTop: 40 }}>
+                    <FormLabel label={'Choose people'} />
+                    <Picker
+                      values={pricacyOptions}
+                      defaultValue={'public'}
+                      // onChange={this.handlePickerChange}
+                    />
+                  </View>
+                )}
               </Form>
             </SW.FormWrapper>
-            <SW.FooterWrapper />
           </SW.Wrapper>
         </KeyboardAvoidingView>
       </ScrollView>

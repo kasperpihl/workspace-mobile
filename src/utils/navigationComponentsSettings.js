@@ -80,4 +80,37 @@ export default {
     id: 'ChatList',
     name: 'ChatList',
   },
+  ChatAdd: {
+    stack: {
+      children: [
+        {
+          component: {
+            id: 'ChatAdd',
+            name: 'ChatAdd',
+            options: {
+              topBar: {
+                leftButtons: [
+                  {
+                    id: 'Cancel',
+                    text: 'Cancel',
+                  },
+                ],
+                rightButtons: [
+                  {
+                    id: 'Create',
+                    text: 'Create',
+                  },
+                ],
+              },
+              animations: {
+                showModal: {
+                  enabled: false,
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
+  },
 };
