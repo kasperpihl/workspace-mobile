@@ -19,7 +19,7 @@ export default class ProjectListItem extends PureComponent {
     });
   };
   render() {
-    const { project_id, name, owned_by, completion_percentage } = this.props;
+    const { project_id, title, owned_by, completion_percentage } = this.props;
 
     return (
       <TouchableOpacity onPress={this.handleListClick(project_id)}>
@@ -38,7 +38,7 @@ export default class ProjectListItem extends PureComponent {
           </SW.LeftSide>
           <SW.Middle>
             <SW.LineOfText numberOfLines={1} topic>
-              {name}
+              {title}
             </SW.LineOfText>
             <SW.LineOfText numberOfLines={1}>
               {orgGetBelonging(owned_by)}
