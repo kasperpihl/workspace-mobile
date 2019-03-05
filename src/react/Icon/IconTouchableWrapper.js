@@ -10,7 +10,7 @@ export default class IconTouchableWrapper extends PureComponent {
 
     return (
       <View style={{ transform: [{ rotate: `${rotate || 0}deg` }] }}>
-        <SW.Wrapper onPress={onPress}>
+        <SW.Wrapper onPress={onPress} disabled={onPress ? false : true}>
           <Icon name={icon} fill={colors[fill]} {...rest} />
         </SW.Wrapper>
       </View>

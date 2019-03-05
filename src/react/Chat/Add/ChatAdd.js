@@ -5,12 +5,14 @@ import { Navigation } from 'react-native-navigation';
 import { List, fromJS, Map } from 'immutable';
 import merge from 'deepmerge';
 import request from 'core/utils/request';
+import userGetFullName from 'core/utils/user/userGetFullName';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormLabel from 'src/react/FormLabel/FormLabel';
 import Picker from 'src/react/Picker/Picker';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import withKeyboard from 'src/utils/withKeyboard';
+import AssignItem from 'src/react/AssignItem/AssignItem';
 import SW from './ChatAdd.swiss';
 
 @connect(state => ({
@@ -39,8 +41,8 @@ export default class ChatAdd extends PureComponent {
         return Map({ label: o.get('name'), value: o.get('organization_id') });
       })
     ),
-    pricacyOptionsEnabled: false,
-    pricacyOptions: new List(
+    privacyOptionsEnabled: false,
+    privacyOptions: new List(
       fromJS([
         {
           label: 'Public',
@@ -52,6 +54,7 @@ export default class ChatAdd extends PureComponent {
         },
       ])
     ),
+    selectedPeople: [],
   };
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId === 'Cancel') {
@@ -69,8 +72,16 @@ export default class ChatAdd extends PureComponent {
 
     this.setState({
       organization_id: value,
-      pricacyOptionsEnabled: myId === value ? false : true,
+      privacyOptionsEnabled: myId === value ? false : true,
       orgUsers: myId === value ? null : organizations.getIn([value, 'users']),
+    });
+  };
+  handlePrivacyChange = value => {
+    console.log(value);
+  };
+  handlePeopleChange = value => {
+    this.setState({
+      selectedPeople: value,
     });
   };
   handleAddChat = () => {
@@ -112,13 +123,39 @@ export default class ChatAdd extends PureComponent {
       },
     });
   }
+  preparePeopleValuesForPicker = () => {
+    const { orgUsers, selectedPeople } = this.state;
+
+    if (!orgUsers) return null;
+
+    const items = [];
+
+    orgUsers.forEach((user, key) => {
+      const userId = user.get('user_id');
+      const organizationId = user.get('organization_id');
+      const fullName = userGetFullName(userId, organizationId);
+
+      items.push(
+        <AssignItem
+          key={key}
+          userId={userId}
+          organizationId={organizationId}
+          fullName={fullName}
+          assigned={selectedPeople.includes(userId)}
+        />
+      );
+    });
+
+    return items;
+  };
   render() {
     const { myId, keyboardIsShown } = this.props;
     const {
       projectName,
       organizations,
-      pricacyOptions,
-      pricacyOptionsEnabled,
+      organization_id,
+      privacyOptions,
+      privacyOptionsEnabled,
     } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
@@ -153,23 +190,24 @@ export default class ChatAdd extends PureComponent {
                     onChange={this.handleOrganizationChange}
                   />
                 </View>
-                {pricacyOptionsEnabled && (
+                {privacyOptionsEnabled && (
                   <View style={{ marginTop: 40 }}>
                     <FormLabel label={'Choose privacy'} />
                     <Picker
-                      values={pricacyOptions}
+                      values={privacyOptions}
                       defaultValue={'public'}
-                      // onChange={this.handlePickerChange}
+                      onChange={this.handlePrivacyChange}
                     />
                   </View>
                 )}
-                {pricacyOptionsEnabled && (
+                {privacyOptionsEnabled && (
                   <View style={{ marginTop: 40 }}>
                     <FormLabel label={'Choose people'} />
                     <Picker
-                      values={pricacyOptions}
-                      defaultValue={'public'}
-                      // onChange={this.handlePickerChange}
+                      key={organization_id}
+                      multiselect={true}
+                      values={this.preparePeopleValuesForPicker()}
+                      onChange={this.handlePeopleChange}
                     />
                   </View>
                 )}

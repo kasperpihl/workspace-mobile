@@ -53,7 +53,7 @@ export const goHome = () =>
               ],
               options: {
                 bottomTab: {
-                  text: 'Chat',
+                  text: 'Discussions',
                   fontSize: 12,
                   icon: require('../assets/pngs/main_tab.png'),
                   selectedIcon: require('../assets/pngs/main_tab_active.png'),

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import userGetFullName from 'core/utils/user/userGetFullName';
-import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
-import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
+import AssignItem from 'src/react/AssignItem/AssignItem';
 import SW from './KeyboardAssignUserItem.swiss';
 
 export default class KeyboardAssignUserItem extends PureComponent {
@@ -32,9 +31,12 @@ export default class KeyboardAssignUserItem extends PureComponent {
           onPress(user.get('user_id'), !assigned);
         }}
       >
-        <AssigneeImage userId={userId} organizationId={organizationId} />
-        <SW.FullName>{fullName}</SW.FullName>
-        <SW.RightButton>{this.renderRightButton()}</SW.RightButton>
+        <AssignItem
+          userId={userId}
+          organizationId={organizationId}
+          fullName={fullName}
+          assigned={assigned}
+        />
       </SW.Wrapper>
     );
   }
