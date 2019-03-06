@@ -23,18 +23,18 @@ export default function ChatListItem({ item, myId }) {
   const ts = followers[myId];
   const unread = ts === 'n' || ts < last_comment_at;
 
-  const handleListClick = discussionId => () => {
+  const handleListClick = discussion => () => {
     Navigation.push('ChatList', {
       component: merge(navigationComponents.ChatOverview, {
         passProps: {
-          discussionId,
+          discussion,
         },
       }),
     });
   };
 
   return (
-    <TouchableOpacity onPress={handleListClick(discussion_id)}>
+    <TouchableOpacity onPress={handleListClick(item)}>
       <SW.Wrapper>
         <SW.LeftSide>
           <SW.UnreadDot unread={unread} />

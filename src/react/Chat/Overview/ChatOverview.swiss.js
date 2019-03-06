@@ -13,12 +13,4 @@ export default styleSheet('ChatOverview', {
     fontWeight: 'bold',
     paddingBottom: 20,
   },
-  LoaderContainer: {
-    _flex: 'center',
-    _size: ['100%', '100%'],
-  },
-  ListWrapper: {
-    flex: 1,
-    _size: ['100%', '100%'],
-  },
 });
