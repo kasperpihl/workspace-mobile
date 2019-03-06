@@ -113,4 +113,20 @@ export default {
       ],
     },
   },
+  ChatOverview: {
+    id: 'ChatOverview',
+    name: 'ChatOverview',
+    options: {
+      topBar: {
+        backButton: {
+          title: 'Discussions',
+        },
+      },
+      bottomTabs: {
+        visible: false,
+        drawBehind: true,
+        animate: true,
+      },
+    },
+  },
 };

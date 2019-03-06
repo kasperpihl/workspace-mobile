@@ -10,7 +10,7 @@ export const goHome = () =>
             stack: {
               children: [
                 {
-                  component: navigationComponents.ProjectList,
+                  component: navigationComponents.ChatList,
                 },
                 // {
                 //   component: navigationComponents.ProjectOverview,
@@ -45,7 +45,7 @@ export const goHome = () =>
             stack: {
               children: [
                 {
-                  component: navigationComponents.ChatList,
+                  component: navigationComponents.ProjectList,
                 },
                 // {
                 //   component: navigationComponents.ProjectOverview,

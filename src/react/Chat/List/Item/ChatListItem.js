@@ -1,12 +1,16 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import merge from 'deepmerge';
 import timeGetDayOrTime from 'core/utils/time/timeGetDayOrTime';
 import userGetFirstName from 'core/utils/user/userGetFirstName';
 import orgGetBelonging from 'core/utils/org/orgGetBelonging';
+import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './ChatListItem.swiss';
 
 export default function ChatListItem({ item, myId }) {
   const {
+    discussion_id,
     topic,
     last_comment,
     last_comment_at,
@@ -19,8 +23,18 @@ export default function ChatListItem({ item, myId }) {
   const ts = followers[myId];
   const unread = ts === 'n' || ts < last_comment_at;
 
+  const handleListClick = discussionId => () => {
+    Navigation.push('ChatList', {
+      component: merge(navigationComponents.ChatOverview, {
+        passProps: {
+          discussionId,
+        },
+      }),
+    });
+  };
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={handleListClick(discussion_id)}>
       <SW.Wrapper>
         <SW.LeftSide>
           <SW.UnreadDot unread={unread} />
