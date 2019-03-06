@@ -100,7 +100,7 @@ function ChatListWrapper({ myId, unreadCounter, componentId }) {
 
   return (
     <SW.Wrapper>
-      <SW.HeaderText>Chat</SW.HeaderText>
+      <SW.HeaderText>Discussions</SW.HeaderText>
       <Tabs
         tabs={['following', 'all other']}
         selected={type}

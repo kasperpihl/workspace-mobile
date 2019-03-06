@@ -175,7 +175,7 @@ export default class ChatAdd extends PureComponent {
           <SW.Wrapper>
             {!keyboardIsShown && (
               <SW.HeaderTextWrapper>
-                <SW.HeaderText>New Chat</SW.HeaderText>
+                <SW.HeaderText>New Discussion</SW.HeaderText>
               </SW.HeaderTextWrapper>
             )}
             <SW.FormWrapper>
