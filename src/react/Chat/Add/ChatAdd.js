@@ -24,7 +24,7 @@ export default class ChatAdd extends PureComponent {
   constructor(props) {
     super(props);
 
-    Navigation.events().bindComponent(this, 'ProjectAdd');
+    Navigation.events().bindComponent(this, 'ChatAdd');
   }
   state = {
     projectName: '',
