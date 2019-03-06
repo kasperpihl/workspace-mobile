@@ -74,6 +74,7 @@ export default class ChatAdd extends PureComponent {
       organization_id: value,
       privacyOptionsEnabled: myId === value ? false : true,
       orgUsers: myId === value ? null : organizations.getIn([value, 'users']),
+      selectedPeople: [],
     });
   };
   handlePrivacyChange = value => {
