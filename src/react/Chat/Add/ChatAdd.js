@@ -27,7 +27,7 @@ export default class ChatAdd extends PureComponent {
     Navigation.events().bindComponent(this, 'ChatAdd');
   }
   state = {
-    projectName: '',
+    chatTitle: '',
     organization_id: this.props.myId,
     organizations: new List(
       fromJS([
@@ -55,13 +55,14 @@ export default class ChatAdd extends PureComponent {
       ])
     ),
     selectedPeople: [],
+    privacy: 'public',
   };
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId === 'Cancel') {
       this.dismissModal();
     }
     if (buttonId === 'Create') {
-      // this.handleAddProject();
+      this.handleAddChat();
     }
   };
   handleChangeText = field => value => {
@@ -78,7 +79,9 @@ export default class ChatAdd extends PureComponent {
     });
   };
   handlePrivacyChange = value => {
-    console.log(value);
+    this.setState({
+      privacy: value,
+    });
   };
   handlePeopleChange = value => {
     this.setState({
@@ -86,19 +89,21 @@ export default class ChatAdd extends PureComponent {
     });
   };
   handleAddChat = () => {
-    const { chatTitle, organization_id } = this.state;
+    const { chatTitle, organization_id, selectedPeople, privacy } = this.state;
 
     request('discussion.add', {
-      title: chatTitle,
+      privacy,
+      topic: chatTitle,
       owned_by: organization_id,
+      followers: selectedPeople,
     }).then(res => {
       if (res.ok === false) {
-        alertErrorHandler(res);
+        return alertErrorHandler(res);
       }
 
-      // const projectId = res.update.rows[0].data.project_id;
-
       this.dismissModal();
+
+      // const chatId = res.update.rows[0].data.project_id;
       // Navigation.push('ProjectList', {
       //   component: merge(navigationComponents.ProjectOverview, {
       //     passProps: {
@@ -152,9 +157,10 @@ export default class ChatAdd extends PureComponent {
   render() {
     const { myId, keyboardIsShown } = this.props;
     const {
-      projectName,
+      chatTitle,
       organizations,
       organization_id,
+      privacy,
       privacyOptions,
       privacyOptionsEnabled,
     } = this.state;
@@ -178,8 +184,8 @@ export default class ChatAdd extends PureComponent {
                   <FormLabel label={'Name'} />
                   <FormTextInput
                     last
-                    value={projectName}
-                    onChangeText={this.handleChangeText('projectName')}
+                    value={chatTitle}
+                    onChangeText={this.handleChangeText('chatTitle')}
                     onSubmitEditing={this.handleAddProject}
                   />
                 </View>
@@ -196,7 +202,7 @@ export default class ChatAdd extends PureComponent {
                     <FormLabel label={'Choose privacy'} />
                     <Picker
                       values={privacyOptions}
-                      defaultValue={'public'}
+                      defaultValue={privacy}
                       onChange={this.handlePrivacyChange}
                     />
                   </View>
