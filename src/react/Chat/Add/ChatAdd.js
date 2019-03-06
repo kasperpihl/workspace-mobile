@@ -16,7 +16,6 @@ import AssignItem from 'src/react/AssignItem/AssignItem';
 import SW from './ChatAdd.swiss';
 
 @connect(state => ({
-  myId: state.me.get('user_id'),
   organizations: state.organizations,
 }))
 @withKeyboard
@@ -25,38 +24,34 @@ export default class ChatAdd extends PureComponent {
     super(props);
 
     Navigation.events().bindComponent(this, 'ChatAdd');
-  }
-  state = {
-    chatTitle: '',
-    organization_id: this.props.myId,
-    organizations: new List(
-      fromJS([
-        {
-          label: 'Personal',
-          value: this.props.myId,
-        },
-      ])
-    ).concat(
-      this.props.organizations.toList().map(o => {
+
+    const organization_id = this.props.organizations
+      .toList()
+      .getIn([0, 'organization_id']);
+
+    this.state = {
+      organization_id,
+      chatTitle: '',
+      organizations: this.props.organizations.toList().map(o => {
         return Map({ label: o.get('name'), value: o.get('organization_id') });
-      })
-    ),
-    privacyOptionsEnabled: false,
-    privacyOptions: new List(
-      fromJS([
-        {
-          label: 'Public',
-          value: 'public',
-        },
-        {
-          label: 'Private',
-          value: 'private',
-        },
-      ])
-    ),
-    selectedPeople: [],
-    privacy: 'public',
-  };
+      }),
+      orgUsers: this.props.organizations.getIn([organization_id, 'users']),
+      privacyOptions: new List(
+        fromJS([
+          {
+            label: 'Public',
+            value: 'public',
+          },
+          {
+            label: 'Private',
+            value: 'private',
+          },
+        ])
+      ),
+      selectedPeople: [],
+      privacy: 'public',
+    };
+  }
   navigationButtonPressed = ({ buttonId }) => {
     if (buttonId === 'Cancel') {
       this.dismissModal();
@@ -69,12 +64,11 @@ export default class ChatAdd extends PureComponent {
     this.setState({ [field]: value });
   };
   handleOrganizationChange = value => {
-    const { myId, organizations } = this.props;
+    const { organizations } = this.props;
 
     this.setState({
       organization_id: value,
-      privacyOptionsEnabled: myId === value ? false : true,
-      orgUsers: myId === value ? null : organizations.getIn([value, 'users']),
+      orgUsers: organizations.getIn([value, 'users']),
       selectedPeople: [],
     });
   };
@@ -132,7 +126,7 @@ export default class ChatAdd extends PureComponent {
   preparePeopleValuesForPicker = () => {
     const { orgUsers, selectedPeople } = this.state;
 
-    if (!orgUsers) return null;
+    if (!orgUsers) return [];
 
     const items = [];
 
@@ -155,7 +149,7 @@ export default class ChatAdd extends PureComponent {
     return items;
   };
   render() {
-    const { myId, keyboardIsShown } = this.props;
+    const { keyboardIsShown } = this.props;
     const {
       chatTitle,
       organizations,
@@ -165,6 +159,8 @@ export default class ChatAdd extends PureComponent {
       privacyOptionsEnabled,
     } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
+
+    if (!organizations.size) return null;
 
     return (
       <ScrollView
@@ -193,31 +189,27 @@ export default class ChatAdd extends PureComponent {
                   <FormLabel label={'Pick organization'} />
                   <Picker
                     values={organizations}
-                    defaultValue={myId}
+                    defaultValue={organization_id}
                     onChange={this.handleOrganizationChange}
                   />
                 </View>
-                {privacyOptionsEnabled && (
-                  <View style={{ marginTop: 40 }}>
-                    <FormLabel label={'Choose privacy'} />
-                    <Picker
-                      values={privacyOptions}
-                      defaultValue={privacy}
-                      onChange={this.handlePrivacyChange}
-                    />
-                  </View>
-                )}
-                {privacyOptionsEnabled && (
-                  <View style={{ marginTop: 40 }}>
-                    <FormLabel label={'Choose people'} />
-                    <Picker
-                      key={organization_id}
-                      multiselect={true}
-                      values={this.preparePeopleValuesForPicker()}
-                      onChange={this.handlePeopleChange}
-                    />
-                  </View>
-                )}
+                <View style={{ marginTop: 40 }}>
+                  <FormLabel label={'Choose privacy'} />
+                  <Picker
+                    values={privacyOptions}
+                    defaultValue={privacy}
+                    onChange={this.handlePrivacyChange}
+                  />
+                </View>
+                <View style={{ marginTop: 40 }}>
+                  <FormLabel label={'Choose people'} />
+                  <Picker
+                    key={organization_id}
+                    multiselect={true}
+                    values={this.preparePeopleValuesForPicker()}
+                    onChange={this.handlePeopleChange}
+                  />
+                </View>
               </Form>
             </SW.FormWrapper>
           </SW.Wrapper>
