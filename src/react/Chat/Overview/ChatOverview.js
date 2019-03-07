@@ -27,7 +27,7 @@ function ChatOverview({ discussion, myId }) {
 
   return (
     <SW.Wrapper>
-      <SW.HeaderText>{topic}</SW.HeaderText>
+      <SW.HeaderText numberOfLines={1}>{topic}</SW.HeaderText>
       <ChatCommentsList discussion={discussion} />
     </SW.Wrapper>
   );
