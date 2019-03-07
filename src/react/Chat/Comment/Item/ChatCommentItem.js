@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import userGetFirstName from 'core/utils/user/userGetFullName';
 import request from 'core/utils/request';
 import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
@@ -8,7 +9,14 @@ import useDebounce from 'src/react/_hooks/useDebounce';
 import SW from './ChatCommentItem.swiss';
 
 function ChatCommentItem({ myId, comment, organizationId }) {
-  const { comment_id, discussion_id, message, sent_by, reactions } = comment;
+  const {
+    comment_id,
+    discussion_id,
+    message,
+    sent_by,
+    reactions,
+    sent_at,
+  } = comment;
   const likedByMe = reactions[myId] || false;
   const originalNumberOfLikes = Object.keys(reactions).length || null;
   const [like, setLike] = useState(likedByMe);
@@ -58,7 +66,7 @@ function ChatCommentItem({ myId, comment, organizationId }) {
         <SW.Right>
           <SW.Row>
             <SW.Name>{userGetFirstName(sent_by, organizationId)}</SW.Name>
-            <SW.Time>10:30</SW.Time>
+            <SW.Time>{`${moment(sent_at).format('LT')}`}</SW.Time>
           </SW.Row>
           <SW.Message>{message}</SW.Message>
         </SW.Right>
