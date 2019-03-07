@@ -22,7 +22,7 @@ function ChatCommentItem({ myId, comment, organizationId }) {
 
   const [setCallback] = useDebounce(500, numberOfLikes);
 
-  const likeThisSHit = () => {
+  const handleLike = () => {
     setLike(!like);
 
     let newNumberOfLikes = numberOfLikes;
@@ -73,7 +73,7 @@ function ChatCommentItem({ myId, comment, organizationId }) {
             marginLeft: 30,
           }}
           onPress={() => {
-            likeThisSHit();
+            handleLike();
           }}
         />
         <SW.HeartCount>{numberOfLikes}</SW.HeartCount>
