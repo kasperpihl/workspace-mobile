@@ -10,7 +10,6 @@ import SW from './ChatListItem.swiss';
 
 export default function ChatListItem({ item, myId }) {
   const {
-    discussion_id,
     topic,
     last_comment,
     last_comment_at,
