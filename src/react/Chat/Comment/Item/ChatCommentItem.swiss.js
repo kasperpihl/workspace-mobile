@@ -3,9 +3,13 @@ import { Text } from 'react-native';
 
 export default styleSheet('ChatCommentItem', {
   Wrapper: {
+    _flex: ['column'],
+    _size: ['100%', 'auto'],
+    _padding: [0, 20],
+  },
+  Row: {
     _flex: ['row'],
     _size: ['100%', 'auto'],
-    _padding: [10, 20],
   },
   Left: {
     _size: ['44', 'auto'],
@@ -15,10 +19,6 @@ export default styleSheet('ChatCommentItem', {
   Right: {
     _size: ['90%', 'auto'],
     _flex: ['column'],
-  },
-  NameTimeRow: {
-    _flex: ['row'],
-    _size: ['100%', 'auto'],
   },
   Name: {
     _el: Text,
@@ -36,5 +36,14 @@ export default styleSheet('ChatCommentItem', {
   Message: {
     _el: Text,
     paddingTop: '4',
+  },
+  HeartCount: {
+    _el: Text,
+    fontSize: '10',
+    color: '$sw2',
+    alignSelf: 'center',
+    position: 'absolute',
+    zIndex: '2',
+    left: 65,
   },
 });
