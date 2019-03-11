@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import userGetFirstName from 'core/utils/user/userGetFullName';
 import request from 'core/utils/request';
+import ChatAttachment from 'src/react/Chat/Attachment/ChatAttachment';
 import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import useDebounce from 'src/react/_hooks/useDebounce';
@@ -53,6 +54,16 @@ function ChatCommentItem({ myId, comment, organizationId }) {
     });
   };
 
+  const renderAttachments = () => {
+    if (!comment.attachments) {
+      return null;
+    }
+
+    return comment.attachments.map((attachment, i) => (
+      <ChatAttachment attachment={attachment} key={i} />
+    ));
+  };
+
   return (
     <SW.Wrapper>
       <SW.Row>
@@ -70,6 +81,13 @@ function ChatCommentItem({ myId, comment, organizationId }) {
           </SW.Row>
           <SW.Message>{message}</SW.Message>
         </SW.Right>
+      </SW.Row>
+      <SW.Row
+        style={{
+          paddingLeft: 39,
+        }}
+      >
+        {renderAttachments()}
       </SW.Row>
       <SW.Row>
         <IconTouchableWrapper
