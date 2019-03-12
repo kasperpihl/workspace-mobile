@@ -24,7 +24,7 @@ export default function ChatCommentsList({ discussion, myId }) {
   useUpdate('comment', comment => {
     if (comment.discussion_id === discussion_id) {
       if (comment.sent_at) {
-        req.appendItem(comment);
+        req.prependItem(comment);
       } else {
         req.mergeItem(comment);
       }
