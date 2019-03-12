@@ -50,6 +50,7 @@ export default function ChatCommentsList({ discussion, myId }) {
   return (
     <SW.Wrapper>
       <FlatList
+        inverted={true}
         data={req.items || []}
         onEndReached={() => req.fetchNext()}
         onEndReachedThreshold={0}
