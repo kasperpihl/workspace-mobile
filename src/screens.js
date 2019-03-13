@@ -4,10 +4,11 @@ import { Navigation } from 'react-native-navigation';
 import { SwissProvider } from 'swiss-react';
 import configureStore from 'src/redux/configureStore';
 import HOCRootWrapper from 'src/react/HOCRootWrapper';
+
+// Screens
 import SignIn from 'src/react/SignIn/SignIn';
 import SignUpStepOne from 'src/react/SignUp/SignUpStepOne';
 import SignUpStepTwo from 'src/react/SignUp/SignUpStepTwo';
-// import Plan from 'src/Plan';
 import ProjectList from 'src/react/Project/List/ProjectList';
 import Profile from 'src/react/Profile/Profile';
 import ForgottenPassword from 'src/react/ForgottenPassword/ForgottenPassword';
@@ -16,6 +17,8 @@ import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import ChatList from 'src/react/Chat/List/ChatList.js';
 import ChatAdd from 'src/react/Chat/Add/ChatAdd.js';
 import ChatOverview from 'src/react/Chat/Overview/ChatOverview.js';
+import AttachmentViewer from 'src/react/AttachmentViewer/AttachmentViewer';
+
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'core/utils/store/storeGet';
 import Socket from 'core/classes/Socket';
@@ -58,9 +61,6 @@ export function registerScreens() {
   Navigation.registerComponent('ProjectOverview', () =>
     HOCRootWrapper(ProjectOverview, store, persistor, true)
   );
-  // Navigation.registerComponent('Plan', () =>
-  //   HOCRootWrapper(Plan, store, persistor, true)
-  // );
   Navigation.registerComponent('ChatList', () =>
     HOCRootWrapper(ChatList, store, persistor, true)
   );
@@ -69,6 +69,9 @@ export function registerScreens() {
   );
   Navigation.registerComponent('ChatOverview', () =>
     HOCRootWrapper(ChatOverview, store, persistor, true)
+  );
+  Navigation.registerComponent('AttachmentViewer', () =>
+    HOCRootWrapper(AttachmentViewer, store, persistor, true)
   );
 
   // That's not a screen per say but a custom button component

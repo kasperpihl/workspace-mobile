@@ -1,3 +1,23 @@
+const AttachmentViewer = {
+  id: 'AttachmentViewer',
+  name: 'AttachmentViewer',
+  options: {
+    topBar: {
+      leftButtons: [
+        {
+          id: 'Close',
+          text: 'Close',
+        },
+      ],
+    },
+    animations: {
+      showModal: {
+        enabled: false,
+      },
+    },
+  },
+};
+
 export default {
   ProjectList: {
     id: 'ProjectList',
@@ -127,6 +147,12 @@ export default {
         drawBehind: true,
         animate: true,
       },
+    },
+  },
+  AttachmentViewer,
+  AttachmentViewerStack: {
+    stack: {
+      children: [],
     },
   },
 };

@@ -14,10 +14,13 @@
     "deepmerge": "^3.1.0",
     "hoist-non-react-statics": "^3.3.0",
     "immutable": "^4.0.0-rc.12",
+    "moment": "^2.22.2",
     "react": "16.8.1",
     "react-native": "0.59.0-rc.2",
     "react-native-circular-progress": "^1.1.0",
     "react-native-device-info": "^0.26.4",
+    "react-native-file-viewer": "^1.0.14",
+    "react-native-fs": "^2.13.3",
     "react-native-navigation": "2.12.0",
     "react-native-svg": "^9.2.4",
     "react-native-svg-icon": "^0.8.1",
@@ -27,8 +30,7 @@
     "redux-persist": "^5.10.0",
     "redux-persist-transform-immutable": "^5.0.0",
     "redux-thunk": "^2.3.0",
-    "swiss-react": "^0.4.14",
-    "moment": "^2.22.2"
+    "swiss-react": "^0.4.14"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",

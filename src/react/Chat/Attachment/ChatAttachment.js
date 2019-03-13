@@ -1,16 +1,43 @@
 import React from 'react';
 import { Linking } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import navigationComponents from 'src/utils/navigationComponentsSettings';
+import merge from 'deepmerge';
 import SW from './ChatAttachment.swiss';
 
 export default function ChatAttachment({ attachment }) {
   const { title } = attachment;
 
-  const viewAttachment = attachment => {
+  const viewAttachment = async attachment => {
     if (attachment.type === 'url') {
       return Linking.openURL(attachment.id);
     }
 
-    console.log(attachment);
+    if (attachment.type === 'file') {
+      const AttachmentViewerStack = navigationComponents.AttachmentViewerStack;
+      const AttachmentViewer = merge(navigationComponents.AttachmentViewer, {
+        options: {
+          topBar: {
+            title: {
+              text: attachment.title,
+            },
+          },
+        },
+        passProps: {
+          attachment,
+        },
+      });
+
+      AttachmentViewerStack.stack.children = [
+        {
+          component: AttachmentViewer,
+        },
+      ];
+
+      return Navigation.showModal(AttachmentViewerStack);
+    }
+
+    return;
   };
 
   return (
