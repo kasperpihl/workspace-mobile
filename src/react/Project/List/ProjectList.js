@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigation } from 'react-native-navigation';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
 import { FlatList, ActivityIndicator } from 'react-native';
@@ -23,6 +23,8 @@ const addButton = {
 };
 
 export default function ProjectList() {
+  const [loadingNext, setLoadingNext] = useState(false);
+
   useEffect(() => {
     Navigation.mergeOptions('ProjectList', {
       topBar: {
@@ -49,6 +51,20 @@ export default function ProjectList() {
         </SW.LoaderContainer>
       );
     }
+
+    return null;
+  };
+
+  const renderFooterLoader = () => {
+    if (loadingNext) {
+      return (
+        <SW.LoaderContainerFooter>
+          <ActivityIndicator size="small" color="#007AFF" />
+        </SW.LoaderContainerFooter>
+      );
+    }
+
+    return null;
   };
 
   const renderList = () => {
@@ -61,8 +77,13 @@ export default function ProjectList() {
             data={projects ? projects : []}
             keyExtractor={item => item.project_id}
             renderItem={({ item }) => <ProjectListItem {...item} />}
-            onEndReached={() => req.fetchNext()}
+            onEndReached={async () => {
+              setLoadingNext(true);
+              await req.fetchNext();
+              setLoadingNext(false);
+            }}
             onEndReachedThreshold={0}
+            ListFooterComponent={() => renderFooterLoader()}
           />
         </SW.FlatListWrapper>
       );

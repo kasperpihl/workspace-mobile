@@ -20,4 +20,7 @@ export default styleSheet('ProjectList', {
     flex: 1,
     marginTop: 20,
   },
+  LoaderContainerFooter: {
+    _flex: 'center',
+  },
 });
