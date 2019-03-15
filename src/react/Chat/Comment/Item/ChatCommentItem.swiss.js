@@ -33,6 +33,9 @@ export default styleSheet('ChatCommentItem', {
     marginLeft: '5',
     alignSelf: 'flex-end',
   },
+  GifhyWrapper: {
+    paddingTop: '4',
+  },
   Message: {
     _el: Text,
     paddingTop: '4',

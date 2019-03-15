@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import userGetFirstName from 'core/utils/user/userGetFullName';
@@ -64,6 +65,35 @@ function ChatCommentItem({ myId, comment, organizationId }) {
     ));
   };
 
+  const renderMessage = message => {
+    const match = /<!giphy*\|(.*)\|(.*)>/g.exec(message);
+
+    if (match) {
+      const [full, height, width] = /h:([0-9]*),w:([0-9]*)/gm.exec(match[2]);
+      const ratio = width / height;
+      const base = 200;
+      const newWidth = width > height ? base : base * ratio;
+      const newHeight = width > height ? base / ratio : base;
+
+      return (
+        <SW.GifhyWrapper>
+          <Image
+            style={{
+              height: parseInt(newHeight, 10),
+              width: parseInt(newWidth, 10),
+            }}
+            resizeMode="contain"
+            source={{
+              uri: match[1],
+            }}
+          />
+        </SW.GifhyWrapper>
+      );
+    }
+
+    return <SW.Message>{message}</SW.Message>;
+  };
+
   return (
     <SW.Wrapper>
       <SW.Row>
@@ -79,7 +109,7 @@ function ChatCommentItem({ myId, comment, organizationId }) {
             <SW.Name>{userGetFirstName(sent_by, organizationId)}</SW.Name>
             <SW.Time>{`${moment(sent_at).format('LT')}`}</SW.Time>
           </SW.Row>
-          <SW.Message>{message}</SW.Message>
+          {renderMessage(message)}
         </SW.Right>
       </SW.Row>
       <SW.Row
