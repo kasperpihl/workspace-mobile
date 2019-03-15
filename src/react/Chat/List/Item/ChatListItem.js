@@ -10,7 +10,7 @@ import SW from './ChatListItem.swiss';
 
 export default function ChatListItem({ item, myId }) {
   const {
-    topic,
+    title,
     last_comment,
     last_comment_at,
     last_comment_by,
@@ -42,7 +42,7 @@ export default function ChatListItem({ item, myId }) {
           <SW.TopicRow>
             <SW.TopicText>
               <SW.LineOfText numberOfLines={1} topic>
-                {topic}
+                {title}
               </SW.LineOfText>
             </SW.TopicText>
             <SW.TopicLastCommentTime>
