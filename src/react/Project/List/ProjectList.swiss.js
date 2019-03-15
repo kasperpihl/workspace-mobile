@@ -17,6 +17,7 @@ export default styleSheet('ProjectList', {
     _size: ['100%', '100%'],
   },
   FlatListWrapper: {
+    flex: 1,
     marginTop: 20,
   },
 });
