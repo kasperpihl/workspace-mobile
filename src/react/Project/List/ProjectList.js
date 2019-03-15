@@ -78,9 +78,11 @@ export default function ProjectList() {
             keyExtractor={item => item.project_id}
             renderItem={({ item }) => <ProjectListItem {...item} />}
             onEndReached={async () => {
-              setLoadingNext(true);
-              await req.fetchNext();
-              setLoadingNext(false);
+              if (req.hasMore) {
+                setLoadingNext(true);
+                await req.fetchNext();
+                setLoadingNext(false);
+              }
             }}
             onEndReachedThreshold={0}
             ListFooterComponent={() => renderFooterLoader()}
