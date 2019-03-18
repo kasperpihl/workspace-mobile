@@ -1,5 +1,5 @@
 const AttachmentViewer = {
-  id: 'AttachmentViewer',
+  // id: 'AttachmentViewer',
   name: 'AttachmentViewer',
   options: {
     topBar: {
