@@ -9,7 +9,6 @@ import SW from './AttachmentViewer.swiss';
 
 function getLocalPath(url) {
   const filename = url.split('/').pop();
-  // feel free to change main path according to your requirements
   return `${RNFS.DocumentDirectoryPath}/${filename}`;
 }
 
