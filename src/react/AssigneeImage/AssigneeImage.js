@@ -5,11 +5,11 @@ import SW from './AssigneeImage.swiss';
 
 export default props => {
   const { userId, organizationId, size = 22, imageSize } = props;
-  const pic = userGetPhoto(userId, organizationId, imageSize);
+  const photo = userGetPhoto(userId, organizationId);
   const initials = userGetInitials(userId, organizationId);
 
-  if (pic) {
-    return <SW.Image size={size} source={{ uri: pic }} />;
+  if (photo) {
+    return <SW.Image size={size} source={{ uri: photo.get('192x192') }} />;
   }
 
   return (
