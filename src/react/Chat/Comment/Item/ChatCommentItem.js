@@ -121,6 +121,7 @@ function ChatCommentItem({ myId, comment, organizationId }) {
       </SW.Row>
       <SW.Row>
         <IconTouchableWrapper
+          key={icon}
           icon={icon}
           fill={iconColor}
           width="14"
