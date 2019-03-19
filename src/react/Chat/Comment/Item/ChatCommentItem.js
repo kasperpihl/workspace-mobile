@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Image } from 'react-native';
+import { StyleSheet, Image, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import ParsedText from 'react-native-parsed-text';
 import userGetFirstName from 'core/utils/user/userGetFullName';
 import request from 'core/utils/request';
 import ChatAttachment from 'src/react/Chat/Attachment/ChatAttachment';
 import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import useDebounce from 'src/react/_hooks/useDebounce';
+import colors from 'src/utils/colors';
 import SW from './ChatCommentItem.swiss';
+
+// If I make ParsedText to work with custom components
+//  then I can use swiss <3 but for now that's fast
+// and it's working
+const styles = StyleSheet.create({
+  nameLabel: {
+    color: colors['sw1'],
+  },
+  url: {
+    color: colors['blue'],
+  },
+});
 
 function ChatCommentItem({ myId, comment, organizationId }) {
   const {
@@ -91,7 +105,28 @@ function ChatCommentItem({ myId, comment, organizationId }) {
       );
     }
 
-    return <SW.Message>{message}</SW.Message>;
+    return (
+      <SW.Message>
+        <ParsedText
+          parse={[
+            {
+              type: 'url',
+              style: styles.url,
+              onPress: url => Linking.openURL(url),
+            },
+            {
+              pattern: /<!([A-Z0-9]*)\|(.*?)>/i,
+              style: styles.nameLabel,
+              renderText: (matchingString, matches) => {
+                return matches[2];
+              },
+            },
+          ]}
+        >
+          {message}
+        </ParsedText>
+      </SW.Message>
+    );
   };
 
   return (
