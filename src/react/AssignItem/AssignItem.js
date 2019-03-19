@@ -25,7 +25,11 @@ export default function AssignItem({
 
   return (
     <SW.Wrapper>
-      <AssigneeImage userId={userId} organizationId={organizationId} />
+      <AssigneeImage
+        userId={userId}
+        organizationId={organizationId}
+        imageSize={64}
+      />
       <SW.FullName>{fullName}</SW.FullName>
       <SW.RightButton>{renderRightButton()}</SW.RightButton>
     </SW.Wrapper>

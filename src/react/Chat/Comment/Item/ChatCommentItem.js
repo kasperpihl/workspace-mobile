@@ -100,7 +100,8 @@ function ChatCommentItem({ myId, comment, organizationId }) {
         <SW.Left>
           <AssigneeImage
             userId={sent_by}
-            size={34}
+            size={32}
+            imageSize={64}
             organizationId={organizationId}
           />
         </SW.Left>
