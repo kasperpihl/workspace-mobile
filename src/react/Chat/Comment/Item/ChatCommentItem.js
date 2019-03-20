@@ -13,7 +13,7 @@ import colors from 'src/utils/colors';
 import SW from './ChatCommentItem.swiss';
 
 // If I make ParsedText to work with custom components
-//  then I can use swiss <3 but for now that's fast
+// then I can use swiss <3 but for now that's fast
 // and it's working
 const styles = StyleSheet.create({
   nameLabel: {

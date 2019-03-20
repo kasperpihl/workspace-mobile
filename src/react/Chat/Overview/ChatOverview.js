@@ -1,12 +1,14 @@
 import React from 'react';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import request from 'core/utils/request';
 import useRequest from 'core/react/_hooks/useRequest';
 import ChatCommentsList from 'src/react/Chat/Comment/List/ChatCommentList';
+import ChatCommentComposer from 'src/react/Chat/Comment/Composer/ChatCommentComposer';
 import SW from './ChatOverview.swiss';
 
 function ChatOverview({ discussion, myId }) {
-  const { discussion_id, topic } = discussion;
+  const { discussion_id, title } = discussion;
   // `mark as read` logic
   const req = useRequest(
     'discussion.get',
@@ -25,11 +27,16 @@ function ChatOverview({ discussion, myId }) {
     }
   );
 
+  const behavior = Platform.OS === 'android' ? '' : 'padding';
+
   return (
-    <SW.Wrapper>
-      <SW.HeaderText numberOfLines={1}>{topic}</SW.HeaderText>
-      <ChatCommentsList discussion={discussion} />
-    </SW.Wrapper>
+    <KeyboardAvoidingView keyboardVerticalOffset={90} behavior={behavior}>
+      <SW.Wrapper>
+        <SW.HeaderText numberOfLines={1}>{title}</SW.HeaderText>
+        <ChatCommentsList discussion={discussion} />
+        <ChatCommentComposer />
+      </SW.Wrapper>
+    </KeyboardAvoidingView>
   );
 }
 
