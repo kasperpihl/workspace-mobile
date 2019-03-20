@@ -22,8 +22,11 @@ export default styleSheet('ChatCommentComposer', {
     width: '100%',
     maxHeight: 100,
   },
-  IconWrapper: {
-    _size: ['60', '25'],
-    backgroundColor: 'blue',
+  SendIconWrapper: {
+    alignSelf: 'flex-end',
+  },
+  LoaderContainer: {
+    _flex: 'center',
+    _size: ['44', '44'],
   },
 });

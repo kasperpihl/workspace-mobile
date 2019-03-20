@@ -8,6 +8,7 @@ import indent_in from './indent_in';
 import indent_out from './indent_out';
 import members from './members';
 import plus from './plus';
+import send from './send';
 import x from './x';
 
 export default {
@@ -21,5 +22,6 @@ export default {
   indent_out,
   members,
   plus,
+  send,
   x,
 };

@@ -8,6 +8,7 @@ import members from './members';
 import add from './add';
 import check from './check';
 import plus from './plus';
+import send from './send';
 import x from './x';
 
 export default {
@@ -21,5 +22,6 @@ export default {
   add,
   check,
   plus,
+  send,
   x,
 };

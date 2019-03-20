@@ -34,7 +34,7 @@ function ChatOverview({ discussion, myId }) {
       <SW.Wrapper>
         <SW.HeaderText numberOfLines={1}>{title}</SW.HeaderText>
         <ChatCommentsList discussion={discussion} />
-        <ChatCommentComposer />
+        <ChatCommentComposer discussionId={discussion.discussion_id} />
       </SW.Wrapper>
     </KeyboardAvoidingView>
   );
