@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { ActivityIndicator, View } from 'react-native';
-import ModalSelector from 'react-native-modal-selector';
+import React, { useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { List } from 'immutable';
+import ImagePicker from 'react-native-image-crop-picker';
 import request from 'core/utils/request';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import colors from 'src/utils/colors';
@@ -10,20 +10,6 @@ import SW from './ChatCommentComposer.swiss';
 export default function ChatCommentComposer({ discussionId }) {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const firstModalRef = useRef(null);
-  const secondModalRef = useRef(null);
-
-  let index = 0;
-  const firstModalData = [
-    { key: index++, section: true, label: 'Add attachment' },
-    { key: index++, section: true, label: 'Add url' },
-    { key: index++, section: true, label: 'Upload file' },
-  ];
-  // const secondModalData = [
-  //   { key: index++, section: true, label: 'Add attachment' },
-  //   { key: index++, section: true, label: 'Add url' },
-  //   { key: index++, section: true, label: 'Upload file' }
-  // ];
 
   const handleSubmitMessage = () => {
     const attachments = List([]);
@@ -63,24 +49,6 @@ export default function ChatCommentComposer({ discussionId }) {
 
   return (
     <SW.Wrapper>
-      <ModalSelector
-        data={firstModalData}
-        ref={firstModalRef}
-        customSelector={<View />}
-        animationType={'none'}
-        overlayStyle={{
-          // backgroundColor: 'transparent',
-          justifyContent: 'flex-end',
-        }}
-        optionStyle={{ opacity: 1, backgroundColor: 'red' }}
-        optionContainerStyle={{ opacity: 1, backgroundColor: 'white' }}
-        cancelText={'Cancel'}
-      />
-      {/* <ModalSelector
-        data={firstModalData}
-        ref={secondModalRef}
-        customSelector={<View />}
-      /> */}
       <SW.InputWrapper>
         <SW.Input
           multiline
@@ -96,7 +64,12 @@ export default function ChatCommentComposer({ discussionId }) {
           width="13"
           height="21"
           onPress={() => {
-            firstModalRef.current.open();
+            ImagePicker.openPicker({
+              // mediaType: 'video',
+              multiple: true,
+            }).then(video => {
+              console.log(video);
+            });
           }}
         />
       </SW.InputWrapper>
