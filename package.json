@@ -7,7 +7,8 @@
     "test": "jest",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
     "clean": "watchman watch-del-all && rm -rf package-lock.json && rm -rf node_modules && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-* && npm install && say I love react native",
-    "convert-svgs": "node convert-svgs.js"
+    "convert-svgs": "node convert-svgs.js",
+    "fixpod": "pod repo remove master && pod setup && pod install"
   },
   "dependencies": {
     "@swipesapp/core": "2.0.0-beta.53",
@@ -21,6 +22,8 @@
     "react-native-device-info": "^0.26.4",
     "react-native-file-viewer": "^1.0.14",
     "react-native-fs": "^2.13.3",
+    "react-native-image-crop-picker": "^0.23.0",
+    "react-native-modal-selector": "^1.0.3",
     "react-native-navigation": "2.12.0",
     "react-native-parsed-text": "0.0.21",
     "react-native-svg": "^9.2.4",

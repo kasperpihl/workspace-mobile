@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ActivityIndicator } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import ModalSelector from 'react-native-modal-selector';
 import { List } from 'immutable';
 import request from 'core/utils/request';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
@@ -9,6 +10,20 @@ import SW from './ChatCommentComposer.swiss';
 export default function ChatCommentComposer({ discussionId }) {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const firstModalRef = useRef(null);
+  const secondModalRef = useRef(null);
+
+  let index = 0;
+  const firstModalData = [
+    { key: index++, section: true, label: 'Add attachment' },
+    { key: index++, section: true, label: 'Add url' },
+    { key: index++, section: true, label: 'Upload file' },
+  ];
+  // const secondModalData = [
+  //   { key: index++, section: true, label: 'Add attachment' },
+  //   { key: index++, section: true, label: 'Add url' },
+  //   { key: index++, section: true, label: 'Upload file' }
+  // ];
 
   const handleSubmitMessage = () => {
     const attachments = List([]);
@@ -48,6 +63,24 @@ export default function ChatCommentComposer({ discussionId }) {
 
   return (
     <SW.Wrapper>
+      <ModalSelector
+        data={firstModalData}
+        ref={firstModalRef}
+        customSelector={<View />}
+        animationType={'none'}
+        overlayStyle={{
+          // backgroundColor: 'transparent',
+          justifyContent: 'flex-end',
+        }}
+        optionStyle={{ opacity: 1, backgroundColor: 'red' }}
+        optionContainerStyle={{ opacity: 1, backgroundColor: 'white' }}
+        cancelText={'Cancel'}
+      />
+      {/* <ModalSelector
+        data={firstModalData}
+        ref={secondModalRef}
+        customSelector={<View />}
+      /> */}
       <SW.InputWrapper>
         <SW.Input
           multiline
@@ -55,6 +88,15 @@ export default function ChatCommentComposer({ discussionId }) {
           value={message}
           onChangeText={text => {
             setMessage(text);
+          }}
+        />
+        <IconTouchableWrapper
+          icon={'attach'}
+          fill={'sw2'}
+          width="13"
+          height="21"
+          onPress={() => {
+            firstModalRef.current.open();
           }}
         />
       </SW.InputWrapper>

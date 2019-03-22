@@ -18,6 +18,7 @@ export default styleSheet('ChatCommentComposer', {
   Input: {
     _el: TextInput,
     _padding: 10,
+    flex: 1,
     marginTop: 5,
     width: '100%',
     maxHeight: 100,

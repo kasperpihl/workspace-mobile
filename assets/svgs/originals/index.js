@@ -1,4 +1,5 @@
 import add from './add';
+import attach from './attach';
 import back from './back';
 import check from './check';
 import expand from './expand';
@@ -13,6 +14,7 @@ import x from './x';
 
 export default {
   add,
+  attach,
   back,
   check,
   expand,
