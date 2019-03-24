@@ -16,7 +16,7 @@ import AssignItem from 'src/react/AssignItem/AssignItem';
 import SW from './ChatAdd.swiss';
 
 @connect(state => ({
-  organizations: state.organizations,
+  teams: state.teams,
 }))
 @withKeyboard
 export default class ChatAdd extends PureComponent {
@@ -25,17 +25,15 @@ export default class ChatAdd extends PureComponent {
 
     Navigation.events().bindComponent(this, 'ChatAdd');
 
-    const organization_id = this.props.organizations
-      .toList()
-      .getIn([0, 'organization_id']);
+    const team_id = this.props.teams.toList().getIn([0, 'team_id']);
 
     this.state = {
-      organization_id,
+      team_id,
       chatTitle: '',
-      organizations: this.props.organizations.toList().map(o => {
-        return Map({ label: o.get('name'), value: o.get('organization_id') });
+      teams: this.props.teams.toList().map(o => {
+        return Map({ label: o.get('name'), value: o.get('team_id') });
       }),
-      orgUsers: this.props.organizations.getIn([organization_id, 'users']),
+      teamUsers: this.props.teams.getIn([team_id, 'users']),
       privacyOptions: new List(
         fromJS([
           {
@@ -63,12 +61,12 @@ export default class ChatAdd extends PureComponent {
   handleChangeText = field => value => {
     this.setState({ [field]: value });
   };
-  handleOrganizationChange = value => {
-    const { organizations } = this.props;
+  handleTeamChange = value => {
+    const { teams } = this.props;
 
     this.setState({
-      organization_id: value,
-      orgUsers: organizations.getIn([value, 'users']),
+      team_id: value,
+      teamUsers: teams.getIn([value, 'users']),
       selectedPeople: [],
     });
   };
@@ -83,12 +81,12 @@ export default class ChatAdd extends PureComponent {
     });
   };
   handleAddChat = () => {
-    const { chatTitle, organization_id, selectedPeople, privacy } = this.state;
+    const { chatTitle, team_id, selectedPeople, privacy } = this.state;
 
     request('discussion.add', {
       privacy,
       topic: chatTitle,
-      owned_by: organization_id,
+      owned_by: team_id,
       followers: selectedPeople,
     }).then(res => {
       if (res.ok === false) {
@@ -124,22 +122,22 @@ export default class ChatAdd extends PureComponent {
     });
   }
   preparePeopleValuesForPicker = () => {
-    const { orgUsers, selectedPeople } = this.state;
+    const { teamUsers, selectedPeople } = this.state;
 
-    if (!orgUsers) return [];
+    if (!teamUsers) return [];
 
     const items = [];
 
-    orgUsers.forEach((user, key) => {
+    teamUsers.forEach((user, key) => {
       const userId = user.get('user_id');
-      const organizationId = user.get('organization_id');
-      const fullName = userGetFullName(userId, organizationId);
+      const teamId = user.get('team_id');
+      const fullName = userGetFullName(userId, teamId);
 
       items.push(
         <AssignItem
           key={key}
           userId={userId}
-          organizationId={organizationId}
+          teamId={teamId}
           fullName={fullName}
           assigned={selectedPeople.includes(userId)}
         />
@@ -152,15 +150,15 @@ export default class ChatAdd extends PureComponent {
     const { keyboardIsShown } = this.props;
     const {
       chatTitle,
-      organizations,
-      organization_id,
+      teams,
+      team_id,
       privacy,
       privacyOptions,
       privacyOptionsEnabled,
     } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
-    if (!organizations.size) return null;
+    if (!teams.size) return null;
 
     return (
       <ScrollView
@@ -186,11 +184,11 @@ export default class ChatAdd extends PureComponent {
                   />
                 </View>
                 <View style={{ marginTop: 40 }}>
-                  <FormLabel label={'Pick organization'} />
+                  <FormLabel label={'Pick team'} />
                   <Picker
-                    values={organizations}
-                    defaultValue={organization_id}
-                    onChange={this.handleOrganizationChange}
+                    values={teams}
+                    defaultValue={team_id}
+                    onChange={this.handleTeamChange}
                   />
                 </View>
                 <View style={{ marginTop: 40 }}>
@@ -204,7 +202,7 @@ export default class ChatAdd extends PureComponent {
                 <View style={{ marginTop: 40 }}>
                   <FormLabel label={'Choose people'} />
                   <Picker
-                    key={organization_id}
+                    key={team_id}
                     multiselect={true}
                     values={this.preparePeopleValuesForPicker()}
                     onChange={this.handlePeopleChange}

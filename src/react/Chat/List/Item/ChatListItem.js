@@ -4,7 +4,7 @@ import { Navigation } from 'react-native-navigation';
 import merge from 'deepmerge';
 import timeGetDayOrTime from 'core/utils/time/timeGetDayOrTime';
 import userGetFirstName from 'core/utils/user/userGetFirstName';
-import orgGetBelonging from 'core/utils/org/orgGetBelonging';
+import teamGetBelonging from 'core/utils/team/teamGetBelonging';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './ChatListItem.swiss';
 
@@ -18,7 +18,7 @@ export default function ChatListItem({ item, myId }) {
     owned_by,
   } = item;
   const firstName = userGetFirstName(last_comment_by, owned_by);
-  const orgName = orgGetBelonging(owned_by);
+  const teamName = teamGetBelonging(owned_by);
   const ts = followers[myId];
   const unread = ts === 'n' || ts < last_comment_at;
 
@@ -51,8 +51,8 @@ export default function ChatListItem({ item, myId }) {
               </SW.LineOfText>
             </SW.TopicLastCommentTime>
           </SW.TopicRow>
-          <SW.LineOfText organization numberOfLines={1}>
-            {orgName}
+          <SW.LineOfText team numberOfLines={1}>
+            {teamName}
           </SW.LineOfText>
           <SW.LineOfText text numberOfLines={2}>
             {firstName}: {last_comment}

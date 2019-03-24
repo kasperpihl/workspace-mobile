@@ -65,10 +65,9 @@ export default function ChatCommentComposer({ discussionId }) {
           height="21"
           onPress={() => {
             ImagePicker.openPicker({
-              // mediaType: 'video',
               multiple: true,
-            }).then(video => {
-              console.log(video);
+            }).then(files => {
+              console.log(files);
             });
           }}
         />

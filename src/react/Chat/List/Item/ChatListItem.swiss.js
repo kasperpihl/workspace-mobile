@@ -50,7 +50,7 @@ export default styleSheet('ChatListItem', {
       color: '$sw1',
       fontWeight: 'bold',
     },
-    organization: {
+    team: {
       fontSize: 12,
       color: '$sw2',
     },

@@ -7,8 +7,8 @@ export default class Promo extends PureComponent {
     return (
       <SW.Wrapper>
         <Text>
-          In order to assign people you should create organization and invite
-          your colleagues
+          In order to assign people you should create team and invite your
+          colleagues
         </Text>
       </SW.Wrapper>
     );

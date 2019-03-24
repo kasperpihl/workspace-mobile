@@ -56,7 +56,7 @@ export default function ChatCommentsList({ discussion, myId }) {
         onEndReachedThreshold={0}
         keyExtractor={item => item.comment_id}
         renderItem={({ item }) => (
-          <ChatCommentItem comment={item} organizationId={owned_by} />
+          <ChatCommentItem comment={item} teamId={owned_by} />
         )}
         // ListFooterComponent={() => this.renderListFooter(p.loading)}
       />

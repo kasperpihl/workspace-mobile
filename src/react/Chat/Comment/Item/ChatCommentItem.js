@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function ChatCommentItem({ myId, comment, organizationId }) {
+function ChatCommentItem({ myId, comment, teamId }) {
   const {
     comment_id,
     discussion_id,
@@ -137,12 +137,12 @@ function ChatCommentItem({ myId, comment, organizationId }) {
             userId={sent_by}
             size={32}
             imageSize={64}
-            organizationId={organizationId}
+            teamId={teamId}
           />
         </SW.Left>
         <SW.Right>
           <SW.Row>
-            <SW.Name>{userGetFirstName(sent_by, organizationId)}</SW.Name>
+            <SW.Name>{userGetFirstName(sent_by, teamId)}</SW.Name>
             <SW.Time>{`${moment(sent_at).format('LT')}`}</SW.Time>
           </SW.Row>
           {renderMessage(message)}

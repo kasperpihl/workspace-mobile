@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import merge from 'deepmerge';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import orgGetBelonging from 'core/utils/org/orgGetBelonging';
+import teamGetBelonging from 'core/utils/team/teamGetBelonging';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import colors from 'src/utils/colors';
 import SW from './ProjectListItem.swiss';
@@ -41,7 +41,7 @@ export default class ProjectListItem extends PureComponent {
               {title}
             </SW.LineOfText>
             <SW.LineOfText numberOfLines={1}>
-              {orgGetBelonging(owned_by)}
+              {teamGetBelonging(owned_by)}
             </SW.LineOfText>
           </SW.Middle>
         </SW.Wrapper>

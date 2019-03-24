@@ -26,10 +26,10 @@ const defaultButtons = [
 ];
 
 export default connect(state => ({
-  organizations: state.organizations,
+  teams: state.teams,
 }))(ProjectOverview);
 
-function ProjectOverview({ organizations, projectId }) {
+function ProjectOverview({ teams, projectId }) {
   const stateManager = useSyncedProject(projectId);
   const [
     selectedId,
@@ -44,7 +44,7 @@ function ProjectOverview({ organizations, projectId }) {
     clientState.get('owned_by'),
     clientState.get('tasks_by_id'),
   ]);
-  const orgUsers = organizations.getIn([ownedBy, 'users']);
+  const teamUsers = teams.getIn([ownedBy, 'users']);
 
   const lastSelectedId = useRef();
   useEffect(() => {
@@ -125,7 +125,7 @@ function ProjectOverview({ organizations, projectId }) {
               getKeyboardProps: () => {
                 return {
                   stateManager: stateManager,
-                  users: orgUsers,
+                  users: teamUsers,
                   lastSelectedTask: tasksById.get(lastSelectedId.current),
                 };
               },

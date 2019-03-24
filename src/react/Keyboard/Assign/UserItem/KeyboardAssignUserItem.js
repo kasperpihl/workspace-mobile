@@ -22,8 +22,8 @@ export default class KeyboardAssignUserItem extends PureComponent {
     const { item, assigned, onPress } = this.props;
     const user = item.user;
     const userId = user.get('user_id');
-    const organizationId = user.get('organization_id');
-    const fullName = userGetFullName(userId, organizationId);
+    const teamId = user.get('team_id');
+    const fullName = userGetFullName(userId, teamId);
 
     return (
       <SW.Wrapper
@@ -33,7 +33,7 @@ export default class KeyboardAssignUserItem extends PureComponent {
       >
         <AssignItem
           userId={userId}
-          organizationId={organizationId}
+          teamId={teamId}
           fullName={fullName}
           assigned={assigned}
         />

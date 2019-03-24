@@ -15,7 +15,7 @@ import SW from './ProjectAdd.swiss';
 
 @connect(state => ({
   myId: state.me.get('user_id'),
-  organizations: state.organizations.toList(),
+  teams: state.teams.toList(),
 }))
 @withKeyboard
 export default class ProjectAdd extends PureComponent {
@@ -26,8 +26,8 @@ export default class ProjectAdd extends PureComponent {
   }
   state = {
     projectName: '',
-    organization_id: this.props.myId,
-    organizations: new List(
+    team_id: this.props.myId,
+    teams: new List(
       fromJS([
         {
           label: 'Personal',
@@ -35,8 +35,8 @@ export default class ProjectAdd extends PureComponent {
         },
       ])
     ).concat(
-      this.props.organizations.map(o => {
-        return Map({ label: o.get('name'), value: o.get('organization_id') });
+      this.props.teams.map(o => {
+        return Map({ label: o.get('name'), value: o.get('team_id') });
       })
     ),
   };
@@ -53,15 +53,15 @@ export default class ProjectAdd extends PureComponent {
   };
   handlePickerChange = value => {
     this.setState({
-      organization_id: value,
+      team_id: value,
     });
   };
   handleAddProject = () => {
-    const { projectName, organization_id } = this.state;
+    const { projectName, team_id } = this.state;
 
     request('project.add', {
       title: projectName,
-      owned_by: organization_id,
+      owned_by: team_id,
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res);
@@ -97,7 +97,7 @@ export default class ProjectAdd extends PureComponent {
   }
   render() {
     const { myId, keyboardIsShown } = this.props;
-    const { projectName, organizations } = this.state;
+    const { projectName, teams } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     return (
@@ -133,9 +133,9 @@ export default class ProjectAdd extends PureComponent {
                   />
                 </View>
                 <View>
-                  <FormLabel label={'Pick organization'} />
+                  <FormLabel label={'Pick team'} />
                   <Picker
-                    values={organizations}
+                    values={teams}
                     defaultValue={myId}
                     onChange={this.handlePickerChange}
                   />
