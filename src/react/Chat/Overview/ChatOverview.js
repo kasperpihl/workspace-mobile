@@ -34,7 +34,10 @@ function ChatOverview({ discussion, myId }) {
       <SW.Wrapper>
         <SW.HeaderText numberOfLines={1}>{title}</SW.HeaderText>
         <ChatCommentsList discussion={discussion} />
-        <ChatCommentComposer discussionId={discussion.discussion_id} />
+        <ChatCommentComposer
+          discussionId={discussion.discussion_id}
+          ownedBy={discussion.owned_by}
+        />
       </SW.Wrapper>
     </KeyboardAvoidingView>
   );

@@ -8,42 +8,60 @@ const uploadProgress = response => {
   console.log('UPLOAD IS ' + percentage + '% DONE!');
 };
 
-const uploadFilesToS3 = (file, uploadUrl) => {
-  const files = [
-    {
-      name: file.filename,
-      filename: file.filename,
-      filepath: file.path,
-      filetype: file.mime,
-    },
-  ];
+// const uploadFilesToS3 = (file, uploadUrl) => {
+//   const files = [
+//     {
+//       filename: file.filename,
+//       filepath: file.path,
+//       filetype: file.mime,
+//     },
+//   ];
 
-  return RNFS.uploadFiles({
-    toUrl: uploadUrl,
-    files: files,
-    method: 'PUT',
-    headers: {
-      'Content-Type': file.mime,
-    },
-    // begin: uploadBegin,
-    progress: uploadProgress,
-  })
-    .promise.then(response => {
-      if (response.statusCode == 200) {
-        console.log('FILES UPLOADED!'); // response.statusCode, response.headers, response.body
+//   return RNFS.uploadFiles({
+//     toUrl: uploadUrl,
+//     files: files,
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': file.mime,
+//     },
+//     // begin: uploadBegin,
+//     // progress: uploadProgress,
+//   })
+//     .promise.then(response => {
+//       if (response.statusCode == 200) {
+//         console.log(response);
+//         return { ok: true };
+//       } else {
+//         // T_TODO handle errors
+//       }
+//     })
+//     .catch(err => {
+//       if (err.description === 'cancelled') {
+//         // cancelled by user
+//       }
+//       // T_TODO handle errors
+//     });
+// };
+
+const uploadFilesToS3 = (file, signedUrl) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open('PUT', signedUrl);
+  // xhr.onprogress = uploadProgress;
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log('Image successfully uploaded to S3');
       } else {
-        console.log('SERVER ERROR');
+        console.log('Error while sending the image to S3');
       }
-    })
-    .catch(err => {
-      if (err.description === 'cancelled') {
-        // cancelled by user
-      }
-      console.log(err);
-    });
+    }
+  };
+  xhr.setRequestHeader('Content-Type', file.mime);
+  xhr.send({ uri: file.path, type: file.mime, name: file.filename });
 };
 
 export default async (file, ownedBy) => {
+  console.log(file);
   let res = await request('file.getSignedUrl', {
     owned_by: ownedBy,
     file_name: file.filename,
@@ -57,15 +75,22 @@ export default async (file, ownedBy) => {
   const signedUrl = res.signed_url;
   const s3Url = res.s3_url;
 
+  console.log(s3Url);
+
+  // const fileContent = await RNFS.readFile(file.path, 'base64');
+  // console.log(fileContent);
+
   res = await uploadFilesToS3(file, signedUrl);
 
-  if (!res.ok) {
-    // T_TODO show error
-  }
+  // console.log(res);
 
-  return await request('file.add', {
-    owned_by: ownedBy,
-    file_name: fileName,
-    s3_url: s3Url,
-  });
+  // if (!res.ok) {
+  //   // T_TODO show error
+  // }
+
+  // return await request('file.add', {
+  //   owned_by: ownedBy,
+  //   file_name: file.filename,
+  //   s3_url: s3Url,
+  // });
 };

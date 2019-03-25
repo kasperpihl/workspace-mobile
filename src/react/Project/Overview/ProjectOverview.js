@@ -31,19 +31,16 @@ export default connect(state => ({
 
 function ProjectOverview({ teams, projectId }) {
   const stateManager = useSyncedProject(projectId);
-  const [
-    selectedId,
-    visibleOrder,
-    projectName,
-    ownedBy,
-    tasksById,
-  ] = useProjectSlice(stateManager, (clientState, localState) => [
-    localState.get('selectedId'),
-    localState.get('visibleOrder'),
-    clientState.get('name'),
-    clientState.get('owned_by'),
-    clientState.get('tasks_by_id'),
-  ]);
+  const [selectedId, visibleOrder, ownedBy, tasksById] = useProjectSlice(
+    stateManager,
+    (clientState, localState) => [
+      localState.get('selectedId'),
+      localState.get('visibleOrder'),
+      clientState.get('name'),
+      clientState.get('owned_by'),
+      clientState.get('tasks_by_id'),
+    ]
+  );
   const teamUsers = teams.getIn([ownedBy, 'users']);
 
   const lastSelectedId = useRef();

@@ -5,9 +5,10 @@ import ImagePicker from 'react-native-image-crop-picker';
 import request from 'core/utils/request';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import colors from 'src/utils/colors';
+import uploadFile from 'src/utils/uploadFile';
 import SW from './ChatCommentComposer.swiss';
 
-export default function ChatCommentComposer({ discussionId }) {
+export default function ChatCommentComposer({ discussionId, ownedBy }) {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -66,8 +67,9 @@ export default function ChatCommentComposer({ discussionId }) {
           onPress={() => {
             ImagePicker.openPicker({
               multiple: true,
-            }).then(files => {
-              console.log(files);
+            }).then(async files => {
+              const fileRes = await uploadFile(files[0], ownedBy);
+              console.log(fileRes);
             });
           }}
         />
