@@ -8,6 +8,7 @@ import com.reactnativenavigation.react.ReactGateway;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.horcrux.svg.SvgPackage;
 import com.rnfs.RNFSPackage;
+import com.vinzscam.reactnativefileviewer.RNFileViewerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,8 @@ public class MainApplication extends NavigationApplication {
     protected List<ReactPackage> getPackages() {
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
-        return Arrays.<ReactPackage>asList(new RNDeviceInfo(), new SvgPackage(), new RNFSPackage()
+        return Arrays.<ReactPackage>asList(new RNDeviceInfo(), new SvgPackage(), new RNFSPackage(),
+                new RNFileViewerPackage()
         // eg. new VectorIconsPackage()
         );
     }
