@@ -98,8 +98,6 @@ export default class AttachmentViewer extends PureComponent {
         this.deleteFile();
         this.dismissModal();
       },
-      showOpenWithDialog: true,
-      showAppsSuggestions: true,
     };
 
     RNFS.downloadFile(options)
