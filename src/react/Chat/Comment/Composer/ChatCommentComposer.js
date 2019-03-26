@@ -10,25 +10,33 @@ import SW from './ChatCommentComposer.swiss';
 
 export default function ChatCommentComposer({ discussionId, ownedBy }) {
   const [message, setMessage] = useState('');
+  const [attachments, setAttachments] = useState(List([]));
   const [loading, setLoading] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
 
   const handleSubmitMessage = () => {
-    const attachments = List([]);
+    if (uploadLoading) {
+      return;
+    }
 
     setLoading(true);
     request('comment.add', {
-      discussion_id: discussionId,
-      attachments,
       message,
+      discussion_id: discussionId,
+      attachments: attachments.toJS(),
     }).then(res => {
       setLoading(false);
-      // T_TODO show error if something goes wrong
+
+      if (!res.ok) {
+        // T_TODO show error if something goes wrong
+      }
     });
 
     setMessage('');
+    setAttachments(List([]));
   };
 
-  renderSendIcon = () => {
+  const renderSendIcon = () => {
     if (loading) {
       return (
         <SW.LoaderContainer>
@@ -48,6 +56,60 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
     );
   };
 
+  const renderAttachIcon = () => {
+    if (uploadLoading) {
+      return (
+        <SW.LoaderContainer>
+          <ActivityIndicator size="small" color={colors['blue']} />
+        </SW.LoaderContainer>
+      );
+    }
+
+    return (
+      <SW.AttachIconWrapper>
+        {attachments.size > 0 && (
+          <SW.AttachmentCounterWrapper>
+            <SW.AttachmentCounter>{attachments.size}</SW.AttachmentCounter>
+          </SW.AttachmentCounterWrapper>
+        )}
+        <IconTouchableWrapper
+          icon={'attach'}
+          fill={'sw2'}
+          width="13"
+          height="21"
+          onPress={() => {
+            if (loading) {
+              return;
+            }
+
+            ImagePicker.openPicker({
+              multiple: true, // T_TODO should be false on Android
+              maxFiles: 1,
+            }).then(async files => {
+              setUploadLoading(true);
+              const fileRes = await uploadFile(files[0], ownedBy);
+
+              if (!fileRes.ok) {
+                // T_TODO show error
+                return;
+              }
+
+              const file = fileRes.file;
+              setUploadLoading(false);
+              setAttachments(
+                attachments.push({
+                  type: 'file',
+                  id: file.file_id,
+                  title: file.file_name,
+                })
+              );
+            });
+          }}
+        />
+      </SW.AttachIconWrapper>
+    );
+  };
+
   return (
     <SW.Wrapper>
       <SW.InputWrapper>
@@ -59,26 +121,9 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
             setMessage(text);
           }}
         />
-        <IconTouchableWrapper
-          icon={'attach'}
-          fill={'sw2'}
-          width="13"
-          height="21"
-          onPress={() => {
-            ImagePicker.openPicker({
-              multiple: true,
-            }).then(async files => {
-              const fileRes = await uploadFile(files[0], ownedBy);
-              console.log(fileRes);
-            });
-          }}
-        />
+        {renderAttachIcon()}
       </SW.InputWrapper>
       <SW.SendIconWrapper>{renderSendIcon()}</SW.SendIconWrapper>
     </SW.Wrapper>
   );
 }
-
-// export default connect(state => ({
-//   myId: state.me.get('user_id'),
-// }))(ChatOverview);

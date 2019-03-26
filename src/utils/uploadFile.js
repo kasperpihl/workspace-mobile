@@ -1,67 +1,32 @@
 import request from 'core/utils/request';
-import RNFS from 'react-native-fs';
 
-const uploadProgress = response => {
-  const percentage = Math.floor(
-    (response.totalBytesSent / response.totalBytesExpectedToSend) * 100
-  );
-  console.log('UPLOAD IS ' + percentage + '% DONE!');
-};
-
-// const uploadFilesToS3 = (file, uploadUrl) => {
-//   const files = [
-//     {
-//       filename: file.filename,
-//       filepath: file.path,
-//       filetype: file.mime,
-//     },
-//   ];
-
-//   return RNFS.uploadFiles({
-//     toUrl: uploadUrl,
-//     files: files,
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': file.mime,
-//     },
-//     // begin: uploadBegin,
-//     // progress: uploadProgress,
-//   })
-//     .promise.then(response => {
-//       if (response.statusCode == 200) {
-//         console.log(response);
-//         return { ok: true };
-//       } else {
-//         // T_TODO handle errors
-//       }
-//     })
-//     .catch(err => {
-//       if (err.description === 'cancelled') {
-//         // cancelled by user
-//       }
-//       // T_TODO handle errors
-//     });
-// };
+// Current specification of xhr does not have onprogress build-in
+// xhr2 will have it some day :)
+// In order to do that I have to use rn-fetch-blob
+// which is calculating the progress of the send bytes / total bytes itself
+// It's a project for better times
+// It can also be used for downloading progress
+// which is going to be cool on the attachment viewer
 
 const uploadFilesToS3 = (file, signedUrl) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open('PUT', signedUrl);
-  // xhr.onprogress = uploadProgress;
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        console.log('Image successfully uploaded to S3');
-      } else {
-        console.log('Error while sending the image to S3');
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedUrl);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          return resolve({ ok: true });
+        } else {
+          return resolve({ ok: false });
+        }
       }
-    }
-  };
-  xhr.setRequestHeader('Content-Type', file.mime);
-  xhr.send({ uri: file.path, type: file.mime, name: file.filename });
+    };
+    xhr.setRequestHeader('Content-Type', file.mime);
+    xhr.send({ uri: file.path, type: file.mime, name: file.filename });
+  });
 };
 
 export default async (file, ownedBy) => {
-  console.log(file);
   let res = await request('file.getSignedUrl', {
     owned_by: ownedBy,
     file_name: file.filename,
@@ -69,28 +34,21 @@ export default async (file, ownedBy) => {
   });
 
   if (!res.ok) {
-    //T_TODO show error
+    return { ok: false };
   }
 
   const signedUrl = res.signed_url;
   const s3Url = res.s3_url;
 
-  console.log(s3Url);
-
-  // const fileContent = await RNFS.readFile(file.path, 'base64');
-  // console.log(fileContent);
-
   res = await uploadFilesToS3(file, signedUrl);
 
-  // console.log(res);
+  if (!res.ok) {
+    return { ok: false };
+  }
 
-  // if (!res.ok) {
-  //   // T_TODO show error
-  // }
-
-  // return await request('file.add', {
-  //   owned_by: ownedBy,
-  //   file_name: file.filename,
-  //   s3_url: s3Url,
-  // });
+  return await request('file.add', {
+    owned_by: ownedBy,
+    file_name: file.filename,
+    s3_url: s3Url,
+  });
 };

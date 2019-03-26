@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { TextInput } from 'react-native';
+import { TextInput, Text } from 'react-native';
 
 export default styleSheet('ChatCommentComposer', {
   Wrapper: {
@@ -29,5 +29,24 @@ export default styleSheet('ChatCommentComposer', {
   LoaderContainer: {
     _flex: 'center',
     _size: ['44', '44'],
+  },
+  AttachIconWrapper: {
+    _size: 44,
+  },
+  AttachmentCounterWrapper: {
+    _size: ['16', '16'],
+    _borderRadius: 8,
+    _flex: 'center',
+    zIndex: 1,
+    top: 4,
+    right: 6,
+    position: 'absolute',
+    backgroundColor: '$blue',
+    color: '$sw5',
+  },
+  AttachmentCounter: {
+    _el: Text,
+    fontSize: 12,
+    color: '$sw5',
   },
 });
