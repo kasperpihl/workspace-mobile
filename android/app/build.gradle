@@ -104,6 +104,7 @@ android {
         versionName "1.0"
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
     }
     signingConfigs {
         release {
