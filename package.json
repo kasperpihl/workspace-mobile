@@ -6,11 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint .",
-    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
     "clean": "watchman watch-del-all && rm -rf package-lock.json && rm -rf node_modules && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-* && npm install && say I love react native",
     "convert-svgs": "node convert-svgs.js",
     "fixpod": "pod repo remove master && pod setup && pod install",
-    "androidclean": "cd android && ./gradlew clean"
+    "androidclean": "cd android && ./gradlew clean",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios"
   },
   "dependencies": {
     "@swipesapp/core": "2.0.0-beta.60",
