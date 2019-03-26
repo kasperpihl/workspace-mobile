@@ -10,7 +10,7 @@
     "clean": "watchman watch-del-all && rm -rf package-lock.json && rm -rf node_modules && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-* && npm install && say I love react native",
     "convert-svgs": "node convert-svgs.js",
     "fixpod": "pod repo remove master && pod setup && pod install",
-    "gradleclean": "cd android && ./gradlew clean"
+    "androidclean": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "@swipesapp/core": "2.0.0-beta.60",
