@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "lint": "eslint .",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
     "clean": "watchman watch-del-all && rm -rf package-lock.json && rm -rf node_modules && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-* && npm install && say I love react native",
     "convert-svgs": "node convert-svgs.js",
@@ -17,7 +18,7 @@
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.22.2",
     "react": "16.8.3",
-    "react-native": "0.59.1",
+    "react-native": "0.59.2",
     "react-native-circular-progress": "^1.1.0",
     "react-native-device-info": "^0.26.4",
     "react-native-file-viewer": "^1.0.14",
@@ -37,8 +38,10 @@
     "swiss-react": "^0.4.14"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/runtime": "^7.3.4",
+    "@babel/core": "^7.4.0",
+    "@babel/runtime": "^7.4.2",
+    "@react-native-community/eslint-config": "^0.0.3",
+    "eslint": "^5.15.3",
     "@babel/plugin-proposal-decorators": "^7.1.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.5.0",
