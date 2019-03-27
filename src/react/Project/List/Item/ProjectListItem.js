@@ -9,11 +9,12 @@ import colors from 'src/utils/colors';
 import SW from './ProjectListItem.swiss';
 
 export default class ProjectListItem extends PureComponent {
-  handleListClick = projectId => () => {
+  handleListClick = (projectId, projectTitle) => () => {
     Navigation.push('ProjectList', {
       component: merge(navigationComponents.ProjectOverview, {
         passProps: {
           projectId,
+          projectTitle,
         },
       }),
     });
@@ -22,7 +23,7 @@ export default class ProjectListItem extends PureComponent {
     const { project_id, title, owned_by, completion_percentage } = this.props;
 
     return (
-      <TouchableOpacity onPress={this.handleListClick(project_id)}>
+      <TouchableOpacity onPress={this.handleListClick(project_id, title)}>
         <SW.Wrapper>
           <SW.LeftSide>
             <AnimatedCircularProgress

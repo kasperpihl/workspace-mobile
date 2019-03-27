@@ -18,14 +18,13 @@ export default connect(state => ({
   teams: state.teams,
 }))(ProjectOverview);
 
-function ProjectOverview({ teams, projectId }) {
+function ProjectOverview({ teams, projectId, projectTitle }) {
   const stateManager = useSyncedProject(projectId);
   const [selectedId, visibleOrder, ownedBy, tasksById] = useProjectSlice(
     stateManager,
     (clientState, localState) => [
       localState.get('selectedId'),
       localState.get('visibleOrder'),
-      clientState.get('name'),
       clientState.get('owned_by'),
       clientState.get('tasks_by_id'),
     ]
@@ -45,9 +44,12 @@ function ProjectOverview({ teams, projectId }) {
 
   if (!visibleOrder) {
     return (
-      <SW.LoaderContainer>
-        <ActivityIndicator size="large" color="#007AFF" />
-      </SW.LoaderContainer>
+      <SW.Wrapper>
+        <SW.HeaderText numberOfLines={1}>{projectTitle}</SW.HeaderText>
+        <SW.LoaderContainer>
+          <ActivityIndicator size="large" color="#007AFF" />
+        </SW.LoaderContainer>
+      </SW.Wrapper>
     );
   }
 
@@ -67,6 +69,7 @@ function ProjectOverview({ teams, projectId }) {
   return (
     <ProjectProvider stateManager={stateManager}>
       <SW.Wrapper>
+        <SW.HeaderText numberOfLines={1}>{projectTitle}</SW.HeaderText>
         <VirtualizedList
           keyboardDismissMode={'none'}
           keyboardShouldPersistTaps={'always'}
