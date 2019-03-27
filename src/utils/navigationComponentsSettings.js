@@ -77,16 +77,6 @@ export default {
         backButton: {
           title: 'Projects',
         },
-        rightButtons: [
-          {
-            id: 'Edit',
-            text: 'Edit',
-          },
-          {
-            id: 'Discuss',
-            text: 'Discuss',
-          },
-        ],
       },
       bottomTabs: {
         visible: false,

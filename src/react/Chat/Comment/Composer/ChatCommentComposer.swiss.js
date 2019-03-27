@@ -13,15 +13,15 @@ export default styleSheet('ChatCommentComposer', {
     _borderRadius: 20,
     _border: [1, '$sw3'],
     flex: 1,
-    minHeight: 30,
   },
   Input: {
     _el: TextInput,
-    _padding: 10,
+    paddingTop: 0,
+    paddingBottom: 0,
     flex: 1,
-    marginTop: 5,
     width: '100%',
     maxHeight: 100,
+    marginLeft: 12,
   },
   SendIconWrapper: {
     alignSelf: 'flex-end',

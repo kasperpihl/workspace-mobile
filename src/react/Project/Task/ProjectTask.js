@@ -111,6 +111,8 @@ export default class ProjectTask extends PureComponent {
             height="8"
             rotate={expanded ? '0' : '-90'}
             onPress={this.handleExpandPress}
+            small={true}
+            style={{ marginTop: -10 }}
           />
         )}
         <SW.MarginForExpandArrow hasChildren={hasChildren} />
@@ -128,7 +130,7 @@ export default class ProjectTask extends PureComponent {
           <SW.CircleWrapper onPress={this.handleComplete}>
             <SW.Circle completion={completion}>
               {completion && (
-                <Icon name="check" fill="white" width={15} height={10} />
+                <Icon name="check" fill="white" width={9} height={6} />
               )}
             </SW.Circle>
           </SW.CircleWrapper>

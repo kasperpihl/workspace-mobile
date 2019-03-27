@@ -7,29 +7,30 @@ export default styleSheet('ProjectInput', {
     _flex: ['row'],
   },
   InnerWrapper: {
-    _flex: ['row'],
+    _flex: ['row', 'flex-start'],
     flex: 1,
+    marginTop: 2,
   },
   IndentSpace: {
     _size: [0, '100%'],
     _border: ['1', '$sw3', 'left'],
-    highlight: {
-      _border: ['1', '$sw1', 'left'],
-    },
-    marginLeft: 21,
+    // highlight: {
+    //   _border: ['1', '$sw1', 'left'],
+    // },
+    marginLeft: 17,
   },
   MarginForExpandArrow: {
-    marginLeft: get => (get('hasChildren') ? 0 : 44),
+    marginLeft: get => (get('hasChildren') ? 0 : 34),
   },
   CircleWrapper: {
     _el: TouchableOpacity,
-    _flex: 'center',
-    _size: ['44', '44'],
-    _borderRadius: 22,
+    _flex: ['row', 'center', 'flex-start'],
+    _size: ['34', '34'],
+    _borderRadius: 17,
   },
   Circle: {
     _flex: 'center',
-    _size: ['22', '22'],
+    _size: ['18', '18'],
     _border: ['1', '$blue'],
     _borderRadius: 11,
 
@@ -39,7 +40,9 @@ export default styleSheet('ProjectInput', {
   },
   Input: {
     _el: TextInput,
+    paddingTop: 0,
+    paddingBottom: 0,
     flex: 1,
-    marginTop: 9,
+    textAlignVertical: 'top',
   },
 });

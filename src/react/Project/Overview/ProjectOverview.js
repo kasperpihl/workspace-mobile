@@ -14,17 +14,6 @@ import SW from './ProjectOverview.swiss';
 
 console.disableYellowBox = true;
 
-const defaultButtons = [
-  {
-    id: 'Edit',
-    text: 'Edit',
-  },
-  {
-    id: 'Discuss',
-    text: 'Discuss',
-  },
-];
-
 export default connect(state => ({
   teams: state.teams,
 }))(ProjectOverview);
@@ -49,14 +38,6 @@ function ProjectOverview({ teams, projectId }) {
       lastSelectedId.current = selectedId;
     }
   });
-
-  useEffect(() => {
-    Navigation.mergeOptions('ProjectOverview', {
-      topBar: {
-        rightButtons: defaultButtons,
-      },
-    });
-  }, []);
 
   useAppState(() => {
     stateManager && stateManager.syncHandler.syncIfNeeded();
