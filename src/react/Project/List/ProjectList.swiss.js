@@ -22,5 +22,6 @@ export default styleSheet('ProjectList', {
   },
   LoaderContainerFooter: {
     _flex: 'center',
+    _padding: 10,
   },
 });

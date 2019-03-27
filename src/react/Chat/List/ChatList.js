@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ActivityIndicator } from 'react-native';
+import { FlatList, ActivityIndicator, Platform } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
@@ -26,6 +26,7 @@ const addButton = {
 };
 
 function ChatList({ myId, type }) {
+  const [loadingNext, setLoadingNext] = useState(false);
   const req = usePaginationRequest(
     'discussion.list',
     {
@@ -60,16 +61,35 @@ function ChatList({ myId, type }) {
     }
   };
 
+  const renderFooterLoader = () => {
+    if (loadingNext) {
+      return (
+        <SW.LoaderContainerFooter>
+          <ActivityIndicator size="small" color="#007AFF" />
+        </SW.LoaderContainerFooter>
+      );
+    }
+
+    return null;
+  };
+
+  const endReachedThreshold = Platform.OS === 'ios' ? 0 : 1;
   const renderList = () => {
     if (!req.error || !req.loading) {
       return (
         <FlatList
           data={req.items ? req.items : []}
-          onEndReached={() => req.fetchNext()}
-          onEndReachedThreshold={0}
+          onEndReached={async () => {
+            if (req.hasMore) {
+              setLoadingNext(true);
+              await req.fetchNext();
+              setLoadingNext(false);
+            }
+          }}
+          onEndReachedThreshold={endReachedThreshold}
           keyExtractor={item => item.discussion_id}
           renderItem={({ item }) => <ChatListItem item={item} myId={myId} />}
-          // ListFooterComponent={() => this.renderListFooter(p.loading)}
+          ListFooterComponent={() => renderFooterLoader()}
         />
       );
     }

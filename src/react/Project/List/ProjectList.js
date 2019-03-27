@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigation } from 'react-native-navigation';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
-import { FlatList, ActivityIndicator } from 'react-native';
+import { FlatList, ActivityIndicator, Platform } from 'react-native';
 import ProjectListItem from 'src/react/Project/List/Item/ProjectListItem';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
 import SW from './ProjectList.swiss';
@@ -67,6 +67,7 @@ export default function ProjectList() {
     return null;
   };
 
+  const endReachedThreshold = Platform.OS === 'ios' ? 0 : 1;
   const renderList = () => {
     if (!req.error || !req.loading) {
       const projects = req.items;
@@ -84,7 +85,7 @@ export default function ProjectList() {
                 setLoadingNext(false);
               }
             }}
-            onEndReachedThreshold={0}
+            onEndReachedThreshold={endReachedThreshold}
             ListFooterComponent={() => renderFooterLoader()}
           />
         </SW.FlatListWrapper>

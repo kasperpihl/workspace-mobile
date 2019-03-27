@@ -9,4 +9,8 @@ export default styleSheet('ChatCommentList', {
     _flex: 'center',
     _size: ['100%', '100%'],
   },
+  LoaderContainerFooter: {
+    _flex: 'center',
+    _padding: 10,
+  },
 });

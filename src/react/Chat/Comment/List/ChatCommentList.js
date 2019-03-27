@@ -1,5 +1,5 @@
-import React from 'react';
-import { FlatList, ActivityIndicator, Text } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, ActivityIndicator, Platform } from 'react-native';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
 import useUpdate from 'core/react/_hooks/useUpdate';
 import ChatCommentItem from 'src/react/Chat/Comment/Item/ChatCommentItem';
@@ -8,6 +8,7 @@ import SW from './ChatCommentList.swiss';
 export default function ChatCommentsList({ discussion, myId }) {
   const { discussion_id, owned_by } = discussion;
 
+  const [loadingNext, setLoadingNext] = useState(false);
   const req = usePaginationRequest(
     'comment.list',
     {
@@ -47,18 +48,37 @@ export default function ChatCommentsList({ discussion, myId }) {
   //   );
   // }
 
+  const renderFooterLoader = () => {
+    if (loadingNext) {
+      return (
+        <SW.LoaderContainerFooter>
+          <ActivityIndicator size="small" color="#007AFF" />
+        </SW.LoaderContainerFooter>
+      );
+    }
+
+    return null;
+  };
+
+  const endReachedThreshold = Platform.OS === 'ios' ? 0 : 1;
   return (
     <SW.Wrapper>
       <FlatList
         inverted={true}
         data={req.items || []}
-        onEndReached={() => req.fetchNext()}
-        onEndReachedThreshold={0}
+        onEndReached={async () => {
+          if (req.hasMore) {
+            setLoadingNext(true);
+            await req.fetchNext();
+            setLoadingNext(false);
+          }
+        }}
+        onEndReachedThreshold={endReachedThreshold}
         keyExtractor={item => item.comment_id}
         renderItem={({ item }) => (
           <ChatCommentItem comment={item} teamId={owned_by} />
         )}
-        // ListFooterComponent={() => this.renderListFooter(p.loading)}
+        ListFooterComponent={() => renderFooterLoader()}
       />
     </SW.Wrapper>
   );

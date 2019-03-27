@@ -13,12 +13,16 @@ export default styleSheet('ChatList', {
     fontWeight: 'bold',
     paddingBottom: 20,
   },
+  ListWrapper: {
+    flex: 1,
+    _size: ['100%', '100%'],
+  },
   LoaderContainer: {
     _flex: 'center',
     _size: ['100%', '100%'],
   },
-  ListWrapper: {
-    flex: 1,
-    _size: ['100%', '100%'],
+  LoaderContainerFooter: {
+    _flex: 'center',
+    _padding: 10,
   },
 });
