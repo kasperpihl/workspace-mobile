@@ -31,10 +31,10 @@ export default class ProjectListItem extends PureComponent {
               width={11}
               backgroundWidth={11}
               fill={completion_percentage}
-              tintColor={colors['green']}
+              tintColor={colors['green1']}
               duration={0}
               rotation={0}
-              backgroundColor={colors['green5']}
+              backgroundColor={colors['green4']}
             />
           </SW.LeftSide>
           <SW.Middle>
