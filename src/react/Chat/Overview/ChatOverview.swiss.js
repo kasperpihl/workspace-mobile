@@ -12,5 +12,6 @@ export default styleSheet('ChatOverview', {
     fontSize: '30',
     fontWeight: 'bold',
     paddingBottom: 20,
+    color: 'black',
   },
 });

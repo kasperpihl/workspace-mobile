@@ -19,6 +19,7 @@ export default styleSheet('ProjectAdd', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+    color: 'black',
   },
   FooterWrapper: {
     flex: 0.3,

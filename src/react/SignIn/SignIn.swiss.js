@@ -15,6 +15,7 @@ export default styleSheet('SignIn', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+    color: 'black',
   },
   FooterWrapper: {
     _flex: ['column', 'center', 'center'],

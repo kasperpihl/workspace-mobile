@@ -20,5 +20,6 @@ export default styleSheet('ChatAdd', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+    color: 'black',
   },
 });

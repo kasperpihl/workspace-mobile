@@ -12,6 +12,7 @@ export default styleSheet('ProjectOverview', {
     fontSize: '30',
     fontWeight: 'bold',
     paddingBottom: 20,
+    color: 'black',
   },
   LoaderContainer: {
     _flex: 'center',

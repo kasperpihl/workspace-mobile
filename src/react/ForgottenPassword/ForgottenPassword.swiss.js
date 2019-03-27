@@ -19,6 +19,7 @@ export default styleSheet('ForgottenPassword', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+    color: 'black',
   },
   CopyText: {
     _el: Text,

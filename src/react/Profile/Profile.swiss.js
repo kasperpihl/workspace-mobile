@@ -11,6 +11,7 @@ export default styleSheet('Profile', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+    color: 'black',
   },
   ButtonWrapper: {
     _el: TouchableOpacity,

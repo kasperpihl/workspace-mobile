@@ -11,6 +11,7 @@ export default styleSheet('ProjectList', {
     _el: Text,
     fontSize: '30',
     fontWeight: 'bold',
+    color: 'black',
   },
   LoaderContainer: {
     _flex: 'center',
