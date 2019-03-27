@@ -1,5 +1,4 @@
 const AttachmentViewer = {
-  // id: 'AttachmentViewer',
   name: 'AttachmentViewer',
   options: {
     topBar: {
