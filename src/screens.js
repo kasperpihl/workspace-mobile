@@ -18,7 +18,7 @@ import ChatList from 'src/react/Chat/List/ChatList.js';
 import ChatAdd from 'src/react/Chat/Add/ChatAdd.js';
 import ChatOverview from 'src/react/Chat/Overview/ChatOverview.js';
 import AttachmentViewer from 'src/react/AttachmentViewer/AttachmentViewer';
-
+// import InitLoading from 'src/react/InitLoading/InitLoading.js';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'core/utils/store/storeGet';
 import Socket from 'core/classes/Socket';
@@ -49,6 +49,9 @@ export function registerScreens() {
   Navigation.registerComponent('ForgottenPassword', () =>
     HOCRootWrapper(ForgottenPassword, store, persistor, false)
   );
+  // Navigation.registerComponent('InitLoading', () =>
+  //   HOCRootWrapper(InitLoading, store, persistor, false)
+  // );
   Navigation.registerComponent('ProjectList', () =>
     HOCRootWrapper(ProjectList, store, persistor, true)
   );

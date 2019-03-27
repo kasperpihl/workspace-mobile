@@ -53,7 +53,7 @@ export const goHome = () =>
               ],
               options: {
                 bottomTab: {
-                  text: 'Discussions',
+                  text: 'Chat',
                   fontSize: 12,
                   icon: require('../assets/pngs/main_tab.png'),
                   selectedIcon: require('../assets/pngs/main_tab_active.png'),
@@ -114,6 +114,15 @@ export const goForgottenPassword = () =>
     root: {
       component: {
         name: 'ForgottenPassword',
+      },
+    },
+  });
+
+export const goInitLoading = () =>
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: 'InitLoading',
       },
     },
   });
