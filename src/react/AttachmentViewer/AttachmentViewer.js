@@ -19,8 +19,11 @@ export default class AttachmentViewer extends PureComponent {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
+    this.jobId = null;
   }
-  state = {};
+  state = {
+    loaded: false,
+  };
   navigationButtonPressed({ buttonId }) {
     if (buttonId === 'Close') {
       this.dismissModal();
@@ -35,8 +38,50 @@ export default class AttachmentViewer extends PureComponent {
       },
     });
   };
+  componentWillUnmount() {
+    if (this.jobId) {
+      RNFS.stopDownload(this.jobId);
+      this.cleanFileFromFileSystem();
+    }
+  }
   componentDidMount() {
     this.fetchFile();
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { file, loaded } = this.state;
+
+    if (!file || loaded) {
+      return;
+    }
+
+    const url = file.s3_url;
+    const localFile = getLocalPath(url);
+    const options = {
+      fromUrl: url,
+      toFile: localFile,
+    };
+    const openOptions = {
+      onDismiss: () => {
+        this.cleanFileFromFileSystem();
+        this.dismissModal();
+      },
+    };
+
+    const donwloadRes = RNFS.downloadFile(options);
+
+    this.jobId = donwloadRes.jobId;
+
+    donwloadRes.promise
+      .then(() => {
+        this.setState({ loaded: true });
+        return FileViewer.open(localFile, openOptions);
+      })
+      .then(() => {
+        // success
+      })
+      .catch(error => {
+        // T_TODO close the modal or display `try again` button
+      });
   }
 
   async fetchFile() {
@@ -60,7 +105,7 @@ export default class AttachmentViewer extends PureComponent {
     this.setState({ file: res.file });
   }
 
-  deleteFile = () => {
+  cleanFileFromFileSystem = () => {
     const { file } = this.state;
 
     if (!file) {
@@ -81,38 +126,17 @@ export default class AttachmentViewer extends PureComponent {
   };
 
   render() {
-    const { file } = this.state;
+    const { attachment } = this.props;
+    const { title } = attachment;
+    const { loaded } = this.state;
 
-    if (!file) {
+    if (loaded) {
       return null;
     }
 
-    const url = file.s3_url;
-    const localFile = getLocalPath(url);
-    const options = {
-      fromUrl: url,
-      toFile: localFile,
-    };
-    const openOptions = {
-      onDismiss: () => {
-        this.deleteFile();
-        this.dismissModal();
-      },
-    };
-
-    RNFS.downloadFile(options)
-      .promise.then(() => {
-        return FileViewer.open(localFile, openOptions);
-      })
-      .then(() => {
-        // success
-      })
-      .catch(error => {
-        // T_TODO close the modal or display `try again` button
-      });
-
     return (
       <SW.Wrapper>
+        <SW.Title>{title}</SW.Title>
         <SW.LoaderContainer>
           <ActivityIndicator size="large" color="#007AFF" />
         </SW.LoaderContainer>

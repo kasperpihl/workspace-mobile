@@ -16,13 +16,6 @@ export default function ChatAttachment({ attachment }) {
     if (attachment.type === 'file') {
       const AttachmentViewerStack = navigationComponents.AttachmentViewerStack;
       const AttachmentViewer = merge(navigationComponents.AttachmentViewer, {
-        options: {
-          topBar: {
-            title: {
-              text: attachment.title,
-            },
-          },
-        },
         passProps: {
           attachment,
         },
