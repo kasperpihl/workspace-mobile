@@ -37,6 +37,7 @@ export default class SignUpStepTwo extends PureComponent {
       password,
       first_name: firstnameVal,
       last_name: lastnameVal,
+      timezone_offset: new Date().getTimezoneOffset(),
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res);
