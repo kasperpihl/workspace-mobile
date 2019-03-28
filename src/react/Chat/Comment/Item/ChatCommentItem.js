@@ -96,7 +96,8 @@ function ChatCommentItem({ myId, comment, teamId }) {
               height: parseInt(newHeight, 10),
               width: parseInt(newWidth, 10),
             }}
-            resizeMode="contain"
+            borderRadius={5}
+            overlayColor="white"
             source={{
               uri: match[1],
             }}
