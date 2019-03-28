@@ -163,7 +163,9 @@ function ChatCommentItem({ myId, comment, teamId }) {
           width="14"
           height="14"
           style={{
-            marginLeft: 30,
+            position: 'absolute',
+            zIndex: 3,
+            left: 46,
           }}
           onPress={() => {
             handleLike();

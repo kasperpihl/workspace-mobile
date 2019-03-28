@@ -46,7 +46,7 @@ export default styleSheet('ChatCommentItem', {
     color: '$sw2',
     alignSelf: 'center',
     position: 'absolute',
-    zIndex: '2',
-    left: 65,
+    zIndex: 2,
+    left: 66,
   },
 });
