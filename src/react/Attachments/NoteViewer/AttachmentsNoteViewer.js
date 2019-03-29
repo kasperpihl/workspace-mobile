@@ -45,7 +45,6 @@ export default class AttachmentsNoteViewer extends PureComponent {
     const { attachment, teamId, token } = this.props;
     const { id, title } = attachment;
     const noteUrl = generateNoteUrl({ token, noteId: id, teamId });
-    console.log(noteUrl);
 
     return (
       <SW.Wrapper>
