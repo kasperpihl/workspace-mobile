@@ -14,12 +14,12 @@ export default function ChatListItem({ item, myId }) {
     last_comment,
     last_comment_at,
     last_comment_by,
-    followers,
+    members,
     owned_by,
   } = item;
   const firstName = userGetFirstName(last_comment_by, owned_by);
   const teamName = teamGetBelonging(owned_by);
-  const ts = followers[myId];
+  const ts = members[myId];
   const unread = ts === 'n' || ts < last_comment_at;
 
   const handleListClick = discussion => () => {

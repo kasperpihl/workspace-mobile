@@ -17,7 +17,7 @@ function ChatOverview({ discussion, myId }) {
     },
     result => {
       const { discussion } = result;
-      const ts = discussion.followers[myId];
+      const ts = discussion.members[myId];
       if (ts === 'n' || ts < discussion.last_comment_at) {
         request('discussion.markAsRead', {
           read_at: discussion.last_comment_at,

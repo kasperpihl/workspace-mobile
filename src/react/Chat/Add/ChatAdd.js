@@ -87,7 +87,7 @@ export default class ChatAdd extends PureComponent {
       privacy,
       topic: chatTitle,
       owned_by: team_id,
-      followers: selectedPeople,
+      members: selectedPeople,
     }).then(res => {
       if (res.ok === false) {
         return alertErrorHandler(res);
