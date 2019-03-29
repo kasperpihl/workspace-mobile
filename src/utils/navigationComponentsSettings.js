@@ -17,6 +17,25 @@ const AttachmentViewer = {
   },
 };
 
+const AttachmentsNoteViewer = {
+  name: 'AttachmentsNoteViewer',
+  options: {
+    topBar: {
+      leftButtons: [
+        {
+          id: 'Close',
+          text: 'Close',
+        },
+      ],
+    },
+    animations: {
+      showModal: {
+        enabled: false,
+      },
+    },
+  },
+};
+
 export default {
   ProjectList: {
     id: 'ProjectList',
@@ -140,6 +159,12 @@ export default {
   },
   AttachmentViewer,
   AttachmentViewerStack: {
+    stack: {
+      children: [],
+    },
+  },
+  AttachmentsNoteViewer,
+  AttachmentsNoteViewerStack: {
     stack: {
       children: [],
     },

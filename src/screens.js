@@ -18,6 +18,7 @@ import ChatList from 'src/react/Chat/List/ChatList.js';
 import ChatAdd from 'src/react/Chat/Add/ChatAdd.js';
 import ChatOverview from 'src/react/Chat/Overview/ChatOverview.js';
 import AttachmentViewer from 'src/react/AttachmentViewer/AttachmentViewer';
+import AttachmentsNoteViewer from 'src/react/Attachments/NoteViewer/AttachmentsNoteViewer';
 // import InitLoading from 'src/react/InitLoading/InitLoading.js';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'core/utils/store/storeGet';
@@ -75,6 +76,9 @@ export function registerScreens() {
   );
   Navigation.registerComponent('AttachmentViewer', () =>
     HOCRootWrapper(AttachmentViewer, store, persistor, true)
+  );
+  Navigation.registerComponent('AttachmentsNoteViewer', () =>
+    HOCRootWrapper(AttachmentsNoteViewer, store, persistor, true)
   );
 
   // That's not a screen per say but a custom button component

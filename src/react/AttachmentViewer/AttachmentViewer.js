@@ -136,7 +136,7 @@ export default class AttachmentViewer extends PureComponent {
 
     return (
       <SW.Wrapper>
-        <SW.Title>{title}</SW.Title>
+        <SW.Title numberOfLines={1}>{title}</SW.Title>
         <SW.LoaderContainer>
           <ActivityIndicator size="large" color="#007AFF" />
         </SW.LoaderContainer>
