@@ -48,12 +48,16 @@ export default class AttachmentsNoteViewer extends PureComponent {
     const { attachment, token } = this.props;
     const { id, title } = attachment;
     const noteUrl = generateNoteUrl({ token, noteId: id });
-    console.log(noteUrl);
 
     return (
       <SW.Wrapper>
         <SW.Title numberOfLines={1}>{title}</SW.Title>
-        <SW.WebViewWrapper>
+        <SW.NotSupportedWrapper>
+          <SW.NotSupported>
+            Notes are not supported on mobile, yet. Please use the desktop app.
+          </SW.NotSupported>
+        </SW.NotSupportedWrapper>
+        {/* <SW.WebViewWrapper>
           <WebView
             // source={{ uri: 'https://github.com/facebook/react-native' }}
             source={{ uri: noteUrl }}
@@ -64,7 +68,7 @@ export default class AttachmentsNoteViewer extends PureComponent {
             // onMessage={this.onWebviewMessage}
             startInLoadingState
           />
-        </SW.WebViewWrapper>
+        </SW.WebViewWrapper> */}
       </SW.Wrapper>
     );
   }
