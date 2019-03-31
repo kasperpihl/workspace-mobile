@@ -10,6 +10,7 @@ import com.horcrux.svg.SvgPackage;
 import com.rnfs.RNFSPackage;
 import com.vinzscam.reactnativefileviewer.RNFileViewerPackage;
 import com.imagepicker.ImagePickerPackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +41,7 @@ public class MainApplication extends NavigationApplication implements OnImagePic
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new RNDeviceInfo(), new SvgPackage(), new RNFSPackage(),
-                new RNFileViewerPackage(), new ImagePickerPackage()
+                new RNFileViewerPackage(), new ImagePickerPackage(), new RNCWebViewPackage()
         // eg. new VectorIconsPackage()
         );
     }

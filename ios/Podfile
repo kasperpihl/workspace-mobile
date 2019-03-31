@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'WorkspaceMobile' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -24,7 +24,9 @@ target 'WorkspaceMobile' do
 
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
 
-  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+  # pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
   target 'WorkspaceMobileTests' do
     inherit! :search_paths

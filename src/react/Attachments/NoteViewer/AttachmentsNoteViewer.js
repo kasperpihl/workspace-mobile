@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
-import { WebView, Linking } from 'react-native';
+import { Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import { WebView } from 'react-native-webview';
 import getGlobals from 'src/utils/getGlobals';
 import SW from './AttachmentsNoteViewer.swiss';
 
 const globals = getGlobals();
-const generateNoteUrl = ({ token, noteId, teamId }) => {
+const generateNoteUrl = ({ token, noteId }) => {
   const clientUrl = globals.get('clientUrl');
-  return `${clientUrl}/note.html?token=${token}&note_id=${noteId}&team_id=${teamId}`;
+  return `${clientUrl}/note.html?auth_token=${token}&note_id=${noteId}`;
 };
 
 @connect(state => ({
@@ -33,29 +34,37 @@ export default class AttachmentsNoteViewer extends PureComponent {
       },
     });
   };
-  onWebviewMessage(e) {
-    const data = JSON.parse(e.nativeEvent.data);
+  // onWebviewMessage(e) {
+  //   console.log(e);
+  //   console.log(e.nativeEvent.data);
+  //   // const data = JSON.parse(e.nativeEvent.data);
 
-    if (data.action === 'url') {
-      return Linking.openURL(data.value);
-    }
-  }
+  //   // if (data.action === 'url') {
+  //   //   return Linking.openURL(data.value);
+  //   // }
+  // }
 
   render() {
-    const { attachment, teamId, token } = this.props;
+    const { attachment, token } = this.props;
     const { id, title } = attachment;
-    const noteUrl = generateNoteUrl({ token, noteId: id, teamId });
+    const noteUrl = generateNoteUrl({ token, noteId: id });
+    console.log(noteUrl);
 
     return (
       <SW.Wrapper>
         <SW.Title numberOfLines={1}>{title}</SW.Title>
-        <WebView
-          source={{ uri: noteUrl }}
-          scalesPageToFit
-          // style={styles.webviewStyles}
-          onMessage={this.onWebviewMessage}
-          startInLoadingState
-        />
+        <SW.WebViewWrapper>
+          <WebView
+            // source={{ uri: 'https://github.com/facebook/react-native' }}
+            source={{ uri: noteUrl }}
+            scalesPageToFit
+            style={{
+              marginTop: 15,
+            }}
+            // onMessage={this.onWebviewMessage}
+            startInLoadingState
+          />
+        </SW.WebViewWrapper>
       </SW.Wrapper>
     );
   }

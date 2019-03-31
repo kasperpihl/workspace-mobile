@@ -5,6 +5,7 @@ export default styleSheet('AttachmentViewer', {
   Wrapper: {
     _flex: ['column', 'center', 'center'],
     _size: ['100%', '100%'],
+    flex: 1,
   },
   Title: {
     _el: Text,

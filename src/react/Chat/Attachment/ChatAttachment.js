@@ -5,7 +5,7 @@ import navigationComponents from 'src/utils/navigationComponentsSettings';
 import merge from 'deepmerge';
 import SW from './ChatAttachment.swiss';
 
-export default function ChatAttachment({ attachment, teamId }) {
+export default function ChatAttachment({ attachment }) {
   const { title } = attachment;
 
   const viewAttachment = async attachment => {
@@ -21,7 +21,6 @@ export default function ChatAttachment({ attachment, teamId }) {
         {
           passProps: {
             attachment,
-            teamId,
           },
         }
       );

@@ -75,7 +75,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
     }
 
     return comment.attachments.map((attachment, i) => (
-      <ChatAttachment attachment={attachment} teamId={teamId} key={i} />
+      <ChatAttachment attachment={attachment} key={i} />
     ));
   };
 

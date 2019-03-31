@@ -1,41 +1,46 @@
 PODS:
   - QBImagePickerController (3.4.0)
-  - React/Core (0.59.0-rc.2):
-    - yoga (= 0.59.0-rc.2.React)
-  - React/fishhook (0.59.0-rc.2)
-  - React/RCTActionSheet (0.59.0-rc.2):
+  - React (0.59.2):
+    - React/Core (= 0.59.2)
+  - react-native-webview (5.5.0):
+    - React
+  - React/Core (0.59.2):
+    - yoga (= 0.59.2.React)
+  - React/fishhook (0.59.2)
+  - React/RCTActionSheet (0.59.2):
     - React/Core
-  - React/RCTAnimation (0.59.0-rc.2):
+  - React/RCTAnimation (0.59.2):
     - React/Core
-  - React/RCTBlob (0.59.0-rc.2):
+  - React/RCTBlob (0.59.2):
     - React/Core
-  - React/RCTGeolocation (0.59.0-rc.2):
+  - React/RCTGeolocation (0.59.2):
     - React/Core
-  - React/RCTImage (0.59.0-rc.2):
+  - React/RCTImage (0.59.2):
     - React/Core
     - React/RCTNetwork
-  - React/RCTLinkingIOS (0.59.0-rc.2):
+  - React/RCTLinkingIOS (0.59.2):
     - React/Core
-  - React/RCTNetwork (0.59.0-rc.2):
+  - React/RCTNetwork (0.59.2):
     - React/Core
-  - React/RCTSettings (0.59.0-rc.2):
+  - React/RCTSettings (0.59.2):
     - React/Core
-  - React/RCTText (0.59.0-rc.2):
+  - React/RCTText (0.59.2):
     - React/Core
-  - React/RCTVibration (0.59.0-rc.2):
+  - React/RCTVibration (0.59.2):
     - React/Core
-  - React/RCTWebSocket (0.59.0-rc.2):
+  - React/RCTWebSocket (0.59.2):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNImageCropPicker (0.23.0):
+  - RNImageCropPicker (0.23.1):
     - QBImagePickerController
     - React/Core
     - RSKImageCropper
   - RSKImageCropper (2.2.1)
-  - yoga (0.59.0-rc.2.React)
+  - yoga (0.59.2.React)
 
 DEPENDENCIES:
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
@@ -58,6 +63,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   yoga:
@@ -65,11 +72,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
-  React: 979447eef8a818ee4f1cbd8a1a2c61c4aae470ca
-  RNImageCropPicker: e56deca5b463b9493d22e966cfd83cb1fc5c99bb
+  React: 9d063e2f356c8cd2f54dd550d4507740037cbabe
+  react-native-webview: 964a008a311579f56d26cdb956d1860ad3d5ccfe
+  RNImageCropPicker: a4c8db5757926bda8b04ba6796cc2a21cc6fd783
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
-  yoga: 14d2e9a1e76cc3c9e8bc67476a9b13d3b2edd359
+  yoga: 3768a3026ade0fb46a68f3a31a917cf86bc34fc4
 
-PODFILE CHECKSUM: d29d4be17bb91f7c8b7f6dd9a89d6300b7b22894
+PODFILE CHECKSUM: 1e23e74e31bcc8cb3002db448e650c852347b985
 
 COCOAPODS: 1.6.1
