@@ -10,6 +10,10 @@ Navigation.events().registerAppLaunchedListener(() => {
       noBorder: true,
       elevation: 0,
     },
+    bottomTabs: {
+      animate: false,
+      titleDisplayMode: 'alwaysShow',
+    },
   });
 
   Navigation.setRoot({

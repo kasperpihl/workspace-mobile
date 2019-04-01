@@ -27,20 +27,26 @@ export const goHome = () =>
               },
             },
           },
-          // {
-          //   component: {
-          //     name: 'Plan',
-          //     options: {
-          //       bottomTab: {
-          //         fontSize: 12,
-          //         text: 'Plan',
-          //         icon: require('../assets/pngs/main_tab.png'),
-          //         selectedIcon: require('../assets/pngs/main_tab_active.png'),
-          //         selectedTextColor: 'blue',
-          //       },
-          //     },
-          //   },
-          // },
+          {
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: 'PlanningOverview',
+                  },
+                },
+              ],
+              options: {
+                bottomTab: {
+                  fontSize: 12,
+                  text: 'Planning',
+                  icon: require('../assets/pngs/main_tab.png'),
+                  selectedIcon: require('../assets/pngs/main_tab_active.png'),
+                  selectedTextColor: 'blue',
+                },
+              },
+            },
+          },
           {
             stack: {
               children: [
