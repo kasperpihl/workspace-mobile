@@ -4,6 +4,7 @@ import { fromJS, Map } from 'immutable';
 import useRequest from 'core/react/_hooks/useRequest';
 import timeGetDefaultWeekYear from 'core/utils/time/timeGetDefaultWeekYear';
 import PlanningInfo from 'src/react/Planning/Info/PlanningInfo.js';
+import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from './PlanningOverview.swiss';
 
 const PlanningOverview = ({ teams, myId }) => {
@@ -16,6 +17,9 @@ const PlanningOverview = ({ teams, myId }) => {
   const [toggleInfo, setToggleInfo] = useState(true);
   const [yearWeek, setYearWeek] = useState(timeGetDefaultWeekYear());
   const [teamId, setTeamId] = useState(teamsMap.get(0).get('value'));
+  const onToggleInfo = () => {
+    setToggleInfo(!toggleInfo);
+  };
   const onWeekChange = yW => {
     setYearWeek(yW);
   };
@@ -25,7 +29,20 @@ const PlanningOverview = ({ teams, myId }) => {
 
   return (
     <SW.Wrapper>
-      <SW.HeaderText numberOfLines={1}>Planning</SW.HeaderText>
+      <SW.TopWrapper>
+        <SW.HeaderText numberOfLines={1}>Planning</SW.HeaderText>
+        <SW.IconWrapper toggle={toggleInfo}>
+          <IconTouchableWrapper
+            icon={'info'}
+            fill={toggleInfo ? 'sw5' : 'sw1'}
+            onPress={() => {
+              onToggleInfo();
+            }}
+            width={'36'}
+            height={'36'}
+          />
+        </SW.IconWrapper>
+      </SW.TopWrapper>
       {toggleInfo && (
         <PlanningInfo
           teamId={teamId}

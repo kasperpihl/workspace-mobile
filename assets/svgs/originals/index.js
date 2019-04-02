@@ -1,3 +1,4 @@
+import info from './info';
 import add from './add';
 import attach from './attach';
 import back from './back';
@@ -13,6 +14,7 @@ import send from './send';
 import x from './x';
 
 export default {
+  Info,
   add,
   attach,
   back,

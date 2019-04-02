@@ -1,3 +1,4 @@
+import info from './info';
 import add from './add';
 import attach from './attach';
 import indent_in from './indent_in';
@@ -13,6 +14,7 @@ import send from './send';
 import x from './x';
 
 export default {
+  info,
   add,
   attach,
   indent_in,
