@@ -5,10 +5,10 @@ export default styleSheet('PlanningOverview', {
   Wrapper: {
     _flex: ['column', 'flex-start'],
     _size: ['100%', '100%'],
+    _padding: [0, 20],
   },
   HeaderText: {
     _el: Text,
-    _padding: [0, 20],
     fontSize: '30',
     fontWeight: 'bold',
     paddingBottom: 20,
