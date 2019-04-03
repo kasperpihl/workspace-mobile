@@ -169,4 +169,8 @@ export default {
       children: [],
     },
   },
+  PlanningOverview: {
+    id: 'PlanningOverview',
+    name: 'PlanningOverview',
+  },
 };

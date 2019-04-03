@@ -11,12 +11,6 @@ export default styleSheet('PlanningOverview', {
     _flex: ['row', 'flex-start', 'center'],
     _size: ['100%', 44],
   },
-  IconWrapper: {
-    _size: 44,
-    toggle: {
-      backgroundColor: '$green1',
-    },
-  },
   HeaderText: {
     _el: Text,
     flex: 1,

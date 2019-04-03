@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fromJS, Map } from 'immutable';
+import { Navigation } from 'react-native-navigation';
 import useRequest from 'core/react/_hooks/useRequest';
 import timeGetDefaultWeekYear from 'core/utils/time/timeGetDefaultWeekYear';
 import PlanningInfo from 'src/react/Planning/Info/PlanningInfo.js';
-import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
+import colors from 'src/utils/colors';
 import SW from './PlanningOverview.swiss';
 
 const PlanningOverview = ({ teams, myId }) => {
@@ -26,22 +27,37 @@ const PlanningOverview = ({ teams, myId }) => {
   const onTeamChange = teamId => {
     setTeamId(teamId);
   };
+  const infoButton = {
+    id: 'Info',
+    component: {
+      name: 'IconTouchableWrapper',
+      passProps: {
+        icon: 'info',
+        fill: toggleInfo ? 'sw5' : 'sw1',
+        width: '36',
+        height: '36',
+        style: toggleInfo
+          ? { backgroundColor: colors['green1'] }
+          : { backgroundColor: 'transparent' },
+        onPress: () => {
+          onToggleInfo();
+        },
+      },
+    },
+  };
+
+  useEffect(() => {
+    Navigation.mergeOptions('PlanningOverview', {
+      topBar: {
+        rightButtons: [infoButton],
+      },
+    });
+  }, [toggleInfo]);
 
   return (
     <SW.Wrapper>
       <SW.TopWrapper>
         <SW.HeaderText numberOfLines={1}>Planning</SW.HeaderText>
-        <SW.IconWrapper toggle={toggleInfo}>
-          <IconTouchableWrapper
-            icon={'info'}
-            fill={toggleInfo ? 'sw5' : 'sw1'}
-            onPress={() => {
-              onToggleInfo();
-            }}
-            width={'36'}
-            height={'36'}
-          />
-        </SW.IconWrapper>
       </SW.TopWrapper>
       {toggleInfo && (
         <PlanningInfo

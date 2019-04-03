@@ -31,9 +31,7 @@ export const goHome = () =>
             stack: {
               children: [
                 {
-                  component: {
-                    name: 'PlanningOverview',
-                  },
+                  component: navigationComponents.PlanningOverview,
                 },
               ],
               options: {
