@@ -133,24 +133,31 @@ const PlanningList = ({ tasks }) => {
   }, [projects, tasks]);
 
   return (
-    <SW.PlanningListWrapper>
-      <FlatList
-        data={sortedProjectIds || []}
-        keyExtractor={project_id => {
-          return project_id;
-        }}
-        ListHeaderComponent={
-          <Text>{`${count.totalCompletedTasks}/${count.totalTasks}`}</Text>
-        }
-        renderItem={({ item }) => (
-          <PlanningListProject
-            tasks={tasks}
-            projectId={item}
-            dispatch={dispatch}
-          />
-        )}
-      />
-    </SW.PlanningListWrapper>
+    <>
+      {!didLoadInitial.current && (
+        <SW.LoaderContainer>
+          <ActivityIndicator size="large" color="#007AFF" />
+        </SW.LoaderContainer>
+      )}
+      <SW.PlanningListWrapper didLoad={didLoadInitial.current}>
+        <FlatList
+          data={sortedProjectIds || []}
+          keyExtractor={project_id => {
+            return project_id;
+          }}
+          ListHeaderComponent={
+            <Text>{`${count.totalCompletedTasks}/${count.totalTasks}`}</Text>
+          }
+          renderItem={({ item }) => (
+            <PlanningListProject
+              tasks={tasks}
+              projectId={item}
+              dispatch={dispatch}
+            />
+          )}
+        />
+      </SW.PlanningListWrapper>
+    </>
   );
 };
 

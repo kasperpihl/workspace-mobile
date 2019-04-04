@@ -9,6 +9,11 @@ export default styleSheet('PlanningTasks', {
   PlanningListWrapper: {
     flex: 1,
     width: '100%',
+    opacity: 0,
+    transition: '0.25s',
+    didLoad: {
+      opacity: 1,
+    },
   },
   LoaderContainer: {
     _flex: 'center',
