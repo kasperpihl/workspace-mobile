@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fromJS, Map } from 'immutable';
 import { Navigation } from 'react-native-navigation';
-import useRequest from 'core/react/_hooks/useRequest';
 import timeGetDefaultWeekYear from 'core/utils/time/timeGetDefaultWeekYear';
 import PlanningInfo from 'src/react/Planning/Info/PlanningInfo.js';
+import PlanningTasks from 'src/react/Planning/Tasks/PlanningTasks.js';
 import colors from 'src/utils/colors';
 import SW from './PlanningOverview.swiss';
 
@@ -15,7 +15,7 @@ const PlanningOverview = ({ teams, myId }) => {
       return Map({ label: team.get('name'), value: team.get('team_id') });
     })
     .concat(fromJS([{ label: 'Personal', value: myId }]));
-  const [toggleInfo, setToggleInfo] = useState(true);
+  const [toggleInfo, setToggleInfo] = useState(false);
   const [yearWeek, setYearWeek] = useState(timeGetDefaultWeekYear());
   const [teamId, setTeamId] = useState(teamsMap.get(0).get('value'));
   const onToggleInfo = () => {
@@ -68,6 +68,7 @@ const PlanningOverview = ({ teams, myId }) => {
           onTeamChange={onTeamChange}
         />
       )}
+      {!toggleInfo && <PlanningTasks teamId={teamId} yearWeek={yearWeek} />}
     </SW.Wrapper>
   );
 };

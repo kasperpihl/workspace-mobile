@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { Navigation } from 'react-native-navigation';
 import { ActivityIndicator } from 'react-native';
 import { VirtualizedList } from 'react-native';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';

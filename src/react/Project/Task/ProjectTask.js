@@ -91,7 +91,7 @@ export default class ProjectTask extends PureComponent {
     }
   };
   render() {
-    const { taskId, task } = this.props;
+    const { taskId, task, disabled } = this.props;
     const {
       title,
       indention,
@@ -147,6 +147,7 @@ export default class ProjectTask extends PureComponent {
             scrollEnabled={false}
             blurOnSubmit={false}
             onSubmitEditing={this.handleSubmit}
+            editable={disabled ? false : true}
           />
         </SW.InnerWrapper>
       </SW.Wrapper>
