@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer, useEffect } from 'react';
+import React, { useMemo, useReducer, useEffect, useRef } from 'react';
 import { ActivityIndicator, Text, FlatList } from 'react-native';
 import useRequest from 'core/react/_hooks/useRequest';
 import useUpdate from 'core/react/_hooks/useUpdate';
@@ -60,9 +60,25 @@ export default function PlanningTasks({ teamId, yearWeek }) {
 }
 
 const PlanningList = ({ tasks }) => {
+  const didLoadInitial = useRef();
   const uniqueProjectIds = useMemo(
     () => [...new Set(tasks.map(({ project_id }) => project_id))],
     [tasks]
+  );
+
+  const [count, dispatchCount] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'update':
+          return { ...state, ...action.payload };
+        default:
+          return state;
+      }
+    },
+    {
+      totalTasks: 0,
+      totalCompletedTasks: 0,
+    }
   );
 
   const [projects, dispatch] = useReducer((state, action) => {
@@ -90,6 +106,32 @@ const PlanningList = ({ tasks }) => {
       });
   }, [uniqueProjectIds, projects]);
 
+  useEffect(() => {
+    if (!didLoadInitial.current) {
+      if (Object.keys(projects).length !== uniqueProjectIds.length) {
+        return;
+      }
+      didLoadInitial.current = true;
+    }
+
+    let dCompleted = 0;
+    let dTotal = 0;
+    Object.values(projects).forEach(p => {
+      if (p === 'pending') return;
+      if (p === 'removed') return;
+      dCompleted += p.numberOfCompleted;
+      dTotal += p.numberOfTasks;
+    });
+
+    dispatchCount({
+      type: 'update',
+      payload: {
+        totalTasks: dTotal,
+        totalCompletedTasks: dCompleted,
+      },
+    });
+  }, [projects, tasks]);
+
   return (
     <SW.PlanningListWrapper>
       <FlatList
@@ -97,6 +139,9 @@ const PlanningList = ({ tasks }) => {
         keyExtractor={project_id => {
           return project_id;
         }}
+        ListHeaderComponent={
+          <Text>{`${count.totalCompletedTasks}/${count.totalTasks}`}</Text>
+        }
         renderItem={({ item }) => (
           <PlanningListProject
             tasks={tasks}
