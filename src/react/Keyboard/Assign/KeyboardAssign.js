@@ -47,13 +47,17 @@ export default class KeyboardAssign extends PureComponent {
       return <Promo />;
     }
 
+    const filteredUsers = users
+      .toList()
+      .filter(user => user.get('status') !== 'disabled');
+
     return (
       <SW.Wrapper>
         <VirtualizedList
           alwaysBounceVertical={false}
           getItem={this.getItem}
           getItemCount={this.getItemCount}
-          data={users.toList()}
+          data={filteredUsers}
           renderItem={this.renderItem}
         />
       </SW.Wrapper>

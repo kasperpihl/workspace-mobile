@@ -112,21 +112,23 @@ export default class ChatAdd extends PureComponent {
 
     const items = [];
 
-    teamUsers.forEach((user, key) => {
-      const userId = user.get('user_id');
-      const teamId = user.get('team_id');
-      const fullName = userGetFullName(userId, teamId);
+    teamUsers
+      .filter(user => user.get('status') !== 'disabled')
+      .forEach((user, key) => {
+        const userId = user.get('user_id');
+        const teamId = user.get('team_id');
+        const fullName = userGetFullName(userId, teamId);
 
-      items.push(
-        <AssignItem
-          key={key}
-          userId={userId}
-          teamId={teamId}
-          fullName={fullName}
-          assigned={selectedPeople.includes(userId)}
-        />
-      );
-    });
+        items.push(
+          <AssignItem
+            key={key}
+            userId={userId}
+            teamId={teamId}
+            fullName={fullName}
+            assigned={selectedPeople.includes(userId)}
+          />
+        );
+      });
 
     return items;
   };
