@@ -94,22 +94,6 @@ export default class ChatAdd extends PureComponent {
       }
 
       this.dismissModal();
-
-      // const chatId = res.update.rows[0].data.project_id;
-      // Navigation.push('ProjectList', {
-      //   component: merge(navigationComponents.ProjectOverview, {
-      //     passProps: {
-      //       projectId,
-      //     },
-      //     options: {
-      //       animations: {
-      //         push: {
-      //           enabled: false,
-      //         },
-      //       },
-      //     },
-      //   }),
-      // });
     });
   };
   dismissModal() {
