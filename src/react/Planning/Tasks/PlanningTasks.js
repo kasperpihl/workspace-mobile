@@ -7,6 +7,8 @@ import useProjectSlice from 'core/react/_hooks/useProjectSlice';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
 import useAppState from 'src/react/_hooks/useAppState';
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
+import PlaningTasksHeader from 'src/react/Planning/Tasks/Header/PlanningTasksHeader';
+import useMyId from 'core/react/_hooks/useMyId';
 import SW from './PlanningTasks.swiss';
 
 export default function PlanningTasks({ teamId, yearWeek }) {
@@ -81,6 +83,21 @@ const PlanningList = ({ tasks }) => {
     }
   );
 
+  const [filter, dispatchFilter] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'update':
+          return { ...state, ...action.payload };
+        default:
+          return state;
+      }
+    },
+    {
+      showOnlyMe: false,
+      showCompleted: false,
+    }
+  );
+
   const [projects, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'remove': {
@@ -146,13 +163,14 @@ const PlanningList = ({ tasks }) => {
             return project_id;
           }}
           ListHeaderComponent={
-            <Text>{`${count.totalCompletedTasks}/${count.totalTasks}`}</Text>
+            <PlaningTasksHeader count={count} dispatchFilter={dispatchFilter} />
           }
           renderItem={({ item }) => (
             <PlanningListProject
               tasks={tasks}
               projectId={item}
               dispatch={dispatch}
+              filter={filter}
             />
           )}
         />
@@ -161,7 +179,7 @@ const PlanningList = ({ tasks }) => {
   );
 };
 
-const PlanningListProject = ({ projectId, dispatch, tasks }) => {
+const PlanningListProject = ({ projectId, dispatch, tasks, filter }) => {
   const filteredTaskIds = useMemo(
     () =>
       tasks
@@ -185,11 +203,16 @@ const PlanningListProject = ({ projectId, dispatch, tasks }) => {
     }
   );
 
+  const myId = useMyId();
   useEffect(() => {
     if (stateManager) {
       stateManager.filterHandler.setFilteredTaskIds(filteredTaskIds);
+      stateManager.filterHandler.setFilteredCompleted(filter.showCompleted);
+      stateManager.filterHandler.setFilteredAssignee(
+        filter.showOnlyMe ? myId : null
+      );
     }
-  }, [filteredTaskIds, stateManager]);
+  }, [filteredTaskIds, stateManager, filter.showCompleted, filter.showOnlyMe]);
 
   const [visibleOrder, completion, maxIndention, title] = useProjectSlice(
     stateManager,
