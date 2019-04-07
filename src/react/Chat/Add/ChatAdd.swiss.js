@@ -9,7 +9,6 @@ export default styleSheet('ChatAdd', {
   },
   FormWrapper: {
     _size: ['100%'],
-    // flex: 1,
   },
   HeaderTextWrapper: {
     _flex: ['column', 'center', 'center'],

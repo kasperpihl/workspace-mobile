@@ -3,10 +3,8 @@ import { View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { List, fromJS, Map } from 'immutable';
-import merge from 'deepmerge';
 import request from 'core/utils/request';
 import userGetFullName from 'core/utils/user/userGetFullName';
-import navigationComponents from 'src/utils/navigationComponentsSettings';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormLabel from 'src/react/FormLabel/FormLabel';
 import Picker from 'src/react/Picker/Picker';
@@ -134,14 +132,7 @@ export default class ChatAdd extends PureComponent {
   };
   render() {
     const { keyboardIsShown } = this.props;
-    const {
-      chatTitle,
-      teams,
-      team_id,
-      privacy,
-      privacyOptions,
-      privacyOptionsEnabled,
-    } = this.state;
+    const { chatTitle, teams, team_id, privacy, privacyOptions } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
     if (!teams.size) return null;
