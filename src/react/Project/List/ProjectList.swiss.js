@@ -9,8 +9,8 @@ export default styleSheet('ProjectList', {
   },
   HeaderText: {
     _el: Text,
+    _fontFamily: 'regular',
     fontSize: '30',
-    fontWeight: 'bold',
     color: 'black',
   },
   LoaderContainer: {
