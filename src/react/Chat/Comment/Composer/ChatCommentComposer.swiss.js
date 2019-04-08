@@ -42,11 +42,11 @@ export default styleSheet('ChatCommentComposer', {
     right: 6,
     position: 'absolute',
     backgroundColor: '$blue',
-    color: '$sw5',
+    color: '$base',
   },
   AttachmentCounter: {
     _el: Text,
     fontSize: 12,
-    color: '$sw5',
+    color: '$base',
   },
 });

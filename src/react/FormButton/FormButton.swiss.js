@@ -18,6 +18,6 @@ export default styleSheet('Input', {
     _el: Text,
     fontSize: '10',
     fontWeight: 'bold',
-    color: '$sw5',
+    color: '$base',
   },
 });

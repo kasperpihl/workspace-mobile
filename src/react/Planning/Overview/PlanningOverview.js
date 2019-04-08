@@ -33,11 +33,11 @@ const PlanningOverview = ({ teams, myId }) => {
       name: 'IconTouchableWrapper',
       passProps: {
         icon: 'info',
-        fill: toggleInfo ? 'sw5' : 'sw1',
+        fill: toggleInfo ? 'base' : 'sw1',
         width: '36',
         height: '36',
         style: toggleInfo
-          ? { backgroundColor: colors['green1'] }
+          ? { backgroundColor: colors['green'] }
           : { backgroundColor: 'transparent' },
         onPress: () => {
           onToggleInfo();

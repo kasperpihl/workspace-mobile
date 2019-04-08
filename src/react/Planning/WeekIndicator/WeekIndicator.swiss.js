@@ -21,7 +21,7 @@ export default styleSheet('WeekIndicator', {
       _border: [1, '$sw4'],
     },
     current: {
-      _border: [1, '$green1'],
+      _border: [1, '$green'],
     },
     margin: {
       marginLeft: 5,

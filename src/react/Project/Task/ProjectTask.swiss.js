@@ -31,11 +31,11 @@ export default styleSheet('ProjectInput', {
   Circle: {
     _flex: 'center',
     _size: ['18', '18'],
-    _border: ['1', '$green1'],
+    _border: ['1', '$green'],
     _borderRadius: 11,
 
     completion: {
-      backgroundColor: '$green1',
+      backgroundColor: '$green',
     },
   },
   Input: {
