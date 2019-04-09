@@ -33,7 +33,7 @@ export default function WeekPicker({ yearWeek, onChange }) {
     <SW.Wrapper>
       <SW.ButtonsLabelWrapper>
         <IconTouchableWrapper
-          icon={'arrow_left'}
+          icon={'arrow-left'}
           fill={'dark'}
           onPress={() => {
             handlePrev();
@@ -44,7 +44,7 @@ export default function WeekPicker({ yearWeek, onChange }) {
         <SW.WeekLabel>{weekLabel}</SW.WeekLabel>
         {weekLabel !== 'Next week' ? (
           <IconTouchableWrapper
-            icon={'arrow_right'}
+            icon={'arrow-right'}
             fill={'dark'}
             onPress={() => {
               handleNext();

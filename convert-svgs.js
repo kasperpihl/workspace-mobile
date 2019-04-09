@@ -13,7 +13,7 @@ const exec = require('child_process').exec;
 const fs = require('fs');
 
 // const type = process.argv[2] || 'icons';
-const path = `./assets/svgs/originals`;
+const path = `./assets/svgs`;
 const svgoOptions = {
   plugins: [
     { collapseGroups: true },
