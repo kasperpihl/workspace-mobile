@@ -75,13 +75,13 @@ svgFileNames.forEach(file => {
           )
           .replace(/<\/?Svg.*?>/g, '')
           .replace(/"\./g, '"0.')
-          .replace(/ fill="#0{3,6}"/g, '');
+          .replace(/fill="(.*)"/g, '');
         svg = `<G>${svg}</G>`;
 
-        let viewBox = null;
-        if (data.match(/viewBox="(.*?)"/)) {
-          viewBox = data.match(/viewBox="(.*?)"/)[1];
-        }
+        const viewBox = '0 0 36 36';
+        // if (data.match(/viewBox="(.*?)"/)) {
+        //   viewBox = data.match(/viewBox="(.*?)"/)[1];
+        // }
 
         let elems = svg.match(/<(\w+)/g);
 
@@ -96,11 +96,7 @@ svgFileNames.forEach(file => {
         )} } from 'react-native-svg';\n\n`;
         contents += 'export default';
 
-        if (viewBox && viewBox !== '0 0 100 100') {
-          contents += ` {\n  viewBox: '${viewBox}',\n  svg: ${svg},\n}`;
-        } else {
-          contents += ` ${svg}`;
-        }
+        contents += ` {\n  viewBox: '${viewBox}',\n  svg: (${svg}),\n}`;
 
         contents += ';\n';
 
