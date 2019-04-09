@@ -178,8 +178,6 @@ export default class ProjectToolbar extends PureComponent {
           icon={icon}
           fill={fill}
           onPress={onPressLocal}
-          width={'22'}
-          height={'14'}
         />
       );
     });

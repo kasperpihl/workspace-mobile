@@ -37,7 +37,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
   const originalNumberOfLikes = Object.keys(reactions).length || null;
   const [like, setLike] = useState(likedByMe);
   const [numberOfLikes, setNumberOfLikes] = useState(originalNumberOfLikes);
-  const icon = like ? 'heart_full' : 'heart_empty';
+  const icon = like ? 'HeartFull' : 'Heart';
   const iconColor = like ? 'red' : 'sw2';
 
   useEffect(() => {
@@ -161,12 +161,10 @@ function ChatCommentItem({ myId, comment, teamId }) {
           key={icon}
           icon={icon}
           fill={iconColor}
-          width="14"
-          height="14"
           style={{
             position: 'absolute',
             zIndex: 3,
-            left: 46,
+            left: 34,
           }}
           onPress={() => {
             handleLike();

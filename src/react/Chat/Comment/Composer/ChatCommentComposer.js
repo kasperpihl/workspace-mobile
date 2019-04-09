@@ -48,10 +48,8 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
 
     return (
       <IconTouchableWrapper
-        icon={'send'}
+        icon={'Send'}
         fill={'sw2'}
-        width="21"
-        height="21"
         onPress={handleSubmitMessage}
       />
     );
@@ -127,8 +125,6 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
         <IconTouchableWrapper
           icon={'attach'}
           fill={'sw2'}
-          width="13"
-          height="21"
           onPress={() => {
             if (loading) {
               return;

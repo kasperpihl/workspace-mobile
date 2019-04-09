@@ -88,17 +88,17 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
           }}
           buttons={[
             {
-              icon: 'indent_in',
+              icon: 'Indent_In',
               fill: 'blue',
               onPress: onItemIndent,
             },
             {
-              icon: 'indent_out',
+              icon: 'Indent_Out',
               fill: 'blue',
               onPress: onItemOutdent,
             },
             {
-              icon: 'members',
+              icon: 'Members',
               fill: 'blue',
               keyboard: KeyboardAssign,
               customKeyboardTitle: 'Assignees',

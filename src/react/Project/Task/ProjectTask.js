@@ -3,6 +3,7 @@ import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import Icon from 'src/react/Icon/Icon';
 import SW from './ProjectTask.swiss';
 import withProjectTask from 'core/react/_hocs/Project/withProjectTask';
+import colors from 'src/utils/colors';
 
 @withProjectTask
 export default class ProjectTask extends PureComponent {
@@ -105,11 +106,8 @@ export default class ProjectTask extends PureComponent {
       <SW.Wrapper>
         {hasChildren && (
           <IconTouchableWrapper
-            icon={'expand'}
+            icon={expanded ? 'ArrowDown' : 'ArrowRight'}
             fill={'sw2'}
-            width="18"
-            height="8"
-            rotate={expanded ? '0' : '-90'}
             onPress={this.handleExpandPress}
             small={true}
             style={{ marginTop: -10 }}
@@ -130,7 +128,12 @@ export default class ProjectTask extends PureComponent {
           <SW.CircleWrapper onPress={this.handleComplete}>
             <SW.Circle completion={completion}>
               {completion && (
-                <Icon name="check" fill="white" width={9} height={6} />
+                <Icon
+                  name="Check"
+                  fill={colors['base']}
+                  width={20}
+                  height={20}
+                />
               )}
             </SW.Circle>
           </SW.CircleWrapper>

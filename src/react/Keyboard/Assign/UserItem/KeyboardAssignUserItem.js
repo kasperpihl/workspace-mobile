@@ -6,17 +6,10 @@ import SW from './KeyboardAssignUserItem.swiss';
 export default class KeyboardAssignUserItem extends PureComponent {
   renderRightButton = () => {
     const { assigned } = this.props;
-    const icon = assigned ? 'x' : 'plus';
+    const icon = assigned ? 'X' : 'Plus';
     const iconColor = assigned ? 'sw2' : 'blue';
 
-    return (
-      <IconTouchableWrapper
-        icon={icon}
-        fill={iconColor}
-        width="14"
-        height="14"
-      />
-    );
+    return <IconTouchableWrapper icon={icon} fill={iconColor} />;
   };
   render() {
     const { item, assigned, onPress } = this.props;

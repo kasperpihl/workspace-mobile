@@ -32,10 +32,8 @@ const PlanningOverview = ({ teams, myId }) => {
     component: {
       name: 'IconTouchableWrapper',
       passProps: {
-        icon: 'info',
+        icon: 'Info',
         fill: toggleInfo ? 'base' : 'sw1',
-        width: '36',
-        height: '36',
         style: toggleInfo
           ? { backgroundColor: colors['green'] }
           : { backgroundColor: 'transparent' },

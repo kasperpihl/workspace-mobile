@@ -7,7 +7,7 @@ export default styleSheet('IconTouchableWrapper', {
     _flex: 'center',
     _size: '44',
     small: {
-      _size: '34',
+      _size: '30',
     },
   },
 });
