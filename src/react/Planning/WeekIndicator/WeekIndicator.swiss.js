@@ -18,7 +18,7 @@ export default styleSheet('WeekIndicator', {
     borderRadius: 2,
     border: '1px solid $green2',
     past: {
-      _border: [1, '$sw4'],
+      _border: [1, '$sw3'],
     },
     current: {
       _border: [1, '$green'],
@@ -29,11 +29,11 @@ export default styleSheet('WeekIndicator', {
   },
   Day: {
     _el: Text,
-    color: '$dark',
+    _textType: 'captionDark',
   },
   MonthLabel: {
     _el: Text,
-    color: '$sw2',
+    _textType: 'captionLight',
     textTransform: 'uppercase',
     alignSelf: 'flex-start',
   },

@@ -3,5 +3,9 @@ import { G, Path } from 'react-native-svg';
 
 export default {
   viewBox: '0 0 36 36',
-  svg: (<G><Path d="M5 4h4v1H5v4H4V5H0V4h4V0h1v4z" /></G>),
+  svg: (
+    <G>
+      <Path fillRule="evenodd" clipRule="evenodd" d="M15 14v9l6-4.498L15 14z" />
+    </G>
+  ),
 };

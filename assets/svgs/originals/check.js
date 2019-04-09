@@ -1,4 +1,7 @@
 import React from 'react';
-import { G, Path } from 'react-native-svg';
+import { G } from 'react-native-svg';
 
-export default <G><G dataName="Group 441" fill="none"><Path dataName="Rectangle 1578" d="M0 3.607L.707 2.9 7 9.193l-.707.707z"/><Path dataName="Rectangle 1579" d="M14.892 0l.707.707L6.407 9.9 5.7 9.192z"/></G></G>;
+export default {
+  viewBox: '0 0 36 36',
+  svg: (<G><G dataName="Group 441" /></G></G>),
+};

@@ -1,3 +1,5 @@
+import arrow_left from './arrow_left';
+import arrow_right from './arrow_right';
 import info from './info';
 import add from './add';
 import attach from './attach';
@@ -14,6 +16,8 @@ import send from './send';
 import x from './x';
 
 export default {
+  arrow_left,
+  arrow_right,
   info,
   add,
   attach,

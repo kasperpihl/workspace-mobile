@@ -13,8 +13,7 @@ export default styleSheet('WeekPicker', {
   WeekLabel: {
     _el: Text,
     _size: ['100', 'auto'],
-    color: '$sw2',
-    fontWeight: 'bold',
+    _textType: 'bodyBold',
     textAlign: 'center',
   },
   NextArrowPlaceholder: {
