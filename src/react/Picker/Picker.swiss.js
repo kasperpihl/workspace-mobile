@@ -11,19 +11,16 @@ export default styleSheet('Picker', {
     _flex: ['column', 'flex-start', 'center'],
     _size: ['100%', '50'],
     _padding: [0, 0, 0, 5],
-    fontSize: '15',
-
-    border: {
-      _border: ['1', '$sw3', 'bottom'],
-    },
+    _textType: 'header3',
+    borderRadius: 3,
 
     selected: {
-      backgroundColor: '$sw4',
+      backgroundColor: '$green2',
     },
   },
   Label: {
     _el: Text,
-    fontSize: '15',
-    color: '$sw1',
+    _textType: 'header3',
+    borderRadius: 3,
   },
 });

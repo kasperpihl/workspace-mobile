@@ -14,7 +14,7 @@ const addButton = {
   component: {
     name: 'IconTouchableWrapper',
     passProps: {
-      icon: 'Plus',
+      icon: 'New',
       fill: 'blue',
       onPress: () => {
         Navigation.showModal(navigationComponents.ChatAdd);

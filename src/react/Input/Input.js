@@ -5,6 +5,7 @@ export default class Input extends PureComponent {
   state = {
     value: this.props.value || '',
     secureTextEntry: false,
+    focused: false,
   };
   displayToggle = this.props.passwordField || false;
   changeFieldSecutiry = () => {
@@ -19,9 +20,15 @@ export default class Input extends PureComponent {
       this.changeFieldSecutiry();
     }
   }
+  handleOnFocus = () => {
+    this.setState({ focused: true });
+  };
+  handleOnBlur = () => {
+    this.setState({ focused: false });
+  };
   render() {
     const { inputRef, ...rest } = this.props;
-    const { secureTextEntry } = this.state;
+    const { secureTextEntry, focused } = this.state;
 
     return (
       <SW.Wrapper>
@@ -29,6 +36,7 @@ export default class Input extends PureComponent {
           <SW.PassToggle onPress={this.changeFieldSecutiry} />
         )}
         <SW.TextInput
+          focused={focused}
           innerRef={c => {
             if (inputRef) {
               inputRef(c);
@@ -36,6 +44,8 @@ export default class Input extends PureComponent {
           }}
           secureTextEntry={secureTextEntry}
           autoCapitalize={'none'}
+          onFocus={this.handleOnFocus}
+          onBlur={this.handleOnBlur}
           {...rest}
         />
       </SW.Wrapper>

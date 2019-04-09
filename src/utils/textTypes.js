@@ -73,7 +73,7 @@ export default {
     letterSpacing: 0.78,
     color: '$green',
   },
-  label: {
+  labelLight: {
     _fontFamily: 'medium',
     fontSize: 11,
     lineHeight: 23,

@@ -8,8 +8,6 @@ export default styleSheet('FormLabel', {
   },
   Label: {
     _el: Text,
-    fontSize: '10',
-    fontWeight: 'bold',
-    color: '$sw2',
+    _textType: 'labelLight',
   },
 });

@@ -11,8 +11,8 @@ const addButton = {
   component: {
     name: 'IconTouchableWrapper',
     passProps: {
-      icon: 'Plus',
-      fill: 'blue',
+      icon: 'New',
+      fill: 'dark',
       onPress: () => {
         Navigation.showModal(navigationComponents.ProjectAdd);
       },

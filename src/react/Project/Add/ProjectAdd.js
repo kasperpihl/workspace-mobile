@@ -167,7 +167,7 @@ export default class ProjectAdd extends PureComponent {
           <SW.Wrapper>
             {!keyboardIsShown && (
               <SW.HeaderTextWrapper>
-                <SW.HeaderText>Add Project</SW.HeaderText>
+                <SW.HeaderText>New Project</SW.HeaderText>
               </SW.HeaderTextWrapper>
             )}
             <SW.FormWrapper>

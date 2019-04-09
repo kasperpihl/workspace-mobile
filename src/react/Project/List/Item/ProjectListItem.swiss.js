@@ -22,13 +22,11 @@ export default styleSheet('ProjectListItem', {
   },
   LineOfText: {
     _el: Text,
-    fontSize: 12,
+    _textType: 'bodyLight',
     width: '100%',
-    color: '$sw2',
     marginTop: 2,
     topic: {
-      fontSize: 14,
-      color: '$sw1',
+      _textType: 'header2',
     },
   },
 });
