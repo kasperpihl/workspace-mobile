@@ -3,6 +3,7 @@ import './mixins/_border';
 import './mixins/_borderRadius';
 import './mixins/_flex';
 import './mixins/_fontFamily';
+import './mixins/_textType';
 import './mixins/_font';
 import './mixins/_margin';
 import './mixins/_padding';
