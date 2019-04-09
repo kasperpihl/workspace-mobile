@@ -13,9 +13,7 @@ export default styleSheet('SignIn', {
   },
   HeaderText: {
     _el: Text,
-    fontSize: '30',
-    fontWeight: 'bold',
-    color: 'black',
+    _textType: 'header1',
   },
   FooterWrapper: {
     _flex: ['column', 'center', 'center'],

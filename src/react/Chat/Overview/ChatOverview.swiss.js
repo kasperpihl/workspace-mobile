@@ -8,10 +8,6 @@ export default styleSheet('ChatOverview', {
   },
   HeaderText: {
     _el: Text,
-    _padding: [0, 20],
-    fontSize: '30',
-    fontWeight: 'bold',
-    paddingBottom: 20,
-    color: 'black',
+    _textType: 'header1',
   },
 });

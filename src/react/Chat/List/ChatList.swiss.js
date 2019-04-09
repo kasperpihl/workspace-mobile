@@ -8,11 +8,8 @@ export default styleSheet('ChatList', {
   },
   HeaderText: {
     _el: Text,
+    _textType: 'header1',
     _padding: [0, 20],
-    fontSize: '30',
-    fontWeight: 'bold',
-    paddingBottom: 20,
-    color: 'black',
   },
   ListWrapper: {
     flex: 1,

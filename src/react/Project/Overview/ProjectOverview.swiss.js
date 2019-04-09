@@ -9,10 +9,7 @@ export default styleSheet('ProjectOverview', {
   HeaderText: {
     _el: Text,
     _padding: [0, 20],
-    fontSize: '30',
-    fontWeight: 'bold',
-    paddingBottom: 20,
-    color: 'black',
+    _textType: 'header1',
   },
   LoaderContainer: {
     _flex: 'center',

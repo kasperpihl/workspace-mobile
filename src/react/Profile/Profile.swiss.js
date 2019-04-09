@@ -9,9 +9,7 @@ export default styleSheet('Profile', {
   },
   HeaderText: {
     _el: Text,
-    fontSize: '30',
-    fontWeight: 'bold',
-    color: 'black',
+    _textType: 'header1',
   },
   ButtonWrapper: {
     _el: TouchableOpacity,

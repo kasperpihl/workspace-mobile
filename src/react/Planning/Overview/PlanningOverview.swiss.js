@@ -14,9 +14,6 @@ export default styleSheet('PlanningOverview', {
   HeaderText: {
     _el: Text,
     flex: 1,
-    fontSize: '30',
-    fontWeight: 'bold',
-    paddingBottom: 20,
-    color: 'black',
+    _textType: 'header1',
   },
 });
