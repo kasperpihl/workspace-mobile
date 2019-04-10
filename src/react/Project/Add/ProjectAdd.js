@@ -208,7 +208,7 @@ export default class ProjectAdd extends PureComponent {
                   />
                 </View>
                 <View style={{ marginTop: 40 }}>
-                  <FormLabel label={'Pick team'} />
+                  <FormLabel label={'Team'} />
                   <Picker
                     values={teams}
                     defaultValue={team_id}
@@ -217,7 +217,7 @@ export default class ProjectAdd extends PureComponent {
                 </View>
                 {team_id !== myId && (
                   <View style={{ marginTop: 40 }}>
-                    <FormLabel label={'Choose privacy'} />
+                    <FormLabel label={'Access'} />
                     <Picker
                       values={privacyOptions}
                       defaultValue={privacy}
@@ -227,7 +227,7 @@ export default class ProjectAdd extends PureComponent {
                 )}
                 {team_id !== myId && privacy !== 'public' && (
                   <View style={{ marginTop: 40 }}>
-                    <FormLabel label={'Choose people'} />
+                    <FormLabel label={'Members'} />
                     <Picker
                       key={team_id}
                       multiselect={true}
