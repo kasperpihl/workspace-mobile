@@ -16,14 +16,15 @@ import ProjectAdd from 'src/react/Project/Add/ProjectAdd';
 import ProjectOverview from 'src/react/Project/Overview/ProjectOverview';
 import ChatList from 'src/react/Chat/List/ChatList.js';
 import ChatAdd from 'src/react/Chat/Add/ChatAdd.js';
-import ChatOverview from 'src/react/Chat/Overview/ChatOverview.js';
-import PlanningOverview from 'src/react/Planning/Overview/PlanningOverview.js';
+import ChatOverview from 'src/react/Chat/Overview/ChatOverview';
+import PlanningOverview from 'src/react/Planning/Overview/PlanningOverview';
 import AttachmentViewer from 'src/react/AttachmentViewer/AttachmentViewer';
 import AttachmentsNoteViewer from 'src/react/Attachments/NoteViewer/AttachmentsNoteViewer';
 import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'core/utils/store/storeGet';
 import Socket from 'core/classes/Socket';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
+import TopBarTouchableWrapper from 'src/react/TopBarTouchableWrapper/TopBarTouchableWrapper';
 
 // Init core!
 const { store, persistor } = configureStore({
@@ -89,6 +90,20 @@ export function registerScreens() {
         return (
           <SwissProvider defaultEl={View}>
             <IconTouchableWrapper {...this.props} />
+          </SwissProvider>
+        );
+      }
+    };
+  });
+
+  // That's not a screen per say but a custom button component
+  // It is needed so we have custom text style in the topBar
+  Navigation.registerComponent('TopBarTouchableWrapper', () => {
+    return class SpecialStupidWrapper extends React.PureComponent {
+      render() {
+        return (
+          <SwissProvider defaultEl={View}>
+            <TopBarTouchableWrapper {...this.props} />
           </SwissProvider>
         );
       }

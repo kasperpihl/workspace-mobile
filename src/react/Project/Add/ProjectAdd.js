@@ -24,8 +24,6 @@ export default class ProjectAdd extends PureComponent {
   constructor(props) {
     super(props);
 
-    Navigation.events().bindComponent(this, 'ProjectAdd');
-
     const team_id = this.props.teams.toList().getIn([0, 'team_id']);
 
     this.state = {
@@ -53,14 +51,42 @@ export default class ProjectAdd extends PureComponent {
       privacy: 'public',
       selectedPeople: [],
     };
+
+    this.createButton = {
+      id: 'Create',
+      component: {
+        name: 'TopBarTouchableWrapper',
+        passProps: {
+          title: 'Create',
+          textType: 'captionGreen',
+          onPress: () => {
+            this.handleAddProject();
+          },
+        },
+      },
+    };
+
+    this.cancelButton = {
+      id: 'Cancel',
+      component: {
+        name: 'TopBarTouchableWrapper',
+        passProps: {
+          title: 'Cancel',
+          textType: 'captionDark',
+          onPress: () => {
+            this.dismissModal();
+          },
+        },
+      },
+    };
   }
-  navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId === 'Cancel') {
-      this.dismissModal();
-    }
-    if (buttonId === 'Create') {
-      this.handleAddProject();
-    }
+  componentDidMount = () => {
+    Navigation.mergeOptions('ProjectAdd', {
+      topBar: {
+        leftButtons: [this.cancelButton],
+        rightButtons: [this.createButton],
+      },
+    });
   };
   handleChangeText = field => value => {
     this.setState({ [field]: value });

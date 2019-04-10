@@ -63,20 +63,6 @@ export default {
             id: 'ProjectAdd',
             name: 'ProjectAdd',
             options: {
-              topBar: {
-                leftButtons: [
-                  {
-                    id: 'Cancel',
-                    text: 'Cancel',
-                  },
-                ],
-                rightButtons: [
-                  {
-                    id: 'Create',
-                    text: 'Create',
-                  },
-                ],
-              },
               animations: {
                 showModal: {
                   enabled: false,
