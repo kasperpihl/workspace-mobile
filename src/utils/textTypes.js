@@ -94,7 +94,7 @@ export default {
     letterSpacing: 0.3,
     color: '$red',
   },
-  body: {
+  bodyDark: {
     _fontFamily: 'regular',
     fontSize: 14,
     lineHeight: 18,
@@ -106,13 +106,13 @@ export default {
     lineHeight: 18,
     color: '$dark',
   },
-  bodySubtitle: {
+  bodyLight: {
     _fontFamily: 'regular',
     fontSize: 14,
     lineHeight: 18,
     color: '$sw3',
   },
-  bodyBoldWhite: {
+  bodyWhite: {
     _fontFamily: 'medium',
     fontSize: 14,
     lineHeight: 18,

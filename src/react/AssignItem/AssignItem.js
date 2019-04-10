@@ -5,17 +5,9 @@ import SW from './AssignItem.swiss';
 
 export default function AssignItem({ userId, teamId, fullName, assigned }) {
   const renderRightButton = () => {
-    const icon = assigned ? 'x' : 'plus';
-    const iconColor = assigned ? 'sw2' : 'blue';
+    const icon = assigned ? 'X' : 'Plus';
 
-    return (
-      <IconTouchableWrapper
-        icon={icon}
-        fill={iconColor}
-        width="14"
-        height="14"
-      />
-    );
+    return <IconTouchableWrapper icon={icon} fill="dark" />;
   };
 
   return (
