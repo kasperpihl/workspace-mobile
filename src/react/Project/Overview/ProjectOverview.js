@@ -46,6 +46,7 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     component: {
       name: 'TopBarTouchableWrapper',
       passProps: {
+        backArrow: true,
         title: 'Projects',
         textType: 'captionDark',
         onPress: () => {
