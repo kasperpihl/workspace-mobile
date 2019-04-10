@@ -48,7 +48,9 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
       passProps: {
         title: 'Projects',
         textType: 'captionDark',
-        // onPress: () => {},
+        onPress: () => {
+          Navigation.pop('ProjectOverview');
+        },
       },
     },
   };

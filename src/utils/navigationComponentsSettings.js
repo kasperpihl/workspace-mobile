@@ -87,9 +87,6 @@ export default {
         backButton: {
           visible: false,
         },
-        // backButton: {
-        //   title: 'Projects',
-        // },
       },
       bottomTabs: {
         visible: false,
