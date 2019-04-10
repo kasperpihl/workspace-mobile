@@ -59,6 +59,7 @@ export default class ProjectAdd extends PureComponent {
         passProps: {
           title: 'Create',
           textType: 'captionGreen',
+          right: true,
           onPress: () => {
             this.handleAddProject();
           },
@@ -83,7 +84,7 @@ export default class ProjectAdd extends PureComponent {
   componentDidMount = () => {
     Navigation.mergeOptions('ProjectAdd', {
       topBar: {
-        leftButtons: [this.cancelButton],
+        title: this.cancelButton,
         rightButtons: [this.createButton],
       },
     });
@@ -168,6 +169,7 @@ export default class ProjectAdd extends PureComponent {
 
         items.push(
           <AssignItem
+            size={30}
             key={key}
             userId={userId}
             teamId={teamId}

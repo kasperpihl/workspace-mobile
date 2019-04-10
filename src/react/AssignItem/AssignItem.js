@@ -3,7 +3,13 @@ import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import SW from './AssignItem.swiss';
 
-export default function AssignItem({ userId, teamId, fullName, assigned }) {
+export default function AssignItem({
+  userId,
+  teamId,
+  fullName,
+  assigned,
+  size,
+}) {
   const renderRightButton = () => {
     const icon = assigned ? 'X' : 'Plus';
 
@@ -12,7 +18,12 @@ export default function AssignItem({ userId, teamId, fullName, assigned }) {
 
   return (
     <SW.Wrapper>
-      <AssigneeImage userId={userId} teamId={teamId} imageSize={64} />
+      <AssigneeImage
+        userId={userId}
+        teamId={teamId}
+        size={size}
+        imageSize={64}
+      />
       <SW.FullName>{fullName}</SW.FullName>
       <SW.RightButton>{renderRightButton()}</SW.RightButton>
     </SW.Wrapper>

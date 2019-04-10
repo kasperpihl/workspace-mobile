@@ -5,7 +5,11 @@ export default styleSheet('TopBarTouchableWrapper', {
   Wrapper: {
     _el: TouchableOpacity,
     _flex: 'center',
-    _padding: [0, 20],
+    _size: ['auto', 44],
+    _padding: [0, 3],
+    right: {
+      _padding: [0, 20],
+    },
   },
   Title: {
     _el: Text,

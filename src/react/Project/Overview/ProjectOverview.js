@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { ActivityIndicator } from 'react-native';
-import { VirtualizedList } from 'react-native';
+import { ActivityIndicator, VirtualizedList } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
 import useProjectSlice from 'core/react/_hooks/useProjectSlice';
 import useSyncedProject from 'core/react/_hooks/useSyncedProject';
@@ -40,6 +40,26 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
   useAppState(() => {
     stateManager && stateManager.syncHandler.syncIfNeeded();
   });
+
+  const backButton = {
+    id: 'Back',
+    component: {
+      name: 'TopBarTouchableWrapper',
+      passProps: {
+        title: 'Projects',
+        textType: 'captionDark',
+        // onPress: () => {},
+      },
+    },
+  };
+
+  useEffect(() => {
+    Navigation.mergeOptions('ProjectOverview', {
+      topBar: {
+        title: backButton,
+      },
+    });
+  }, []);
 
   if (!visibleOrder) {
     return (

@@ -63,6 +63,11 @@ export default {
             id: 'ProjectAdd',
             name: 'ProjectAdd',
             options: {
+              topBar: {
+                backButton: {
+                  visible: false,
+                },
+              },
               animations: {
                 showModal: {
                   enabled: false,
@@ -80,8 +85,11 @@ export default {
     options: {
       topBar: {
         backButton: {
-          title: 'Projects',
+          visible: false,
         },
+        // backButton: {
+        //   title: 'Projects',
+        // },
       },
       bottomTabs: {
         visible: false,

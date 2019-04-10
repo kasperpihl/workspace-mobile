@@ -3,10 +3,10 @@ import SW from './TopBarTouchableWrapper.swiss';
 
 export default class TopBarTouchableWrapper extends PureComponent {
   render() {
-    const { textType, title = '', onPress } = this.props;
+    const { textType, title = '', right = false, onPress } = this.props;
 
     return (
-      <SW.Wrapper onPress={onPress}>
+      <SW.Wrapper right={right} onPress={onPress}>
         <SW.Title textType={textType}>{title.toUpperCase()}</SW.Title>
       </SW.Wrapper>
     );
