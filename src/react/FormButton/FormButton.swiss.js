@@ -16,7 +16,7 @@ export default styleSheet('Input', {
   },
   ButtonText: {
     _el: Text,
-    fontSize: '10',
+    fontSize: 10,
     fontWeight: 'bold',
     color: '$base',
   },

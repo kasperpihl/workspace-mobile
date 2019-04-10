@@ -21,7 +21,7 @@ export default styleSheet('SignUp', {
   },
   FooterText: {
     _el: Text,
-    fontSize: '15',
+    fontSize: 15,
     color: '$sw1',
   },
 });

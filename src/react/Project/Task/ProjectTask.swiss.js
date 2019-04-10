@@ -13,7 +13,7 @@ export default styleSheet('ProjectInput', {
   },
   IndentSpace: {
     _size: [0, '100%'],
-    _border: ['1', '$sw3', 'left'],
+    _border: [1, '$sw3', 'left'],
     // highlight: {
     //   _border: ['1', '$sw1', 'left'],
     // },
@@ -25,13 +25,13 @@ export default styleSheet('ProjectInput', {
   CircleWrapper: {
     _el: TouchableOpacity,
     _flex: ['row', 'center', 'flex-start'],
-    _size: ['34', '34'],
+    _size: [34, 34],
     _borderRadius: 17,
   },
   Circle: {
     _flex: 'center',
-    _size: ['18', '18'],
-    _border: ['1', '$green'],
+    _size: [18, 18],
+    _border: [1, '$green'],
     _borderRadius: 11,
 
     completion: {

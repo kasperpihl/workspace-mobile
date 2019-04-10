@@ -28,13 +28,13 @@ export default styleSheet('ChatCommentComposer', {
   },
   LoaderContainer: {
     _flex: 'center',
-    _size: ['44', '44'],
+    _size: [44, 44],
   },
   AttachIconWrapper: {
     _size: 44,
   },
   AttachmentCounterWrapper: {
-    _size: ['16', '16'],
+    _size: [16, 16],
     _borderRadius: 8,
     _flex: 'center',
     zIndex: 1,

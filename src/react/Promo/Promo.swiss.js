@@ -4,6 +4,6 @@ export default styleSheet('Promo', {
   Wrapper: {
     _flex: 'center',
     _size: ['100%', '100%'],
-    _padding: '50',
+    _padding: 50,
   },
 });

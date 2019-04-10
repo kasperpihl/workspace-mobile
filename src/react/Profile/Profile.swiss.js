@@ -14,11 +14,11 @@ export default styleSheet('Profile', {
   ButtonWrapper: {
     _el: TouchableOpacity,
     _flex: ['column', 'center'],
-    _size: ['100%', '44'],
+    _size: ['100%', 44],
   },
   Button: {
     _el: Text,
     color: 'red',
-    fontSize: '18',
+    fontSize: 18,
   },
 });

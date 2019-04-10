@@ -16,11 +16,11 @@ export default styleSheet('AssigneeImage', {
   },
   Initial: {
     _el: Text,
-    fontSize: '10',
+    fontSize: 10,
     color: '$sw1',
     fontWeight: 'bold',
     'size>=30': {
-      fontSize: '14',
+      fontSize: 14,
     },
   },
 });

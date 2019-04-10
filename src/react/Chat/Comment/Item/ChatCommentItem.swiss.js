@@ -12,9 +12,9 @@ export default styleSheet('ChatCommentItem', {
     _size: ['100%', 'auto'],
   },
   Left: {
-    _size: ['44', 'auto'],
+    _size: [44, 'auto'],
     _flex: ['row'],
-    paddingRight: '10',
+    paddingRight: 10,
   },
   Right: {
     _size: ['90%', 'auto'],
@@ -28,7 +28,7 @@ export default styleSheet('ChatCommentItem', {
   },
   Time: {
     _el: Text,
-    fontSize: '10',
+    fontSize: 10,
     color: '$sw2',
     marginLeft: '5',
     alignSelf: 'flex-end',
@@ -42,7 +42,7 @@ export default styleSheet('ChatCommentItem', {
   },
   HeartCount: {
     _el: Text,
-    fontSize: '10',
+    fontSize: 10,
     color: '$sw2',
     alignSelf: 'center',
     position: 'absolute',

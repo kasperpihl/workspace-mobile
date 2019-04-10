@@ -21,8 +21,8 @@ export default styleSheet('ForgottenPassword', {
   },
   CopyText: {
     _el: Text,
-    marginTop: '10',
-    fontSize: '15',
+    marginTop: 10,
+    fontSize: 15,
     color: '$sw1',
   },
 });

@@ -9,7 +9,7 @@ export default styleSheet('Picker', {
   PickerItem: {
     _el: TouchableOpacity,
     _flex: ['column', 'flex-start', 'center'],
-    _size: ['100%', '50'],
+    _size: ['100%', 50],
     _padding: [0, 0, 0, 5],
     _textType: 'header3',
     borderRadius: 3,
