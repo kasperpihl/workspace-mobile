@@ -94,6 +94,7 @@ export default function ProjectList() {
   return (
     <SW.Wrapper>
       <SW.HeaderText>Projects</SW.HeaderText>
+      <SW.GreyBorder />
       {renderLoader()}
       {renderList()}
     </SW.Wrapper>

@@ -5,19 +5,24 @@ export default styleSheet('ProjectList', {
   Wrapper: {
     _flex: ['column', 'flex-start'],
     _size: ['100%', '100%'],
-    _padding: [0, 20],
   },
   HeaderText: {
     _el: Text,
     _textType: 'header1',
+    _padding: [0, 20],
+  },
+  GreyBorder: {
+    _size: ['100%', 1],
+    marginTop: 14,
+    backgroundColor: '$sw4',
   },
   LoaderContainer: {
     _flex: 'center',
     _size: ['100%', '100%'],
   },
   FlatListWrapper: {
+    paddingLeft: 20,
     flex: 1,
-    marginTop: 20,
   },
   LoaderContainerFooter: {
     _flex: 'center',

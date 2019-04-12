@@ -1,7 +1,7 @@
 import { styleSheet } from 'swiss-react';
 import { TouchableOpacity, Text } from 'react-native';
 
-export default styleSheet('TopBarTouchableWrapper', {
+export default styleSheet('TextButton', {
   Wrapper: {
     _el: TouchableOpacity,
     _flex: 'center',

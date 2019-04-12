@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
-import SW from './TopBarTouchableWrapper.swiss';
+import SW from './TextButton.swiss';
 
-export default class TopBarTouchableWrapper extends PureComponent {
+export default class TextButton extends PureComponent {
   render() {
     const {
       backArrow,

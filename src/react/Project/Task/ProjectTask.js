@@ -107,10 +107,10 @@ export default class ProjectTask extends PureComponent {
         {hasChildren && (
           <IconTouchableWrapper
             icon={expanded ? 'ArrowDown' : 'ArrowRight'}
-            fill={'sw2'}
+            fill={'sw3'}
             onPress={this.handleExpandPress}
             small={true}
-            style={{ marginTop: -10 }}
+            style={{ marginTop: -13 }}
           />
         )}
         <SW.MarginForExpandArrow hasChildren={hasChildren} />

@@ -24,7 +24,7 @@ import getGlobals from 'src/utils/getGlobals';
 import { setStore } from 'core/utils/store/storeGet';
 import Socket from 'core/classes/Socket';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
-import TopBarTouchableWrapper from 'src/react/TopBarTouchableWrapper/TopBarTouchableWrapper';
+import TextButton from 'src/react/TextButton/TextButton';
 
 // Init core!
 const { store, persistor } = configureStore({
@@ -98,12 +98,12 @@ export function registerScreens() {
 
   // That's not a screen per say but a custom button component
   // It is needed so we have custom text style in the topBar
-  Navigation.registerComponent('TopBarTouchableWrapper', () => {
+  Navigation.registerComponent('TextButton', () => {
     return class SpecialStupidWrapper extends React.PureComponent {
       render() {
         return (
           <SwissProvider defaultEl={View}>
-            <TopBarTouchableWrapper {...this.props} />
+            <TextButton {...this.props} />
           </SwissProvider>
         );
       }

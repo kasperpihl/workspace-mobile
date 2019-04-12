@@ -44,7 +44,7 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
   const backButton = {
     id: 'Back',
     component: {
-      name: 'TopBarTouchableWrapper',
+      name: 'TextButton',
       passProps: {
         backArrow: true,
         title: 'Projects',
@@ -68,6 +68,7 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     return (
       <SW.Wrapper>
         <SW.HeaderText numberOfLines={1}>{projectTitle}</SW.HeaderText>
+        <SW.GreyBorder />
         <SW.LoaderContainer>
           <ActivityIndicator size="large" color="#007AFF" />
         </SW.LoaderContainer>
@@ -92,6 +93,7 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     <ProjectProvider stateManager={stateManager}>
       <SW.Wrapper>
         <SW.HeaderText numberOfLines={1}>{projectTitle}</SW.HeaderText>
+        <SW.GreyBorder />
         <VirtualizedList
           keyboardDismissMode={'none'}
           keyboardShouldPersistTaps={'always'}
@@ -111,18 +113,18 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
           }}
           buttons={[
             {
-              icon: 'Indent_In',
-              fill: 'blue',
+              icon: 'IndentIn',
+              fill: 'dark',
               onPress: onItemIndent,
             },
             {
-              icon: 'Indent_Out',
-              fill: 'blue',
+              icon: 'IndentOut',
+              fill: 'dark',
               onPress: onItemOutdent,
             },
             {
-              icon: 'Members',
-              fill: 'blue',
+              icon: 'Member',
+              fill: 'dark',
               keyboard: KeyboardAssign,
               customKeyboardTitle: 'Assignees',
               getKeyboardProps: () => {

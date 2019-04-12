@@ -55,7 +55,7 @@ export default class ProjectAdd extends PureComponent {
     this.createButton = {
       id: 'Create',
       component: {
-        name: 'TopBarTouchableWrapper',
+        name: 'TextButton',
         passProps: {
           title: 'Create',
           textType: 'captionGreen',
@@ -70,7 +70,7 @@ export default class ProjectAdd extends PureComponent {
     this.cancelButton = {
       id: 'Cancel',
       component: {
-        name: 'TopBarTouchableWrapper',
+        name: 'TextButton',
         passProps: {
           title: 'Cancel',
           textType: 'captionDark',

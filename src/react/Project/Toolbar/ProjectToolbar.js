@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import SW from './ProjectToolbar.swiss';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
+import TextButton from 'src/react/TextButton/TextButton';
 
 // In order for LayoutAnimation to work on Android
 // I'm not doing layoutAnimations on Android because the behaviour is unpredictable
@@ -200,7 +201,12 @@ export default class ProjectToolbar extends PureComponent {
 
     return (
       <SW.RightButton customKeyboardIsShown={customKeyboardIsShown}>
-        <Button onPress={onPressLocal} title="Done" />
+        <TextButton
+          onPress={onPressLocal}
+          title="Done"
+          textType="captionDark"
+          right={true}
+        />
       </SW.RightButton>
     );
   }
@@ -214,16 +220,14 @@ export default class ProjectToolbar extends PureComponent {
 
     return (
       <IconTouchableWrapper
-        icon={'back'}
-        fill={'blue'}
+        icon={'ArrowLeft'}
+        fill={'dark'}
         onPress={() => {
           this.setState({
             customKeyboardIsShown: false,
           });
           onPressBackButton();
         }}
-        width={'22'}
-        height={'14'}
       />
     );
   }

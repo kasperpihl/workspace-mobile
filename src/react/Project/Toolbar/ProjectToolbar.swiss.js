@@ -3,9 +3,10 @@ import { Text } from 'react-native';
 
 export default styleSheet('ProjectToolbar', {
   ToolbarWrapper: {
-    _flex: ['row'],
+    _flex: ['row', 'flex-start', 'center'],
     _size: ['100%', '40'],
-    backgroundColor: '$sw3',
+    _border: [1, '$sw4', 'top'],
+    backgroundColor: 'base',
     height: get => {
       return get('show') ? 40 : 0;
     },
@@ -18,8 +19,7 @@ export default styleSheet('ProjectToolbar', {
   },
   Title: {
     _el: Text,
-    alignSelf: 'center',
-    fontWeight: 'bold',
+    _textType: 'bodyBold',
   },
   RightButton: {
     marginLeft: get => {
