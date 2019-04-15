@@ -17,7 +17,7 @@ export default styleSheet('ProjectInput', {
     // highlight: {
     //   _border: ['1', '$sw1', 'left'],
     // },
-    marginLeft: 17,
+    marginLeft: 30,
   },
   MarginForExpandArrow: {
     marginLeft: get => (get('hasChildren') ? 0 : 34),
