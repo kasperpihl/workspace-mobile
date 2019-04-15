@@ -3,7 +3,6 @@ import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import Icon from 'src/react/Icon/Icon';
 import SW from './ProjectTask.swiss';
 import withProjectTask from 'core/react/_hocs/Project/withProjectTask';
-import colors from 'src/utils/colors';
 
 @withProjectTask
 export default class ProjectTask extends PureComponent {
@@ -92,7 +91,7 @@ export default class ProjectTask extends PureComponent {
     }
   };
   render() {
-    const { taskId, task, disabled } = this.props;
+    const { taskId, task, disabled, stateManager } = this.props;
     const {
       title,
       indention,
@@ -101,6 +100,9 @@ export default class ProjectTask extends PureComponent {
       completion,
       isSelected,
     } = task;
+    const indentComp =
+      stateManager.getLocalState().getIn(['indentComp', taskId]) || 0;
+    const finalIndention = indention - indentComp;
 
     return (
       <SW.Wrapper>
@@ -114,13 +116,13 @@ export default class ProjectTask extends PureComponent {
           />
         )}
         <SW.MarginForExpandArrow hasChildren={hasChildren} />
-        {[...Array(indention)].map((v, i) => {
+        {[...Array(finalIndention)].map((v, i) => {
           // const highlight = rangeToHighlight.includes(taskId) && indentToHightlight === i + 1;
           return (
             <SW.IndentSpace
               key={`${indention}-${taskId}-${i}`}
               // highlight={highlight}
-              indent={indention}
+              indent={finalIndention}
             />
           );
         })}
