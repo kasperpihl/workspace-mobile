@@ -7,7 +7,7 @@ import useProjectSlice from 'core/react/_hooks/useProjectSlice';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
 import useAppState from 'src/react/_hooks/useAppState';
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
-import PlaningTasksHeader from 'src/react/Planning/Tasks/Header/PlanningTasksHeader';
+import PlanningTasksHeader from 'src/react/Planning/Tasks/Header/PlanningTasksHeader';
 import useMyId from 'core/react/_hooks/useMyId';
 import SW from './PlanningTasks.swiss';
 
@@ -56,12 +56,12 @@ export default function PlanningTasks({ teamId, yearWeek }) {
 
   return (
     <SW.Wrapper>
-      <PlanningList tasks={tasks} />
+      <PlanningList tasks={tasks} teamId={teamId} yearWeek={yearWeek} />
     </SW.Wrapper>
   );
 }
 
-const PlanningList = ({ tasks }) => {
+const PlanningList = ({ tasks, teamId, yearWeek }) => {
   const didLoadInitial = useRef();
   const uniqueProjectIds = useMemo(
     () => [...new Set(tasks.map(({ project_id }) => project_id))],
@@ -163,7 +163,12 @@ const PlanningList = ({ tasks }) => {
             return project_id;
           }}
           ListHeaderComponent={
-            <PlaningTasksHeader count={count} dispatchFilter={dispatchFilter} />
+            <PlanningTasksHeader
+              count={count}
+              dispatchFilter={dispatchFilter}
+              yearWeek={yearWeek}
+              teamId={teamId}
+            />
           }
           renderItem={({ item }) => (
             <PlanningListProject
@@ -259,7 +264,7 @@ const PlanningListProject = ({ projectId, dispatch, tasks, filter }) => {
 
   return (
     <SW.TasksWrapper>
-      <Text>{title}</Text>
+      <SW.ProjectTitle>{title.toUpperCase()}</SW.ProjectTitle>
       <ProjectProvider stateManager={stateManager}>
         {visibleOrder.map(task_id => (
           <ProjectTask taskId={task_id} key={task_id} disabled={true} />

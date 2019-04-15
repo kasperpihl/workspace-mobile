@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import Icon from 'src/react/Icon/Icon';
 import SW from 'src/react/Icon/IconTouchableWrapper.swiss';
-import colors from 'src/utils/colors';
 import { View } from 'react-native';
 
 export default class IconTouchableWrapper extends PureComponent {
   render() {
     const {
       icon,
-      fill,
       onPress,
       rotate,
       style,
@@ -30,7 +28,7 @@ export default class IconTouchableWrapper extends PureComponent {
             ...style,
           }}
         >
-          <Icon name={icon} fill={colors[fill]} {...rest} />
+          <Icon name={icon} {...rest} />
         </View>
       </SW.Wrapper>
     );

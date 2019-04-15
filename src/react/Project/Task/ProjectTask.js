@@ -128,12 +128,7 @@ export default class ProjectTask extends PureComponent {
           <SW.CircleWrapper onPress={this.handleComplete}>
             <SW.Circle completion={completion}>
               {completion && (
-                <Icon
-                  name="Check"
-                  fill={colors['base']}
-                  width={20}
-                  height={20}
-                />
+                <Icon name="Check" fill="base" width={20} height={20} />
               )}
             </SW.Circle>
           </SW.CircleWrapper>

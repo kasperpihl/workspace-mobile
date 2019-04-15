@@ -13,7 +13,7 @@ export default styleSheet('ProjectInput', {
   },
   IndentSpace: {
     _size: [0, '100%'],
-    _border: [1, '$sw3', 'left'],
+    // _border: [1, '$sw3', 'left'],
     // highlight: {
     //   _border: ['1', '$sw1', 'left'],
     // },
@@ -40,6 +40,7 @@ export default styleSheet('ProjectInput', {
   },
   Input: {
     _el: TextInput,
+    _textType: 'header3',
     paddingTop: 0,
     paddingBottom: 0,
     flex: 1,

@@ -54,9 +54,8 @@ const PlanningOverview = ({ teams, myId }) => {
 
   return (
     <SW.Wrapper>
-      <SW.TopWrapper>
-        <SW.HeaderText numberOfLines={1}>Planning</SW.HeaderText>
-      </SW.TopWrapper>
+      <SW.HeaderText numberOfLines={1}>Planning</SW.HeaderText>
+      <SW.GreyBorder />
       {toggleInfo && (
         <PlanningInfo
           teamId={teamId}

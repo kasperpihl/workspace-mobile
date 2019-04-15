@@ -1,9 +1,11 @@
+import { Text } from 'react-native';
 import { styleSheet } from 'swiss-react';
 
 export default styleSheet('PlanningTasks', {
   Wrapper: {
     _flex: ['column', 'flex-start'],
     _size: ['100%', '100%'],
+    paddingLeft: 20,
     flex: 1,
   },
   PlanningListWrapper: {
@@ -21,5 +23,11 @@ export default styleSheet('PlanningTasks', {
   },
   TasksWrapper: {
     _flex: ['column', 'flex-start'],
+  },
+  ProjectTitle: {
+    _el: Text,
+    _textType: 'captionLight',
+    marginTop: 20,
+    marginBottom: 10,
   },
 });
