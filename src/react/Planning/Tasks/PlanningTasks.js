@@ -163,12 +163,14 @@ const PlanningList = ({ tasks, teamId, yearWeek }) => {
             return project_id;
           }}
           ListHeaderComponent={
-            <PlanningTasksHeader
-              count={count}
-              dispatchFilter={dispatchFilter}
-              yearWeek={yearWeek}
-              teamId={teamId}
-            />
+            <SW.HeaderWrapper>
+              <PlanningTasksHeader
+                count={count}
+                dispatchFilter={dispatchFilter}
+                yearWeek={yearWeek}
+                teamId={teamId}
+              />
+            </SW.HeaderWrapper>
           }
           renderItem={({ item }) => (
             <PlanningListProject

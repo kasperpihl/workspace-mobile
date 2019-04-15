@@ -5,8 +5,10 @@ export default styleSheet('PlanningTasks', {
   Wrapper: {
     _flex: ['column', 'flex-start'],
     _size: ['100%', '100%'],
-    paddingLeft: 20,
     flex: 1,
+  },
+  HeaderWrapper: {
+    paddingLeft: 20,
   },
   PlanningListWrapper: {
     flex: 1,
@@ -23,11 +25,13 @@ export default styleSheet('PlanningTasks', {
   },
   TasksWrapper: {
     _flex: ['column', 'flex-start'],
+    paddingLeft: 8,
   },
   ProjectTitle: {
     _el: Text,
     _textType: 'captionLight',
     marginTop: 20,
-    marginBottom: 10,
+    marginBottom: 12,
+    paddingLeft: 10,
   },
 });
