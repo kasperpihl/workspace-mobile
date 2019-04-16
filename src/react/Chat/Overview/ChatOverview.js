@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
 import request from 'core/utils/request';
 import useRequest from 'core/react/_hooks/useRequest';
 import ChatCommentsList from 'src/react/Chat/Comment/List/ChatCommentList';
@@ -27,12 +28,36 @@ function ChatOverview({ discussion, myId }) {
     }
   );
 
+  const backButton = {
+    id: 'Back',
+    component: {
+      name: 'TextButton',
+      passProps: {
+        backArrow: true,
+        title: 'Chats',
+        textType: 'captionDark',
+        onPress: () => {
+          Navigation.pop('ChatOverview');
+        },
+      },
+    },
+  };
+
+  useEffect(() => {
+    Navigation.mergeOptions('ChatOverview', {
+      topBar: {
+        title: backButton,
+      },
+    });
+  }, []);
+
   const behavior = Platform.OS === 'android' ? '' : 'padding';
 
   return (
     <KeyboardAvoidingView keyboardVerticalOffset={90} behavior={behavior}>
       <SW.Wrapper>
         <SW.HeaderText numberOfLines={1}>{title}</SW.HeaderText>
+        <SW.GreyBorder />
         <ChatCommentsList discussion={discussion} />
         <ChatCommentComposer
           discussionId={discussion.discussion_id}

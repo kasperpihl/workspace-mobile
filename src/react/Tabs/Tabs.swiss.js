@@ -15,9 +15,9 @@ export default styleSheet('Tabs', {
   },
   TabText: {
     _el: Text,
-    color: '$sw2',
+    _textType: 'captionLight',
     selected: {
-      color: '$sw1',
+      _textType: 'captionDark',
     },
   },
 });

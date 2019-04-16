@@ -123,7 +123,7 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
           </SW.AttachmentCounterWrapper>
         )}
         <IconTouchableWrapper
-          icon={'attach'}
+          icon={'Attach'}
           fill={'sw2'}
           onPress={() => {
             if (loading) {

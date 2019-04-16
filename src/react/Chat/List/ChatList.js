@@ -15,7 +15,7 @@ const addButton = {
     name: 'IconTouchableWrapper',
     passProps: {
       icon: 'New',
-      fill: 'blue',
+      fill: 'dark',
       onPress: () => {
         Navigation.showModal(navigationComponents.ChatAdd);
       },
@@ -118,7 +118,7 @@ function ChatListWrapper({ myId, unreadCounter, componentId }) {
 
   return (
     <SW.Wrapper>
-      <SW.HeaderText>Discussions</SW.HeaderText>
+      <SW.HeaderText>Chat</SW.HeaderText>
       <Tabs
         tabs={['following', 'all other']}
         selected={type}

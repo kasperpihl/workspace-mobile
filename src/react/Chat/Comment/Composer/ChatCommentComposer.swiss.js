@@ -5,7 +5,7 @@ export default styleSheet('ChatCommentComposer', {
   Wrapper: {
     _flex: ['row', 'flex-start', 'center'],
     _size: ['100%', 'auto'],
-    _border: [2, '$sw4', 'top'],
+    _border: [1, '$sw4', 'top'],
     _padding: 10,
   },
   InputWrapper: {
@@ -16,6 +16,8 @@ export default styleSheet('ChatCommentComposer', {
   },
   Input: {
     _el: TextInput,
+    _textType: 'bodyDark',
+    placeholderTextColor: 'sw3',
     paddingTop: 0,
     paddingBottom: 0,
     flex: 1,
@@ -37,12 +39,12 @@ export default styleSheet('ChatCommentComposer', {
     _size: [16, 16],
     _borderRadius: 8,
     _flex: 'center',
+    _textType: 'bodyWhite',
     zIndex: 1,
     top: 4,
     right: 6,
     position: 'absolute',
-    backgroundColor: '$blue',
-    color: '$base',
+    backgroundColor: '$green',
   },
   AttachmentCounter: {
     _el: Text,

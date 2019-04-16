@@ -22,15 +22,13 @@ export default styleSheet('ChatCommentItem', {
   },
   Name: {
     _el: Text,
-    fontSize: 12,
-    color: '$sw1',
-    fontWeight: 'bold',
+    _textType: 'bodyBold',
   },
   Time: {
     _el: Text,
-    fontSize: 10,
-    color: '$sw2',
+    _textType: 'labelLight',
     marginLeft: 5,
+    marginTop: -2,
     alignSelf: 'flex-end',
   },
   GifhyWrapper: {
@@ -38,12 +36,12 @@ export default styleSheet('ChatCommentItem', {
   },
   Message: {
     _el: Text,
+    _textType: 'bodyDark',
     paddingTop: 4,
   },
   HeartCount: {
     _el: Text,
-    fontSize: 10,
-    color: '$sw2',
+    _textType: 'labelLight',
     alignSelf: 'center',
     position: 'absolute',
     zIndex: 2,

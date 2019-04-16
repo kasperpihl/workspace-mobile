@@ -9,5 +9,11 @@ export default styleSheet('ChatOverview', {
   HeaderText: {
     _el: Text,
     _textType: 'header1',
+    _padding: [0, 20],
+  },
+  GreyBorder: {
+    _size: ['100%', 1],
+    marginTop: 14,
+    backgroundColor: '$sw4',
   },
 });

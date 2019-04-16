@@ -25,7 +25,7 @@ export default styleSheet('ChatListItem', {
   },
   RightSide: {
     _flex: 'column',
-    _border: [1, '$sw3', 'bottom'],
+    _border: [1, '$sw4', 'bottom'],
     width: globals.getIn(['viewSize', 'width']) - 60,
     paddingVertical: 10,
   },
@@ -41,24 +41,16 @@ export default styleSheet('ChatListItem', {
   },
   LineOfText: {
     _el: Text,
-    fontSize: 12,
     width: '100%',
-    color: '$sw2',
     marginTop: 2,
     topic: {
-      fontSize: 14,
-      color: '$sw1',
-      fontWeight: 'bold',
+      _textType: 'header2',
     },
     team: {
-      fontSize: 12,
-      color: '$sw2',
-    },
-    text: {
-      fontSize: 12,
-      color: '$sw1',
+      _textType: 'bodyLight',
     },
     alignRight: {
+      _textType: 'bodyLight',
       textAlign: 'right',
     },
   },

@@ -138,7 +138,7 @@ export default {
     options: {
       topBar: {
         backButton: {
-          title: 'Discussions',
+          visible: false,
         },
       },
       bottomTabs: {

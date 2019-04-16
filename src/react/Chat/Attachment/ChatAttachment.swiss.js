@@ -13,6 +13,6 @@ export default styleSheet('ChatAttachment', {
   },
   Title: {
     _el: Text,
-    fontWeight: 'bold',
+    _textType: 'bodyBold',
   },
 });

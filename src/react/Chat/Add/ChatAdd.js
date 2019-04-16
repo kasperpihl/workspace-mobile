@@ -21,8 +21,6 @@ export default class ChatAdd extends PureComponent {
   constructor(props) {
     super(props);
 
-    Navigation.events().bindComponent(this, 'ChatAdd');
-
     const team_id = this.props.teams.toList().getIn([0, 'team_id']);
 
     this.state = {
@@ -47,14 +45,43 @@ export default class ChatAdd extends PureComponent {
       selectedPeople: [],
       privacy: 'public',
     };
+
+    this.createButton = {
+      id: 'Create',
+      component: {
+        name: 'TextButton',
+        passProps: {
+          title: 'Create',
+          textType: 'captionGreen',
+          right: true,
+          onPress: () => {
+            this.handleAddChat();
+          },
+        },
+      },
+    };
+
+    this.cancelButton = {
+      id: 'Cancel',
+      component: {
+        name: 'TextButton',
+        passProps: {
+          title: 'Cancel',
+          textType: 'captionDark',
+          onPress: () => {
+            this.dismissModal();
+          },
+        },
+      },
+    };
   }
-  navigationButtonPressed = ({ buttonId }) => {
-    if (buttonId === 'Cancel') {
-      this.dismissModal();
-    }
-    if (buttonId === 'Create') {
-      this.handleAddChat();
-    }
+  componentDidMount = () => {
+    Navigation.mergeOptions('ChatAdd', {
+      topBar: {
+        title: this.cancelButton,
+        rightButtons: [this.createButton],
+      },
+    });
   };
   handleChangeText = field => value => {
     this.setState({ [field]: value });
@@ -152,7 +179,7 @@ export default class ChatAdd extends PureComponent {
             <SW.FormWrapper>
               <Form>
                 <View>
-                  <FormLabel label={'Name'} />
+                  <FormLabel label={'Title'} />
                   <FormTextInput
                     last
                     value={chatTitle}
@@ -161,7 +188,7 @@ export default class ChatAdd extends PureComponent {
                   />
                 </View>
                 <View style={{ marginTop: 40 }}>
-                  <FormLabel label={'Pick team'} />
+                  <FormLabel label={'Team'} />
                   <Picker
                     values={teams}
                     defaultValue={team_id}
@@ -169,7 +196,7 @@ export default class ChatAdd extends PureComponent {
                   />
                 </View>
                 <View style={{ marginTop: 40 }}>
-                  <FormLabel label={'Choose privacy'} />
+                  <FormLabel label={'Privacy'} />
                   <Picker
                     values={privacyOptions}
                     defaultValue={privacy}
@@ -177,7 +204,7 @@ export default class ChatAdd extends PureComponent {
                   />
                 </View>
                 <View style={{ marginTop: 40 }}>
-                  <FormLabel label={'Choose people'} />
+                  <FormLabel label={'Members'} />
                   <Picker
                     key={team_id}
                     multiselect={true}
