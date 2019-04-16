@@ -2,18 +2,31 @@ import React from 'react';
 import { Linking } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
+import Icon from 'src/react/Icon/Icon';
 import merge from 'deepmerge';
 import SW from './ChatAttachment.swiss';
 
 export default function ChatAttachment({ attachment }) {
-  const { title } = attachment;
+  const { title, type } = attachment;
+  let icon;
+
+  switch (type) {
+    case 'url':
+      icon = 'Link';
+      break;
+    case 'note':
+      icon = 'Note';
+      break;
+    case 'file':
+      icon = 'File';
+  }
 
   const viewAttachment = async attachment => {
-    if (attachment.type === 'url') {
+    if (type === 'url') {
       return Linking.openURL(attachment.id);
     }
 
-    if (attachment.type === 'note') {
+    if (type === 'note') {
       const AttachmentsNoteViewerStack =
         navigationComponents.AttachmentsNoteViewerStack;
       const AttachmentsNoteViewer = merge(
@@ -34,7 +47,7 @@ export default function ChatAttachment({ attachment }) {
       return Navigation.showModal(AttachmentsNoteViewerStack);
     }
 
-    if (attachment.type === 'file') {
+    if (type === 'file') {
       const AttachmentViewerStack = navigationComponents.AttachmentViewerStack;
       const AttachmentViewer = merge(navigationComponents.AttachmentViewer, {
         passProps: {
@@ -60,7 +73,10 @@ export default function ChatAttachment({ attachment }) {
         viewAttachment(attachment);
       }}
     >
-      <SW.Title>{title}</SW.Title>
+      <SW.IconWrapper>
+        <Icon name={icon} fill="dark" />
+      </SW.IconWrapper>
+      <SW.Title numberOfLines={1}>{title}</SW.Title>
     </SW.Wrapper>
   );
 }

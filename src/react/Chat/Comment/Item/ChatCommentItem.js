@@ -154,7 +154,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
           paddingLeft: 39,
         }}
       >
-        {renderAttachments()}
+        <SW.AttachmentsWrapper>{renderAttachments()}</SW.AttachmentsWrapper>
       </SW.Row>
       <SW.Row>
         <IconTouchableWrapper

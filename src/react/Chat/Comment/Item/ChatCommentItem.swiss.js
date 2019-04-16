@@ -39,6 +39,7 @@ export default styleSheet('ChatCommentItem', {
     _textType: 'bodyDark',
     paddingTop: 4,
   },
+  AttachmentsWrapper: {},
   HeartCount: {
     _el: Text,
     _textType: 'labelLight',
