@@ -65,7 +65,13 @@ const PlanningOverview = ({ teams, myId }) => {
           onTeamChange={onTeamChange}
         />
       )}
-      {!toggleInfo && <PlanningTasks teamId={teamId} yearWeek={yearWeek} />}
+      {!toggleInfo && (
+        <PlanningTasks
+          teamId={teamId}
+          yearWeek={yearWeek}
+          setToggleInfo={setToggleInfo}
+        />
+      )}
     </SW.Wrapper>
   );
 };

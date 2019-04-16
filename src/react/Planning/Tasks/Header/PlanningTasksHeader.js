@@ -13,6 +13,7 @@ export default (PlanningTasksHeader = ({
   dispatchFilter,
   yearWeek,
   teamId,
+  setToggleInfo,
 }) => {
   const [showCompleted, setShowCompleted] = useState(false);
   const [showOnlyMe, setShowOnlyMe] = useState(false);
@@ -20,7 +21,11 @@ export default (PlanningTasksHeader = ({
 
   return (
     <SW.Wrapper>
-      <SW.ProgressWrapper>
+      <SW.ProgressWrapper
+        onPress={() => {
+          setToggleInfo(true);
+        }}
+      >
         <SW.WeekLabel>{parseWeekLabel(yearWeek)}</SW.WeekLabel>
         <SW.TeamLabel>{teamGetBelonging(teamId)}</SW.TeamLabel>
         <SW.CompletedLabel>

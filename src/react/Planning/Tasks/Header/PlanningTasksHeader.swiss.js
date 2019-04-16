@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { styleSheet } from 'swiss-react';
 
 export default styleSheet('PlanningTasksHeader', {
@@ -8,6 +8,7 @@ export default styleSheet('PlanningTasksHeader', {
     marginBottom: 10,
   },
   ProgressWrapper: {
+    _el: TouchableOpacity,
     _flex: ['column', 'flex-start'],
     _border: [1, '$sw4', 'right'],
     paddingRight: 12,

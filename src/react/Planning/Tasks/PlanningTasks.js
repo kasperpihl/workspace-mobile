@@ -11,7 +11,7 @@ import PlanningTasksHeader from 'src/react/Planning/Tasks/Header/PlanningTasksHe
 import useMyId from 'core/react/_hooks/useMyId';
 import SW from './PlanningTasks.swiss';
 
-export default function PlanningTasks({ teamId, yearWeek }) {
+export default function PlanningTasks({ teamId, yearWeek, setToggleInfo }) {
   const req = useRequest('planning.listTasks', {
     owned_by: teamId,
     year_week: yearWeek,
@@ -56,12 +56,17 @@ export default function PlanningTasks({ teamId, yearWeek }) {
 
   return (
     <SW.Wrapper>
-      <PlanningList tasks={tasks} teamId={teamId} yearWeek={yearWeek} />
+      <PlanningList
+        tasks={tasks}
+        teamId={teamId}
+        yearWeek={yearWeek}
+        setToggleInfo={setToggleInfo}
+      />
     </SW.Wrapper>
   );
 }
 
-const PlanningList = ({ tasks, teamId, yearWeek }) => {
+const PlanningList = ({ tasks, teamId, yearWeek, setToggleInfo }) => {
   const didLoadInitial = useRef();
   const uniqueProjectIds = useMemo(
     () => [...new Set(tasks.map(({ project_id }) => project_id))],
@@ -169,6 +174,7 @@ const PlanningList = ({ tasks, teamId, yearWeek }) => {
                 dispatchFilter={dispatchFilter}
                 yearWeek={yearWeek}
                 teamId={teamId}
+                setToggleInfo={setToggleInfo}
               />
             </SW.HeaderWrapper>
           }
