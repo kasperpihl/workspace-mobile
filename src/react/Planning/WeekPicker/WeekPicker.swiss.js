@@ -12,7 +12,7 @@ export default styleSheet('WeekPicker', {
   },
   WeekLabel: {
     _el: Text,
-    _size: ['100', 'auto'],
+    _size: [100, 'auto'],
     _textType: 'bodyBold',
     textAlign: 'center',
   },
