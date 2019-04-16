@@ -20,4 +20,12 @@ export default styleSheet('ProjectOverview', {
     _flex: 'center',
     flex: 1,
   },
+  ListHeaderWrapper: {
+    _padding: [17, 20],
+  },
+  CompletedLabel: {
+    _el: Text,
+    _textType: 'captionLight',
+    marginBottom: 2,
+  },
 });

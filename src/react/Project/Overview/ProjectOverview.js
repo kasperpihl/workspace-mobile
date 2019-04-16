@@ -9,6 +9,7 @@ import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
 import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
 import useAppState from 'src/react/_hooks/useAppState';
+import ProgressBar from 'src/react/ProgressBar/ProgressBar';
 import SW from './ProjectOverview.swiss';
 
 console.disableYellowBox = true;
@@ -19,15 +20,21 @@ export default connect(state => ({
 
 function ProjectOverview({ teams, projectId, projectTitle }) {
   const stateManager = useSyncedProject(projectId);
-  const [selectedId, visibleOrder, ownedBy, tasksById] = useProjectSlice(
-    stateManager,
-    (clientState, localState) => [
-      localState.get('selectedId'),
-      localState.get('visibleOrder'),
-      clientState.get('owned_by'),
-      clientState.get('tasks_by_id'),
-    ]
-  );
+  const [
+    selectedId,
+    visibleOrder,
+    ownedBy,
+    tasksById,
+    numberOfCompleted,
+    numberOfLeafs,
+  ] = useProjectSlice(stateManager, (clientState, localState) => [
+    localState.get('selectedId'),
+    localState.get('visibleOrder'),
+    clientState.get('owned_by'),
+    clientState.get('tasks_by_id'),
+    localState.get('numberOfCompleted'),
+    localState.get('numberOfLeafs'),
+  ]);
   const teamUsers = teams.getIn([ownedBy, 'users']);
 
   const lastSelectedId = useRef();
@@ -95,6 +102,16 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
         <SW.HeaderText numberOfLines={1}>{projectTitle}</SW.HeaderText>
         <SW.GreyBorder />
         <VirtualizedList
+          ListHeaderComponent={
+            <SW.ListHeaderWrapper>
+              <SW.CompletedLabel>
+                {`${numberOfCompleted}/${numberOfLeafs} TASKS COMPLETED`}
+              </SW.CompletedLabel>
+              <ProgressBar
+                progress={Math.ceil((numberOfCompleted / numberOfLeafs) * 100)}
+              />
+            </SW.ListHeaderWrapper>
+          }
           keyboardDismissMode={'none'}
           keyboardShouldPersistTaps={'always'}
           getItem={getItem}
