@@ -148,6 +148,7 @@ export default class ProjectTask extends PureComponent {
             blurOnSubmit={false}
             onSubmitEditing={this.handleSubmit}
             editable={disabled ? false : true}
+            maxLength={255}
           />
         </SW.InnerWrapper>
       </SW.Wrapper>
