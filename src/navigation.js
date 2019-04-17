@@ -1,5 +1,9 @@
 import { Navigation } from 'react-native-navigation';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
+const iconProjects = require('../assets/pngs/Projects.png');
+const iconPlanning = require('../assets/pngs/Planning.png');
+const iconChat = require('../assets/pngs/Chat.png');
+const iconProfile = require('../assets/pngs/Profile.png');
 
 export const goHome = () =>
   Navigation.setRoot({
@@ -12,17 +16,13 @@ export const goHome = () =>
                 {
                   component: navigationComponents.ProjectList,
                 },
-                // {
-                //   component: navigationComponents.ProjectOverview,
-                // },
               ],
               options: {
                 bottomTab: {
-                  fontSize: 12,
-                  text: 'Projects',
-                  icon: require('../assets/pngs/main_tab.png'),
-                  selectedIcon: require('../assets/pngs/main_tab_active.png'),
-                  selectedTextColor: 'blue',
+                  icon: iconProjects,
+                  iconColor: 'grey',
+                  selectedIconColor: 'black',
+                  iconInsets: { top: 7, bottom: -7 },
                 },
               },
             },
@@ -36,11 +36,10 @@ export const goHome = () =>
               ],
               options: {
                 bottomTab: {
-                  fontSize: 12,
-                  text: 'Planning',
-                  icon: require('../assets/pngs/main_tab.png'),
-                  selectedIcon: require('../assets/pngs/main_tab_active.png'),
-                  selectedTextColor: 'blue',
+                  icon: iconPlanning,
+                  iconColor: 'grey',
+                  selectedIconColor: 'black',
+                  iconInsets: { top: 7, bottom: -7 },
                 },
               },
             },
@@ -51,17 +50,13 @@ export const goHome = () =>
                 {
                   component: navigationComponents.ChatList,
                 },
-                // {
-                //   component: navigationComponents.ProjectOverview,
-                // },
               ],
               options: {
                 bottomTab: {
-                  text: 'Chat',
-                  fontSize: 12,
-                  icon: require('../assets/pngs/main_tab.png'),
-                  selectedIcon: require('../assets/pngs/main_tab_active.png'),
-                  selectedTextColor: 'blue',
+                  icon: iconChat,
+                  iconColor: 'grey',
+                  selectedIconColor: 'black',
+                  iconInsets: { top: 7, bottom: -7 },
                 },
               },
             },
@@ -75,11 +70,10 @@ export const goHome = () =>
               ],
               options: {
                 bottomTab: {
-                  text: 'Profile',
-                  fontSize: 12,
-                  icon: require('../assets/pngs/main_tab.png'),
-                  selectedIcon: require('../assets/pngs/main_tab_active.png'),
-                  selectedTextColor: 'blue',
+                  icon: iconProfile,
+                  iconColor: 'grey',
+                  selectedIconColor: 'black',
+                  iconInsets: { top: 7, bottom: -7 },
                 },
               },
             },

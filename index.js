@@ -12,7 +12,7 @@ Navigation.events().registerAppLaunchedListener(() => {
     },
     bottomTabs: {
       animate: false,
-      titleDisplayMode: 'alwaysShow',
+      titleDisplayMode: 'alwaysHide',
     },
   });
 
