@@ -7,6 +7,7 @@ import Calendar from './Calendar';
 import Camera from './Camera';
 import Chat from './Chat';
 import Check from './Check';
+import Completed from './Completed';
 import Connect from './Connect';
 import Copy from './Copy';
 import Delete from './Delete';
@@ -50,6 +51,7 @@ export default {
   Camera,
   Chat,
   Check,
+  Completed,
   Connect,
   Copy,
   Delete,
