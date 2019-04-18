@@ -53,7 +53,8 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     component: {
       name: 'TextButton',
       passProps: {
-        backArrow: true,
+        backButton: true,
+        icon: 'ArrowLeft',
         title: 'Projects',
         textType: 'captionDark',
         onPress: () => {

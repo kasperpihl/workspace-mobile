@@ -33,7 +33,8 @@ function ChatOverview({ discussion, myId }) {
     component: {
       name: 'TextButton',
       passProps: {
-        backArrow: true,
+        backButton: true,
+        icon: 'ArrowLeft',
         title: 'Chats',
         textType: 'captionDark',
         onPress: () => {

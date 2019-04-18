@@ -12,5 +12,8 @@ export default styleSheet('IconTouchableWrapper', {
     backButton: {
       _size: 12,
     },
+    buttonIcon: {
+      _size: 21,
+    },
   },
 });

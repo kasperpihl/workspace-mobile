@@ -5,7 +5,9 @@ import SW from './TextButton.swiss';
 export default class TextButton extends PureComponent {
   render() {
     const {
-      backArrow,
+      backButton,
+      buttonIcon,
+      icon,
       textType,
       title = '',
       right = false,
@@ -14,10 +16,11 @@ export default class TextButton extends PureComponent {
 
     return (
       <SW.Wrapper right={right} onPress={onPress}>
-        {backArrow && (
+        {(backButton || buttonIcon) && (
           <IconTouchableWrapper
-            backButton={true}
-            icon="ArrowLeft"
+            backButton={backButton}
+            buttonIcon={buttonIcon}
+            icon={icon}
             fill="dark"
           />
         )}

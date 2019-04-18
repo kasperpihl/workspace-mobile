@@ -44,16 +44,6 @@ export default {
   Profile: {
     id: 'Profile',
     name: 'Profile',
-    options: {
-      topBar: {
-        rightButtons: [
-          {
-            id: 'Edit',
-            text: 'Edit',
-          },
-        ],
-      },
-    },
   },
   ProjectAdd: {
     stack: {

@@ -2,13 +2,12 @@ import React from 'react';
 import { Alert } from 'react-native';
 import request from 'core/utils/request';
 import storeGet from 'core/utils/store/storeGet';
+import userGetFullName from 'core/utils/user/userGetFullName';
+import userGet from 'core/utils/user/userGet';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
+import TextButton from 'src/react/TextButton/TextButton';
 import SW from './Profile.swiss';
-
-// export default connect(state => ({
-//   teams: state.teams,
-// }))(ProjectOverview);
 
 export default function Profile(props) {
   const requestLogOut = () => {
@@ -35,18 +34,23 @@ export default function Profile(props) {
       }
     );
   };
+  const user = userGet('me').toJS();
 
   return (
     <SW.Wrapper>
-      {/* <AssigneeImage
-      userId={userId}
-      teamId={teamId}
-      size={100}
-      imageSize={128}
-    /> */}
-      <SW.HeaderText>Profile</SW.HeaderText>
-      <SW.ButtonWrapper onPress={handleLogOut}>
-        <SW.Button>Log out</SW.Button>
+      <SW.InfoWrapper>
+        <AssigneeImage userId={'me'} size={100} imageSize={128} />
+        <SW.HeaderText>{userGetFullName('me')}</SW.HeaderText>
+        <SW.Email>{user.email}</SW.Email>
+      </SW.InfoWrapper>
+      <SW.ButtonWrapper>
+        <TextButton
+          onPress={handleLogOut}
+          buttonIcon={true}
+          icon="LogOut"
+          title="Log out"
+          textType="bodyBold"
+        />
       </SW.ButtonWrapper>
     </SW.Wrapper>
   );
