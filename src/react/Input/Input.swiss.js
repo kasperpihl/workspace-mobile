@@ -11,19 +11,16 @@ export default styleSheet('Input', {
     _size: ['100%', 'auto'],
     _border: [1, '$sw4', 'bottom'],
     _padding: [10, 0],
-    _textType: 'header3',
+    paddingRight: 44,
+    _textType: 'header3ForInputs',
     focused: {
       _border: [1, '$dark', 'bottom'],
     },
   },
   PassToggle: {
     _el: TouchableOpacity,
-    _size: [20, 20],
-    _borderRadius: 10,
     position: 'absolute',
     right: 0,
-    top: 15,
     zIndex: 1,
-    backgroundColor: '$blue',
   },
 });

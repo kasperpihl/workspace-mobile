@@ -5,7 +5,11 @@ export default styleSheet('TextButton', {
   Wrapper: {
     _el: TouchableOpacity,
     _flex: 'center',
-    _size: ['auto', 44],
+    _size: get => {
+      const height = get('height');
+      console.log(height);
+      return ['auto', height || 44];
+    },
     _padding: [0, 3],
     right: {
       _padding: [0, 20],

@@ -40,7 +40,7 @@ export default styleSheet('ProjectInput', {
   },
   Input: {
     _el: TextInput,
-    _textType: 'header3',
+    _textType: 'header3ForInputs',
     paddingTop: 0,
     paddingBottom: 0,
     flex: 1,

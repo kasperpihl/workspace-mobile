@@ -25,6 +25,7 @@ import IndentOut from './Indent-Out';
 import Info from './Info';
 import Link from './Link';
 import LogOut from './Log-Out';
+import Logo from './Logo';
 import Member from './Member';
 import Minus from './Minus';
 import New from './New';
@@ -69,6 +70,7 @@ export default {
   Info,
   Link,
   LogOut,
+  Logo,
   Member,
   Minus,
   New,

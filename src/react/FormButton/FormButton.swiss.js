@@ -8,16 +8,13 @@ export default styleSheet('Input', {
     _size: ['100%', 'auto'],
   },
   Button: {
-    _size: ['100%', 'auto'],
+    _size: ['100%', 48],
     _flex: ['center'],
-    _padding: [20, 0],
-    _borderRadius: 4,
-    backgroundColor: '$blue',
+    _border: [1, 'green'],
+    _borderRadius: 2,
   },
   ButtonText: {
     _el: Text,
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '$base',
+    _textType: 'header3Dark',
   },
 });

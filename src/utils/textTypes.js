@@ -40,6 +40,11 @@ export default {
     lineHeight: 18,
     color: '$dark',
   },
+  header3ForInputs: {
+    _fontFamily: 'regular',
+    fontSize: 16,
+    color: '$dark',
+  },
   header3Light: {
     _fontFamily: 'regular',
     fontSize: 16,
@@ -98,6 +103,11 @@ export default {
     _fontFamily: 'regular',
     fontSize: 14,
     lineHeight: 18,
+    color: '$dark',
+  },
+  bodyDarkForInputs: {
+    _fontFamily: 'regular',
+    fontSize: 14,
     color: '$dark',
   },
   bodyBold: {

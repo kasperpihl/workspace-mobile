@@ -86,8 +86,14 @@ export const goHome = () =>
 export const goSignIn = () =>
   Navigation.setRoot({
     root: {
-      component: {
-        name: 'SignIn',
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'SignIn',
+            },
+          },
+        ],
       },
     },
   });
@@ -110,8 +116,14 @@ export const goSignUp = () =>
 export const goForgottenPassword = () =>
   Navigation.setRoot({
     root: {
-      component: {
-        name: 'ForgottenPassword',
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'ForgottenPassword',
+            },
+          },
+        ],
       },
     },
   });

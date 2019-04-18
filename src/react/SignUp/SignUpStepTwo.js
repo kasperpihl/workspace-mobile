@@ -1,16 +1,12 @@
 import React, { PureComponent } from 'react';
-import {
-  Button,
-  View,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from 'react-native';
+import { View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import request from 'core/utils/request';
 import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
+import LogoHeader from 'src/react/LogoHeader/LogoHeader';
+import TextButton from 'src/react/TextButton/TextButton';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import withKeyboard from 'src/utils/withKeyboard';
 import SW from 'src/react/SignUp/SignUp.swiss';
@@ -58,11 +54,7 @@ export default class SignUpStepTwo extends PureComponent {
         }}
       >
         <SW.Wrapper>
-          {!keyboardIsShown && (
-            <SW.HeaderTextWrapper>
-              <SW.HeaderText>Swipes</SW.HeaderText>
-            </SW.HeaderTextWrapper>
-          )}
+          {!keyboardIsShown && <LogoHeader subtitle={'Create Account'} />}
           <KeyboardAvoidingView
             style={{
               width: '100%',
@@ -105,11 +97,14 @@ export default class SignUpStepTwo extends PureComponent {
           </KeyboardAvoidingView>
           <SW.FooterWrapper>
             <SW.FooterText>{`Already have an account?`}</SW.FooterText>
-            <Button
+            <TextButton
               onPress={() => {
                 goSignIn();
               }}
-              title="Sign In"
+              forwardButton={true}
+              title="SIGN UP"
+              textType="captionDark"
+              height="auto"
             />
           </SW.FooterWrapper>
         </SW.Wrapper>

@@ -12,9 +12,13 @@ import { goSignIn } from 'src/navigation';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
+import LogoHeader from 'src/react/LogoHeader/LogoHeader';
+import TextButton from 'src/react/TextButton/TextButton';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
+import withKeyboard from 'src/utils/withKeyboard';
 import SW from './ForgottenPassword.swiss';
 
+@withKeyboard
 export default class ForgottenPassword extends Component {
   state = {
     emailVal: '',
@@ -50,6 +54,7 @@ export default class ForgottenPassword extends Component {
     });
   };
   render() {
+    const { keyboardIsShown } = this.props;
     const { emailVal } = this.state;
     const behavior = Platform.OS === 'android' ? '' : 'padding';
 
@@ -61,11 +66,18 @@ export default class ForgottenPassword extends Component {
           flex: 1,
         }}
       >
-        <KeyboardAvoidingView behavior={behavior}>
+        <KeyboardAvoidingView
+          behavior={behavior}
+          style={{
+            width: '100%',
+            height: '100%',
+            flex: 1.7,
+          }}
+        >
           <SW.Wrapper>
-            <SW.HeaderText>Forgot password?</SW.HeaderText>
+            {!keyboardIsShown && <LogoHeader subtitle={'Reset Password'} />}
             <SW.CopyText>
-              {`Enter you email and we'll send you an email to reset your password.`}
+              {`Enter your email to reset your password.`}
             </SW.CopyText>
             <SW.FormWrapper>
               <Form
@@ -87,18 +99,22 @@ export default class ForgottenPassword extends Component {
                 </View>
                 <View>
                   <FormButton
-                    label={'Reset password'}
+                    label={`Send 'Reset Password' Email`}
                     onPress={this.handleSendResetEmail}
-                  />
-                  <Button
-                    onPress={() => {
-                      goSignIn();
-                    }}
-                    title="Cancel"
                   />
                 </View>
               </Form>
             </SW.FormWrapper>
+            <SW.FooterWrapper>
+              <TextButton
+                onPress={() => {
+                  goSignIn();
+                }}
+                title="CANCEL"
+                textType="captionDark"
+                height="auto"
+              />
+            </SW.FooterWrapper>
           </SW.Wrapper>
         </KeyboardAvoidingView>
       </ScrollView>

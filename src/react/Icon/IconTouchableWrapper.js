@@ -12,11 +12,13 @@ export default class IconTouchableWrapper extends PureComponent {
       style,
       small,
       backButton,
+      size,
       ...rest
     } = this.props;
 
     return (
       <SW.Wrapper
+        size={size}
         onPress={onPress}
         disabled={onPress ? false : true}
         small={small}

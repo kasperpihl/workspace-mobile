@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Icon from 'src/react/Icon/Icon';
 import SW from './Input.swiss';
 
 export default class Input extends PureComponent {
@@ -29,11 +30,14 @@ export default class Input extends PureComponent {
   render() {
     const { inputRef, ...rest } = this.props;
     const { secureTextEntry, focused } = this.state;
+    const iconColor = secureTextEntry ? 'sw3' : 'dark';
 
     return (
       <SW.Wrapper>
         {this.displayToggle && (
-          <SW.PassToggle onPress={this.changeFieldSecutiry} />
+          <SW.PassToggle onPress={this.changeFieldSecutiry}>
+            <Icon name={'Eye'} fill={iconColor} />
+          </SW.PassToggle>
         )}
         <SW.TextInput
           focused={focused}

@@ -5,7 +5,7 @@ export default styleSheet('IconTouchableWrapper', {
   Wrapper: {
     _el: TouchableOpacity,
     _flex: 'center',
-    _size: 44,
+    _size: get => get('size') || 44,
     small: {
       _size: 34,
     },

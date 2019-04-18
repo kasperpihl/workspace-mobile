@@ -5,6 +5,7 @@ import SW from './TextButton.swiss';
 export default class TextButton extends PureComponent {
   render() {
     const {
+      forwardButton,
       backButton,
       buttonIcon,
       icon,
@@ -12,10 +13,11 @@ export default class TextButton extends PureComponent {
       title = '',
       right = false,
       onPress,
+      height,
     } = this.props;
 
     return (
-      <SW.Wrapper right={right} onPress={onPress}>
+      <SW.Wrapper right={right} height={height} onPress={onPress}>
         {(backButton || buttonIcon) && (
           <IconTouchableWrapper
             backButton={backButton}
@@ -25,6 +27,9 @@ export default class TextButton extends PureComponent {
           />
         )}
         <SW.Title textType={textType}>{title.toUpperCase()}</SW.Title>
+        {forwardButton && (
+          <IconTouchableWrapper size={12} icon="ArrowRight" fill="dark" />
+        )}
       </SW.Wrapper>
     );
   }

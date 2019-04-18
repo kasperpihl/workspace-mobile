@@ -7,21 +7,12 @@ export default styleSheet('SignUp', {
     _size: ['100%', '100%'],
     _padding: [0, 20],
   },
-  HeaderTextWrapper: {
-    _flex: ['column', 'center', 'center'],
-    flex: 0.5,
-  },
-  HeaderText: {
-    _el: Text,
-    _textType: 'header1',
-  },
   FooterWrapper: {
-    _flex: ['column', 'center', 'center'],
+    _flex: ['row', 'center', 'flex-end'],
     flex: 1.5,
   },
   FooterText: {
     _el: Text,
-    fontSize: 15,
-    color: '$sw1',
+    _textType: 'bodyLight',
   },
 });

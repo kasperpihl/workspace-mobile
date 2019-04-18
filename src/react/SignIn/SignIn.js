@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  View,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from 'react-native';
+import { View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import request from 'core/utils/request';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import FormButton from 'src/react/FormButton/FormButton';
 import FormLabel from 'src/react/FormLabel/FormLabel';
+import LogoHeader from 'src/react/LogoHeader/LogoHeader';
+import TextButton from 'src/react/TextButton/TextButton';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import withKeyboard from 'src/utils/withKeyboard';
@@ -61,11 +57,7 @@ export default class SignIn extends Component {
         }}
       >
         <SW.Wrapper>
-          {!keyboardIsShown && (
-            <SW.HeaderTextWrapper>
-              <SW.HeaderText>Swipes</SW.HeaderText>
-            </SW.HeaderTextWrapper>
-          )}
+          {!keyboardIsShown && <LogoHeader subtitle={'Log In'} />}
           <KeyboardAvoidingView
             style={{
               width: '100%',
@@ -99,23 +91,27 @@ export default class SignIn extends Component {
                 />
               </View>
               <View>
-                <FormButton onPress={this.handleSignIn} label={'Sign in'} />
-                <Button
-                  onPress={() => {
-                    goForgottenPassword();
-                  }}
-                  title="Forgot your password?"
-                />
+                <FormButton onPress={this.handleSignIn} label={'Log In'} />
               </View>
             </Form>
+            <SW.ForgotPasswordWrapper
+              onPress={() => {
+                goForgottenPassword();
+              }}
+            >
+              <SW.ForgotPasswordText>FORGOT PASSWORD?</SW.ForgotPasswordText>
+            </SW.ForgotPasswordWrapper>
           </KeyboardAvoidingView>
           <SW.FooterWrapper>
             <SW.FooterText>{`Don't have an account?`}</SW.FooterText>
-            <Button
+            <TextButton
               onPress={() => {
                 goSignUp();
               }}
-              title="Sign up"
+              forwardButton={true}
+              title="SIGN UP"
+              textType="captionDark"
+              height="auto"
             />
           </SW.FooterWrapper>
         </SW.Wrapper>

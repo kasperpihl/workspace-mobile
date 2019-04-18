@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 export default styleSheet('SignIn', {
   Wrapper: {
@@ -7,21 +7,21 @@ export default styleSheet('SignIn', {
     _size: ['100%', '100%'],
     _padding: [0, 20],
   },
-  HeaderTextWrapper: {
-    _flex: ['column', 'center', 'center'],
-    flex: 1,
+  ForgotPasswordWrapper: {
+    _el: TouchableOpacity,
   },
-  HeaderText: {
+  ForgotPasswordText: {
     _el: Text,
-    _textType: 'header1',
+    _textType: 'captionLight',
+    _size: ['100%', 'auto'],
+    textAlign: 'center',
   },
   FooterWrapper: {
-    _flex: ['column', 'center', 'center'],
-    flex: 1,
+    _flex: ['row', 'center', 'flex-end'],
+    flex: 1.5,
   },
   FooterText: {
     _el: Text,
-    fontSize: 15,
-    color: '$sw1',
+    _textType: 'bodyLight',
   },
 });

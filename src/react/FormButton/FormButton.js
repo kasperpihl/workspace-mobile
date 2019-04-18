@@ -8,7 +8,7 @@ export default class FormButton extends PureComponent {
     return (
       <SW.Wrapper onPress={onPress}>
         <SW.Button>
-          <SW.ButtonText>{label.toUpperCase()}</SW.ButtonText>
+          <SW.ButtonText>{label}</SW.ButtonText>
         </SW.Button>
       </SW.Wrapper>
     );

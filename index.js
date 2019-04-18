@@ -18,8 +18,14 @@ Navigation.events().registerAppLaunchedListener(() => {
 
   Navigation.setRoot({
     root: {
-      component: {
-        name: 'SignIn',
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'SignIn',
+            },
+          },
+        ],
       },
     },
   });

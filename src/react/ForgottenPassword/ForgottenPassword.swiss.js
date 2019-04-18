@@ -11,18 +11,13 @@ export default styleSheet('ForgottenPassword', {
     _size: ['100%'],
     flex: 1.7,
   },
-  HeaderTextWrapper: {
-    _flex: ['column', 'center', 'center'],
-    flex: 1,
-  },
-  HeaderText: {
-    _el: Text,
-    _textType: 'header1',
-  },
   CopyText: {
     _el: Text,
-    marginTop: 10,
-    fontSize: 15,
-    color: '$sw1',
+    _textType: 'header3Dark',
+    marginTop: 30,
+  },
+  FooterWrapper: {
+    _flex: ['row', 'center', 'flex-end'],
+    flex: 1.5,
   },
 });
