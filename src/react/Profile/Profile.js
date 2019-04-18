@@ -1,12 +1,17 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Alert } from 'react-native';
 import request from 'core/utils/request';
 import storeGet from 'core/utils/store/storeGet';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
+import AssigneeImage from 'src/react/AssigneeImage/AssigneeImage';
 import SW from './Profile.swiss';
 
-export default class Profile extends PureComponent {
-  requestLogOut = () => {
+// export default connect(state => ({
+//   teams: state.teams,
+// }))(ProjectOverview);
+
+export default function Profile(props) {
+  const requestLogOut = () => {
     const store = storeGet();
 
     request('user.signout', {}).then(res => {
@@ -17,27 +22,32 @@ export default class Profile extends PureComponent {
       }
     });
   };
-  handleLogOut = () => {
+  const handleLogOut = () => {
     Alert.alert(
       'Are you sure?',
       '',
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: this.requestLogOut },
+        { text: 'OK', onPress: requestLogOut },
       ],
       {
         cancelable: false,
       }
     );
   };
-  render() {
-    return (
-      <SW.Wrapper>
-        <SW.HeaderText>Profile</SW.HeaderText>
-        <SW.ButtonWrapper onPress={this.handleLogOut}>
-          <SW.Button>Log out</SW.Button>
-        </SW.ButtonWrapper>
-      </SW.Wrapper>
-    );
-  }
+
+  return (
+    <SW.Wrapper>
+      {/* <AssigneeImage
+      userId={userId}
+      teamId={teamId}
+      size={100}
+      imageSize={128}
+    /> */}
+      <SW.HeaderText>Profile</SW.HeaderText>
+      <SW.ButtonWrapper onPress={handleLogOut}>
+        <SW.Button>Log out</SW.Button>
+      </SW.ButtonWrapper>
+    </SW.Wrapper>
+  );
 }
