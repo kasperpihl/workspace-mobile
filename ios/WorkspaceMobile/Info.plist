@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>29</string>
+	<string>30</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,9 +38,15 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
-	
-	
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Taking/Uploading photos as attachments</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF Pro Display Bold.otf</string>
+		<string>SF Pro Display Medium.otf</string>
+		<string>SF Pro Display Regular.otf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -51,15 +57,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SF Pro Display Bold.otf</string>
-		<string>SF Pro Display Medium.otf</string>
-		<string>SF Pro Display Regular.otf</string>
-	</array>
 </dict>
 </plist>

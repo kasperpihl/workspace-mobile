@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -24,6 +25,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		19B59B7776A247368171066B /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 184103F4F55941C9ADCD008D /* libRNSVG.a */; };
+		222FF4958F554BBEB7A9BC36 /* SF Pro Display Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 917BF980D6C24238AC390BD9 /* SF Pro Display Bold.otf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -40,7 +42,9 @@
 		3EF425D63C7949F4BDE867C7 /* libRNFileViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A6854E3E7D4A0BB2602EF4 /* libRNFileViewer.a */; };
 		3F907D2039FECC0CD0D245D1 /* libPods-WorkspaceMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D22FF3BA1B78AC2389BE33D /* libPods-WorkspaceMobile.a */; };
 		42082D8A2FF84142884F960E /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A6856B50504B1389D24BCF /* libRNDeviceInfo-tvOS.a */; };
+		4530FFA768A0434FB79FD41E /* SF Pro Display Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28EE6E41DC484F2ABDF5DBEA /* SF Pro Display Regular.otf */; };
 		6780EA3C427AB15F63EDBCA1 /* libPods-WorkspaceMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D05AF100C5B1C53A3062932B /* libPods-WorkspaceMobileTests.a */; };
+		715EBAE77B8445D2AC464E27 /* SF Pro Display Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD5EAE5C8BA543B3AA8C054B /* SF Pro Display Medium.otf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9D51CCA28ACC7E9BF71258CB /* libPods-WorkspaceMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB061C136AF1E6C0C6A9C73B /* libPods-WorkspaceMobile-tvOS.a */; };
 		9D7D2C2D221FF34900E3C175 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D16CEFE21615D4C006DA5EA /* libRNSVG.a */; };
@@ -53,9 +57,6 @@
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		FC9D847E266AFBF2FB8BDA5E /* libPods-WorkspaceMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B722A3CC8E507D408D95AB41 /* libPods-WorkspaceMobile-tvOSTests.a */; };
-		222FF4958F554BBEB7A9BC36 /* SF Pro Display Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 917BF980D6C24238AC390BD9 /* SF Pro Display Bold.otf */; };
-		715EBAE77B8445D2AC464E27 /* SF Pro Display Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD5EAE5C8BA543B3AA8C054B /* SF Pro Display Medium.otf */; };
-		4530FFA768A0434FB79FD41E /* SF Pro Display Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28EE6E41DC484F2ABDF5DBEA /* SF Pro Display Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -434,6 +435,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WorkspaceMobile/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		184103F4F55941C9ADCD008D /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
+		28EE6E41DC484F2ABDF5DBEA /* SF Pro Display Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF Pro Display Regular.otf"; path = "../assets/fonts/SF Pro Display Regular.otf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* WorkspaceMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WorkspaceMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* WorkspaceMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WorkspaceMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,10 +453,12 @@
 		83A6854E3E7D4A0BB2602EF4 /* libRNFileViewer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFileViewer.a; sourceTree = "<group>"; };
 		853523FB22EC4A708499771D /* RNFileViewer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFileViewer.xcodeproj; path = "../node_modules/react-native-file-viewer/ios/RNFileViewer.xcodeproj"; sourceTree = "<group>"; };
 		8D76BEA0EB28368EDE1D1D69 /* Pods-WorkspaceMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkspaceMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-WorkspaceMobile-tvOS/Pods-WorkspaceMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		917BF980D6C24238AC390BD9 /* SF Pro Display Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF Pro Display Bold.otf"; path = "../assets/fonts/SF Pro Display Bold.otf"; sourceTree = "<group>"; };
 		9D22FF3BA1B78AC2389BE33D /* libPods-WorkspaceMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkspaceMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D4C758E215CE91000F1DBEA /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		9D7D2C5E221FF40300E3C175 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AB061C136AF1E6C0C6A9C73B /* libPods-WorkspaceMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkspaceMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD5EAE5C8BA543B3AA8C054B /* SF Pro Display Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF Pro Display Medium.otf"; path = "../assets/fonts/SF Pro Display Medium.otf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B722A3CC8E507D408D95AB41 /* libPods-WorkspaceMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkspaceMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05AF100C5B1C53A3062932B /* libPods-WorkspaceMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkspaceMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -464,9 +468,6 @@
 		F1B5493FE91F2B7DB55D0C1A /* Pods-WorkspaceMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkspaceMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-WorkspaceMobileTests/Pods-WorkspaceMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F43B6848B109625EE1469030 /* Pods-WorkspaceMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkspaceMobile.debug.xcconfig"; path = "Target Support Files/Pods-WorkspaceMobile/Pods-WorkspaceMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		FA1052D5DDC55105BBB77AC3 /* Pods-WorkspaceMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkspaceMobile.release.xcconfig"; path = "Target Support Files/Pods-WorkspaceMobile/Pods-WorkspaceMobile.release.xcconfig"; sourceTree = "<group>"; };
-		917BF980D6C24238AC390BD9 /* SF Pro Display Bold.otf */ = {isa = PBXFileReference; name = "SF Pro Display Bold.otf"; path = "../assets/fonts/SF Pro Display Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		AD5EAE5C8BA543B3AA8C054B /* SF Pro Display Medium.otf */ = {isa = PBXFileReference; name = "SF Pro Display Medium.otf"; path = "../assets/fonts/SF Pro Display Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		28EE6E41DC484F2ABDF5DBEA /* SF Pro Display Regular.otf */ = {isa = PBXFileReference; name = "SF Pro Display Regular.otf"; path = "../assets/fonts/SF Pro Display Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -840,7 +841,7 @@
 			sourceTree = "<group>";
 		};
 		C96C66F554AC488086C735B6 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				917BF980D6C24238AC390BD9 /* SF Pro Display Bold.otf */,
 				AD5EAE5C8BA543B3AA8C054B /* SF Pro Display Medium.otf */,
@@ -848,7 +849,6 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -946,6 +946,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 85LTPM52WY;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1736,7 +1741,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swipesapp.swipes.forteams;
 				PRODUCT_NAME = WorkspaceMobile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1765,7 +1770,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swipesapp.swipes.forteams;
 				PRODUCT_NAME = WorkspaceMobile;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

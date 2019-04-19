@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		035CF16EB45EE52CE9128B1F10DA2D67 /* QBAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1AAF4C1C593CB9718E6AAFA7E4ED5 /* QBAlbumCell.m */; };
-		03B11194DE154DD2D0B8292A8061EAAA /* YGMarker.h in Headers */ = {isa = PBXBuildFile; fileRef = BE22B077151F6AB7D345616C037BCADE /* YGMarker.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		04464A06C96C439DB52E54123ADA8FEE /* QBImagePickerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 621DFCF4DD83F8E27C52EA25BA208969 /* QBImagePickerController-dummy.m */; };
 		04C405F693D77769BB888F169A6F118E /* ImageCropPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 118C4434D6063AA447779C522E691C81 /* ImageCropPicker.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		06A0B023B47A071CC13EC175F1579E5C /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = D953BBA25E495F2E5475B989D0C1F7E7 /* UIImage+Resize.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0708848B392C1CD24C0D9892B4A35AA4 /* YGValue.h in Headers */ = {isa = PBXBuildFile; fileRef = A91628D3A48CD1E197FD4E63F6B6C234 /* YGValue.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		07493242EAEDBD838824094841E7D3D2 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 228D54461BAA29FC086EE3F93E7C462D /* RSKImageCropViewController.m */; };
 		07990286C21CFDCADA590B55BFDB28E9 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 87CB894B21A2A191298D49D966644804 /* en.lproj */; };
-		0AED97ECBEECDA19C3C11B3ACE7C53E7 /* instrumentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FDA87BA54C0992E2A4630E340FA72FE /* instrumentation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0C595C015B521074818FD3E687244114 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DB0F0FF6540AD1437196AF2AE8948FD3 /* ja.lproj */; };
 		139A276F1FC43FEE12CB8B8E79CC0F7D /* RNCWKProcessPoolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A875F057646EA00F76BF5E3D9D63DD /* RNCWKProcessPoolManager.m */; };
 		18E024B2DF06FCBF4F4877A12208F0D7 /* QBSlomoIconView.h in Headers */ = {isa = PBXBuildFile; fileRef = B81995972E7AD3A939D5C02574F550A4 /* QBSlomoIconView.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -29,48 +26,31 @@
 		2C13DAF44FE0DC7902BD0E61ED4E8825 /* ImageCropPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9E0A31960CE1F2A1F8E0C8A9BD9C81 /* ImageCropPicker.m */; };
 		2E937D7ABB8710FE894D49C821A91229 /* Pods-WorkspaceMobile-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B4B665DB1FDB072924BB130C21E1EA /* Pods-WorkspaceMobile-dummy.m */; };
 		2F8FE245213267AFF60F846424B9CD58 /* QBAssetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 750C7001455879D3BE259AE2894911A4 /* QBAssetCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3008EB788025CCA6864BC7D95E790B5C /* YGLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C869E8FD6C02DC4C924D50CB976F2F /* YGLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
-		3033C7DE2430C71EC805786CF006B010 /* YGStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B0B506E5F9168ADD1179B00E3B358D /* YGStyle.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		3096C590760ADB206684E9477D15A025 /* UIImage+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = F3F4617FBE7B67A82D916E2DE1B4BF04 /* UIImage+RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3861D8FAB5143AE80E7A530855F1AE06 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 301F4D14EB13B37CA4DC429292C16F2C /* Utils.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		3A17C0F82EADD7A1FB29D5A70B7EB137 /* QBAssetsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 946EF2BF8DEF610D01C4A772EEAE7A2F /* QBAssetsViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3AE1176033887A41D2F73B1932F879EE /* YGFloatOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = F487F0E9A5AEDB4370C37981CDA8D474 /* YGFloatOptional.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3BE108143855EA45A8D52E5FBF65F290 /* QBVideoIconView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1851FC7C08CF4D9F65A0B830D74DD3A8 /* QBVideoIconView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3E5C9C51D0831EC1779C4EC734F9871D /* YGMarker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E818DE7C0DDF86FFC22A81CAE5103BE /* YGMarker.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		412A318A53B291CADBA06C8971CFA1F7 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A7ACA22A2B8A26BB576544CFD7EA35 /* CGGeometry+RSKImageCropper.m */; };
 		4325B0E79491F8007A3A29E5E7292C44 /* RNCWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = C454A55D87674E8F72C21B676653B10A /* RNCWKWebView.m */; };
-		435D9FE838C12BC23D48BB82CAC44A15 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D29A482ED2761694DB8A59A95F14851 /* YGNodePrint.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		4734DC119A5B5661E01BBDB2F491DC04 /* QBAlbumsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F3CBE5EF34FB2B0C576A8E5997DEABD /* QBAlbumsViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		49B3B995E2A4C3DFA263BFCB7E39E45E /* QBAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DED20886B387C42D200FE78592D5C5E /* QBAssetCell.m */; };
 		4AF20986257FE2DD43417F002A57D77A /* QBImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CC6DFBA822A92A57AB068FEE8717F5 /* QBImagePickerController.m */; };
 		50345384295005C8C4864CAA9EC5F259 /* RSKImageCropViewController+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = AC8553A09682A95B93CFA17A079D44CF /* RSKImageCropViewController+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5414EDEDE6D76868E7FFC104E515D196 /* YGNodePrint.h in Headers */ = {isa = PBXBuildFile; fileRef = B61C11A88B75FB912C069F19BA88C3CB /* YGNodePrint.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		58C99C25FADF77E5AEBE27776FCF837D /* RNCWKProcessPoolManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B7B713E42D395B65440BB8FFDE8744BA /* RNCWKProcessPoolManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		59344A760C9880975568EF9312BFE49A /* RNCWKWebViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E13D9270A4D09B078D1A16D1C9E7 /* RNCWKWebViewManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		59B094FC1522F005C933297E43D050FC /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A9F3EEBC8F794B9CDC324BB9B3D5F622 /* zh-Hans.lproj */; };
-		5B358DA4FFD18FCF5494BC3B4BF37A68 /* YGConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 1539B5A5F5AE7E684A33CD58B80722FD /* YGConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		655F3327EEA91A97A0B586CE37D567D0 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = F4B312B06228F25DFB9F38A3A983CF0C /* YGLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		663B0A2F02578EA60D3B685CF4780CAB /* QBAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF782E4A8240418BAF45CBCD828460C /* QBAlbumsViewController.m */; };
 		66716E40C19882AC46917DF3D0350AA3 /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE112AB3510A06465DA033184F9F16 /* QBVideoIndicatorView.m */; };
 		6870F6B5138CF9AB29DD83D4CC99348F /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2193DACF6DD3F110F2FDDD645F5DA3 /* UIImage+Resize.m */; };
-		69A098AAFDFA496DC724447DFF08F8BE /* CompactValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C348921C727DDEDCAF65F26043410F13 /* CompactValue.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7015FC22CD28122DAFF7834747204A18 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1962F46F0D0CB088FB4A56EA553F4433 /* RSKImageScrollView.m */; };
-		7091235FB4257B77A710EFE7D3E27E5C /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2A01D730FD50E36D1D4687DF28C92E /* YGEnums.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		741E06C3CA05E8EB450F67310C94B684 /* RNCWKWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E4E5E86E9A94C699568E27E0D6EC60 /* RNCWKWebViewManager.m */; };
 		78BFF3857376545E984BBB4C4BE587F6 /* QBCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA90D6797F86AC296C2E3204D53878 /* QBCheckmarkView.m */; };
-		7B185DAA56827D9A651E8C3C62E2433E /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9789D056B62265E11092F8AB2A6FAC1E /* Yoga.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
-		7B7F8E47E6F49D1BEC6DB2A20805C61B /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 31E9E4861994301979EAE327D327B083 /* Yoga.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8274EDAA8E48D6AAD09D460D33F33880 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D851F9A0A6FD322CB934770AADC542A2 /* es.lproj */; };
 		82987B3C0EC57ADBAEDB0094C12D0F1D /* QBAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326D7CEFEE9B87A85C748E473C489A22 /* QBAssetsViewController.m */; };
 		88D3C07D583834960BF5A223AB824D93 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 366EEC1616CA971876D9048470F62530 /* de.lproj */; };
-		90C9671280178F5EF24AB38EA4113823 /* YGConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1536BEF3ADDCC434F0793DB1AAFD901D /* YGConfig.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		918EEB2A9B83065C76988929DF9B0AEC /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 800C6E7B55B718E4A1AC240A89EAE71A /* UIImage+RSKImageCropper.m */; };
-		9264AEEF5211B75ED45750DEA453C486 /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = F74823E4B8C992598B6DC3A9BFB8B91A /* YGEnums.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9337EC6D91621B4341AD24C717FC9A46 /* RNCUIWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E82D9C8C69BC627C881A71C736CE9B1 /* RNCUIWebView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9DA9BC2ED75F4C324EC068B49D3BC0DF /* Pods-WorkspaceMobile-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBAA4714587A219F0BC96E62658604D /* Pods-WorkspaceMobile-tvOS-dummy.m */; };
-		9F8B26C5B7EB8DDDF8DFAB411CF4A1B8 /* YGValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DD6EF9694300618D44638CF7BC9EB1 /* YGValue.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		9FF5C8D93FB78B5D5974D6E66BD0B703 /* react-native-webview-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4F6AE84831C685C31187B5C9580F5 /* react-native-webview-dummy.m */; };
-		A385594F9DE3B51D54E76CD5B6586F71 /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44BCD8F4ABD58FB0D1A94A6F175B0193 /* YGNode.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		A6CF33C9E99EE631868E7B23CCD81302 /* QBVideoIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5647A166E99D22BCADC97C2DCDE87F80 /* QBVideoIndicatorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AA732E50D8DB826667AF8DF0385FB66D /* RNCWKWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = D58F8246B6ADB92CEDA589890D88DE80 /* RNCWKWebView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AB0E121CAB385FE0CA556EA0E1EFDDF7 /* RNImageCropPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C47CB6DC3563A6225EFDDD3E5FBF57AD /* RNImageCropPicker-dummy.m */; };
@@ -79,23 +59,17 @@
 		B2B21CD96C7ABE8FEB478CCF20C1832E /* RSKImageCropper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5332C048394B2C0C9D439551B10FA1 /* RSKImageCropper-dummy.m */; };
 		B30522BEC4318D4A9F8606A9E5F18E9C /* RNCUIWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4B5CC92C061A74ABD300A441FEDDF3 /* RNCUIWebViewManager.m */; };
 		BAD356C241BF0794F903A2B05B025376 /* RNCUIWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93ECCCDEE11C039FE4E16553DC601FE6 /* RNCUIWebView.m */; };
-		BCC072A6450888134FA5FC8A116EAA73 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B972294E1F13E54C001A7CC51F3784D /* YGStyle.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BEAE1609168FC974D303AEFB465EB12A /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 106D25E0B273E65041047936D693A478 /* QBVideoIconView.m */; };
-		C0F57FD5F8DED9C23B5CFC9E87989C1D /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F5D2944090E824F86B7046BE5765C0 /* YGNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C13A6D1C04317CB8F53942BCA3ED9CBA /* CGGeometry+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7C64308FC6B4B6E2827F842F943B31 /* CGGeometry+RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C58F70177B053B6DC43EE81922B8DE89 /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 31D3054121CD5D7308022838AAFA5653 /* Yoga-internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C712AF0904BB309D72C0841CBCCD831A /* RSKImageScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1545B48DF462936EEC76060F3F8C7ACA /* RSKImageScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CCDAB5651A6EF4009C75593A164516A6 /* QBImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FEEA791AF1252C10465E4FA22D12F31 /* QBImagePicker.storyboard */; };
 		CDFFF12E319774FA6F89DD882B6E7A8C /* QBSlomoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFCB9FFAAF3327D8A42C9DB58D499AE /* QBSlomoIconView.m */; };
-		D2B1C409EB0FDDAFF05771AF5B222D51 /* yoga-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C3DC6397270E8D6FCCE159615A8B09 /* yoga-dummy.m */; };
-		D8A9424E90550711C7EEFC9F4A310FAB /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FEFAD7110D0DF3FED5FA5DB555F6EB9 /* YGMacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DCAE5A0FAAAE87BBB7B474316B931CC4 /* RSKImageCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 86D7F10C760778CFCECA4DE2A5AE151F /* RSKImageCropViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E128E2C1D2667FB65CD7977BE38FA981 /* RNCUIWebViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A6E5FCA30966C99F1FB43272D421ED45 /* RNCUIWebViewManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E7990E74238F271010881B15668C7395 /* Pods-WorkspaceMobileTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F4C3224BDBB947A2874627E52EA759 /* Pods-WorkspaceMobileTests-dummy.m */; };
 		E8DC33B5936AC5BC223534C6B4D4DF25 /* QBCheckmarkView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC2A24799C6E3A434895E3EBC61CFA5 /* QBCheckmarkView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F0F7057F33C6FE3FD0ABDFD86BFBAB8C /* RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FE949C754E333F8C4C3477429A3B570 /* RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F4DBBBFDAC46D813645D7AC72A8BC39B /* Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = D0162CD60222BF6D9AACFB10A822DA12 /* Compression.m */; };
-		F5D32248A396271D4A43232C64043942 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 28D95EAED6051177AC8945CA1CCBDDD7 /* Utils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FD398A2A4D3F2977571BC99A55F6FFB3 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B50958D7B3BD16D9D1BF7E918A3CD4E /* RSKInternalUtility.m */; };
 /* End PBXBuildFile section */
 
@@ -125,7 +99,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 50A648A59465FF8FE87E123ECA86050D;
+			remoteGlobalIDString = 000000004440;
 			remoteInfo = yoga;
 		};
 		67AEA493E627185ED16CB29B30A83449 /* PBXContainerItemProxy */ = {
@@ -806,13 +780,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8AD979C928BB9868CF1491B79CAE83FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB3011DD598207046EC4E48064C9F915 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1881,28 +1848,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3E04AED5C44EA57B4147F98298AFF1B0 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				69A098AAFDFA496DC724447DFF08F8BE /* CompactValue.h in Headers */,
-				0AED97ECBEECDA19C3C11B3ACE7C53E7 /* instrumentation.h in Headers */,
-				F5D32248A396271D4A43232C64043942 /* Utils.h in Headers */,
-				5B358DA4FFD18FCF5494BC3B4BF37A68 /* YGConfig.h in Headers */,
-				9264AEEF5211B75ED45750DEA453C486 /* YGEnums.h in Headers */,
-				3AE1176033887A41D2F73B1932F879EE /* YGFloatOptional.h in Headers */,
-				655F3327EEA91A97A0B586CE37D567D0 /* YGLayout.h in Headers */,
-				D8A9424E90550711C7EEFC9F4A310FAB /* YGMacros.h in Headers */,
-				03B11194DE154DD2D0B8292A8061EAAA /* YGMarker.h in Headers */,
-				C0F57FD5F8DED9C23B5CFC9E87989C1D /* YGNode.h in Headers */,
-				5414EDEDE6D76868E7FFC104E515D196 /* YGNodePrint.h in Headers */,
-				BCC072A6450888134FA5FC8A116EAA73 /* YGStyle.h in Headers */,
-				0708848B392C1CD24C0D9892B4A35AA4 /* YGValue.h in Headers */,
-				C58F70177B053B6DC43EE81922B8DE89 /* Yoga-internal.h in Headers */,
-				7B7F8E47E6F49D1BEC6DB2A20805C61B /* Yoga.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3FFA47AB78594278CC0988214CA9EB8C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2058,23 +2003,6 @@
 			productReference = 895246876B40FDFD4649AD70F95627C4 /* libPods-WorkspaceMobile-tvOSTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		50A648A59465FF8FE87E123ECA86050D /* yoga */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B926A42A66BA2CDA2DC8F4976246879B /* Build configuration list for PBXNativeTarget "yoga" */;
-			buildPhases = (
-				3E04AED5C44EA57B4147F98298AFF1B0 /* Headers */,
-				61A0BD891AC139CC613F9190829E1377 /* Sources */,
-				BB3011DD598207046EC4E48064C9F915 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = yoga;
-			productName = yoga;
-			productReference = 1B2510A97034F2BBD025B46785C375F3 /* libyoga.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		59C1CA611CA73EBBB7E4A0E004F86151 /* RNImageCropPicker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF5D49F33AA8FC9DA5C0B700E99D9A22 /* Build configuration list for PBXNativeTarget "RNImageCropPicker" */;
@@ -2201,7 +2129,6 @@
 				CFAA15D0B1098CC4CFA64A06585C74D8 /* react-native-webview */,
 				59C1CA611CA73EBBB7E4A0E004F86151 /* RNImageCropPicker */,
 				2A97E043155E62DBE242392F242EEA4C /* RSKImageCropper */,
-				50A648A59465FF8FE87E123ECA86050D /* yoga */,
 			);
 		};
 /* End PBXProject section */
@@ -2250,24 +2177,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA267D6AA28C37C29034A5B3A00408E /* Pods-WorkspaceMobile-tvOSTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		61A0BD891AC139CC613F9190829E1377 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3861D8FAB5143AE80E7A530855F1AE06 /* Utils.cpp in Sources */,
-				90C9671280178F5EF24AB38EA4113823 /* YGConfig.cpp in Sources */,
-				7091235FB4257B77A710EFE7D3E27E5C /* YGEnums.cpp in Sources */,
-				3008EB788025CCA6864BC7D95E790B5C /* YGLayout.cpp in Sources */,
-				3E5C9C51D0831EC1779C4EC734F9871D /* YGMarker.cpp in Sources */,
-				A385594F9DE3B51D54E76CD5B6586F71 /* YGNode.cpp in Sources */,
-				435D9FE838C12BC23D48BB82CAC44A15 /* YGNodePrint.cpp in Sources */,
-				3033C7DE2430C71EC805786CF006B010 /* YGStyle.cpp in Sources */,
-				9F8B26C5B7EB8DDDF8DFAB411CF4A1B8 /* YGValue.cpp in Sources */,
-				D2B1C409EB0FDDAFF05771AF5B222D51 /* yoga-dummy.m in Sources */,
-				7B185DAA56827D9A651E8C3C62E2433E /* Yoga.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2387,7 +2296,6 @@
 		B4DDFC0C590E097E2DE4C2DB08A6A2A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = yoga;
-			target = 50A648A59465FF8FE87E123ECA86050D /* yoga */;
 			targetProxy = 4FA336F74185AB9247CFE487F4C52BEF /* PBXContainerItemProxy */;
 		};
 		BE56009892942BC14D28D3881CBF4299 /* PBXTargetDependency */ = {
@@ -2637,29 +2545,6 @@
 			};
 			name = Debug;
 		};
-		64B3E84E8747DDD4190E16704F3683C6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D61CFE8F234489539568E40AE46A632D /* yoga.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/yoga/yoga-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = yoga;
-				PRODUCT_NAME = yoga;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		6C8E573BC8E05C2C5539A418A493D363 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C75B6791EA4B94DAC8502F3AAB3D44E /* Pods-WorkspaceMobile.release.xcconfig */;
@@ -2677,30 +2562,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7683D2224796CF3D68A8D229579860B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D61CFE8F234489539568E40AE46A632D /* yoga.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/yoga/yoga-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = yoga;
-				PRODUCT_NAME = yoga;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3033,15 +2894,6 @@
 			buildConfigurations = (
 				87238F80C40F63989D279E6FDF7ABFDB /* Debug */,
 				FD9DF069A6CD2D664D277422DF89713B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B926A42A66BA2CDA2DC8F4976246879B /* Build configuration list for PBXNativeTarget "yoga" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64B3E84E8747DDD4190E16704F3683C6 /* Debug */,
-				7683D2224796CF3D68A8D229579860B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
