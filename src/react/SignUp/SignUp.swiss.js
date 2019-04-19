@@ -10,6 +10,7 @@ export default styleSheet('SignUp', {
   FooterWrapper: {
     _flex: ['row', 'center', 'flex-end'],
     flex: 1.5,
+    paddingBottom: 15,
   },
   FooterText: {
     _el: Text,

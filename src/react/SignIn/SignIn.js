@@ -61,7 +61,6 @@ export default class SignIn extends Component {
           <KeyboardAvoidingView
             style={{
               width: '100%',
-              height: '100%',
               flex: 1.7,
             }}
             behavior={behavior}

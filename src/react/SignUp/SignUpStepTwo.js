@@ -102,7 +102,7 @@ export default class SignUpStepTwo extends PureComponent {
                 goSignIn();
               }}
               forwardButton={true}
-              title="SIGN UP"
+              title="SIGN IN"
               textType="captionDark"
               height="auto"
             />

@@ -36,9 +36,33 @@ export default class SignUpStepOne extends PureComponent {
       return alertErrorHandler(null, 'Ivalid password');
     }
 
+    const backButton = {
+      id: 'Back',
+      component: {
+        name: 'TextButton',
+        passProps: {
+          backButton: true,
+          icon: 'ArrowLeft',
+          title: 'Go back',
+          textType: 'captionDark',
+          onPress: () => {
+            Navigation.popToRoot(this.props.componentId);
+          },
+        },
+      },
+    };
+
     Navigation.push(this.props.componentId, {
       component: {
         name: 'SignUpStepTwo',
+        options: {
+          topBar: {
+            backButton: {
+              visible: false,
+            },
+            title: backButton,
+          },
+        },
         passProps: {
           email: emailVal,
           password: passwordVal,
@@ -108,7 +132,7 @@ export default class SignUpStepOne extends PureComponent {
                 goSignIn();
               }}
               forwardButton={true}
-              title="SIGN UP"
+              title="SIGN IN"
               textType="captionDark"
               height="auto"
             />

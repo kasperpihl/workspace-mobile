@@ -19,5 +19,6 @@ export default styleSheet('ForgottenPassword', {
   FooterWrapper: {
     _flex: ['row', 'center', 'flex-end'],
     flex: 1.5,
+    paddingBottom: 15,
   },
 });

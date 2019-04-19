@@ -9,6 +9,7 @@ export default styleSheet('SignIn', {
   },
   ForgotPasswordWrapper: {
     _el: TouchableOpacity,
+    marginTop: 10,
   },
   ForgotPasswordText: {
     _el: Text,
@@ -18,7 +19,8 @@ export default styleSheet('SignIn', {
   },
   FooterWrapper: {
     _flex: ['row', 'center', 'flex-end'],
-    flex: 1.5,
+    flex: 1.1,
+    paddingBottom: 15,
   },
   FooterText: {
     _el: Text,
