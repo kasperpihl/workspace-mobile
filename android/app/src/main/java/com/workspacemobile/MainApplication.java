@@ -11,10 +11,9 @@ import com.rnfs.RNFSPackage;
 import com.vinzscam.reactnativefileviewer.RNFileViewerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
-
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import java.util.Arrays;
 import java.util.List;
-
 import com.imagepicker.permissions.OnImagePickerPermissionsCallback;
 import com.facebook.react.modules.core.PermissionListener;
 
@@ -41,7 +40,8 @@ public class MainApplication extends NavigationApplication implements OnImagePic
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new RNDeviceInfo(), new SvgPackage(), new RNFSPackage(),
-                new RNFileViewerPackage(), new ImagePickerPackage(), new RNCWebViewPackage()
+                new RNFileViewerPackage(), new ImagePickerPackage(), new RNCWebViewPackage(),
+                new ReactNativeOneSignalPackage()
         // eg. new VectorIconsPackage()
         );
     }

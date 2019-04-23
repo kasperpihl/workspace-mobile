@@ -30,6 +30,7 @@
     "react-native-image-picker": "^0.28.1",
     "react-native-modal-selector": "^1.0.3",
     "react-native-navigation": "2.12.0",
+    "react-native-onesignal": "^3.2.12",
     "react-native-parsed-text": "0.0.21",
     "react-native-svg": "^9.2.4",
     "react-native-svg-icon": "^0.8.1",

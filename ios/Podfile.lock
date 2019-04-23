@@ -1,7 +1,11 @@
 PODS:
+  - OneSignal (2.9.4)
   - QBImagePickerController (3.4.0)
   - React (0.59.2):
     - React/Core (= 0.59.2)
+  - react-native-onesignal (3.2.12):
+    - OneSignal (= 2.9.4)
+    - React
   - react-native-webview (5.7.0):
     - React
   - React/Core (0.59.2):
@@ -40,6 +44,7 @@ PODS:
   - yoga (0.59.2.React)
 
 DEPENDENCIES:
+  - react-native-onesignal (from `../node_modules/react-native-onesignal/react-native-onesignal.podspec`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
@@ -57,12 +62,15 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - OneSignal
     - QBImagePickerController
     - RSKImageCropper
 
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
+  react-native-onesignal:
+    :path: "../node_modules/react-native-onesignal/react-native-onesignal.podspec"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   RNImageCropPicker:
@@ -71,13 +79,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
 SPEC CHECKSUMS:
+  OneSignal: a41f5a896177275662da07e23d6a809c0e105a89
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 9d063e2f356c8cd2f54dd550d4507740037cbabe
+  react-native-onesignal: a189670032c4cd1b02985c2d23c41ce63d5a2dbd
   react-native-webview: 8fc6bdcd3e75bfac60e4f95bb9ddf13570466230
   RNImageCropPicker: a4c8db5757926bda8b04ba6796cc2a21cc6fd783
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   yoga: 3768a3026ade0fb46a68f3a31a917cf86bc34fc4
 
-PODFILE CHECKSUM: 535eea6f496e595a24bc89964c55d696e7a1a37f
+PODFILE CHECKSUM: a67107823a7e51139bcef1078ac15ec5faa4792c
 
 COCOAPODS: 1.6.1
