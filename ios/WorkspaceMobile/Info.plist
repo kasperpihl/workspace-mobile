@@ -47,6 +47,10 @@
 		<string>SF Pro Display Medium.otf</string>
 		<string>SF Pro Display Regular.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

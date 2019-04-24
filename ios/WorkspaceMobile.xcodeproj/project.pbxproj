@@ -46,6 +46,11 @@
 		6780EA3C427AB15F63EDBCA1 /* libPods-WorkspaceMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D05AF100C5B1C53A3062932B /* libPods-WorkspaceMobileTests.a */; };
 		715EBAE77B8445D2AC464E27 /* SF Pro Display Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD5EAE5C8BA543B3AA8C054B /* SF Pro Display Medium.otf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		9D2F22F2226F27BC004AC218 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2F22F1226F27BC004AC218 /* NotificationService.m */; };
+		9D2F22F6226F27BC004AC218 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9D2F22EE226F27BC004AC218 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9D2F22FC226F2843004AC218 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2F22FB226F2843004AC218 /* UIKit.framework */; };
+		9D2F22FE226F284B004AC218 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2F22FD226F284B004AC218 /* SystemConfiguration.framework */; };
+		9D2F230B226F2B0C004AC218 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2F230A226F2AF9004AC218 /* libRCTOneSignal.a */; };
 		9D51CCA28ACC7E9BF71258CB /* libPods-WorkspaceMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB061C136AF1E6C0C6A9C73B /* libPods-WorkspaceMobile-tvOS.a */; };
 		9D7D2C2D221FF34900E3C175 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D16CEFE21615D4C006DA5EA /* libRNSVG.a */; };
 		9D7D2C5D221FF34E00E3C175 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4C75B9215CE91000F1DBEA /* libReactNativeNavigation.a */; };
@@ -312,6 +317,20 @@
 			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
 			remoteInfo = "RNSVG-tvOS";
 		};
+		9D2F22F4226F27BC004AC218 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D2F22ED226F27BC004AC218;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+		9D2F2309226F2AF9004AC218 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D2F2305226F2AF9004AC218 /* RCTOneSignal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTOneSignal;
+		};
 		9D4C75B8215CE91000F1DBEA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D4C758E215CE91000F1DBEA /* ReactNativeNavigation.xcodeproj */;
@@ -412,6 +431,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9D2F22FA226F27BC004AC218 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9D2F22F6226F27BC004AC218 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -422,6 +455,7 @@
 		00E356EE1AD99517003FC87E /* WorkspaceMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkspaceMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* WorkspaceMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkspaceMobileTests.m; sourceTree = "<group>"; };
+		032ED62F8E3400E2287DDF40 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		051A9B68D8654BDCAC30BFB0 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		0FB6B48132A925A482C27CCA /* Pods-WorkspaceMobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkspaceMobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-WorkspaceMobile-tvOSTests/Pods-WorkspaceMobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -455,6 +489,15 @@
 		8D76BEA0EB28368EDE1D1D69 /* Pods-WorkspaceMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkspaceMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-WorkspaceMobile-tvOS/Pods-WorkspaceMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		917BF980D6C24238AC390BD9 /* SF Pro Display Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF Pro Display Bold.otf"; path = "../assets/fonts/SF Pro Display Bold.otf"; sourceTree = "<group>"; };
 		9D22FF3BA1B78AC2389BE33D /* libPods-WorkspaceMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkspaceMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D2F22E9226F256C004AC218 /* WorkspaceMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = WorkspaceMobile.entitlements; path = WorkspaceMobile/WorkspaceMobile.entitlements; sourceTree = "<group>"; };
+		9D2F22EE226F27BC004AC218 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D2F22F0226F27BC004AC218 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		9D2F22F1226F27BC004AC218 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		9D2F22F3226F27BC004AC218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D2F22FB226F2843004AC218 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9D2F22FD226F284B004AC218 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9D2F2305226F2AF9004AC218 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
+		9D2F230C226F2DD1004AC218 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		9D4C758E215CE91000F1DBEA /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		9D7D2C5E221FF40300E3C175 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AB061C136AF1E6C0C6A9C73B /* libPods-WorkspaceMobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WorkspaceMobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -534,6 +577,16 @@
 			files = (
 				2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */,
 				FC9D847E266AFBF2FB8BDA5E /* libPods-WorkspaceMobile-tvOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D2F22EB226F27BC004AC218 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D2F230B226F2B0C004AC218 /* libRCTOneSignal.a in Frameworks */,
+				9D2F22FE226F284B004AC218 /* SystemConfiguration.framework in Frameworks */,
+				9D2F22FC226F2843004AC218 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +675,7 @@
 		13B07FAE1A68108700A75B9A /* WorkspaceMobile */ = {
 			isa = PBXGroup;
 			children = (
+				9D2F22E9226F256C004AC218 /* WorkspaceMobile.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -659,6 +713,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D2F22FD226F284B004AC218 /* SystemConfiguration.framework */,
+				9D2F22FB226F2843004AC218 /* UIKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
@@ -666,6 +722,7 @@
 				AB061C136AF1E6C0C6A9C73B /* libPods-WorkspaceMobile-tvOS.a */,
 				B722A3CC8E507D408D95AB41 /* libPods-WorkspaceMobile-tvOSTests.a */,
 				D05AF100C5B1C53A3062932B /* libPods-WorkspaceMobileTests.a */,
+				032ED62F8E3400E2287DDF40 /* libPods-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -691,6 +748,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				9D2F2305226F2AF9004AC218 /* RCTOneSignal.xcodeproj */,
 				9D7D2C5E221FF40300E3C175 /* RNDeviceInfo.xcodeproj */,
 				9D4C758E215CE91000F1DBEA /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -728,6 +786,7 @@
 				13B07FAE1A68108700A75B9A /* WorkspaceMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* WorkspaceMobileTests */,
+				9D2F22EF226F27BC004AC218 /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				9D16CED121615D4B006DA5EA /* Recovered References */,
@@ -746,6 +805,7 @@
 				00E356EE1AD99517003FC87E /* WorkspaceMobileTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* WorkspaceMobile-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* WorkspaceMobile-tvOSTests.xctest */,
+				9D2F22EE226F27BC004AC218 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -768,6 +828,25 @@
 			children = (
 				9D16CEFE21615D4C006DA5EA /* libRNSVG.a */,
 				9D16CF0021615D4C006DA5EA /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D2F22EF226F27BC004AC218 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				9D2F230C226F2DD1004AC218 /* OneSignalNotificationServiceExtension.entitlements */,
+				9D2F22F0226F27BC004AC218 /* NotificationService.h */,
+				9D2F22F1226F27BC004AC218 /* NotificationService.m */,
+				9D2F22F3226F27BC004AC218 /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		9D2F2306226F2AF9004AC218 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D2F230A226F2AF9004AC218 /* libRCTOneSignal.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -882,10 +961,12 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				62B4B5EA9EBF08C4F1ACC50A /* [CP] Copy Pods Resources */,
+				9D2F22FA226F27BC004AC218 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9D2F22F5226F27BC004AC218 /* PBXTargetDependency */,
 			);
 			name = WorkspaceMobile;
 			productName = "Hello World";
@@ -930,6 +1011,23 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* WorkspaceMobile-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9D2F22ED226F27BC004AC218 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D2F22F7226F27BC004AC218 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				9D2F22EA226F27BC004AC218 /* Sources */,
+				9D2F22EB226F27BC004AC218 /* Frameworks */,
+				9D2F22EC226F27BC004AC218 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 9D2F22EE226F27BC004AC218 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -947,8 +1045,17 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 85LTPM52WY;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -962,6 +1069,16 @@
 						DevelopmentTeam = 85LTPM52WY;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					9D2F22ED226F27BC004AC218 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 85LTPM52WY;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1004,6 +1121,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = 9D2F2306226F2AF9004AC218 /* Products */;
+					ProjectRef = 9D2F2305226F2AF9004AC218 /* RCTOneSignal.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1056,6 +1177,7 @@
 				00E356ED1AD99517003FC87E /* WorkspaceMobileTests */,
 				2D02E47A1E0B4A5D006451C7 /* WorkspaceMobile-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* WorkspaceMobile-tvOSTests */,
+				9D2F22ED226F27BC004AC218 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1299,6 +1421,13 @@
 			remoteRef = 9D16CEFF21615D4C006DA5EA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9D2F230A226F2AF9004AC218 /* libRCTOneSignal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOneSignal.a;
+			remoteRef = 9D2F2309226F2AF9004AC218 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9D4C75B9215CE91000F1DBEA /* libReactNativeNavigation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1428,6 +1557,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D2F22EC226F27BC004AC218 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1614,6 +1750,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9D2F22EA226F27BC004AC218 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D2F22F2226F27BC004AC218 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1626,6 +1770,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* WorkspaceMobile-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		9D2F22F5226F27BC004AC218 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D2F22ED226F27BC004AC218 /* OneSignalNotificationServiceExtension */;
+			targetProxy = 9D2F22F4226F27BC004AC218 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1723,6 +1872,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = WorkspaceMobile/WorkspaceMobile.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 85LTPM52WY;
@@ -1754,6 +1905,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = WorkspaceMobile/WorkspaceMobile.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85LTPM52WY;
 				HEADER_SEARCH_PATHS = (
@@ -2051,6 +2204,62 @@
 			};
 			name = Release;
 		};
+		9D2F22F8226F27BC004AC218 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 85LTPM52WY;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swipesapp.swipes.forteams.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9D2F22F9226F27BC004AC218 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 85LTPM52WY;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swipesapp.swipes.forteams.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2095,6 +2304,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D2F22F7226F27BC004AC218 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D2F22F8226F27BC004AC218 /* Debug */,
+				9D2F22F9226F27BC004AC218 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
