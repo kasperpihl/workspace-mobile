@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.swipesforteams.onesignal</string>
+		<string>group.com.swipesapp.swipes.forteams.onesignal</string>
 	</array>
 </dict>
 </plist>
