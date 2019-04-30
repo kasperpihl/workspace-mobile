@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
+import OneSignal from 'react-native-onesignal';
 import request from 'core/utils/request';
 import storeGet from 'core/utils/store/storeGet';
 import userGetFullName from 'core/utils/user/userGetFullName';
@@ -18,6 +19,7 @@ export default function Profile(props) {
         alertErrorHandler(res);
       } else {
         store.dispatch({ type: 'RESET_STATE' });
+        OneSignal.deleteTag('swipesUserId');
       }
     });
   };

@@ -19,6 +19,7 @@ export default function RootWrapper(Component, store, persistor, requireAuth) {
       OneSignal.addEventListener('received', this.onReceived);
       OneSignal.addEventListener('opened', this.onOpened);
       OneSignal.addEventListener('ids', this.onIds);
+      OneSignal.inFocusDisplaying(2);
     }
 
     componentWillUnmount() {
@@ -28,18 +29,18 @@ export default function RootWrapper(Component, store, persistor, requireAuth) {
     }
 
     onReceived(notification) {
-      console.log('Notification received: ', notification);
+      // console.log('Notification received: ', notification);
     }
 
     onOpened(openResult) {
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult);
+      // console.log('Message: ', openResult.notification.payload.body);
+      // console.log('Data: ', openResult.notification.payload.additionalData);
+      // console.log('isActive: ', openResult.notification.isAppInFocus);
+      // console.log('openResult: ', openResult);
     }
 
     onIds(device) {
-      console.log('Device info: ', device);
+      // console.log('Device info: ', device);
     }
 
     render() {

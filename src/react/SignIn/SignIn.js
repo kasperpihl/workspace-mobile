@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import OneSignal from 'react-native-onesignal';
 import request from 'core/utils/request';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import FormButton from 'src/react/FormButton/FormButton';
@@ -34,6 +35,22 @@ export default class SignIn extends Component {
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res, 'Wrong email or password');
+      } else {
+        const myId = res.user_id;
+        OneSignal.getTags(receivedTags => {
+          if (!receivedTags) {
+            receivedTags = {};
+          }
+
+          if (myId && !receivedTags.swipesUserId) {
+            OneSignal.sendTag('swipesUserId', myId);
+          } else if (
+            receivedTags.swipesUserId &&
+            myId !== receivedTags.swipesUserId
+          ) {
+            OneSignal.sendTag('swipesUserId', myId);
+          }
+        });
       }
     });
   }
