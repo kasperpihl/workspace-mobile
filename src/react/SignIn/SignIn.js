@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import OneSignal from 'react-native-onesignal';
 import request from 'core/utils/request';
 import { goSignUp, goHome, goForgottenPassword } from 'src/navigation';
 import FormButton from 'src/react/FormButton/FormButton';
@@ -10,6 +9,7 @@ import TextButton from 'src/react/TextButton/TextButton';
 import { Form, FormTextInput } from 'src/react/Form/Form';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import withKeyboard from 'src/utils/withKeyboard';
+import oneSignalTag from 'src/utils/oneSignalTag';
 import SW from 'src/react/SignIn/SignIn.swiss';
 
 @withKeyboard
@@ -36,21 +36,7 @@ export default class SignIn extends Component {
       if (res.ok === false) {
         alertErrorHandler(res, 'Wrong email or password');
       } else {
-        const myId = res.user_id;
-        OneSignal.getTags(receivedTags => {
-          if (!receivedTags) {
-            receivedTags = {};
-          }
-
-          if (myId && !receivedTags.swipesUserId) {
-            OneSignal.sendTag('swipesUserId', myId);
-          } else if (
-            receivedTags.swipesUserId &&
-            myId !== receivedTags.swipesUserId
-          ) {
-            OneSignal.sendTag('swipesUserId', myId);
-          }
-        });
+        oneSignalTag(res.user_id);
       }
     });
   }

@@ -9,6 +9,7 @@ import LogoHeader from 'src/react/LogoHeader/LogoHeader';
 import TextButton from 'src/react/TextButton/TextButton';
 import alertErrorHandler from 'src/utils/alertErrorHandler';
 import withKeyboard from 'src/utils/withKeyboard';
+import oneSignalTag from 'src/utils/oneSignalTag';
 import SW from 'src/react/SignUp/SignUp.swiss';
 
 @withKeyboard
@@ -37,6 +38,8 @@ export default class SignUpStepTwo extends PureComponent {
     }).then(res => {
       if (res.ok === false) {
         alertErrorHandler(res);
+      } else {
+        oneSignalTag(res.user_id);
       }
     });
   };
