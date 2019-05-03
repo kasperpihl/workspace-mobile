@@ -14,6 +14,7 @@ const addButton = {
     passProps: {
       icon: 'New',
       fill: 'dark',
+      small: true,
       onPress: () => {
         Navigation.showModal(navigationComponents.ProjectAdd);
       },
