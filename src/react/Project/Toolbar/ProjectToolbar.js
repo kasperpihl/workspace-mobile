@@ -205,7 +205,6 @@ export default class ProjectToolbar extends PureComponent {
           onPress={onPressLocal}
           title="Done"
           textType="captionDark"
-          right={true}
         />
       </SW.RightButton>
     );
