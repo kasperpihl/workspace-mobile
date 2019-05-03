@@ -153,6 +153,7 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
           onChangeText={text => {
             setMessage(text);
           }}
+          placeholderTextColor={colors['sw3']}
         />
         {renderAttachIcon()}
       </SW.InputWrapper>

@@ -17,7 +17,6 @@ export default styleSheet('ChatCommentComposer', {
   Input: {
     _el: TextInput,
     _textType: 'bodyDarkForInputs',
-    placeholderTextColor: 'sw3',
     paddingTop: 0,
     paddingBottom: 0,
     flex: 1,
