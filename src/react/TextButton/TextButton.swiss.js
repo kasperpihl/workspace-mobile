@@ -7,7 +7,6 @@ export default styleSheet('TextButton', {
     _flex: 'center',
     _size: get => {
       const height = get('height');
-      console.log(height);
       return ['auto', height || 44];
     },
     _padding: [0, 3],
