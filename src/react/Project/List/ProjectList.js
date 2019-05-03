@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigation } from 'react-native-navigation';
 import usePaginationRequest from 'core/react/_hooks/usePaginationRequest';
+import useUpdate from 'core/react/_hooks/useUpdate';
 import { FlatList, ActivityIndicator, Platform } from 'react-native';
 import ProjectListItem from 'src/react/Project/List/Item/ProjectListItem';
 import navigationComponents from 'src/utils/navigationComponentsSettings';
@@ -40,6 +41,12 @@ export default function ProjectList() {
       resultPath: 'projects',
     }
   );
+
+  useUpdate('project', update => {
+    if (update.created_at) {
+      req.prependItem(update);
+    }
+  });
 
   const renderLoader = () => {
     if (req.error || req.loading) {
