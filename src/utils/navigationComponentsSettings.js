@@ -97,20 +97,6 @@ export default {
             id: 'ChatAdd',
             name: 'ChatAdd',
             options: {
-              topBar: {
-                leftButtons: [
-                  {
-                    id: 'Cancel',
-                    text: 'Cancel',
-                  },
-                ],
-                rightButtons: [
-                  {
-                    id: 'Create',
-                    text: 'Create',
-                  },
-                ],
-              },
               animations: {
                 showModal: {
                   enabled: false,
