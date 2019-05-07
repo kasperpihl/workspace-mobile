@@ -13,7 +13,7 @@ export default styleSheet('ForgottenPassword', {
   },
   CopyText: {
     _el: Text,
-    _textType: 'header3Dark',
+    _textType: 'header3',
     marginTop: 30,
   },
   FooterWrapper: {

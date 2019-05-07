@@ -1,7 +1,7 @@
 import { styleSheet } from 'swiss-react';
 import { Text, TouchableOpacity } from 'react-native';
 
-export default styleSheet('Input', {
+export default styleSheet('FormButton', {
   Wrapper: {
     _el: TouchableOpacity,
     _flex: ['column', 'center'],
@@ -15,6 +15,6 @@ export default styleSheet('Input', {
   },
   ButtonText: {
     _el: Text,
-    _textType: 'header3Dark',
+    _textType: 'header3',
   },
 });
