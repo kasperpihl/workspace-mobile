@@ -27,8 +27,9 @@ export default function getGlobals() {
     platform: Platform.OS,
     apiHeaders: {
       'sw-platform': Platform.OS,
-      [`${pre}-version`]: DeviceInfo.getVersion(),
-      [`${pre}-build-number`]: DeviceInfo.getBuildNumber(),
+      [`${pre}`]: DeviceInfo.getBuildNumber(),
+      // [`${pre}-version`]: DeviceInfo.getVersion(),
+      // [`${pre}-build-number`]: DeviceInfo.getBuildNumber(),
     },
   });
 }

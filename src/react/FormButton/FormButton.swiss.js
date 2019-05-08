@@ -9,7 +9,7 @@ export default styleSheet('FormButton', {
   },
   Button: {
     _size: ['100%', 48],
-    _flex: ['center'],
+    _flex: 'center',
     _border: [1, 'green'],
     _borderRadius: 2,
   },
