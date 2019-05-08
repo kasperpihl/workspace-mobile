@@ -52,6 +52,7 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     id: 'Back',
     component: {
       name: 'TextButton',
+      alignment: 'fill',
       passProps: {
         backButton: true,
         icon: 'ArrowLeft',

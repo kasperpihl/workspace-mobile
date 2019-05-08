@@ -71,6 +71,7 @@ export default class ProjectAdd extends PureComponent {
       id: 'Cancel',
       component: {
         name: 'TextButton',
+        alignment: 'fill',
         passProps: {
           title: 'Cancel',
           textType: 'captionDark',

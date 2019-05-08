@@ -65,6 +65,7 @@ export default class ChatAdd extends PureComponent {
       id: 'Cancel',
       component: {
         name: 'TextButton',
+        alignment: 'fill',
         passProps: {
           title: 'Cancel',
           textType: 'captionDark',

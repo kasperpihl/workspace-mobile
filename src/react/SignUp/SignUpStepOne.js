@@ -40,6 +40,7 @@ export default class SignUpStepOne extends PureComponent {
       id: 'Back',
       component: {
         name: 'TextButton',
+        alignment: 'fill',
         passProps: {
           backButton: true,
           icon: 'ArrowLeft',

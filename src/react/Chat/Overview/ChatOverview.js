@@ -32,6 +32,7 @@ function ChatOverview({ discussion, myId }) {
     id: 'Back',
     component: {
       name: 'TextButton',
+      alignment: 'fill',
       passProps: {
         backButton: true,
         icon: 'ArrowLeft',
