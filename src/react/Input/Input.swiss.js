@@ -21,6 +21,7 @@ export default styleSheet('Input', {
     _el: TouchableOpacity,
     position: 'absolute',
     right: 0,
+    top: 5,
     zIndex: 1,
   },
 });
