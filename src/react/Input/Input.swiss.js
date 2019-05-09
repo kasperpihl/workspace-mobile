@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { Text, TextInput, TouchableOpacity } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native';
 
 export default styleSheet('Input', {
   Wrapper: {
