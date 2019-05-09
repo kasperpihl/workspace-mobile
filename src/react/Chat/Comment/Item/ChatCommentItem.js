@@ -82,8 +82,8 @@ function ChatCommentItem({ myId, comment, teamId }) {
   const renderMessage = message => {
     const match = /<!giphy*\|(.*)\|(.*)>/g.exec(message);
 
-    if (match) {
-      const [full, height, width] = /h:([0-9]*),w:([0-9]*)/gm.exec(match[2]);
+    if (match !== null) {
+      const [full, height, width] = /h:([0-9]*),\s?w:([0-9]*)/gm.exec(match[2]);
       const ratio = width / height;
       const base = 200;
       const newWidth = width > height ? base : base * ratio;
