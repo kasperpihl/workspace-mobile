@@ -61,16 +61,13 @@ export default class SignUpStepTwo extends PureComponent {
           <KeyboardAvoidingView
             style={{
               width: '100%',
-              height: '100%',
-              flex: 1.7,
+              flex: 1,
             }}
             behavior={behavior}
           >
             <Form
               style={{
                 flexDirection: 'column',
-                justifyContent: 'space-around',
-                flex: 1,
               }}
             >
               <View>
@@ -81,7 +78,7 @@ export default class SignUpStepTwo extends PureComponent {
                   onChangeText={this.handleChangeText('firstnameVal')}
                 />
               </View>
-              <View>
+              <View style={{ marginTop: 20 }}>
                 <FormLabel label={'Last name'} />
                 <FormTextInput
                   last
@@ -90,7 +87,7 @@ export default class SignUpStepTwo extends PureComponent {
                   onSubmitEditing={this.handleSignUp}
                 />
               </View>
-              <View>
+              <View style={{ marginTop: 20 }}>
                 <FormButton
                   onPress={this.handleSignUp}
                   label={`Let's get started`}

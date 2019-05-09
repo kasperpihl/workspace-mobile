@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from 'react-native';
 
 export default styleSheet('SignIn', {
   Wrapper: {
-    _flex: ['column', 'center', 'space-between'],
+    _flex: ['column', 'center', 'flex-start'],
     _size: ['100%', '100%'],
     _padding: [0, 20],
   },
@@ -19,7 +19,6 @@ export default styleSheet('SignIn', {
   },
   FooterWrapper: {
     _flex: ['row', 'center', 'flex-end'],
-    flex: 1.1,
     paddingBottom: 15,
   },
   FooterText: {

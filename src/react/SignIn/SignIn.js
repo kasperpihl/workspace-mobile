@@ -64,15 +64,13 @@ export default class SignIn extends Component {
           <KeyboardAvoidingView
             style={{
               width: '100%',
-              flex: 1.7,
+              flex: 1,
             }}
             behavior={behavior}
           >
             <Form
               style={{
                 flexDirection: 'column',
-                justifyContent: 'space-around',
-                flex: 1,
               }}
             >
               <View>
@@ -82,7 +80,7 @@ export default class SignIn extends Component {
                   onChangeText={this.handleChangeText('emailVal')}
                 />
               </View>
-              <View>
+              <View style={{ marginTop: 20 }}>
                 <FormLabel label={'Password'} />
                 <FormTextInput
                   last
@@ -92,7 +90,7 @@ export default class SignIn extends Component {
                   onSubmitEditing={this.handleSignIn}
                 />
               </View>
-              <View>
+              <View style={{ marginTop: 20 }}>
                 <FormButton onPress={this.handleSignIn} label={'Log In'} />
               </View>
             </Form>
