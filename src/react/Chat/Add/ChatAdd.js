@@ -111,7 +111,7 @@ export default class ChatAdd extends PureComponent {
 
     request('discussion.add', {
       privacy,
-      topic: chatTitle,
+      title: chatTitle,
       owned_by: team_id,
       members: selectedPeople,
     }).then(res => {
