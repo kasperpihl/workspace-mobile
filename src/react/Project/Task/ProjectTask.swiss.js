@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { TextInput, TouchableOpacity } from 'react-native';
+import { TextInput, TouchableOpacity, Text } from 'react-native';
 
 export default styleSheet('ProjectInput', {
   Wrapper: {
@@ -45,5 +45,17 @@ export default styleSheet('ProjectInput', {
     paddingBottom: 0,
     flex: 1,
     textAlignVertical: 'top',
+  },
+  IconWrapper: {
+    _flex: ['row', 'flex-start'],
+    _size: [34, 34],
+  },
+  AttachmentTitleWrapper: {
+    _el: TouchableOpacity,
+  },
+  AttachmentTitle: {
+    _el: Text,
+    _textType: 'header3ForInputs',
+    color: '$blue',
   },
 });
