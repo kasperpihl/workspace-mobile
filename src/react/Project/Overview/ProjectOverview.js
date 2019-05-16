@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator, VirtualizedList } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -19,6 +19,7 @@ export default connect(state => ({
 }))(ProjectOverview);
 
 function ProjectOverview({ teams, projectId, projectTitle }) {
+  const [loadingAttachment, setLoadingAttachment] = useState(false);
   const stateManager = useSyncedProject(projectId);
   const [
     selectedId,
@@ -91,6 +92,19 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
   const onItemOutdent = () => {
     stateManager.indentHandler.outdent(selectedId);
   };
+  const onAttach = (type, id, title) => {
+    console.log('attached!', { type, id, title });
+    console.log(lastSelectedId.current);
+    stateManager.editHandler.attach(lastSelectedId.current, {
+      type,
+      id,
+      title,
+    });
+
+    if (loadingAttachment) {
+      setLoadingAttachment(false);
+    }
+  };
   const getItemCount = data => data.size;
   const getItem = (data, index) => ({
     key: data.get(index),
@@ -103,6 +117,14 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
       <SW.Wrapper>
         <SW.HeaderText numberOfLines={1}>{projectTitle}</SW.HeaderText>
         <SW.GreyBorder />
+        {loadingAttachment && (
+          <SW.LoadingAttachmentWrapper>
+            <ActivityIndicator size="large" color="#007AFF" />
+            <SW.LoadingAttachmentText>
+              Uploading attachment
+            </SW.LoadingAttachmentText>
+          </SW.LoadingAttachmentWrapper>
+        )}
         <VirtualizedList
           ListHeaderComponent={
             <SW.ListHeaderWrapper>
@@ -130,6 +152,8 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
           onPressBackButton={() => {
             stateManager.selectHandler.select(lastSelectedId.current);
           }}
+          setLoadingAttachment={setLoadingAttachment}
+          ownedBy={ownedBy}
           buttons={[
             {
               icon: 'IndentIn',
@@ -153,6 +177,11 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
                   lastSelectedTask: tasksById.get(lastSelectedId.current),
                 };
               },
+            },
+            {
+              icon: 'Attach',
+              fill: 'dark',
+              onPress: onAttach,
             },
           ]}
         />

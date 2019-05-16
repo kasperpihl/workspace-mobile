@@ -6,11 +6,15 @@ import {
   View,
   Platform,
   Dimensions,
-  Button,
 } from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
+import * as ImagePickerAndroid from 'react-native-image-picker';
+import ModalSelector from 'react-native-modal-selector';
+import DialogInput from 'react-native-dialog-input';
 import SW from './ProjectToolbar.swiss';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import TextButton from 'src/react/TextButton/TextButton';
+import uploadImageToS3 from 'src/utils/uploadImageToS3';
 
 // In order for LayoutAnimation to work on Android
 // I'm not doing layoutAnimations on Android because the behaviour is unpredictable
@@ -39,11 +43,13 @@ export default class ProjectToolbar extends PureComponent {
     customKeyboardProps: {},
     customKeyboardIsShown: false,
     customKeyboardTitle: '',
+    dialogVisible: false,
   };
   keyboardOriginalHeight = 0;
   layoutAnimationKeyboardDuration = 250;
   layoutAnimationKeyboardEasing =
     Platform.OS === 'android' ? 'linear' : 'keyboard';
+  onAttach = null;
   configureNextLayoutAnimation = () => {
     // I'm not doing layoutAnimations on Android because the behaviour is unpredictable
     // and the performance is just not good :/
@@ -131,8 +137,49 @@ export default class ProjectToolbar extends PureComponent {
       customKeyboardIsShown: false,
     });
   };
+  openiOSImagePicker() {
+    const { setLoadingAttachment, ownedBy } = this.props;
+    ImagePicker.openPicker({
+      multiple: true, // T_TODO should be false on Android
+      maxFiles: 1,
+    }).then(async files => {
+      const file = await uploadImageToS3(
+        files[0],
+        setLoadingAttachment,
+        ownedBy
+      );
+      setLoadingAttachment(false);
+      this.onAttach('file', file.file_id, file.file_name);
+      // Module is creating tmp images which are going to be cleaned up
+      // automatically somewhere in the future. If you want to force cleanup,
+      // you can use clean to clean all tmp files
+      ImagePicker.clean();
+    });
+  }
+
+  openAndroidImagePicker() {
+    const { setLoadingAttachment, ownedBy } = this.props;
+    ImagePickerAndroid.showImagePicker({}, async response => {
+      if (!response.data) {
+        return;
+      }
+
+      const file = response;
+      file.mime = response.type;
+      file.filename = response.fileName;
+      file.path = response.uri;
+
+      const fileRes = await uploadImageToS3(
+        file,
+        setLoadingAttachment,
+        ownedBy
+      );
+      setLoadingAttachment(false);
+      this.onAttach('file', fileRes.file_id, fileRes.file_name);
+    });
+  }
   renderButtons() {
-    const { buttons } = this.props;
+    const { buttons, onPressDoneButton, onPressBackButton } = this.props;
     const { customKeyboardIsShown } = this.state;
 
     if (customKeyboardIsShown) {
@@ -173,14 +220,61 @@ export default class ProjectToolbar extends PureComponent {
         }
       };
 
-      return (
-        <IconTouchableWrapper
-          key={i}
-          icon={icon}
-          fill={fill}
-          onPress={onPressLocal}
-        />
-      );
+      // T_TODO refactor this shit.
+      // it's super bad but it's fast to write it like that
+      if (icon === 'Attach') {
+        if (onPress) {
+          this.onAttach = onPress;
+        }
+
+        let index = 0;
+        const data = [
+          { key: index++, section: true, label: 'Attach' },
+          { key: index++, label: 'Photo or video' },
+          { key: index++, label: 'URL' },
+        ];
+
+        // T_TODO refactor this out of that file ffs
+        return (
+          <ModalSelector
+            key={i}
+            data={data}
+            animationType="fade"
+            onModalOpen={() => {
+              onPressDoneButton();
+            }}
+            onModalClose={() => {
+              onPressBackButton();
+            }}
+            onChange={option => {
+              if (option.key === 1) {
+                if (Platform.OS === 'ios') {
+                  this.openiOSImagePicker();
+                }
+
+                if (Platform.OS === 'android') {
+                  this.openAndroidImagePicker();
+                }
+              }
+              if (option.key === 2) {
+                this.openDialog();
+              }
+              // alert(`${option.label} (${option.key}) nom nom nom`);
+            }}
+          >
+            <IconTouchableWrapper icon={icon} fill={fill} />
+          </ModalSelector>
+        );
+      } else {
+        return (
+          <IconTouchableWrapper
+            key={i}
+            icon={icon}
+            fill={fill}
+            onPress={onPressLocal}
+          />
+        );
+      }
     });
   }
   renderDoneButton() {
@@ -239,6 +333,20 @@ export default class ProjectToolbar extends PureComponent {
 
     return <SW.Title>{customKeyboardTitle}</SW.Title>;
   }
+  openDialog() {
+    this.setState({
+      dialogVisible: true,
+    });
+  }
+  closeDialog() {
+    const { onPressBackButton } = this.props;
+
+    this.setState({
+      dialogVisible: false,
+    });
+    onPressBackButton();
+  }
+  // T_TODO refactor DialogInput out of this file ffs
   render() {
     let {
       toolBarPaddingBottom,
@@ -246,6 +354,7 @@ export default class ProjectToolbar extends PureComponent {
       CustomKeyboard,
       customKeyboardProps,
       customKeyboardIsShown,
+      dialogVisible,
     } = this.state;
     const { children, hasFocus } = this.props;
     const shouldShow = hasFocus || CustomKeyboard;
@@ -256,6 +365,25 @@ export default class ProjectToolbar extends PureComponent {
           paddingBottom: toolBarPaddingBottom,
         }}
       >
+        <DialogInput
+          isDialogVisible={dialogVisible}
+          title={'Attach url'}
+          message={'Enter the url you want to attach'}
+          hintInput={'https://'}
+          submitInput={inputText => {
+            // T_TODO validate if it is an actual link
+            if (inputText.length > 0) {
+              const title = inputText.replace(/^https?:\/\//, '');
+              const id = `https://${title}`;
+              this.onAttach('url', id, title);
+              this.closeDialog();
+            }
+          }}
+          closeDialog={() => {
+            this.closeDialog();
+          }}
+          dialogStyle={{ marginBottom: 100 }}
+        />
         <SW.ToolbarWrapper
           show={shouldShow}
           customKeyboardIsShown={customKeyboardIsShown}

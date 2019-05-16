@@ -11,4 +11,8 @@ export default styleSheet('AttachmentViewer', {
     _el: Text,
     fontSize: 25,
   },
+  LoaderContainer: {
+    _flex: 'center',
+    flex: 1,
+  },
 });

@@ -28,4 +28,13 @@ export default styleSheet('ProjectOverview', {
     _textType: 'captionLight',
     marginBottom: 2,
   },
+  LoadingAttachmentWrapper: {
+    _flex: ['column', 'center', 'center'],
+    _size: ['100%', '100%'],
+    backgroundColor: '$base',
+  },
+  LoadingAttachmentText: {
+    _el: Text,
+    _textType: 'bodyDark',
+  },
 });

@@ -6,7 +6,7 @@ import * as ImagePickerAndroid from 'react-native-image-picker';
 import request from 'core/utils/request';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
 import colors from 'src/utils/colors';
-import uploadFile from 'src/utils/uploadFile';
+import uploadImageToS3 from 'src/utils/uploadImageToS3';
 import SW from './ChatCommentComposer.swiss';
 
 export default function ChatCommentComposer({ discussionId, ownedBy }) {
@@ -55,44 +55,29 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
     );
   };
 
-  const uploadImageToS3 = async fileFromPicker => {
-    setUploadLoading(true);
-    const fileRes = await uploadFile(fileFromPicker, ownedBy);
-
-    if (!fileRes.ok) {
-      // T_TODO show error
-      return;
-    }
-
-    const file = fileRes.file;
-    setUploadLoading(false);
-    setAttachments(
-      attachments.push({
-        type: 'file',
-        id: file.file_id,
-        title: file.file_name,
-      })
-    );
-
-    if (Platform.OS === 'ios') {
-      // Module is creating tmp images which are going to be cleaned up
-      // automatically somewhere in the future. If you want to force cleanup,
-      // you can use clean to clean all tmp files
-      ImagePicker.clean();
-    }
-  };
-
   const openiOSImagePicker = () => {
     ImagePicker.openPicker({
       multiple: true, // T_TODO should be false on Android
       maxFiles: 1,
-    }).then(files => {
-      uploadImageToS3(files[0]);
+    }).then(async files => {
+      const file = await uploadImageToS3(files[0], setUploadLoading, ownedBy);
+      setUploadLoading(false);
+      setAttachments(
+        attachments.push({
+          type: 'file',
+          id: file.file_id,
+          title: file.file_name,
+        })
+      );
+      // Module is creating tmp images which are going to be cleaned up
+      // automatically somewhere in the future. If you want to force cleanup,
+      // you can use clean to clean all tmp files
+      ImagePicker.clean();
     });
   };
 
   const openAndroidImagePicker = () => {
-    ImagePickerAndroid.showImagePicker({}, response => {
+    ImagePickerAndroid.showImagePicker({}, async response => {
       if (!response.data) {
         return;
       }
@@ -102,7 +87,15 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
       file.filename = response.fileName;
       file.path = response.uri;
 
-      uploadImageToS3(file);
+      const fileRes = await uploadImageToS3(file, setUploadLoading, ownedBy);
+      setUploadLoading(false);
+      setAttachments(
+        attachments.push({
+          type: 'file',
+          id: fileRes.file_id,
+          title: fileRes.file_name,
+        })
+      );
     });
   };
 

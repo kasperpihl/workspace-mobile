@@ -25,6 +25,7 @@ export default styleSheet('ProjectToolbar', {
     marginLeft: get => {
       return get('customKeyboardIsShown') ? '' : 'auto';
     },
+    marginRight: 10,
   },
   MyKeyboard: {
     _size: ['100%', '100%'],
