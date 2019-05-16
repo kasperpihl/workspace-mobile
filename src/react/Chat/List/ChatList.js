@@ -115,7 +115,7 @@ function ChatListWrapper({ myId, unreadCounter, componentId }) {
         badgeColor: 'red',
       },
     });
-  }, []);
+  }, [unreadCounter]);
 
   return (
     <SW.Wrapper>
