@@ -93,8 +93,6 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     stateManager.indentHandler.outdent(selectedId);
   };
   const onAttach = (type, id, title) => {
-    console.log('attached!', { type, id, title });
-    console.log(lastSelectedId.current);
     stateManager.editHandler.attach(lastSelectedId.current, {
       type,
       id,
