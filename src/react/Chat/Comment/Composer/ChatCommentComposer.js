@@ -30,6 +30,8 @@ export default function ChatCommentComposer({ discussionId, ownedBy }) {
 
       if (!res.ok) {
         // T_TODO show error if something goes wrong
+      } else {
+        window.analytics.sendEvent('Comment sent', ownedBy);
       }
     });
 

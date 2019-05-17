@@ -21,6 +21,7 @@ import PlanningOverview from 'src/react/Planning/Overview/PlanningOverview';
 import AttachmentViewer from 'src/react/AttachmentViewer/AttachmentViewer';
 import AttachmentsNoteViewer from 'src/react/Attachments/NoteViewer/AttachmentsNoteViewer';
 import getGlobals from 'src/utils/getGlobals';
+import Analytics from 'src/utils/analytics';
 import { setStore } from 'core/utils/store/storeGet';
 import Socket from 'core/classes/Socket';
 import IconTouchableWrapper from 'src/react/Icon/IconTouchableWrapper';
@@ -34,6 +35,9 @@ const { store, persistor } = configureStore({
 setStore(store); // Make store accessible from core
 window.socket = new Socket(store);
 // END Init core
+
+// init analytics
+window.analytics = new Analytics(store);
 
 export function registerScreens() {
   Navigation.registerComponent('SignIn', () =>

@@ -7,6 +7,7 @@ target 'WorkspaceMobile' do
 
   # Pods for WorkspaceMobile
   rn_path = '../node_modules/react-native'
+  pod 'Mixpanel'
   pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
   pod 'React', path: rn_path, subspecs: [
     'Core',

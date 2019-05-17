@@ -20,6 +20,8 @@ export default function Profile(props) {
       } else {
         store.dispatch({ type: 'RESET_STATE' });
         OneSignal.deleteTag('swipesUserId');
+        window.analytics.sendEvent('Logged out');
+        window.analytics.logout();
       }
     });
   };
