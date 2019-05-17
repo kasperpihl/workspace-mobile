@@ -17,7 +17,7 @@ export default function ChatListItem({ item, myId }) {
     Navigation.push('ChatList', {
       component: merge(navigationComponents.ChatOverview, {
         passProps: {
-          discussion,
+          discussionFromList: discussion,
         },
       }),
     });

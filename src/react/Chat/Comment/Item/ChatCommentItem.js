@@ -133,18 +133,24 @@ function ChatCommentItem({ myId, comment, teamId }) {
   return (
     <SW.Wrapper>
       <SW.Row>
-        <SW.Left>
-          <AssigneeImage
-            userId={sent_by}
-            size={32}
-            imageSize={64}
-            teamId={teamId}
-          />
-        </SW.Left>
+        {sent_by !== 'USYSTEM' && (
+          <SW.Left>
+            <AssigneeImage
+              userId={sent_by}
+              size={32}
+              imageSize={64}
+              teamId={teamId}
+            />
+          </SW.Left>
+        )}
         <SW.Right>
           <SW.Row>
-            <SW.Name>{userGetFirstName(sent_by, teamId)}</SW.Name>
-            <SW.Time>{`${moment(sent_at).format('LT')}`}</SW.Time>
+            {sent_by !== 'USYSTEM' && (
+              <SW.Name>{userGetFirstName(sent_by, teamId)}</SW.Name>
+            )}
+            <SW.Time system={sent_by === 'USYSTEM'}>{`${moment(sent_at).format(
+              'LT'
+            )}`}</SW.Time>
           </SW.Row>
           {renderMessage(message)}
         </SW.Right>
@@ -156,22 +162,24 @@ function ChatCommentItem({ myId, comment, teamId }) {
       >
         <SW.AttachmentsWrapper>{renderAttachments()}</SW.AttachmentsWrapper>
       </SW.Row>
-      <SW.Row>
-        <IconTouchableWrapper
-          key={icon}
-          icon={icon}
-          fill={iconColor}
-          style={{
-            position: 'absolute',
-            zIndex: 3,
-            left: 34,
-          }}
-          onPress={() => {
-            handleLike();
-          }}
-        />
-        <SW.HeartCount>{numberOfLikes}</SW.HeartCount>
-      </SW.Row>
+      {sent_by !== 'USYSTEM' && (
+        <SW.Row>
+          <IconTouchableWrapper
+            key={icon}
+            icon={icon}
+            fill={iconColor}
+            style={{
+              position: 'absolute',
+              zIndex: 3,
+              left: 34,
+            }}
+            onPress={() => {
+              handleLike();
+            }}
+          />
+          <SW.HeartCount>{numberOfLikes}</SW.HeartCount>
+        </SW.Row>
+      )}
     </SW.Wrapper>
   );
 }

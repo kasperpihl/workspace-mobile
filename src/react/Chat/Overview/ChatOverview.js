@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import request from 'core/utils/request';
 import useRequest from 'core/react/_hooks/useRequest';
+import useUpdate from 'core/react/_hooks/useUpdate';
 import ChatCommentsList from 'src/react/Chat/Comment/List/ChatCommentList';
 import ChatCommentComposer from 'src/react/Chat/Comment/Composer/ChatCommentComposer';
 import SW from './ChatOverview.swiss';
 
-function ChatOverview({ discussion, myId }) {
+function ChatOverview({ discussionFromList, myId }) {
+  let discussion = discussionFromList;
   const { discussion_id, title } = discussion;
   // `mark as read` logic
   const req = useRequest(
@@ -27,6 +29,16 @@ function ChatOverview({ discussion, myId }) {
       }
     }
   );
+
+  useUpdate('discussion', update => {
+    if (update.discussion_id === discussion_id) {
+      req.merge('discussion', update);
+    }
+  });
+
+  if (req.result) {
+    discussion = req.result.discussion;
+  }
 
   const backButton = {
     id: 'Back',
@@ -61,10 +73,12 @@ function ChatOverview({ discussion, myId }) {
         <SW.HeaderText numberOfLines={1}>{title}</SW.HeaderText>
         <SW.GreyBorder />
         <ChatCommentsList discussion={discussion} />
-        <ChatCommentComposer
-          discussionId={discussion.discussion_id}
-          ownedBy={discussion.owned_by}
-        />
+        {!discussion.is_system && (
+          <ChatCommentComposer
+            discussionId={discussion.discussion_id}
+            ownedBy={discussion.owned_by}
+          />
+        )}
       </SW.Wrapper>
     </KeyboardAvoidingView>
   );
