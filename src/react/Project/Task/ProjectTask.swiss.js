@@ -47,8 +47,10 @@ export default styleSheet('ProjectInput', {
     textAlignVertical: 'top',
   },
   IconWrapper: {
-    _flex: ['row', 'flex-start'],
-    _size: [34, 34],
+    _flex: ['center'],
+    _size: [22, 22],
+    marginLeft: 7,
+    marginRight: 6,
   },
   AttachmentTitleWrapper: {
     _el: TouchableOpacity,
