@@ -48,9 +48,10 @@ export default styleSheet('ProjectInput', {
   },
   IconWrapper: {
     _flex: ['center'],
-    _size: [22, 22],
-    marginLeft: 7,
-    marginRight: 6,
+    _size: [34, 34],
+    marginLeft: 2,
+    marginRight: 2,
+    paddingBottom: 10,
   },
   AttachmentTitleWrapper: {
     _el: TouchableOpacity,
