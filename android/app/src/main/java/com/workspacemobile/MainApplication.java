@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import com.imagepicker.permissions.OnImagePickerPermissionsCallback;
 import com.facebook.react.modules.core.PermissionListener;
+import com.kevinejohn.RNMixpanel.*;
 
 public class MainApplication extends NavigationApplication implements OnImagePickerPermissionsCallback {
     private PermissionListener listener;
@@ -41,7 +42,7 @@ public class MainApplication extends NavigationApplication implements OnImagePic
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new RNDeviceInfo(), new SvgPackage(), new RNFSPackage(),
                 new RNFileViewerPackage(), new ImagePickerPackage(), new RNCWebViewPackage(),
-                new ReactNativeOneSignalPackage()
+                new ReactNativeOneSignalPackage(), new RNMixpanel()
         // eg. new VectorIconsPackage()
         );
     }
