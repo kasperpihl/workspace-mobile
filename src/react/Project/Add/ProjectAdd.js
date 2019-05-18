@@ -103,12 +103,15 @@ export default class ProjectAdd extends PureComponent {
       members: selectedPeople,
     }).then(res => {
       if (res.ok === false) {
-        alertErrorHandler(res);
+        return alertErrorHandler(res);
       }
 
-      const projectId = res.update.rows[0].data.project_id;
-
+      window.analytics.sendEvent('Project created', team_id, {
+        Privacy: privacy,
+        'Tagged people': selectedPeople.length,
+      });
       this.dismissModal();
+      const projectId = res.update.rows[0].data.project_id;
       Navigation.push('ProjectList', {
         component: merge(navigationComponents.ProjectOverview, {
           passProps: {

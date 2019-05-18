@@ -68,8 +68,18 @@ export default class ProjectTask extends PureComponent {
     stateManager.editHandler.enter(taskId, this.selection.start);
   };
   handleComplete = () => {
-    const { taskId, stateManager, task } = this.props;
+    const { taskId, stateManager, task, planning } = this.props;
     const { completion } = task;
+    const eventName = completion ? 'Task incompleted' : 'Task completed';
+    const fromView = planning ? 'Planing' : 'Project';
+
+    window.analytics.sendEvent(
+      eventName,
+      stateManager.getClientState().get('owned_by'),
+      {
+        From: fromView,
+      }
+    );
 
     if (completion) {
       stateManager.completeHandler.incomplete(taskId);

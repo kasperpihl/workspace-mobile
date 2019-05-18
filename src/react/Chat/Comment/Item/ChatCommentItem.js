@@ -66,8 +66,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
         discussion_id,
         reaction: !like ? 'like' : null,
       }).then(() => {
-        // T_TODO get ownedBy and to analytics here
-        // window.analytics.sendEvent('Reaction added', ownedBy);
+        window.analytics.sendEvent('Reaction added', teamId);
       });
     });
   };

@@ -119,6 +119,10 @@ export default class ChatAdd extends PureComponent {
         return alertErrorHandler(res);
       }
 
+      window.analytics.sendEvent('Chat created', team_id, {
+        Privacy: privacy,
+        'Tagged people': selectedPeople.length,
+      });
       this.dismissModal();
     });
   };

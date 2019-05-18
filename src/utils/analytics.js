@@ -26,7 +26,6 @@ export default class Analytics {
     mixpanel.reset();
   }
   sendEvent = (name, ownedBy, data) => {
-    console.log('MIXPANEL', name, ownedBy, data);
     if (typeof ownedBy === 'object') {
       data = ownedBy;
       ownedBy = null;
@@ -37,7 +36,7 @@ export default class Analytics {
     if (typeof ownedBy === 'string' && ownedBy.startsWith('T')) {
       props['Team ID'] = ownedBy;
     }
-    mixpanel.track(name, props);
+    mixpanel.trackWithProperties(name, props);
   };
   storeChange = () => {
     const { me, teams } = this.store.getState();

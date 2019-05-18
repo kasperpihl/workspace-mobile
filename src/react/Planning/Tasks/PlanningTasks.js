@@ -275,7 +275,12 @@ const PlanningListProject = ({ projectId, dispatch, tasks, filter }) => {
       <SW.ProjectTitle>{title.toUpperCase()}</SW.ProjectTitle>
       <ProjectProvider stateManager={stateManager}>
         {visibleOrder.map(task_id => (
-          <ProjectTask taskId={task_id} key={task_id} disabled={true} />
+          <ProjectTask
+            taskId={task_id}
+            key={task_id}
+            disabled={true}
+            planning={true}
+          />
         ))}
       </ProjectProvider>
     </SW.TasksWrapper>
