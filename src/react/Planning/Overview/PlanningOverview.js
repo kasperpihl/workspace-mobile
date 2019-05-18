@@ -64,6 +64,7 @@ const PlanningOverview = ({ teams, myId }) => {
           yearWeek={yearWeek}
           onWeekChange={onWeekChange}
           onTeamChange={onTeamChange}
+          setToggleInfo={setToggleInfo}
         />
       )}
       {!toggleInfo && (

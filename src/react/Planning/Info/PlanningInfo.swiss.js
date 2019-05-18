@@ -11,4 +11,9 @@ export default styleSheet('PlanningInfo', {
     _el: Text,
     color: 'black',
   },
+  FormButtonWrapper: {
+    _flex: 'center',
+    width: '100%',
+    marginTop: 40,
+  },
 });
