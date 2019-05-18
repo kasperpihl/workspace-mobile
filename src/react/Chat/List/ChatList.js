@@ -134,5 +134,7 @@ function ChatListWrapper({ myId, unreadCounter, componentId }) {
 
 export default connect(state => ({
   myId: state.me.get('user_id'),
-  unreadCounter: state.connection.get('unread').size,
+  unreadCounter: state.connection.get('unreadByTeam').reduce((a, b) => {
+    return a + b.size;
+  }, 0),
 }))(ChatListWrapper);
