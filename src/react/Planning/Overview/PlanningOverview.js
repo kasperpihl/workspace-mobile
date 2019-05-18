@@ -36,7 +36,7 @@ const PlanningOverview = ({ teams, myId }) => {
         fill: toggleInfo ? 'base' : 'sw1',
         small: true,
         style: toggleInfo
-          ? { backgroundColor: colors['green'] }
+          ? { backgroundColor: colors['green'], borderRadius: 2 }
           : { backgroundColor: 'transparent' },
         onPress: () => {
           onToggleInfo();
