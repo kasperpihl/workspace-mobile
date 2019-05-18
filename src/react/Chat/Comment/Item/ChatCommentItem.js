@@ -28,11 +28,17 @@ function ChatCommentItem({ myId, comment, teamId }) {
   const {
     comment_id,
     discussion_id,
-    message,
     sent_by,
     reactions,
     sent_at,
+    deleted,
   } = comment;
+  let { message } = comment;
+
+  if (deleted) {
+    message = 'This message has been deleted';
+  }
+
   const likedByMe = reactions[myId] || false;
   const originalNumberOfLikes = Object.keys(reactions).length || null;
   const [like, setLike] = useState(likedByMe);
@@ -72,7 +78,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
   };
 
   const renderAttachments = () => {
-    if (!comment.attachments) {
+    if (!comment.attachments || comment.deleted) {
       return null;
     }
 
@@ -164,7 +170,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
       >
         <SW.AttachmentsWrapper>{renderAttachments()}</SW.AttachmentsWrapper>
       </SW.Row>
-      {sent_by !== 'USYSTEM' && (
+      {sent_by !== 'USYSTEM' && !comment.deleted && (
         <SW.Row>
           <IconTouchableWrapper
             key={icon}

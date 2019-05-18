@@ -6,6 +6,7 @@ export default styleSheet('ChatCommentItem', {
     _flex: ['column'],
     _size: ['100%', 'auto'],
     _padding: [0, 20],
+    paddingBottom: 5,
   },
   Row: {
     _flex: ['row'],
