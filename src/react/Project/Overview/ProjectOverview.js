@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator, VirtualizedList } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import moment from 'moment';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
 import useProjectSlice from 'core/react/_hooks/useProjectSlice';
 import useSyncedProject from 'core/react/_hooks/useSyncedProject';
 import ProjectTask from 'src/react/Project/Task/ProjectTask';
 import ProjectToolbar from 'src/react/Project/Toolbar/ProjectToolbar';
 import KeyboardAssign from 'src/react/Keyboard/Assign/KeyboardAssign';
+import KeyboardDate from 'src/react/Keyboard/Date/KeyboardDate';
 import useAppState from 'src/react/_hooks/useAppState';
 import ProgressBar from 'src/react/ProgressBar/ProgressBar';
 import SW from './ProjectOverview.swiss';
@@ -180,6 +182,26 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
               icon: 'Attach',
               fill: 'dark',
               onPress: onAttach,
+            },
+            {
+              icon: 'Calendar',
+              fill: 'dark',
+              textButtonLabel:
+                tasksById && selectedId
+                  ? tasksById.get(selectedId).get('due_date')
+                    ? moment(tasksById.get(selectedId).get('due_date')).format(
+                        'DD MMM `YY'
+                      )
+                    : null
+                  : null,
+              keyboard: KeyboardDate,
+              customKeyboardTitle: 'Pick a date',
+              getKeyboardProps: () => {
+                return {
+                  stateManager: stateManager,
+                  lastSelectedTask: tasksById.get(lastSelectedId.current),
+                };
+              },
             },
           ]}
         />

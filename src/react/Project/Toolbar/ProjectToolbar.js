@@ -190,6 +190,7 @@ export default class ProjectToolbar extends PureComponent {
       const {
         icon,
         fill,
+        textButtonLabel,
         onPress,
         keyboard,
         getKeyboardProps,
@@ -264,6 +265,14 @@ export default class ProjectToolbar extends PureComponent {
           >
             <IconTouchableWrapper icon={icon} fill={fill} />
           </ModalSelector>
+        );
+      } else if (textButtonLabel) {
+        return (
+          <TextButton
+            onPress={onPressLocal}
+            title={textButtonLabel}
+            textType="bodyDark"
+          />
         );
       } else {
         return (
