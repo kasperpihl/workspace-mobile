@@ -155,7 +155,7 @@ export default class ProjectTask extends PureComponent {
             icon={expanded ? 'ArrowDown' : 'ArrowRight'}
             fill={'sw3'}
             onPress={this.handleExpandPress}
-            small={true}
+            arrow={true}
             style={{ marginTop: -13 }}
           />
         )}

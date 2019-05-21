@@ -13,6 +13,7 @@ export default class IconTouchableWrapper extends PureComponent {
       topbar,
       backButton,
       size,
+      arrow,
       ...rest
     } = this.props;
 
@@ -22,6 +23,7 @@ export default class IconTouchableWrapper extends PureComponent {
         onPress={onPress}
         disabled={onPress ? false : true}
         topbar={topbar}
+        arrow={arrow}
         backButton={backButton}
       >
         <View

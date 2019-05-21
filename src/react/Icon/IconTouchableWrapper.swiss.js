@@ -9,6 +9,9 @@ export default styleSheet('IconTouchableWrapper', {
     topbar: {
       _size: Platform.OS === 'android' ? 44 : 34,
     },
+    arrow: {
+      _size: 34,
+    },
     backButton: {
       _size: 12,
     },
