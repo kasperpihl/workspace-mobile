@@ -45,6 +45,7 @@ function ChatCommentItem({ myId, comment, teamId }) {
   const [numberOfLikes, setNumberOfLikes] = useState(originalNumberOfLikes);
   const icon = like ? 'HeartFull' : 'Heart';
   const iconColor = like ? 'red' : 'sw2';
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     setNumberOfLikes(originalNumberOfLikes);
@@ -139,7 +140,11 @@ function ChatCommentItem({ myId, comment, teamId }) {
   };
 
   return (
-    <SW.Wrapper>
+    <SW.Wrapper
+      onPress={() => {
+        setExpanded(!expanded);
+      }}
+    >
       <SW.Row>
         {sent_by !== 'USYSTEM' && (
           <SW.Left>
@@ -170,24 +175,26 @@ function ChatCommentItem({ myId, comment, teamId }) {
       >
         <SW.AttachmentsWrapper>{renderAttachments()}</SW.AttachmentsWrapper>
       </SW.Row>
-      {sent_by !== 'USYSTEM' && !comment.deleted && (
-        <SW.Row>
-          <IconTouchableWrapper
-            key={icon}
-            icon={icon}
-            fill={iconColor}
-            style={{
-              position: 'absolute',
-              zIndex: 3,
-              left: 34,
-            }}
-            onPress={() => {
-              handleLike();
-            }}
-          />
-          <SW.HeartCount>{numberOfLikes}</SW.HeartCount>
-        </SW.Row>
-      )}
+      {sent_by !== 'USYSTEM' &&
+        !comment.deleted &&
+        (expanded || numberOfLikes > 0) && (
+          <SW.Row>
+            <IconTouchableWrapper
+              key={icon}
+              icon={icon}
+              fill={iconColor}
+              style={{
+                position: 'absolute',
+                zIndex: 3,
+                left: 34,
+              }}
+              onPress={() => {
+                handleLike();
+              }}
+            />
+            <SW.HeartCount>{numberOfLikes}</SW.HeartCount>
+          </SW.Row>
+        )}
     </SW.Wrapper>
   );
 }

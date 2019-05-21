@@ -1,8 +1,9 @@
 import { styleSheet } from 'swiss-react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 export default styleSheet('ChatCommentItem', {
   Wrapper: {
+    _el: TouchableOpacity,
     _flex: ['column'],
     _size: ['100%', 'auto'],
     _padding: [0, 20],
