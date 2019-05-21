@@ -37,7 +37,7 @@ export default class SignIn extends Component {
         alertErrorHandler(res, 'Wrong email or password');
       } else {
         oneSignalTag(res.user_id);
-        window.analytics.sendEvent('Logged in');
+        window.analytics.sendEvent('Logged in', { email: emailVal });
       }
     });
   }

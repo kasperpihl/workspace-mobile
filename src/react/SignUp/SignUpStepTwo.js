@@ -40,6 +40,7 @@ export default class SignUpStepTwo extends PureComponent {
         alertErrorHandler(res);
       } else {
         oneSignalTag(res.user_id);
+        window.analytics.sendEvent('Signed up', { email });
       }
     });
   };
