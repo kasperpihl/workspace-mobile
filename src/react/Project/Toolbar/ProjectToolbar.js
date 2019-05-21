@@ -269,6 +269,7 @@ export default class ProjectToolbar extends PureComponent {
       } else if (textButtonLabel) {
         return (
           <TextButton
+            key={i}
             onPress={onPressLocal}
             title={textButtonLabel}
             textType="bodyDark"

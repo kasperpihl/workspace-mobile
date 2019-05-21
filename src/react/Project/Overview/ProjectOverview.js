@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { ActivityIndicator, VirtualizedList } from 'react-native';
+import {
+  ActivityIndicator,
+  VirtualizedList,
+  Platform,
+  DatePickerAndroid,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import moment from 'moment';
 import ProjectProvider from 'core/react/_hocs/Project/ProjectProvider';
@@ -111,6 +116,96 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
     taskId: data.get(index),
   });
   const renderItem = ({ item }) => <ProjectTask taskId={item.taskId} />;
+  const openAndroidDatePicker = async () => {
+    const dueDate = tasksById.get(selectedId).get('due_date');
+    const initDate = dueDate ? new Date(moment(dueDate)) : new Date();
+
+    try {
+      const { action, year, month, day } = await DatePickerAndroid.open({
+        date: initDate,
+      });
+      if (action !== DatePickerAndroid.dismissedAction) {
+        // Selected year, month (0-11), day
+        const dueDate = moment([year, month, day]).format('YYYY-MM-DD');
+        stateManager.editHandler.updateDueDate(selectedId, dueDate);
+      }
+    } catch ({ code, message }) {
+      console.warn('Cannot open date picker', code, message);
+    }
+  };
+  const createToolbarButtons = () => {
+    const buttons = [
+      {
+        icon: 'IndentIn',
+        fill: 'dark',
+        onPress: onItemIndent,
+      },
+      {
+        icon: 'IndentOut',
+        fill: 'dark',
+        onPress: onItemOutdent,
+      },
+      {
+        icon: 'Member',
+        fill: 'dark',
+        keyboard: KeyboardAssign,
+        customKeyboardTitle: 'Assignees',
+        getKeyboardProps: () => {
+          return {
+            stateManager: stateManager,
+            users: teamUsers,
+            lastSelectedTask: tasksById.get(lastSelectedId.current),
+          };
+        },
+      },
+      {
+        icon: 'Attach',
+        fill: 'dark',
+        onPress: onAttach,
+      },
+    ];
+
+    if (Platform.OS === 'ios') {
+      buttons.push({
+        icon: 'Calendar',
+        fill: 'dark',
+        textButtonLabel:
+          tasksById && selectedId
+            ? tasksById.get(selectedId).get('due_date')
+              ? moment(tasksById.get(selectedId).get('due_date')).format(
+                  'DD MMM `YY'
+                )
+              : null
+            : null,
+        keyboard: KeyboardDate,
+        customKeyboardTitle: 'Pick a date',
+        getKeyboardProps: () => {
+          return {
+            stateManager: stateManager,
+            lastSelectedTask: tasksById.get(lastSelectedId.current),
+          };
+        },
+      });
+    }
+
+    if (Platform.OS === 'android') {
+      buttons.push({
+        icon: 'Calendar',
+        fill: 'dark',
+        textButtonLabel:
+          tasksById && selectedId
+            ? tasksById.get(selectedId).get('due_date')
+              ? moment(tasksById.get(selectedId).get('due_date')).format(
+                  'DD MMM `YY'
+                )
+              : null
+            : null,
+        onPress: openAndroidDatePicker,
+      });
+    }
+
+    return buttons;
+  };
 
   return (
     <ProjectProvider stateManager={stateManager}>
@@ -154,56 +249,7 @@ function ProjectOverview({ teams, projectId, projectTitle }) {
           }}
           setLoadingAttachment={setLoadingAttachment}
           ownedBy={ownedBy}
-          buttons={[
-            {
-              icon: 'IndentIn',
-              fill: 'dark',
-              onPress: onItemIndent,
-            },
-            {
-              icon: 'IndentOut',
-              fill: 'dark',
-              onPress: onItemOutdent,
-            },
-            {
-              icon: 'Member',
-              fill: 'dark',
-              keyboard: KeyboardAssign,
-              customKeyboardTitle: 'Assignees',
-              getKeyboardProps: () => {
-                return {
-                  stateManager: stateManager,
-                  users: teamUsers,
-                  lastSelectedTask: tasksById.get(lastSelectedId.current),
-                };
-              },
-            },
-            {
-              icon: 'Attach',
-              fill: 'dark',
-              onPress: onAttach,
-            },
-            {
-              icon: 'Calendar',
-              fill: 'dark',
-              textButtonLabel:
-                tasksById && selectedId
-                  ? tasksById.get(selectedId).get('due_date')
-                    ? moment(tasksById.get(selectedId).get('due_date')).format(
-                        'DD MMM `YY'
-                      )
-                    : null
-                  : null,
-              keyboard: KeyboardDate,
-              customKeyboardTitle: 'Pick a date',
-              getKeyboardProps: () => {
-                return {
-                  stateManager: stateManager,
-                  lastSelectedTask: tasksById.get(lastSelectedId.current),
-                };
-              },
-            },
-          ]}
+          buttons={createToolbarButtons()}
         />
       </SW.Wrapper>
     </ProjectProvider>
