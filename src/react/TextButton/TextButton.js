@@ -17,7 +17,7 @@ export default class TextButton extends PureComponent {
     } = this.props;
 
     return (
-      <SW.Wrapper height={height} onPress={onPress}>
+      <SW.Wrapper height={height} onPress={onPress} right={right}>
         {(backButton || buttonIcon) && (
           <IconTouchableWrapper
             backButton={backButton}

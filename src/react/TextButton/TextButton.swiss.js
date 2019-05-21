@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Platform } from 'react-native';
 
 export default styleSheet('TextButton', {
   Wrapper: {
@@ -10,6 +10,7 @@ export default styleSheet('TextButton', {
       return ['auto', height || 44];
     },
     paddingLeft: 7,
+    paddingRight: Platform.OS === 'android' ? 20 : 0,
   },
   Title: {
     _el: Text,

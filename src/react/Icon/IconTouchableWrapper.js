@@ -10,7 +10,7 @@ export default class IconTouchableWrapper extends PureComponent {
       onPress,
       rotate,
       style,
-      small,
+      topbar,
       backButton,
       size,
       ...rest
@@ -21,7 +21,7 @@ export default class IconTouchableWrapper extends PureComponent {
         size={size}
         onPress={onPress}
         disabled={onPress ? false : true}
-        small={small}
+        topbar={topbar}
         backButton={backButton}
       >
         <View

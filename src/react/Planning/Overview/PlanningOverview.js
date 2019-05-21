@@ -34,7 +34,7 @@ const PlanningOverview = ({ teams, myId }) => {
       passProps: {
         icon: 'Info',
         fill: toggleInfo ? 'base' : 'sw1',
-        small: true,
+        topbar: true,
         style: toggleInfo
           ? { backgroundColor: colors['green'], borderRadius: 2 }
           : { backgroundColor: 'transparent' },

@@ -1,5 +1,5 @@
 import { styleSheet } from 'swiss-react';
-import { Text } from 'react-native';
+import { Text, Platform } from 'react-native';
 
 export default styleSheet('ProjectToolbar', {
   ToolbarWrapper: {
@@ -25,7 +25,7 @@ export default styleSheet('ProjectToolbar', {
     marginLeft: get => {
       return get('customKeyboardIsShown') ? '' : 'auto';
     },
-    marginRight: 10,
+    marginRight: Platform.OS === 'android' ? 0 : 10,
   },
   MyKeyboard: {
     _size: ['100%', '100%'],
