@@ -34,6 +34,8 @@ const { store, persistor } = configureStore({
 
 setStore(store); // Make store accessible from core
 window.socket = new Socket(store);
+// T_TODO: Whenever device gets offline, call:
+// window.socket.checkConnection();
 // END Init core
 
 // init analytics
